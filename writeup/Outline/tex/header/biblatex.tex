@@ -1,0 +1,18 @@
+\usepackage[hidelinks]{hyperref}
+\usepackage{cleveref}
+\usepackage[
+  backend=biber,
+  doi=true,
+  url=false,
+  isbn=false,
+  style=authoryear-comp,
+  natbib=true,
+  backref=false,
+  maxbibnames=3,
+  maxcitenames=2,
+  uniquename=false,
+  uniquelist=false
+  ]{biblatex}
+\renewcommand{\refname}{References}
+\renewbibmacro{in:}{}
+\AtEveryBibitem{\clearfield{month}\clearfield{pages}}

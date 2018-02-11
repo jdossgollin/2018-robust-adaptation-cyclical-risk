@@ -1,0 +1,23 @@
+name: floodsampling
+channels:
+    - conda-forge
+    - defaults
+dependencies:
+    - python=3.6    # Python version 3.6
+    - bottleneck    # C-optimized array functions for NumPy
+    - cython        # required for pystan
+    - ipython       # IPython interpreter and tools
+    - jupyter       # Jupyter federation architecture
+    - matplotlib    # 2D plotting library
+    - notebook      # Notebook interface
+    - numpy         # N-d array and numerics
+    - pandas        # Labeled array library
+    - pomegranate   # Hidden Markov Model implementation
+    - pylint        # Code proofing
+    - scipy         # Common math/stats/science functions
+    - seaborn       # statistical plots including heatmap
+    - Sphinx        # Make documentation
+    - xarray        # N-d labeled array library
+    - pip:
+      - sphinx-rtd-theme
+      - pystan      # python interface to stan modeling language

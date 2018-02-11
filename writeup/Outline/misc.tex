@@ -1,0 +1,315 @@
+\documentclass[11pt]{article}
+
+\input{tex/header/macros.tex}
+\input{tex/header/packages.tex}
+
+\title{Climate Change Adaptation: Uncertainty Associated with Sequential Finite Period Decisions under Nonstationarity}
+\author[1,2]{James Doss-Gollin}
+\author[1,2]{Upmanu Lall}
+\author[1,2]{David Farnham}
+\affil[1]{Columbia Water Center, Columbia University}
+\affil[2]{Department of Earth and Environmental Engineering, Columbia University}
+
+\input{tex/header/biblatex.tex}
+\addbibresource{../library.bib}
+
+% -----------------------------------------------------------------------------
+% AUTHOR AND TITLE AND TITLEPAGE
+% -----------------------------------------------------------------------------
+
+\begin{document}
+\RaggedRight
+\section{Manu's Ideas}
+
+Let us tie in financial instruments as well as structural design -- financial instruments are probably better suited for our argument and also this is an active area whereas infrastructure stories are kind of not moving  -- but should cover both. Most importantly let us put the climate adaptation or climate risk mitigation spin on it since that is the most pertinent case -- so in the intro we should develop that idea
+
+I think we need to have the focus on illustrating that for sequential decisions on offers or purchases of insurance like instruments or on the construction of infrastructure one needs to consider the risk as a function of estimation uncertainty of the quantile ($N$ for stationary, and $N-p$ for nonstationary -- where $N-p$ is the effective degrees of freedom) as well as the uncertainty associated with the time period of length $M$.
+
+Where, the process is stationary and sequential decisions are considered, we explore whether the choice of the design quantile or the trigger for insurance like instruments depends on $N$ and $M$ in addition to the cost and loss parameters.
+
+% THIS IS GOOD FOR DISCUSSION
+For the nonstationary case, the projection of the risk on the period of length $M$ based on the estimation using a period of length $M$ also depends on the form of the underlying nonstationarity and the degree to which the ``prediction'' is likely to be successful.
+This is a more interesting and realistic case, since directional information as to the risk to be faced in the M period may depend on the duration $M$ and the uncertainty may also correspondingly change.
+Thus, exploring how the optimal quantile level or trigger for design changes under such conditions is of interest.
+Here, we consider the identification and assessment of these uncertainties for various combinations of $M$, $N$, quantile or trigger level, and form of nonstationarity.
+For simplicity, we consider a monotonic trend in the location and scale prameters, as well as a periodic trend in the location and scale parameters of the underlying climate extreme process, and consider varying signal to noise ratios for these parameters.
+Models that are properly specified, \ie, period to estimate periodic trends, and linear for linear trends are considered.
+Since our intention is to help develop intuition as to how these cases may influence decision making, we consider only these idealized cases, and do not consider model mis-specification for now.
+
+% CONSIDER THIS FOR METHODS
+The fair price for the premium is $p \times \kappa$, where $\kappa$ is the coverage and $p = p(X > X^*)$.
+So if $p=0.01$ and coverage = \SI{1e9}{USD} and $M=\SI{1}{year}$ then this would be $0.01 \times 1e9$.
+If M were 10 years and you got paid per event then one would need to compute the payoff probability for 1 or more events  (complement of 0 events) over that time corresponding to annual $p=0.01$.
+Or to simplify we could make the example to be a payoff on the 1st event and no further events (though if we want to illustrate time clustering with time changing probabilities, the 1 or more game is attractive)
+Now we can derive the fair premium for the $M=m$ game
+However, there is a risk premium associated with the policy that prices the uncertainty in $p$ -- since $x_T$ the trigger is specified in the contract and is not uncertain. This risk premium is proportional to the $V(p)$ or more generally related to the uncertainty distribution of $p$.
+
+Now we come to the $N$ side -- and the $V(p \big| N, M)$ will depend on the underlying model for the process, the estimation scheme and $M$ and $N$, so under the assumption of these things we can derive the risk premium and help illustrate how it changes by condition and hence identify a tradeoff point for dynamic vs static risk given these parameters and $M/P$ position during decision making.
+
+% FOR INTRODUCTION
+The insurance example is a way to illustrate the general principle.
+If we are designing infrastructure we are faced with the same uncertainty on $p$.
+However, to properly analyse it we need detailed information on losses that we may incur and costs.
+These are themselves highly uncertain and would need to be assessed but the underlying principle that the risk due to the uncertainty and bias in $p$ has to be assessed is not any different and the parametric insurance example is then used to get the concept across -- this is how one should present it.
+Of course as discussed separately, it is not just $N$ and $M$ but the static and dynamic risk considerations which imply predictive uncertainty and bias as well and this is why we demonstrate these ideas via simulation
+
+% FOR METHODS / RESULTS SETUP
+building blocks
+\begin{enumerate}
+  \item static risk, stationary process implications of $M$ and $N$ = basically my old paper provides $V$
+  \item static risk, non-stationary process (drift and periodic terms, estimation using full $N$ or partial, most recent $N$ -- as some people recommend and Vogel argues recent $N$ is better in his forthcoming paper) illustrate via simulation for different signal to noise ratio of nonstationary terms and $M$ and $N$
+  \item dynamic risk, \ie updating and sequential decisions, nonstationary, $M$ and $N$ considerations -- ok this is the last case
+\end{enumerate}
+So for AGU if you can even wrap up 1 and 2 and then by end of year paper with all 3 I think we are good for the 1st paper.
+We need enough to motivate the real options paper which is then introduced as the decision making framework considering multiple options.
+
+% FOR DISCUSSION -- THESE ARE IMPLICATIONS
+Let us frame this more precisely in the context of climate change adaptation by giving examples
+1) consider a place where under IPCC scenarios there is a wide variation in the projected probability distributions when all scenarios are considered and this uncertainty increases as one looks out into the future.
+2) We have regime like behavior that varies stoachastically -- could be quasi-periodic or modeled using HMM etc and in this case, essentially we have a structured long-memory process with shifts in all parameters with time, but the underlying dynamics may be stationary.
+Now from a decision making perspective, one could either design and build a project that gives us protection through the year 2100 considering both types of nonstationarities, or consider a sequence of projects every M years that incrementally add (or not) protection. How does the uncertainty and hence risk for these decisions manifest depending on the design level p, the duration M, and the uncertainty associated with the estimation of the f(Qp(t)) given a methodology used for prediction -- e..g the model chain using gcms and such and models fitted to a historical data length m.
+WHat is the implication for choices of p and M under different models for stationarity and uncertainty using some simple loss and cost  functions. How could  financial risk mitigation instruments be used in conjunction with structural design to identify a robust, adaptive climate risk mitigation strategy with sequential decisions that are informed by updated estimates of risk.
+
+
+I think we need to have the focus on illustrating that for sequential decisions on offers or purchases of insurance like instruments or on the construction of infrastructure one needs to consider the risk as a function of estimation uncertainty of the quantile (N for stationary, and N-p for nonstationary -- where N-p is the effective degrees of freedom) as well as the uncertainty associated with the time period of length M. Where, the process is stationary and sequential decisions are considered, we explore whether the choice of the design quantile or the trigger for insurance like instruments depends on N and M in addition to the cost and loss parameters. For the nonstationary case, the projection of the risk on the period of length M based on the estimation using a period of length M also depends on the form of the underlying nonstationarity and the degree to which the "prediction" is likely to be successful. This is a more interesting and realistic case, since directional information as to the risk to be faced in the M period may depend on the duration M and the uncertainty may also correspondingly change. Thus, exploring how the optimal quantile level or trigger for design changes under such conditions is of interest. Here, we consider the identification and assessment of these uncertainties for various combinations of M, N, quantile or trigger level, and form of nonstationarity. For simplicity, we consider a monotonic trend in the location and scale prameters, as well as a periodic trend in the location and scale parameters of the underlying climate extreme process, and consider varying signal to noise ratios for these parameters. Models that are properly specified, i.e., period to estimate periodic trends, and linear for linear trends are considered. SInce our intention is to help develop intuition as to how these cases may influence decision making, we consider only these idealized cases, and do not consider model mis-specification for now.
+
+
+\section{Extra Lit Review}
+
+The first element of the model is the distribution function.
+Although Bulletin 17-B \citep{IACWD1982} mandates the use of the log-Pearson type III (LP3) model of annual-maximum floods in the United States, annual-maximum floods are also modeled three-parameter distributions such as the generalized extreme value distribution and two-parameter models such as the lognormal (LN2) \citep{Vogel1996}.
+Alternatively, peaks-over-threshold floods are typically modeled with the Generalized Pareto distribution \citep{Silva2016,Jain2001}.
+Many other approaches have been utilized in the literature, as the choice of model is generally made for practical rather than theoretical reasons \citep{Kidson2016}.
+
+The second element is an approach for estimating the parameters of the model.
+Popular approaches include the delta, bootstrap, and profile likelihood approahces \citep{Obeysekera2014}.
+More recently Bayesian approaches have gained popularity due to their ability to fully quantify uncertainty.
+Another advantage of Bayesian approaches is the straightforward approach to integrating data from multiple data sources \citep[\ie][]{Sun2014,Lima2016,Bracken2016,Steinschneider2015b}, filling a key need identified in previous literature reviews \citep{Merz2014,Merz2008}.
+
+Finally, FFA requires a parameterization of the time evolution of the model parameters.
+Under assumptions of stationarity used in classical flood frequency analysis, this quantity is assumed constant in time: $p(Q(t)) \equiv p(Q)$.
+One approach to nonstationary FFA is to parameterize the distribution of $Q$ as a linear, logarithmic, or polynomial function of time itself \citep{Obeysekera2014,Vogel2011,Serinaldi2015,Strupczewski2001}.
+A problem with these time-varying parameters is that the different forms of the trends might be almost indistinguishable for the observational period, but lead to different future behavior at the end of the project operation period \citep{Rootzen2013,Serinaldi2015}.
+Additionally, as these statistical approaches condition on more variables, the number of parameters estimated increases, leading to problems of high uncertainty and overfitting \citep{Serinaldi2015}.
+Some studies address this problem by using null hypothesis significance testing (NHST) to detect nonstationarity and fitting time-varying parameters only if nonstationarity is rejected \citep[\ie][]{Obeysekera2014,Luke2017}.
+This approach, however, translates poorly to decision-making settings \citep{Rosner2014,Vogel2013}.
+This is in line with recent criticims in the statistics literature of the use of NHST in situations where the null hypothesis, such as that the flood time series is fully stationary, is implausible \citep{gelman2016problems,Gelman2014a,McShane2017}.
+\footnote{Manu: introduce idea that nonstationarity in terms of all parameters of these models may exist and be monotinic -- important to link to mechanism -- or quasi-periodic. Use appropriate refs. Then introduce the literature htat has tried to make estimates in these settings.}
+
+An alternative approach to purely statistical fits of $Q(t)$ is to numerically simulate the physical processes that lead to floods.
+Typically this is done through a long model chain emcompassing:
+\begin{enumerate*}[label=(\arabic*)]
+  \item emission scenario
+  \item general circulation model (GCM)
+  \item downscaling
+  \item hydrological catchment model; and
+  \item flood frequency analysis.
+\end{enumerate*}
+Typically bias correction is applied at several steps of this chain, which can complicate interpretability of results.
+While this approach allows for estimates of flooding at high spatial and temporal resolution, results are sensitive to the choice of a model at each step of this chain and uncertainty propagation is difficult to characterize \citep{Dankers2009,Ott2013,Dittes2017}.
+Ideally, one could run large ensembles of models that capture the full distribution of uncertainty in each step of the model chain and use ane exhaustive set of physical parameterizations, but in practice the computational cost of such an approach is prohibitively expensive.
+Further, there is a need for theory for combining model results which are not idependent and identically distributed, complicating the task of flood frequency analysis.
+More recently, studies have attempted to shorten the model chain by modeling $Q(X(t))$, where $X$ is a set of climate state variables from a GCM run \citep{Delgado2014,Silva2016,Griffis2007,Villarini2009,Villarini2010,Hall2014}.
+Though this approach does not resolve the difficulties of GCM bias and herding\footnote{there must be a better way to say this -- I mean it in the Nate Silver sense}, by ``shortening'' the model chain it allows for a more interpretable characterization of $p(Q(t))$ and reduces uncertainty associated with subsequent steps.
+
+
+\begin{enumerate}
+  \item High government indebtedness levels in many if not most emerging-market countries no longer allow public-debtd riven delivery as a scalable alternative to build urgently needed infrastructure \citep{WEF-instruments-2016}.
+  \item In specific cases, investors' risk appetite and the risk level of infrastructure projects can be bridged through credit and project guarantees, insurance and other credit-enhancement schemes, also known as Risk Mitigation instruments \citep{WEF-instruments-2016}.
+  \item The sustainable management of water resources requires a long-term perspective.
+  Yet looking to the future reveals a host of major uncertainties, with respect to pressures from climate change, demographic change, land-use changes and other socio-economic drivers \citep{Hall2012}.
+  \item Despite widespread interest in index insurance for industries such as agriculture \citep{Clarke2013} and navigation \citep{Meyer2016}, there has been little exploration of financial instruments for hydroclimate risks beyond a year or two.
+  \item The insurability of risks depends on a number of factors, including:
+  \begin{enumerate*}[label=(\arabic*)]
+    \item mutuality (that a large pool of risk can be created);
+    \item quantifiable loss;
+    \item randomness of the insured event; and
+    \item economic viability (that the premium is sufficient to cover losses and affordable to the policyholders).
+  \end{enumerate*} \citep{Wolfrom2016}.
+\end{enumerate}
+
+
+% ------------------------------------------------------------------------------
+\section{Physical Drivers of Floods and Flooding}
+% ------------------------------------------------------------------------------
+
+Lagrangian tracking studies \citep{Gimeno2010} show that extreme rainfall in many mid-latitude areas originates as moisture in a distant oceanic source.
+Mid-latitude extreme rainfall is often associated with large-scale circulation features which connect the tropics with the extratropics, as shown in the US Midwest \citep{Dirmeyer2010}.
+In the Ohio River Basin, my own work establishes that moisture from the Gulf of Mexico and Caribbean transported via frontal systems leads to {pir} in the Ohio River Basin, in all seasons [in prep.].
+
+In 2014, floods occurred in the Balkans when three consecutive cyclones of the same class followed near-identical trajectories, aligned with a strong jet.
+These cyclones were steered by an amplified and persistent wavenumber $k \approx 6$ circulation \citep{Stadtherr2016} associated with a circumglobal wavetrain \citep{Branstator2002}.
+Other case studies \citep{Grams2014,Nakamura2012} and theoretical analyses \citep{Hoskins2015} support the hypothesis that blocking or quasi-stationary jet sinuosity can lead to {pir}, and planetary-scale analyses demonstrate links between monthly-mean jet stream activity, wave resonance, slow wave speeds,  and mid-latitude surface extremes \citep{Screen2014,Coumou2014}.
+
+Mid-latitude waves and eddies result from baroclinic instabilities propagating from regions of high baroclinicity towards the subtopics and poles \citep{Shaw2016}.
+The equator-to-pole temperature gradient and ocean-land temperature contrast modulate the jet by changing the thermal wind balance and by modifying baroclinicity.
+These gradients are projected to decrease in the future \citep{Cohen2014}, but jet activity is also forced by tropical convection anomalies, including the El Ni\~{n}o Southern Oscillation and the Madden-Julian Oscillation \citep{Karamperidou2012}, which generate wavetrains that can reach the mid-latitudes \citep{Roundy2012}.
+In fact, modeling studies suggest that Rossby waves are triggered more readily by low-latitude deep convection than high-latitude boundary layer processes \citep{Hoskins1981}.
+
+% BEGIN: COPY VERBATIM FROM LULU'S THESIS
+% THIS IS NOT OK TO LEAVE AS-IS BUT IS MERELY USED AS A STARTING POINT
+% FOR SOME FURTHER READING
+\begin{quotation}
+	Nonstationarity of flood risk has emerged as an important issue ([Olsen et al., 1999; Jain and Lall, 2000, 2001; Renard et al., 2006; Villarini et al., 2009; Katz, 2010; Lima and Lall, 2010b; Massei and Fournier, 2012]) and progress in addressing this concern can only come from an improved understanding of the associated climate dynamics.
+	Various climate change projections [Trenberth et al., 2003; Held and Soden, 2006; Allan and Soden, 2008] suggest an intensification of precipitation in the future, in terms of both frequency and magnitude.
+	The intensity of extreme precipitation is projected to increase under global warming in many parts of the world, even in the regions where mean precipitation may decrease [e.g., Kharin and Zwiers, 2000, 2005; Semenov and Bengtsson, 2002; Voss et al., 2002; Wilby and Wigley, 2002; Wehner, 2004].
+
+	However, these arguments are driven largely by considerations of the moisture holding capacity as a function of temperature, as indicated by the Clausius-Clapeyron equation [Muller et al., 2011; Romps, 2011].
+	Outside the tropics the change in water holding capacity could well be below or above Clausius-Clapeyron (CC) scaling whereas in the tropics it has been shown to obey Clausius-Clapeyron (CC) scaling [Muller et al., 2011; Romps, 2011].
+	We postulate that in the midlatitudes it is important to consider the attendant atmospheric circulation and moisture transport dynamics that lead to persistent extreme precipitation and subsequent flooding as evidenced in the recent major floods cited earlier, and identified as important in Nakamura et al. [2012]’s analysis of 21 Ohio River floods that exceed the 10 year return period and in Lavers et al.[2011a]’s demonstration of the association between ARs and 10 largest winter floods events since 1970 in Britain.
+	An understanding of the dynamical mechanisms and statistics associated with the frequency and structure of such events can aid exploration of their representation in ocean-atmosphere circulation models used for weather prediction, seasonal climate forecasting and projections of climate change.
+
+	Although the climate mechanisms governing precipitation vary by location, several researchers indicate that extreme precipitation events in the mid-latitudes are typically associated with anomalous atmospheric moisture from warmer tropical or subtropical oceanic areas.
+	Bao et al. [2006] show that enhanced Integrated Water Vapor (IWV) bands, also known Atmospheric Rivers (ARs) [Ralph and Dettinger, 2011], are associated with direct poleward transport of tropical moisture along the IWV bands from the Tropics all the way to the extratropics.
+	Zhu and Newell [1998] showed that for meridional transport at middle latitudes, ARs account for a substantial part of the moisture transport.
+	There are four or five narrow ribbons across the mid-latitudes, covering less than 10\% of the Earth's circumference, where the majority of the mid-latitude moisture fluxes occurred in filamentary features.
+	The AR concept indicated a direction to track the moisture from warmer oceanic source to the heavy precipitated regions.
+	Schubert et al. [2011] noted that stationary Rossby waves account for a substantial fraction of summertime monthly mean surface temperature and precipitation variability over a number of regions of the Northern Hemisphere middle latitudes.
+	Further Knippertz and Wernli [2010] and Nakamura et al. [2012] note that Tropical moisture exports (TMEs) to the Northern Hemispheric extratropics are an important feature of the general circulation of the atmosphere and link tropical moisture sources with extratropical precipitation and occasionally with explosive cyclogenesis.
+	Lavers et al. [2011] presented evidence that winter flood events in the UK are connected to ARs, which transport moisture from the subtropical N. Atlantic Ocean to the mid-latitudes.
+	The penetration of tropical moisture to the higher latitudes may have considerable impacts on extreme precipitation especially poleward of 30N [Knippertz and Wernli, 2010].
+\end{quotation}
+% END: COPY VERBATIM FROM LULU'S THESIS
+
+% ------------------------------------------------------------------------------
+\section{Estimating Future Floods}
+% ------------------------------------------------------------------------------
+
+\subsection{Classical Methods for Flood Adaptation}
+
+Much of the existing decision literature in the context of climate and flood adaptation bifircates between ``classical'' (stationary) and new, nonstationary methods.
+However, it is straightforward to join these two frameworks together with some careful definitions, which follow.
+
+Let $Q(t)$ be the annual-maximum streamflow for which a record of $N$ years exists.
+Further, define $M$ as the future project operation period, for a single decision.
+This question assumes that an estimate of the probability distribution function $p(Q(t))$ exists.
+Although it is widely recognized that nonstationary techniques seek to model $Q(t)$, implicitly the stationary estimates achieve the same goal.
+Thus, while many framings for flood risk or decision-making apply, all require an estimate of $p \qty(Q(t))$ for $t = 1, \ldots, M$.
+
+Next, consider the $T$-year event to be the event that is exceeded with probability $1/T$ in a particular year; thus $T=T(t)$ and the corresponding event is denoted $Q_{T(t)}$.
+If we average over the $M$-year project period, we can define a $T$-year event which is constant over this $M$-year period.
+Let this event be denoted by $Q^*$, and is the event which is exceeded \emph{on average} $\frac{M}{T}$ times in $M$ years.
+Under nonstationary conditions, the probability of exceeding this event $Q^*$ will not be constant in time -- unlike $Q_{T(t)}$ which is defined such that its probability of exceedance is constant in time but which is itself time-varying.
+
+One common approach to designing infrastructure of policy for flood management is to consider the risk that $Q^*$ is exceeded \emph{at least once} in the $M$-year project lifetime.
+Although it is commonly denoted as risk, this is a word with specific \citep[see][for further discussion]{Merz2014}.
+Instead, we define the reliability $R$ by \cref{eq:iid-nonstationary}.
+\begin{equation}
+	R = 1 - \prod_{t=1}^M \qty[1 - P(Q(t) < Q^*)] \label{eq:iid-nonstationary}
+\end{equation}
+In the classical (stationary) setting, where $P(Q_t \geq Q^*)$ is assumed constant in time, then $P(Q(t) < Q^*)$ is constant and  \cref{eq:iid-nonstationary} simplifies to \cref{eq:iid-stationary}.
+\begin{equation}
+	R = 1 - \qty[1 - P \qty(Q \geq Q^*)]^M = \qty[1 - T^{-1}]^M \label{eq:iid-stationary}
+\end{equation}
+
+
+One important feature of decision analysis is risk: what its components are and how they interact.
+\begin{itemize}
+  \item Today it is recognized that all risk elements (hazard, exposure, vulnerability) are dynamic through time, not only hazard \citep{IPCC2012,Jongman2012,Merz2014}
+  \item Flood protection by dikes aimed at reducing the flood hazard can lead to increased development behind dikes, thus increasing exposure, the so-called levee effect \citep{Tobin1995}
+\end{itemize}
+
+Risk-based design
+\begin{itemize}
+  \item \citet{Rosner2014}: the goal of RBDM is to choose a level of infrastructure protection that minimizes the total expected cost by calculating net benefits: the expected cost of damages avoided, less the cost of infrastructure. While protection against the $T=100$ year flood is the most common design target under traditional analysis, a RBDM process may lead to a protection target either smaller or larger than the 100 year flood, depending on the probability and the consequences of the flood as well as the costs of the needed infrastructure
+\end{itemize}
+
+Year-to-year variability, which is often regime-like and cyclical, tends to dominate climate change signals in historical records \citep{Merz2014,Hodgkins2017} and even in many projections of future extreme floods \citep{Dittes2017}.
+Given that the classical challenges of persistence and short-term memory remain complex and challenging \citep{Matalas2012}, incorporating climate change, land use change, and river modification into projections of future flood risk is a daunting challenge.
+
+
+\subsection{Fully Empirical Methods for Future Flood Estimation}
+
+
+There has been enormous debate over the best choice of distribution and best way to estimate parameters.
+\citet{Kidson2016} Table 2 provides a comprehensive listing of probability density functions used for FFA; see also \citet{Renard2006} for a more detailed discussion of several of these.
+Regarding some debate as to the most appropriate model:
+\begin{itemize}
+  \item \citet{Raff2009} describe that in the document Bulletin 17-B (1982), which provides key guidance across the united states as to flood control, the need for non-stationarity is mentioned in the context of future study.
+  The methodology of Bulletin 17-B is to use a log-Pearson type III (LP3) flood model to describe annual-maximum floods, with a balance given between local (gauge) and regional estimates of the skew parameter.
+  Significant work since this study has gone into the problem of developing improved methods for using data to estimate local flood risks under the nonstationary {iid} assumptions \citep[see][for citations]{Raff2009}.
+  \item Three parameter distributions such as the generalized extreme value (GEV), LP3 and three parameter lognormal (LN3) distributions tend to be best but the LN2 was considered to be the best two-parameter approximation to annual maximum flood series \citep{Vogel1996}
+  \item In general, it is difficult to know which is the ``right'' model for the data (though this may not be a helpful way to think about it). \citet{Adlouni2008} provides a review of methods, largely graphical, to discriminate between different distributions, with the aim of identifying the ``most correct'' one.
+  \item \citet{Kidson2016} argues for use of power law rather than curve-fitting, though notes that ``Many studies of self-similar processes are multifractal, \ie, exhibit different PL scalinge xponents over different scale ranges.''
+  \item ``The recent literature of FFA has been characterized by: (1) a proliferation of mathematical models, lacking theoretical hydrologic justification, but used to extrapolate the return periods of floods beyond the gauged record; (2) official mandating of particular models, which has resulted in (3) research focused on increasingly reductionist and statistically sophisticated procedures for parameter fitting to these models from the limited gauged data.'' \citep{Kidson2016}
+  \item ``One consequence of the adoption of a single standard model is the ‘one size fits nobody’ scenario, where optimal fitting to a specific catchment is precluded by a (possibly unsuited) national model–this may result in mediocre accuracy on flood prediction in any given basin.'' \citep{Kidson2016}
+  \item ``The proliferation of models is itself symptomatic of the weak theoretical basis in hydrology for the application of these FFA models'' \citep{Kidson2016}
+  \item \citet{Rootzen2013} argue that the concept of a return period is insufficient and argue that one should specify both a period of time, the design life period, and a probability of failure.
+\end{itemize}
+
+
+One approach is to consider linear trends in the parameters of the distribution of choice
+\begin{itemize}
+  \item \citet{Obeysekera2014} derives properties of a {gev} distribution and associated uncertainties using three different methods (delta, bootstrap, and profile likelihood) for a 3-parameter {gev} with a linear time trend in the location parameter. Like other studies, this study uses linear trends to consider whether it is necessary to model nonstationarity in the location parameter.
+  \item \citep{Vogel2011} proposes a two-parameter log-normal (LN2) model with a time-varying mean parameter $\mu = \alpha + \beta t$ and finds that ``This nonstationary model of the mean value of y, conditioned on time, t, offers a simple, practical and useful method for modeling the change in the mean of the distribution of flood magnitudes.''
+  \item \citet{Serinaldi2015} presents a simple Gumbel model with linear trends in some parameters as [my words] a straw man for non-stationary models. The authors then make several observations and assertions, some of which are quite relevant:
+  \begin{itemize}
+    \item even for a simple model, the number of parameters which must be estimated increases.
+    \item the assumptions of linear trend in $\mu$ and $\delta$ means the linear trend must hold for the entire design life
+    \item Any model which uses covariates other than time must sufficiently control for anything that might change so that the relationship can be assumed stationary -- if the relationship is nonstationary, the model is theoretically intractable
+    \item When predicting out of sample, poorly-constructed nonstationary estimates give bad results
+    \item Even if we have evidence for nonstationarity, stationary models should be used as benchmark for every more complex competitor
+  \end{itemize}
+  \item \citet{Strupczewski2001} consider Normal, LN2, LN3, LP2, LP3, and Gumbel distributions. They consider trends using: linear mean, parabolic mean, linear SD, parabolic SD, linear coefficient of variation impacting mean and SD simultaneously, parabolic coefficient of variation impacting mean and SD simultaneously, and unrelated linear trend in mean and standard deviation. They then use  Akaike Information Criterion  to identify the optimum distribution and trend function, which enabled an identification of the optimum non-stationary FFM in a class of 56 competing models. The maximum  likelihood  method was used to estimate the parameters of the identieed model using annual peak discharge series.
+\end{itemize}
+
+Another alternative is to consider changes in the floods themselves (rather than the underlying parameters of a probability distribution function)
+\begin{itemize}
+  \item \citet{Villarini2009} use splines to model annual peak flows as a function of time; these get good results but the authors note that these tend to blow up in out-of-sample prediction
+\end{itemize}
+Another option is to look at probability distribution functions that use a mixture model to address regime behavior
+\begin{itemize}
+  \item \citet{Waylen1986} build a 3-family mixture model for floods in Peru where a Gumbel distribution was fit to data during El Ni\~no, Neutral, and La Ni\~na years.
+  \item \citet{Sveinsson2005} use a stochastic switching model, to find that the distribution of the estimated return period can be highly skewed:
+  \begin{quotation}
+    The process of interest  $X_t$  is assumed to be a sum of two independent random variables $Y_t$ and $Z_t$, where the $Y_t$s are {iid} variables and the $Z_t$s are assumed to represent departure of each “stationary” state from the long term mean of the process. During each “stationary state” the Zts remain fixed at a value referred to as a noise level. In the SM-2 model two consecutive stationary states always have noise levels of opposite signs, while in the SM-1 model the noise levels are allowed to fluctuate in a random manner. In this paper only the positive geometric distribution is considered for modeling the length the process spends in each stationary state.
+  \end{quotation}
+  \item \citet{Griffis2007} also propose a mixture model for El Ni\~no flood risk with the LP3 model, considering (i) separate categories based on the state of ENSO or (ii) a parametric relationship between climate indicies and flood behavior
+\end{itemize}
+
+Many studies bifurcate their choice of model by first attempting to detect nonstationarity (typically linear trends), and then choose the model based on this detection; this is a form of the more general problem of model selection
+\begin{itemize}
+  \item Analysis of trends should be approached with great caution: \citet{Cohn2005} argues that the statistical significance of apparent trends, sometimes cited to bolster scientific and political argument, is highly uncertain because significance depends critically on the null hypothesis which in turn reflects jective notions about what one expects to see. From a practical standpoint, the article argues, it may be preferable to acknowledge that the concept of statistical significance is meaningless when discussing poorly understood systems.
+  \item \citet{Cohn2005} shows that when a hydrological system exhibits long-term persistence, spurious trends are often detected that may provide a good explanation of observed data but will not provide useful prediction.
+  \item \citet{Madsen2014a} review a very large number of studies of changes in rainfall and streamflow in Europe, largely within a trend-detection and trend-projection framework
+  \item \citet{Vogel2013,Rosner2014} argue that trying to determining whether there is a linear trend before making a decision about whether to adapt is not relevan, particularly given recent pushback against NHST \citep[\ie][]{Gelman2016,Gelman2014a}. However, the statistical studies mentioned would probably consider their discussion of ``Type I'' and ``Type II'' errors as unhelpful (Gelman has blogged about this extensively)
+  \item  The different forms of the trends might be almost indistinguishable for the observational period, but lead to rather different future behavior \citep{Rootzen2013}.
+  \item \citet{Qi2017} use trend test to justify linear trend in {gev} parameters
+\end{itemize}
+
+Bayesian statistics offer an alternative way to combine information from different sources or with different non-stationarity models
+\begin{itemize}
+  \item \citet{Renard2006} describes a Bayesian framework for considering several probabilistic models (stationary, step-change and linear trend models) and four extreme values distributions (exponential, generalized Pareto, Gumbel and GEV). The framework can be expanded to other models for trend and extreme values distributions. They provide guidance on use of prior information and sampling, though it is worth noting that Bayesian computation has evolved stantially since the article was written.
+  \item Following the call of \citet{Merz2008,Merz2008a}, \citep{Viglione2013} presents a Bayesian approach to estimating the parameters of a stationary {gev} model where jective expert analysis is used as a prior, while historical records of extreme floods beyond the gauge data and information from other catchments are also integrated.
+\end{itemize}
+
+\subsection{Numerical Estimation of Future Floods}
+
+A traditional approach to modeling the future $Q(t)$ is to use a model chain approach
+\begin{itemize}
+  \item The typical approach for deriving future flood hazard scenarios under climate change is to implement model chains consisting of the following elements: emission scenario; general circulation model (GCM); downscaling, possibly including bias correction; hydrological catchment model; flood frequency analysis \citep{Merz2014}
+  \item \citet{Dankers2009} use climate simulations from two RCMs to drive a LISFLOOD hydrological model to assess changes in flood frequency in Europe. They find that at the local or river basin scale, the choice for a particular regional and global climate model or emissions scenario results in large differences in the simulated response of extreme river discharge and sometimes even in a climate signal of opposite sign. Floods associated with different mechanisms are affected in different ways.
+  \item \citet{Kay2008} examine future flood frequency at two catchments in England by coupling several GCMs and hydrological models. The authors find large uncertainty, which comes from uncertainty in future winter rainfall in England and from other sources. They also find that natural variability is very important and must be considered.
+  \item\citet{Ott2013} use a GCM-RCM-HM model chain to investigate the climate change signal on medium catchments in Germany. The ensemble spread in the climate change signal is large and varies with catchment and season, and the results show that most of the uncertainty of the change signal arises from the natural variability in winter and from the RCMs in summer.
+\end{itemize}
+
+\subsection{Alternative Methods of Future Flood Estimation}
+
+One way to model $Q(t)$ is to consider the mechanisms that lead to extreme flooding and to model $Q(t)$ conditional on them (model them as $X$ and consider $p(Q \big| X(t))$)
+\begin{itemize}
+  \item ``We see a great potential in such low-dimensionality models for understanding flood changes because they force the modeller to identify the dominant processes and they offer the possibility for establishing direct causality links for observed and projected flood changes'' \citep{Hall2014}
+  \item \citet{Delgado2014} model Mekong River floods conditional on the Western Pacific monsoon using a shortened model chain: ``emission scenario – global climate model – non-stationary flood frequency model''
+  \item \citet{Silva2016} develop a peaks-over-threshold model where the parameters of the arrival time and conditional distribution depend on ENSO. An excellent review of POT literature is also proposed. N.B.: their use of polynomials looks highly suspect (\ie fig. 7), causing them to draw some physical conclusions that at best aren't strongly supported by the data. However, still useful as the literature review and derivations are good.
+  \item \citet{Sun2014} use a Bayesian approach to build a piecewise linear model for rainfall conditional on the SOI, and incorporate regional inforamtion pooling using a Gaussian Copula
+  \item \citep{Griffis2007} propose using some covariates, such as ENSO and PDO, to represent possible future climate states and to regress the parameters of the LP3 disgribution on those covariates.
+  \item \citet{Villarini2009} use GAMLSS to model time trends in the annual maximum daily rainfall data and annual flood peak observations which are found to exhibit a striking increase in flood magnitudes. However, the GAMLLS approach works well for curve-fitting but blows up when predicting future floods
+  \item \citet{Villarini2010} also use the GAMLSS and assume a parametric distribution for the response variable $Y$ (seasonal rainfall, minimum and maximum temperatures), and model the parameters of the distribution as functions of time $t$ (the explanatory variable) using cubic spline smoothing functions.
+\end{itemize}
+
+% -----------------------------------------------------------------------------
+% END HERE
+% -----------------------------------------------------------------------------
+\clearpage
+\printbibliography
+
+\end{document}
