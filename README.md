@@ -11,5 +11,5 @@ You can install it with
 
 ```
 conda env create -f environment.yml
-source activate floodsampling
+conda activate floodsampling
 ```
