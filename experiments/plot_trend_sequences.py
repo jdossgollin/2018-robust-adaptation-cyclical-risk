@@ -17,7 +17,7 @@ gen_fun = CZNINO3LN2(
 sequences = np.log(gen_fun.get_data())
 
 n_seq_plot = 50
-threshold = np.exp(8)
+threshold = 5000
 
 fig, axes = plt.subplots(nrows=1, ncols=2, sharey=True, figsize=(10, 4),
     gridspec_kw={'width_ratios': [4, 1]})
@@ -42,4 +42,4 @@ ax.legend()
 fig.tight_layout()
 fig.subplots_adjust(top=0.9)
 fig.suptitle('{} Synthetic Streamflow Sequences'.format(n_seq_plot))
-plt.show()
+plt.savefig('figs/trend_sequences.pdf')

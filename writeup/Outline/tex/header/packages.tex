@@ -1,44 +1,30 @@
-\usepackage[letterpaper, margin=0.85in]{geometry} % page
+% Packages With Options
+\usepackage[letterpaper, margin=1in]{geometry} % page
 \usepackage[english]{babel} % language
 \usepackage[utf8]{inputenc} % input
-\usepackage[inline]{enumitem}
+\usepackage[inline]{enumitem} 
+\usepackage[section]{placeins} % floats appear in the section they were defined in
 
+% Other Package calls
 \usepackage{
-  amssymb, amsmath, % for math
-  physics, % for physics notation
-  siunitx, % for SI notation
-  csquotes, % better biblatex
-  listings, % for code
-  graphicx, % for figures
-  mathpazo, % for palatino font
-  ragged2e, % for better alignment of text
-  indentfirst, % indent the first line
   array, % for fixed-width tables
-	booktabs, % for nice tables
-  comment, % comment a lot at once
+  amssymb, amsmath, % for math
   authblk, % for authors
+	booktabs, % for nice tables
+  csquotes, % better biblatex
+  graphicx, % for figures
+  indentfirst, % indent the first line
+  physics, % for physics notation
+  ragged2e, % for better alignment of text
+  siunitx, % for SI notation
+  %mathpazo, % for palatino font
 }
 
 % PACKAGE SETTINGS
 \setlength{\RaggedRightParindent}{\parindent} % fix ragged right
 \graphicspath{{fig/}{../../fig/}}
 \sisetup{round-mode=figures,round-precision=3,scientific-notation=false}
-\allowdisplaybreaks % let the align environment span multiple pages
+\allowdisplaybreaks{} % let the align environment span multiple pages
 
-% for arrays
-\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
-
-% Keep figures in sub-sections
-\usepackage[section]{placeins} % floats appear in the section they were defined in
-\begin{comment}
-\makeatletter
-\AtBeginDocument{%
-  \expandafter\renewcommand\expandafter\subsection\expandafter
-    {\expandafter\@fb@secFB\subsection}%
-  \newcommand\@fb@secFB{\FloatBarrier
-    \gdef\@fb@afterHHook{\@fb@topbarrier \gdef\@fb@afterHHook{}}}%
-  \g@addto@macro\@afterheading{\@fb@afterHHook}%
-  \gdef\@fb@afterHHook{}%
-}
-\makeatother
-\end{comment}
+% arrays with fixed width
+\newcolumntype{L}[1]{>{\raggedright\let\newline \\ \arraybackslash\hspace{0pt}}m{#1}}
