@@ -40,6 +40,4 @@ ax.set_xticks([])
 ax.legend()
 
 fig.tight_layout()
-fig.subplots_adjust(top=0.9)
-fig.suptitle('{} Synthetic Streamflow Sequences'.format(n_seq_plot))
 plt.savefig('figs/stationary_sequences.pdf')
