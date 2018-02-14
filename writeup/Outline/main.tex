@@ -49,45 +49,50 @@ Although in a stationary setting an unbiased estimator of \( P \qty[ Q(t) \geq Q
 
 In order to make probabilistic predictions of future flooding in a particular location, it is helpful to begin by considering the specific physical mechanisms which may lead to flooding in particular location.
 
-In large river basins, extreme river flooding typically requires the large-scale transport and convergence of moisture\citep{Lu2013,Merz2014,Dacre2014}\footnote{Farnham et al}, which often requires specific climate mechanisms.
-For example, major river floods in the Ohio River Basin (USA) in the 20th century exhibit remarkably consistent large-scale circulation features in the weeks preceding the flood peak \citep{Nakamura2012,Robertson2015}.
-This is consistent with findings that have linked flood risk around the world with well-known climate mechanisms such as El Ni\~{n}o-Southern Oscillation (ENSO) \citep{Ward2014,Emerton2017}.
+Floods may be associated with a single rainfall event or be composed of a sequence of multiple, distinct events over a week or a season, such that there is pre-conditioning of the land surface soil moisture and natural and man-made stores that leads to a high flooding potential.
 
-Nonstationarity in hydroclimate systems can occur due to climate change, river modification, and land use change \citep{Milly2008,Merz2014}.
+In large river basins, Lagrangian tracking studies \citep{Gimeno2010} indicate that river flooding often requires the large-scale transport and convergence of moisture  which are driven by specific large-scale climate mechanisms \citep{Dacre2014,Gimeno2014,Lu2013,Dirmeyer2010}.\footnote{Farnham et al}
+For example, major river floods in the Ohio River Basin (USA) in the 20th century exhibit remarkably consistent continental-scale circulation features in the weeks preceding the flood peak \citep{Nakamura2012,Robertson2015}.
+Other case studies \citep{Grams2014,Stadtherr2016}\footnote{Add my work} and theoretical analyses \citep{Hoskins2015,Screen2014,Coumou2014} support the hypothesis that specific climate mechanisms such as blocking or jet sinuosity  can lead to persistent, intense rainfall.
+
+At the seasonal and sub-seasonal scales, surface temperature boundary conditions are well known to significantly change the mean, variance, persistence, recurrence and spatial structure of atmospheric circulation patterns, as well as moisture availability.
+Strong links between climate phenomena such as El Ni\~no-Southern Oscillation (ENSO) and flood risk have been well established in both the water resources \citep[\ie{}][]{Ward2014} and atmospheric science \citep{Tedeschi2013} literatures.
+
+On longer time scales, changes to the physical processes that govern hydroclimate systems, known generically as nonstationarity \citep{Milly2008} can occur due to climate change, river modification, and land use change \citep{Merz2014}.
 Thermodynamic scaling arguments predict an intensified hydrologic cycle under global warming due to the Clausius-Clapeyron scaling of the atmosphere's moisture-holding capacity with temperature \citep[see][]{Muller2011,OGorman2015}.
-However, these scaling arguments do not in general hold over land \citep{Byrne2015,Shaw2016}.
-In addition to thermodynamical changes, climate extremes are highly sensitive to changes in future climate dynamics, which are themselves imperfectly understood due to complex and non-linear physics \citep{Palmer2013}.
-Consequently, predicting future flood risk in a particular location involves making estimates of future climate circulation patterns, the associated thermodynamics, as well as any catchment- and river-scale changes which may affect rainfall-runoff response.
+However, these scaling arguments do not in general hold over land \citep{Byrne2015} and typically describe short-duration rainfall maxima rather than persistent and intense rainfall sequences.
+As compared with thermodynamic changes there is less certainty as to how large-scale dynamical circulations may respond to warming signals \citep{Shaw2016,Barnes2015}, as the dynamics governing these mechanisms are highly non-linear \citep{Palmer2013} and in general not well resolved by climate models\footnote{Farnham 2018}.
 
-\subsection{Estimating Future Flood Risk}
+\subsection{Nonstationary Flood Frequency Analysis}
 
-Under classical assumptions of stationarity, all estimates are assumed independent of time.
-Yet even under stationarity, \citet{Jain2001} showed that low-frequency variability can lead to a high probability of surprise, particularly when the length of the record used for estimation \(N\) is short.
-This finding is particularly important to keep in mind given that low-frequency change has been found to be large as compared to detected trends in the observed record \citep{Hodgkins2017}.
+Under classical assumptions of stationarity, the parameters describing the hydroclimate system are assumed independent of time.
+Even when this assumption is satisfied, low-frequency variability can lead to a high probability of surprise, particularly when the length of the record used for estimation \(N\) is short \citep{Jain2001,Matalas2012}.
+However, widespread acceptance of nonstationarity as a principle has not led to easily generalizable methodologies for nonstationary flood frequency analysis.
 
-Attempts to use a ``model chain'' approach emcompassing:
+One approach is to extend the purely statistical models currently used in the United States \citep{IACWD1982}.
+Like the stationary case, there is no consensus as to the proper statistical distribution to use.
+Although Bulletin 17-B \citep{IACWD1982} mandates the use of the log-Pearson type III (LP3) model of annual-maximum floods in the United States, annual-maximum floods are also modeled three-parameter distributions such as the generalized extreme value distribution and two-parameter models such as the lognormal (LN2) \citep{Vogel1996}.
+Many studies have extended stationary statistical models to include a time trend on one or more parameters \citep{Obeysekera2014,Vogel2011,Serinaldi2015,Strupczewski2001}, an approach which is conceptually and computationally simple but that lacks physical justification.
+Rather than conditioning parameters on time, some recent studies have incorporated a climate index or set of climate indices \(X\) as predictor variables for streamflow \citep{Delgado2014,Silva2016,Sun2014,Griffis2007}\footnote{Farnham et al}.
+Other studies have used Markov or mixture models \citep{Waylen1986,Sveinsson2005,Griffis2007}, Bayesian approaches for combining information \citep{Lima2016,Bracken2017}, and other more sophisticated statistical models.
+
+An alternative approach is to use numerical models to represent the physical processes at all scales.
+Because models are not able to simultaneously represent scales ranging from global-scale climate phenomena to river hydrology, a ``model chain'' approach is used.
+A typical model chain might encompass:
 \begin{enumerate*}[label= (\roman*) ]
   \item emission scenario;
   \item general circulation model (GCM);
   \item downscaling;
   \item hydrological catchment model; and
-  \item flood frequency analysis,
+  \item flood frequency analysis.
 \end{enumerate*}
-typically with bias correction applied at several steps, can lead to results which are difficult to interpret in a probabilistic context \citep{Dankers2009,Ott2013,Merz2014,Dittes2017}.
-
-In particular, the downscaling and bias correction methods typically applied assume stationary relationships (\eg{} between GCM rainfall and observed rainfall) which have no physical basis, particularly in a changing climate.
-Recent work has also sought to shorten the above model chain by modeling \( Q(X(t)) \), where\( X \) is a set of climate state variables from a GCM run, and where the relationship between \(X\) and \(Q\) can more reasonably be assumed stationary \citep{Hall2014,Delgado2014,Silva2016}.
-Alternatively, purely statistical approaches have extended classical flood frequency analysis by incorporating a time trend in the parameters of statistical distributions \citep{Obeysekera2014,Vogel2011,Serinaldi2015,Strupczewski2001}.
-In this case, however, the analyst can choose not only the distribution but also  the time parameterization, if any, for each parameter, leading to many researcher degrees of freedom \citep[``forking paths'' or ``multiple comparisons'';][]{Gelman2013} and exacerbating the problems caused by lack of theory for model choice even under nonstationarity \citep{Kidson2016}.
-
-To capture this influence, some recent studies have incorporated a climate index or set of climate indices \(X\) as predictor variables for streamflow \citep{Delgado2014,Silva2016,Sun2014,Griffis2007}\footnote{Farnham et al}.
-For a more comprehensive review, we refer the reader to \citet{Hall2014}.\footnote{Farnham et al}
-
+Typically bias correction is applied at several or steps of the procedure, which can lead to results which are difficult to interpret in a probabilistic context \citep{Dankers2009,Ott2013,Merz2014,Dittes2017}.
 
 \subsection{Decision Approaches}
 
-Incorporating uncertain projections of physical variables into useful decision models is further hampered by the diffulties inherent to forecasting the needs of society\footnote{Cite needed}, which may even be coupled to the natural system.\footnote{Insert citation on socio-hydrology}
-Risk-based design methods \citep[RBDM; see][]{Rosner2014} recognize that the appropriate level of design  may itself be a decision variable.
+Despite the abundance of approaches for estimating future flood hazard, each of which may give different estimates of future flood risk, the ultimate goal of flood frequency analysis is to inform risk management decisions.
+
+Risk-based design methods \citep[RBDM; see][]{Rosner2014} recognize that the appropriate level of design may itself be a decision variable.
 \citet{Lall1987} considered the uncertainty in the frequency with which floods may exceed the design level for different values of \(p\) (equivalent to different values of \(T\)), and also for different sample sizes for estimation \(N\) and different project operation periods \(M\).
 Some prominent methodologies for risk-based design under nonstationary in the water resources literature include robust decision making (RDM)\footnote{(Lempert et al. 2006; Lempert and Groves 2010; Matrosov et al. 2013)}, scenario-neutral planning\footnote{(Prudhomme et al. 2010)}, infogap analysis\footnote{(Ben-Haim 2006; Korteling et al. 2013)}, and decision scaling\footnote{(Brown et al. 2011, 2012; Moody and Brown 2013; Turner et al. 2014)}. 
 
@@ -100,42 +105,38 @@ There is thus \emph{a critical theoretical need for decision frameworks which ca
 In the following sections we illustrate some basic considerations of uncertainty and risk analysis associated with the sequential decisions that may need to be made for climate risk adaptation in a nonstationary environment.
 Understanding the full uncertainty associated with thresholds of interest is relevant to many other climate adaptation problems, including infrastructure design for flood management, because we are faced with the task of estimating the infrastructure's probability of failure \(p_T\) for the next \(M\) years, as well as the uncertainty and bias in this estimate.
 This is a first conceptual step to the development of a full sequential decision analysis approach under nonstationarity.
-
 We proceed as follows \(\ldots{}\)
 
 \section{Methods}\label{sec:methods}
 
 We use an idealized model to generate sequences of annual-maximum floods, fit these sequences in a probabilistic framework to three flood models that incorporate time in different ways, and evalaluate the performance of these models for multiple observational record lengths \(N\) and project planning periods \(M\).
 
-\subsection{Synthetic Flood Sequence Generation}
+\subsection{Generating Synthetic Flood Sequences}
 
-ENSO \citep[see][for a comprehensive review]{Sarachik2010} varies in a quasi-oscillatory manner with variability on the order of \SIrange{4}{6}{year} modulated by low-frequency behavior.
-Though the time scales are specific to ENSO, this pattern of quasi-oscillatory behavior modulated by low-frequency behavior is typical of many other climate phenomena.
-A \SI{100000}{year} integration of the Cane-Zebiak model \citep{Zebiak1987} was used to produce a monthly NINO3.4 index\footnote{We greatfully acknowledge the contribution of Nandini Ramesh} with stationary forcing.
-To create an annual time series, we average the May-July months to create a time series \( X(t) \) where \(t\) is taken in annual steps \(1, \ldots, \num{100000}\).
-
-Though statistical models relating climate indices and streamflow maxima typically require strong assumptions (\ie{} a stationary relationship between predictor and predictand; see \texttt{Farnham et al}), this framework is the starting point of our synthetic flood generation approach.
-
+We generate synthetic flood sequences from a simple conceptual model where the expected flood varies as a function of a single climate index plus time following the log-normal distribution:
 \begin{equation} \label{eq:lognormal}
   \log Q(t) \big| \mu(t),\sigma(t) \sim \normal \qty(\mu(t), \sigma(t)).
 \end{equation}
-The parameters of the distribution vary in time according to the sampled NINO3 index denoted \( X(t) \) as well as time itself, representing secular trends:
+
+ENSO is the dominant mode of tropical climate variability, impacts flood risk around the world, and varies in a quasi-oscillatory manner with variability on the order of \SIrange{4}{6}{year} modulated by low-frequency oscillation \citep[see][for a comprehensive review]{Sarachik2010}.
+A \SI{100000}{year} integration of the Cane-Zebiak model \citep{Zebiak1987} was used to produce a monthly NINO3.4 index with stationary forcing as described in \citep{Ramesh2017}.
+To create an annual time series, we average the October-December months to create a time series \( x(t) \) where \( t \) is taken in annual steps \(1, \ldots, \num{100000} \).
+The parameters of the distribution vary in time according to the sampled NINO3 index denoted \( x(t) \) as well as time itself, representing secular trends.
+First a starting point in the \SI{100000}{year} ENSO was randomly chosen, then \(\mu\) is determined by
 \begin{equation}
-  \mu(t) = \mu_0 + \beta X(t) + \gamma \qty(t - t_0)
+  \mu(t) = \mu_0 + \beta x(t) + \gamma \qty(t - t_0)
 \end{equation}
 and a constant coefficient of variation
 \begin{equation}
-  \sigma(t) = \begin{cases} \alpha \mu(t) & \qqtext{if} \alpha \mu(t) \geq 0.01 \\ 0.01 & \qqtext{else} \end{cases}
+  \sigma(t) = \begin{cases} \alpha \mu(t) & \qqtext{if} \alpha \mu(t) \geq \sigma_\text{min} \\ \sigma_\text{min} & \qqtext{else} \end{cases}
 \end{equation}
+where \(\sigma_\text{min}\) is a small constant that ensures non-trivial noise in the system.
 
-We partition \( \mu(t) \) into a dynamical component, driven by the variability of the climate predictor \(X(t)\), and a trend component, represented by a linear increase in time.
-This trend component may represent changes in land use, global temperature change, or river modification \citep[see][]{Merz2014}.
 Though this is a highly simplified model neglecting many important mechanisms, it enables us to generate many synthetic sequences of \(\qty[M + N]\) years which exhibit chaotic but organized quasi-periodic behavior (regime behavior or low-frequency variability) plus a trend term, thereby capturing many essential features of hydrological variability.
-Because the computational cost is small, it is easy to generate sets of sequences.
 
 In \cref{sec:sequence-realistic} we show sequences of streamflow generated by this model for some choices of parameters and discuss the processes which they can reasonably represent.
 
-\subsection{Distributional Model\label{sec:estimation}}
+\subsection{Fitting Streamflow Sequences\label{sec:estimation}}
 
 Because we do not, in general, know the true distribution of annual-maximum floods, we compare a stationary and non-stationary parameterizations of the generalized extreme value (GEV) statistical distribution (eq.~\ref{eq:GEV}) for estimating the distribution of \(Q(t)\) for the future \(M\)-year period.
 \begin{equation}
@@ -234,15 +235,23 @@ Consider dynamic risk, \ie{} updating and sequential decisions, a nonstationary 
 
 Hopefully something to discuss?
 
+For the type of extreme flood events we are interested in, the nominal return period at some location flooded during the event will typically be larger than 10 years. 
+While this is a relatively rare event at a given location, across a geography as large as the United States, one can expect to see such events rather frequently, emphasizing the need to understand and predict the risk of such events over a season or few years to facilitate preparation and mitigation strategies.\footnote{Send this to discussion}
+
 \section{Summary}
 
-Some interesting conclusions
+The main point you are hitting is that the very nature of climate has long memory and some people point this out, many model it, and most future projections don't show this.
+All corrections (even if we like them) address the marginal distribution.
+So while the debate you refer to is interesting to a degree, the point we are making is that in terms of risk analysis it is not even tangentially relevant to reality and what we bring up -- our focus -- is strictly the risk based decision process and we are agnostic to the details of the models, other than the long memory features and spatial teleconnections associated with them that are seen as marks of the system behavior.
+We actually demonstrate that the potential loss in a 2100 scenario has to be catastrophic and really out of the range of any historical variability for it to be relevant. 
+If we accept this proposition then we have a strong case for the mitigation of climate change but a much weaker case for adaptation, since if we are not able to mitigate that scenario then building a giant wall to control the 2100 scenario today will be economically and socially infeasible anyway. 
+So the next obvious question is in which situation would waiting and updating the decision make sense and this can be set up and explored or just discussed.
 
 \section{Notation}
 
 \begin{description}
-  \item[$Q$] Annual-maximum flood series
-  \item[$Q_T$] Flood threshold
+  \item[\(Q(t)\)] Annual-maximum flood series
+  \item[\(Q_T\)] Flood threshold
 \end{description}
 
 

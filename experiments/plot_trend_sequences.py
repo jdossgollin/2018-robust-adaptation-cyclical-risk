@@ -19,6 +19,7 @@ sequences = np.log(gen_fun.get_data())
 n_seq_plot = 50
 threshold = 5000
 
+# PLOT LOG STREAMFLOW
 fig, axes = plt.subplots(nrows=1, ncols=2, sharey=True, figsize=(10, 4),
     gridspec_kw={'width_ratios': [4, 1]})
 ax = axes[0]
@@ -36,6 +37,33 @@ fut_sequences = np.log(gen_fun.get_data('future').values.flatten())
 sns.distplot(hist_sequences, vertical=True, ax=ax, label='historical')
 sns.distplot(fut_sequences, vertical=True, ax=ax, label='future')
 ax.axhline(np.log(threshold), c='black', linewidth=0.4)
+ax.set_xticks([])
+ax.legend()
+
+fig.tight_layout()
+plt.savefig('figs/log_trend_sequences.pdf')
+
+
+# PLOT ACTUAL STREAMFLOW
+sequences = gen_fun.get_data()
+fig, axes = plt.subplots(nrows=1, ncols=2, sharey=True, figsize=(10, 4),
+    gridspec_kw={'width_ratios': [4, 1]})
+ax = axes[0]
+for i in np.arange(n_seq_plot-1):
+    sequences.sel(sequence=i).plot(ax=ax, linewidth=0.15, c='gray')
+sequences.sel(sequence=n_seq_plot-1).plot(ax=ax, linewidth=1, c='blue')
+ax.set_ylabel('Log Streamflow')
+ax.set_title('')
+ax.axhline(threshold, c='black', linewidth=0.6)
+ax.axvline(0, c='black', linewidth=0.6)
+ax.set_ylim([0, 10000])
+
+ax = axes[1]
+hist_sequences = gen_fun.get_data('historical').values.flatten()
+fut_sequences = gen_fun.get_data('future').values.flatten()
+sns.distplot(hist_sequences, vertical=True, ax=ax, label='historical')
+sns.distplot(fut_sequences, vertical=True, ax=ax, label='future')
+ax.axhline(threshold, c='black', linewidth=0.4)
 ax.set_xticks([])
 ax.legend()
 
