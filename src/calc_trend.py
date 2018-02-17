@@ -54,7 +54,7 @@ def get_fit_fun(index, gen_fun):
     if index == 0:
         fit_fun = StationaryLN2Stan(sflow=gen_fun, n_sim=n_sim, chains=1, warmup=1000)
     elif index == 1:
-        fit_fun = TrendLN2Stan(sflow=gen_fun, n_sim=n_sim, chains=1, warmup=1000)
+        fit_fun = TrendLN2Stan(sflow=gen_fun, n_sim=n_sim, chains=1, warmup=1001)
     elif index == 2:
         fit_fun = HMM(sflow=gen_fun, n_sim=n_sim, n_components=2, n_init=50)
     else:
@@ -71,10 +71,10 @@ for n, N in enumerate(N_try):
                 # Loop through to get the data
                 gen_dat = gen_fun.get_data('future').sel(year = slice(1, M))
                 fit_dat = fit_fun.get_data('future').sel(year = slice(1, M))
-                p_T = np.nanmean(gen_dat > threshold)
-                p_T_hat = np.nanmean(fit_dat > threshold)
-                bias[n, g, f, m] = p_T_hat - p_T
-                variance[n, g, f, m] = np.nanvar(p_T_hat)
+                exceed_gen = gen_dat > threshold
+                exceed_fit = fit_dat > threshold
+                bias[n, g, f, m] = exceed_fit.mean() - exceed_gen.mean()
+                variance[n, g, f, m] = exceed_fit.std(dim='sim').mean()
 
 bias = xr.DataArray(
     bias, 

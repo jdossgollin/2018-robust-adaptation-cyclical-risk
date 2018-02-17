@@ -13,7 +13,7 @@ for col,f in enumerate(fit['fit_fun'].values):
     for row,g in enumerate(fit['gen_fun'].values):
         sub = fit.sel(gen_fun = g, fit_fun = f).to_dataframe().reset_index().pivot('M', 'N', 'bias')
         ax=axes[row, col]
-        sns.heatmap(sub, ax=ax, vmin=-0.15, vmax=0.15, cmap='PuOr', cbar=False, linewidths=0.1)
+        sns.heatmap(sub, ax=ax, vmin=-0.025, vmax=0.025, cmap='PuOr', cbar=False, linewidths=0.1)
         if row == 0:
             ax.set_title(f)
         if col  == (fit['fit_fun'].size - 1):
@@ -23,7 +23,7 @@ for col,f in enumerate(fit['fit_fun'].values):
 fig.tight_layout()
 fig.subplots_adjust(right=0.85)
 cax = fig.add_axes([0.9, 0.1, 0.02, 0.8])
-sns.heatmap(sub, ax=ax, vmin=-0.15, vmax=0.15, cmap='PuOr', cbar_ax=cax, linewidths=0.1, cbar_kws={'label': 'bias'})
+sns.heatmap(sub, ax=ax, vmin=-0.025, vmax=0.025, cmap='PuOr', cbar_ax=cax, linewidths=0.1, cbar_kws={'label': 'Bias'})
 
 fig.savefig('figs/trend_bias.pdf')
 
@@ -35,7 +35,7 @@ for col,f in enumerate(fit['fit_fun'].values):
     for row,g in enumerate(fit['gen_fun'].values):
         sub = fit.sel(gen_fun = g, fit_fun = f).to_dataframe().reset_index().pivot('M', 'N', 'variance')
         ax=axes[row, col]
-        sns.heatmap(sub, ax=ax, vmin=0, vmax=0.02, cmap='viridis', cbar=False, linewidths=0.1)
+        sns.heatmap(sub, ax=ax, vmin=0, vmax=0.15, cmap='viridis', cbar=False, linewidths=0.1)
         if row == 0:
             ax.set_title(f)
         if col  == (fit['fit_fun'].size - 1):
@@ -45,6 +45,7 @@ for col,f in enumerate(fit['fit_fun'].values):
 fig.tight_layout()
 fig.subplots_adjust(right=0.85)
 cax = fig.add_axes([0.9, 0.1, 0.02, 0.8])
-sns.heatmap(sub, ax=ax, vmin=0, vmax=0.02, cmap='viridis', linewidths=0.1, cbar_kws={'label': 'bias'}, cbar_ax=cax)
 
-fig.savefig('figs/trend_variance.pdf')
+sns.heatmap(sub, ax=ax, vmin=0, vmax=0.15, cmap='viridis', linewidths=0.1, cbar_kws={'label': 'Standard Deviation'}, cbar_ax=cax)
+
+fig.savefig('figs/trend_variance.pdf', bbox_inches='tight')

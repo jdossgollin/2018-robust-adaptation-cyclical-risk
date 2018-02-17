@@ -87,4 +87,4 @@ for ax in axes.flat:
 
 
 fig.tight_layout()
-plt.savefig('figs/trend_sequences.pdf')
+plt.savefig('figs/trend_sequences.pdf', bbox_inches='tight')
