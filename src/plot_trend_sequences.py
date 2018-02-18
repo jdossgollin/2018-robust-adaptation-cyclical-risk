@@ -19,13 +19,13 @@ if plot_log:
 
 enso_gen = CZNINO3LN2(
     N=time_param['N'], M=time_param['M'], t0=time_param['t0'], 
-    mu_0=6, beta_mu=0.5, gamma=0.01,
+    mu_0=6, beta_mu=0.5, gamma=0.02,
     coeff_var=0.1, sigma_min=0.01, 
     n_seq=time_param['n_seq'],
 )
 markov_gen = TwoStateSymmetricMarkovLN2(
     N=time_param['N'], M=time_param['M'], t0=time_param['t0'], 
-    mu_1=6.75, mu_0 = 6, gamma_1=0.01, gamma_2=0, pi=0.9,
+    mmu_1=6.55, mu_0=5.7, gamma_1=0.02, gamma_2=0, pi=0.9,
     coeff_var = 0.1, sigma_min = 0.01,
     n_seq=time_param['n_seq'],
 )
@@ -45,11 +45,11 @@ fig, axes = plt.subplots(
 
 ax = axes[0, 0]
 for i in np.arange(n_seq_plot-1):
-    enso_seq.sel(sequence=i).plot(ax=ax, linewidth=0.15, c='gray')
+    enso_seq.sel(sequence=i).plot(ax=ax, linewidth=0.05, c='gray')
 enso_seq.sel(sequence=n_seq_plot-1).plot(ax=ax, linewidth=1, c='blue')
 ax.axvline(0, c='black', linewidth=0.6)
 ax.set_xlabel('')
-ax.set_title('Synthetic ENSO-Based Sequences')
+ax.set_title('{} Synthetic ENSO-Based Sequences'.format(n_seq_plot))
 if plot_log:
     ax.set_ylabel('Log Streamflow')
 else:
@@ -64,10 +64,10 @@ ax.legend()
 
 ax = axes[1, 0]
 for i in np.arange(n_seq_plot-1):
-    markov_seq.sel(sequence=i).plot(ax=ax, linewidth=0.15, c='gray')
+    markov_seq.sel(sequence=i).plot(ax=ax, linewidth=0.05, c='gray')
 markov_seq.sel(sequence=n_seq_plot-1).plot(ax=ax, linewidth=1, c='blue')
 ax.axvline(0, c='black', linewidth=0.6)
-ax.set_title('Markov Chain-Based Sequences')
+ax.set_title('{} Markov Chain-Based Sequences'.format(n_seq_plot))
 if plot_log:
     ax.set_ylabel('Log Streamflow')
 else:
@@ -88,3 +88,8 @@ for ax in axes.flat:
 
 fig.tight_layout()
 plt.savefig('figs/trend_sequences.pdf', bbox_inches='tight')
+
+p_T_enso = (enso_seq > threshold).values.mean()
+p_T_markov = (markov_seq > threshold).values.mean()
+print('p_T for ENSO: {}'.format(p_T_enso))
+print('p_T for Markov: {}'.format(p_T_markov))

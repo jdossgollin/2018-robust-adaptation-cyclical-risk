@@ -10,7 +10,7 @@ sys.path.insert(0, os.path.abspath('/Users/james/Documents/GitHub/floodsampling'
 from floodsampling.streamflow import CZNINO3LN2, TwoStateSymmetricMarkovLN2
 from floodsampling.fit import TrendLN2Stan, StationaryLN2Stan, HMM
 
-M = 20
+M = 150
 N = 30
 n_seq = 1
 n_sim = 100

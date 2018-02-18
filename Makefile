@@ -18,7 +18,7 @@ viewfigs:
 	open -a $(PDF_VIEWER) figs/*
 
 ## create everything in the analysis
-all: dirs get process analyze
+all: dirs simulate plot
 
 ################################################################################
 # MAKE SETUP
