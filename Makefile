@@ -69,19 +69,13 @@ figs/stationary_sequences.pdf	:	src/plot_stationary_sequences.py
 figs/trend_sequences.pdf	:	src/plot_trend_sequences.py
 	$(PY_INTERP) $<
 
-figs/example_stationary_long.pdf	: src/plot_example_stationary_long.py
+figs/example_long.pdf	: src/plot_example_long.py
 	$(PY_INTERP) $<
 
-figs/example_stationary_short.pdf	: src/plot_example_stationary_short.py
+figs/example_short.pdf	: src/plot_example_short.py
 	$(PY_INTERP) $<
 
-figs/example_trend_short.pdf	: src/plot_example_trend_short.py
-	$(PY_INTERP) $<
-
-figs/example_trend_long.pdf	: src/plot_example_trend_long.py
-	$(PY_INTERP) $<
-
-plot: figs/enso.pdf figs/stationary_bias.pdf figs/trend_variance.pdf figs/trend_bias.pdf figs/trend_variance.pdf figs/stationary_sequences.pdf figs/trend_sequences.pdf figs/example_stationary_short.pdf figs/example_stationary_long.pdf figs/example_trend_short.pdf figs/example_trend_long.pdf
+plot: figs/enso.pdf figs/stationary_bias.pdf figs/trend_variance.pdf figs/trend_bias.pdf figs/trend_variance.pdf figs/stationary_sequences.pdf figs/trend_sequences.pdf figs/example_short.pdf figs/example_long.pdf
 
 ################################################################################
 # Self-Documenting Help Commands

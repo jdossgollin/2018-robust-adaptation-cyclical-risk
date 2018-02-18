@@ -25,10 +25,10 @@ def get_gen_fun(index):
             coeff_var=0.1, sigma_min=0.01
         )
     elif index == 1:
-        gen_fun = TwoStateSymmetricMarkovLN2(
+        gen_fun = CZNINO3LN2(
             N=N, M=M, t0=0, n_seq=n_seq,
-            mu_1=6.75, mu_0 = 6, gamma_1=0, gamma_2=0, pi=0.9,
-            coeff_var = 0.1, sigma_min = 0.01
+            mu_0=6, beta_mu=0.5, gamma=0.01,
+            coeff_var=0.1, sigma_min=0.01
         )
     else:
         raise ValueError('Invalid Index')
@@ -48,7 +48,7 @@ def get_fit_fun(index, gen_fun):
     return fit_fun
 
 # Initialize the bias and variance
-gen_names = np.array(['enso', 'markov'])
+gen_names = np.array(['NINO3 Stationary', 'NINO3 Trend'])
 fit_names = np.array(['ln2_stationary', 'ln2_trend', 'hmm'])
 
 fig, axes = plt.subplots(nrows=3, ncols=2, figsize=(12, 7), sharex=True, sharey=True)
@@ -61,9 +61,10 @@ for g, gen_fun_name in enumerate(gen_names):
         ax = axes[f, g]
         for i in np.arange(n_sim):
             ax.plot(fit_dat['year'], fit_dat.sel(sim=i).values.ravel(), c='gray', linewidth=0.5)
-        ax.plot(gen_dat['year'], gen_dat.values.ravel(), c='blue')
-        ax.set_ylim([10, 100000])
+        ax.plot(gen_dat['year'], gen_dat.values.ravel(), c='blue', linewidth=1)
         ax.semilogy()
+        ax.grid()
+        ax.set_ylim([10, 100000])
         if f == 0:
             ax.set_title(gen_fun_name)
         if g == len(gen_names)-1:
@@ -71,4 +72,4 @@ for g, gen_fun_name in enumerate(gen_names):
             ax.yaxis.set_label_position('right')
 
 fig.tight_layout()
-plt.savefig('figs/example_stationary_short.pdf')
+plt.savefig('figs/example_short.pdf')
