@@ -1,9 +1,9 @@
-\documentclass[12pt]{article}
+\documentclass[11pt]{article}
 
 \input{header/macros.tex}
 \input{header/packages.tex}
 
-\title{Climate Change Adaptation: Uncertainty Associated with Sequential Finite Period Decisions under Nonstationarity}
+\title{Nonstationary, Quasi-Periodic Risk of Climate Extremes, and Decision Analysis}
 \author[1,2]{James Doss-Gollin}
 \author[1,2]{Upmanu Lall}
 \author[1,2]{David Farnham}
@@ -32,6 +32,69 @@
 
 
 \section{Introduction}
+
+The 20th century saw the evolution of a nearly universal approach to the statistical analysis of climate extremes for use in risk analysis and mitigation studies.
+Event risk is assessed as a relationship between the event magnitude and its annual probability of exceedance.  
+Under the assumption that the historical or simulated record of events constitutes an independent and identically distributed process, and using an appropriate statistical inference model, an estimate of this relationship and often its uncertainty based on a finite \(N\) year record is developed. 
+This is then used as a measure for decision analysis for infrastructure, flood zoning and insurance instruments for event risk mitigation, typically using an expected net present value criteria applied to the costs and residual losses expected from the mitigation instrument. 
+Such models arguably arose out of statistical convenience and the need for a standardized approach across an institution. 
+The development of such catastrophic risk or flood risk models is now a veritable cottage industry, and the better practitioners, also consider sampling aspects associated with the data used in analysis and will compute some measure of informational uncertainty that is related to the effective sample size of the data used for developing the event magnitude-probability of exceedance relationship. 
+To summarize, the approach uses historical or modeled data to establish an event magnitude vs probability of exceedance relationship and may also include an estimate of uncertainty around it. 
+Expected net present value analyses are then used for decisions on the level of risk mitigation to implement using a structural or financial solution. 
+This leads to the selection of an event magnitude and the corresponding probability of exceedance that is selected as the appropriate protection level. The uncertainty associated with the model may be used to develop a risk premium for insurance, and/or for assessing the potential over/under design for infrastructure elements, recognizing that the sampling distribution associated with the probability of exceedance associated with a specific design level tends to be asymmetric around the mean value of the estimate. 
+
+Over time, it has become clear that even mild nonstationarities (\ie{} temporal changes in the mean, variance or other statistics in the underlying climate process can lead to significant trends in the estimated return periods or probability of exceedance.
+This has led to a plethora of efforts aimed at identifying the nature of the nonstationarity and modeling it through covariates or other means to develop time varying or state varying (\eg{} relative to the magnitude of a slowly varying climate indicator such as the El Ni\~{n}o-Southern Oscillation) estimates of the desired probability of exceedance.
+Despite such efforts, how one should use these nonstationarity estimates for the design of risk mitigation infrastructure, or the pricing of insurance like instruments has been much less studied.
+
+There are two kinds of nonstationairities of concern.
+The first may be related to anthropogenic climate change.
+The uncertainties associated with this are not purely informational (at least in the sense that they can be inferred from a historical sample or model).
+Nature as well as human actions over the course of this century will determine the outcomes, and neither is obviously predictable. 
+The approach being taken by many, including the IPCC, is to consider discrete scenarios for what humans may do with respect to Greenhouse gas emissions and then use climate models with these scenarios to develop probabilistic statements as to the potential changes in the extremes. 
+While a lot of work has been done in this direction, we are concerned that even the physical projections of changing climate risk, especially with respect to floods are not credible given their relatively poor performance relative to the 20th century data, thus requiring ``bias correction methods'' whose applicability under extrapolation does not inspire confidence.
+A critical question in this regard is how to assess whether any structure designed using these projections may actually perform in the future relative to the proposed level of risk protection.
+Would it be over- or under- designed?
+Would the high degree of bias and uncertainty in its estimation lead to highly suboptimal investment strategies in risk mitigation?
+These questions go well beyond what can be reliably answered at this time. 
+This kind of epistemic uncertainty clearly grows as we look out into the distant future, and the importance of investment decisions that may engage us in considerations of designs that go far out into the future, \eg{} 2100AD, diminish if any positive discount rate is used for the future. 
+While this consideration offsets the impact of the growing uncertainty for longer project life, it also suggests that it may be more effective to understand the consequences for analysis that may focus on shorter lived mitigation alternatives, ones that may last for 1, 5, 10, 20,  30 or 50 years. 
+Sequences of such projects may better reflect climate adaptation goals in any case, especially if we believe that major climate changes may only happen beyond these horizons, or if we are optimistic and believe that humans may avert much of the potential catastrophe by the end of the longer of these horizons.
+
+Focusing on these shorter time horizons brings up the concern associated with the second type of nonstationarity in climate: the quasi-periodic inter-annual, decadal and multidecadal modes of climate variability that have extensive spatial teleconnections and appear to influence the spatio-temporal expression of climate extremes in ways that violate the assumption of independent, identically distributed draws of events that is central to the typical analysis.
+\citet{Jain2001} were perhaps the first to explore how such processes impact the underlying risk in the context of floods, and the influence of ENSO. 
+They considered a novel experiment design, where they used a the largest event from a block of \(K\) years sampled from the historical record as the target design level, as an empirical estimate of the event magnitude that would be exceeded on average once in \(K\) years. 
+The number of times this magnitude was exceeded in the subsequent block of \(K\) years was then recorded. 
+A corresponding randomized experiment was also conducted where the \(K\) years in each step were selected at random consistent with an \iid process hypothesis.
+The data used was an 88 year long record of annual maximum floods from the state of Washington in the USA, and a 1000 year record of a climate model generated El Nino index. 
+The remarkable finding was that the bootstrap frequency distribution associated with event magnitude exceedance process for the structured blocks was dramatically fatter tailed than the one for the randomized blocks. 
+Blocks of \(K\) years in which many more exceedances (under-design) as well years in which many fewer (over-design)  happened than expected by chance were very common, demonstrating a high degree of clustering relative to the \iid assumption. 
+This would translate into a practical observation at some location where over a period of a few years, several 100 year events may take place, leading people to assert that climate is changing.
+Remarkably, the persistent absence of the extreme events over a similar subsequent batch of years is usually not noticed or reported with equal ardor. 
+If there were a 20 year climate cycle then it would make sense that a batch of 10 years would be much wetter and another much drier, such that if we had 200 years of data, \ie{}, 10 cycles of this phenomenon, then one may still obtain relatively robust estimates of the event with the desired design annual probability of exceedance (e.g., 1/10 or 1/100).
+However, even so, the results of Jain and Lall (2001) say that one would get clustered outcomes reflecting the quasi-periodic or long memory climate behavior, and indeed they note that for the ENSO model data, even a K=200 year block size translates into a significant clustering effect for the next 200 years.
+Bonnafous et al (2017a,b) illustrate how such clustering in the occurrence of extreme rainfall and drought is manifest in the potential exposure of mining companies.
+The concern is even higher for portfolios of mines reflecting the space and time clustering of extremes across the portfolio.
+
+Given the \iid assumptions in her analysis of climate extremes, a typical risk analyst uses annualized cost-benefit analyses over the projected life of a structural risk mitigation project, and the expected loss in a given year from the exceedance of the nominal design level is computed as the potential loss* probability of exceedance. 
+Clearly, in a nonstationary world, the probability of exceedance could be considered to be temporally variable over the project life. 
+This would however, need to be a prediction of that probability ex ante, using appropriate modeling tools applied to the historical data or to climate model based forecasts. 
+Faced with nonstationarity, some analysts propose using only the most recent subset of the data, e.g., the last 20 or 30 years to build the event magnitude-probability of exceedance relationship. 
+This can be thought of as a ``persistence'' model, which may be ``better than nothing'', and may or may not include a trend in the parameters of the probability distribution. 
+How many years should one retain from the recent past? 
+Too few and the estimation uncertainty dominates.
+Too many and the bias may dominate. 
+Of course, if the underlying climate is quasi-periodic then this choice can be arbitrarily poor, since the last batch of K years may be of exactly the opposite phase of the oscillation as what comes next. 
+ 
+In summary, we need to carefully consider the number of years of historical data, \(N\), and the number of future years \(M\) over which the instrument of interest will be evaluated, as well as efforts at using the data from the \(N\) year period to predict what will happen in the \(M\) years. 
+The risk estimation from the \(N\) years needs to explicitly inform a risk prediction over the \(M\) years, and depending on the approach and the form of the underlying nonstationarity, we can expect both bias and uncertainty associated with the prediction, and we need temporally varying probabilities to address the inevitable risk clustering. 
+This is then the statement of the risk mitigation design problem that we need to consider for nonstationary climate. 
+This paper is the first to formally develop these ideas in the context of a decision analytic framework.
+
+We focus on structured experiments with synthetic and actual data on extremes to illustrate how one could approach the analyses and what the implications are of varying \(N\) and \(M\) on the ability to do effective inference and on the ability to judge operational performance. 
+We consider idealized cases for the structural and financial instruments to convey the ideas, and defer more complex sequential decision making tasks to a subsequent paper. 
+The idea that one needs to consider the joint uncertainty in the estimation and occurrence of climate extremes for the \(N\) and \(M\) periods for stationary conditions was originally considered by \citet{Lall1987}. 
+That analysis corresponds to what one would expect under \iid conditions, and would hence provide a baseline to compare the uncertainty distribution associated with a portfolio whose elements were designed using \(N\) years of data with an application to \(M\) future years at a common design probability of exceedance for the elements. 
 
 Hydroclimatic systems vary on many timescales, including regime-like variability and secular variability  \citep{Milly2008,Merz2014,Hurst1951,Sveinsson2005,Hodgkins2017,Matalas2012}.
 This multi-scale variability greatly complicates the estimation of future flood sequences, leading to ``low confidence in projections of changes in fluvial floods'' \citep{IPCC2012}.
@@ -399,6 +462,11 @@ So the next obvious question is in which situation would waiting and updating th
 % -----------------------------------------------------------------------------
 \appendix
 \printbibliography{}
+
+\section{Achknowledgements}
+
+The authors thank Nandini Ramesh of Columbia University for providing the synthetic NINO3 index from a \SI{1000000}{year} run of the Cane-Zebiak model as described in \citet{Ramesh2017}.
+Kyle Johnson of Columbia University for his suggestions for improving reliability and documentation of the \texttt{floodsampling} package.
 
 \section{Notation}
 
