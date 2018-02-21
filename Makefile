@@ -48,7 +48,7 @@ data/trend.nc	:	src/calc_trend.py
 	$(PY_INTERP) $<
 
 ## Make all simulations
-simulate:	data/stationary.nc data/trend.nc
+simulate:	dirs data/stationary.nc data/trend.nc
 
 ################################################################################
 # MAKE PLOTS

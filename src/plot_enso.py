@@ -2,7 +2,10 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-enso = pd.read_csv('~/Documents/GitHub/floodsampling/floodsampling/data/ramesh2017.csv', index_col='year')
+from floodsampling.util import get_data_path
+
+data_fname = os.path.join(get_data_path(), 'ramesh2017.csv')
+enso = pd.read_csv(data_fname, index_col='year')
 
 # Plot Time Series
 enso.loc[10000:12500].plot(

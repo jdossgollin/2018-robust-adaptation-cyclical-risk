@@ -3,10 +3,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-import os
-import sys
-sys.path.insert(0, os.path.abspath('/Users/james/Documents/GitHub/floodsampling'))
-
 from floodsampling.streamflow import CZNINO3LN2, TwoStateSymmetricMarkovLN2
 
 time_param = {'N': 100, 'M': 50, 't0': 0, 'n_seq': 500}

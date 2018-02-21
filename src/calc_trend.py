@@ -6,18 +6,14 @@ import seaborn as sns
 import pandas as pd
 import matplotlib.pyplot as plt
 
-import os
-import sys
-sys.path.insert(0, os.path.abspath('/Users/james/Documents/GitHub/floodsampling'))
-
 from floodsampling.streamflow import CZNINO3LN2, TwoStateSymmetricMarkovLN2
 from floodsampling.fit import TrendLN2Stan, StationaryLN2Stan, HMM
 
 # Define Parameters
 N_try = np.array([10, 20, 30, 40, 50, 75, 100, 150])
 M_try = np.array([3, 5, 10, 20, 30, 50, 75])
-n_seq = 100 # PITIFULLY FEW!
-n_sim = 1000 # PITIFULLY SMALL!
+n_seq = 2000
+n_sim = 2000
 threshold = 5000
 figsize = (9, 6)
 

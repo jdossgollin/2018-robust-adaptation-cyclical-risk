@@ -3,10 +3,6 @@ import xarray as xr
 import pandas as pd
 import matplotlib.pyplot as plt
 
-import os
-import sys
-sys.path.insert(0, os.path.abspath('/Users/james/Documents/GitHub/floodsampling'))
-
 from floodsampling.streamflow import CZNINO3LN2, TwoStateSymmetricMarkovLN2
 from floodsampling.fit import TrendLN2Stan, StationaryLN2Stan, HMM
 
