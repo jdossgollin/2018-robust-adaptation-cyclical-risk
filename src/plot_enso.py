@@ -1,14 +1,14 @@
+import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import numpy as np
 
 enso = pd.read_csv('~/Documents/GitHub/floodsampling/floodsampling/data/ramesh2017.csv', index_col='year')
 
 # Plot Time Series
 enso.loc[10000:12500].plot(
     figsize=(9, 5),
-    linewidth=0.5,
     c='blue',
+    linewidth=0.5,
     legend=False,
     grid=True
 )
