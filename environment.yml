@@ -7,7 +7,6 @@ dependencies:
     - bottleneck    # C-optimized array functions for NumPy
     - cython        # required for pystan
     - ipython       # IPython interpreter and tools
-    - jupyter       # Jupyter federation architecture
     - matplotlib    # 2D plotting library
     - notebook      # Notebook interface
     - numpy         # N-d array and numerics

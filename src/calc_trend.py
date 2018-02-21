@@ -15,7 +15,6 @@ M_try = np.array([3, 5, 10, 20, 30, 50, 75])
 n_seq = 2000
 n_sim = 2000
 threshold = 5000
-figsize = (9, 6)
 
 # Initialize the bias and variance
 gen_names = np.array(['enso', 'markov'])
