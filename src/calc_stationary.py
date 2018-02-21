@@ -12,10 +12,9 @@ from floodsampling.fit import TrendLN2Stan, StationaryLN2Stan, HMM
 # Define Parameters
 N_try = np.array([10, 20, 30, 40, 50, 75, 100, 150])
 M_try = np.array([3, 5, 10, 20, 30, 50, 75])
-n_seq = 2000
-n_sim = 2000
+n_seq = 2
+n_sim = 2
 threshold = 5000
-figsize = (9, 6)
 
 # Initialize the bias and variance
 gen_names = np.array(['enso', 'markov'])
