@@ -10,7 +10,7 @@
 #SBATCH --exclusive
 #SBATCH --time=10:00:00         # The time the job will take to run.
 
-module load anaconda            # load the anaconda module
+ module load anaconda/3-4.4.0   # load the anaconda module
 source activate floodsampling   # activate the conda environment
 make simulate                   # run the make command specified in the Makefile
 
