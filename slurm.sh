@@ -11,7 +11,6 @@
 #SBATCH --time=10:00:00         # The time the job will take to run.
 
 module load anaconda            # load the anaconda module
-make environment                # create the conda env (comment if not 1st time)
 source activate floodsampling   # activate the conda environment
 make simulate                   # run the make command specified in the Makefile
 
