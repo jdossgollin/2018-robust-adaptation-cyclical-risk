@@ -16,6 +16,7 @@ dependencies:
     - scipy         # Common math/stats/science functions
     - seaborn       # statistical plots including heatmap
     - Sphinx        # Make documentation
+    - tqdm          # progress bar
     - xarray        # N-d labeled array library
     - pip:
       - sphinx-rtd-theme
