@@ -1,4 +1,4 @@
-"""Stationary
+"""Get simulations of trend data and save to file
 """
 import numpy as np
 import xarray as xr
@@ -17,10 +17,10 @@ n_sim = 2000
 threshold = 5000
 
 # Initialize the bias and variance
-gen_names = np.array(['enso', 'markov'])
-fit_names = np.array(['ln2_stationary', 'ln2_trend', 'hmm'])
+gen_names = np.array(['NINO3', 'Markov'])
+fit_names = np.array(['LN2 Stationary', 'LN2 Trend', 'HMM'])
 
-# Indexing: [N, gen_fun, fit_fun, M] THIS IS IMPORTANT
+# Indexing: [N, gen_fun, fit_fun, M]
 bias = np.zeros(shape=(N_try.size, gen_names.size, fit_names.size, M_try.size)) 
 variance = np.zeros(shape=(N_try.size, gen_names.size, fit_names.size, M_try.size))
 

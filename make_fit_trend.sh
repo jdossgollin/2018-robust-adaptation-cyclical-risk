@@ -8,10 +8,10 @@
 #SBATCH --job-name=JDGMN01      # The job name.
 #SBATCH -N 1                    # The number of nodes to use
 #SBATCH --exclusive
-#SBATCH --time=10:00:00         # The time the job will take to run.
+#SBATCH --time=20:00:00         # The time the job will take to run.
 
  module load anaconda/3-4.4.0   # load the anaconda module
 source activate floodsampling   # activate the conda environment
-make simulate                   # run the make command specified in the Makefile
+make data/trend.nc                   # run the make command specified in the Makefile
 
 # End of script
