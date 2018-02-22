@@ -5,7 +5,7 @@
 # Replace <ACCOUNT> with your account name before submitting.
 #
 #SBATCH --account=cwc           # The account name for the job.
-#SBATCH --job-name=JDGMN01      # The job name.
+#SBATCH --job-name=STATIONARY   # The job name.
 #SBATCH -N 1                    # The number of nodes to use
 #SBATCH --exclusive
 #SBATCH --time=20:00:00         # The time the job will take to run.
