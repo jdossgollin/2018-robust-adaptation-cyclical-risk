@@ -127,7 +127,8 @@ class BaseSequence:
         """
         try:
             fname = self._get_filename()
-            data = pickle.load(open(fname, 'rb'))
+            with open(fname, "rb") as f:
+                data = pickle.load(f)
             attrs_desired = self._get_attributes()
             attr_observed = data.attrs
             success = attrs_desired == attr_observed

@@ -111,10 +111,6 @@ def safe_pkl_dump(obj, fname):
     if not os.path.isdir(par_dir):
         os.makedirs(par_dir)
 
-    # Make sure there isn't anything else there
-    if os.path.isfile(fname):
-        os.remove(fname)
-
     # dump the object to file
     with open(fname, 'wb') as file:
         pickle.dump(obj, file)
