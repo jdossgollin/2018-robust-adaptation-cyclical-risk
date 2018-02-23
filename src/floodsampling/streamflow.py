@@ -230,22 +230,22 @@ class CZNINO3LN2(StreamflowCreator):
         super().__init__(model_name='CZ-NINO3-LN2', **kwargs)
         self.param.update(model_param)
 
+        # Read in the NINO3 data
+        data_fname = os.path.join(get_data_path(), 'ramesh2017.nc')
+        self.NINO3 = xr.read_dataarray(data_fname)
+
     def _calculate_one_seq(self):
         """Override the parent method to calculate streamflow sequences.
         """
-
-        data_fname = os.path.join(get_data_path(), 'ramesh2017.csv')
-        n_yrs_data = 100000 # OK to hard-code this, it doesn't change
-
         # get the NINO 3 data
+        n_yrs_data = 100000 # OK to hard-code this, it doesn't change
         possible_years = np.arange(self.time['N'] - 1, n_yrs_data - self.time['M'])
         start_year = np.random.choice(possible_years)
         end_year = start_year + self.time['N'] + self.time['M'] - 1
-        nino_3 = pd.read_csv(data_fname, index_col='year').loc[start_year:end_year]
+        nino_3 = self.NINO3.sel(year=slice(start_year, end_year))
 
         # Get the model time
         years = self.get_years(period='all')
-        nino_3 = pd.Series(nino_3['nino3'].values, index=years)
 
         # get mu and sigma
         mu_vec = self.param['mu_0'] + self.param['gamma'] * (years - self.time['t0'])
@@ -254,14 +254,14 @@ class CZNINO3LN2(StreamflowCreator):
         sigma_vec[sigma_vec < self.param['sigma_min']] = self.param['sigma_min']
 
         # get the streamflow as a xr data array
-        log_sflow = np.random.normal(loc=mu_vec, scale=sigma_vec)
-        sflow = xr.DataArray(
-            data=np.exp(log_sflow),
+        log_streamflow = np.random.normal(loc=mu_vec, scale=sigma_vec)
+        streamflow = xr.DataArray(
+            data=np.exp(log_streamflow),
             coords={'year': years},
             dims='year',
             name='Synthetic Streamflow Sequence'
         )
-        return sflow
+        return streamflow
 
 class TwoStateSymmetricMarkovLN2(StreamflowCreator):
     """Create sequences of streamflow based on a Markov Chain.

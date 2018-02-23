@@ -95,29 +95,3 @@ def clear_cache():
         for name in dirs:
             os.rmdir(os.path.join(root, name))
     os.rmdir(get_cache_path())
-
-def safe_pkl_dump(obj, fname):
-    """Dump a file to `pickle`.
-
-    If a file is saved with that same name, it is overwritten.
-    If the parent directory does not exist, it is created.
-
-    Parameters
-    ----------
-    obj :
-        The object to be saved to file
-    fname : str
-        The full filename, including path
-    """
-    # If the directory doesn't exist, try to make it
-    par_dir = os.path.dirname(fname)
-    if not os.path.isdir(par_dir):
-        os.makedirs(par_dir)
-
-    # Make sure there isn't anything else there
-    if os.path.isfile(fname):
-        os.remove(fname)
-
-    # dump the object to file
-    with open(fname, 'wb') as file:
-        pickle.dump(obj, file)
