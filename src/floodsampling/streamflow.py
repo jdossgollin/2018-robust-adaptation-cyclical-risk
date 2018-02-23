@@ -232,7 +232,7 @@ class CZNINO3LN2(StreamflowCreator):
 
         # Read in the NINO3 data
         data_fname = os.path.join(get_data_path(), 'ramesh2017.nc')
-        self.NINO3 = xr.read_dataarray(data_fname)
+        self.NINO3 = xr.open_dataarray(data_fname)
 
     def _calculate_one_seq(self):
         """Override the parent method to calculate streamflow sequences.

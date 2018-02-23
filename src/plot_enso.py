@@ -1,6 +1,5 @@
 """Open the NINO3 time series and plot a sub-set of it
 """
-
 import argparse
 import os
 
@@ -10,7 +9,7 @@ import matplotlib.pyplot as plt
 
 from floodsampling.util import get_data_path
 
-parser = argparse.ArgumentParser() #pylint: disable=C0103
+parser = argparse.ArgumentParser()
 parser.add_argument("--outfile", help="the filename of the data to save")
 
 def main():

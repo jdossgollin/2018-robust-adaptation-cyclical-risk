@@ -55,7 +55,7 @@ simulate:	dirs data/stationary.nc data/trend.nc
 ################################################################################
 
 figs/enso.pdf	:	src/plot_enso.py
-	$(PY_INTERP) $<
+	$(PY_INTERP) $< --outfile $@
 
 figs/stationary_bias.pdf figs/stationary_variance.pdf	:	src/plot_stationary.py data/stationary.nc
 	$(PY_INTERP) $<

@@ -1,41 +1,34 @@
 """Get simulations of stationary data and save to file
 """
+import argparse
+import itertools
 import numpy as np
 import xarray as xr
 import seaborn as sns
 import pandas as pd
-import matplotlib.pyplot as plt
+
+from joblib import Parallel, delayed
 
 from floodsampling.streamflow import CZNINO3LN2, TwoStateSymmetricMarkovLN2
 from floodsampling.fit import TrendLN2Stan, StationaryLN2Stan, HMM
+from floodsampling.util import compile_model
 
-# Define Parameters
-N_try = np.array([10, 20, 30, 40, 50, 75, 100, 150])
-M_try = np.array([3, 5, 10, 20, 30, 50, 75])
-n_seq = 2000
-n_sim = 2000
-threshold = 5000
+parser = argparse.ArgumentParser()
+parser.add_argument("--outfile", help="the filename of the data to save")
+parser.add_argument("--n_jobs", type=int, help="number of jobs to run in parallel")
 
-# Initialize the bias and variance
-gen_names = np.array(['NINO3', 'Markov'])
-fit_names = np.array(['LN2 Stationary', 'LN2 Trend', 'HMM'])
-
-# Indexing: [N, gen_fun, fit_fun, M]
-bias = np.zeros(shape=(N_try.size, gen_names.size, fit_names.size, M_try.size)) 
-variance = np.zeros(shape=(N_try.size, gen_names.size, fit_names.size, M_try.size))
-
-def get_gen_fun(index):
-    """Get a generating function as a function of the index 0 or 1
+def get_gen_fun(fun_name, N, M, t0, n_seq):
+    """Get a generating function as a function of the fun_name 0 or 1
     """
-    if index == 0:
+    if fun_name == 'NINO3':
         gen_fun = CZNINO3LN2(
-            N=N, M=M_try.max(), t0=0, n_seq=n_seq,
+            N=N, M=M, t0=0, n_seq=n_seq,
             mu_0=6, beta_mu=0.5, gamma=0,
             coeff_var=0.1, sigma_min=0.01
         )
-    elif index == 1:
+    elif fun_name == 'Markov':
         gen_fun = TwoStateSymmetricMarkovLN2(
-            N=N, M=M_try.max(), t0=0, n_seq=n_seq,
+            N=N, M=M, t0=0, n_seq=n_seq,
             mu_1=6.75, mu_0 = 6, gamma_1=0, gamma_2=0, pi=0.9,
             coeff_var = 0.1, sigma_min = 0.01
         )
@@ -43,44 +36,86 @@ def get_gen_fun(index):
         raise ValueError('Invalid Index')
     return gen_fun
 
-def get_fit_fun(index, gen_fun):
-    """Get a fit function as a function of the index 0 or 1 or 2
+def get_fit_fun(fun_name, gen_fun, n_sim):
+    """Get a fit function as a function of the fun_name 0 or 1 or 2
     """
-    if index == 0:
+    if fun_name == 'LN2 Stationary':
         fit_fun = StationaryLN2Stan(sflow=gen_fun, n_sim=n_sim, chains=1, warmup=1000)
-    elif index == 1:
-        fit_fun = TrendLN2Stan(sflow=gen_fun, n_sim=n_sim, chains=1, warmup=1001)
-    elif index == 2:
+    elif fun_name == 'LN2 Trend':
+        fit_fun = TrendLN2Stan(sflow=gen_fun, n_sim=n_sim, chains=1, warmup=1000)
+    elif fun_name == 'HMM':
         fit_fun = HMM(sflow=gen_fun, n_sim=n_sim, n_components=2, n_init=50)
     else:
         raise ValueError('Invalid Index')
     return fit_fun
 
-# Solve this with a big for loop
-for n, N in enumerate(N_try):
-    for g, gen_fun_name in enumerate(gen_names):
-        gen_fun = get_gen_fun(g)
-        for f, fit_fun_name in enumerate(fit_names):
-            fit_fun = get_fit_fun(f, gen_fun=gen_fun)
-            for m, M in enumerate(M_try):
-                # Loop through to get the data
-                gen_dat = gen_fun.get_data('future').sel(year = slice(1, M))
-                fit_dat = fit_fun.get_data('future').sel(year = slice(1, M))
-                exceed_gen = gen_dat > threshold
-                exceed_fit = fit_dat > threshold
-                bias[n, g, f, m] = exceed_fit.mean() - exceed_gen.mean()
-                variance[n, g, f, m] = exceed_fit.std(dim='sim').mean()
+def expand_grid(data_dict):
+    """Create a dataframe from every combination of given values.
+    See https://stackoverflow.com/questions/12130883/r-expand-grid-function-in-python
+    """
+    rows = itertools.product(*data_dict.values())
+    return pd.DataFrame.from_records(rows, columns=data_dict.keys())
 
-bias = xr.DataArray(
-    bias, 
-    coords={'N': N_try, 'gen_fun': gen_names, 'fit_fun': fit_names, 'M': M_try, }, 
-    dims=['N', 'gen_fun', 'fit_fun', 'M']
-)
-variance = xr.DataArray(
-    variance, 
-    coords={'N': N_try, 'gen_fun': gen_names, 'fit_fun': fit_names, 'M': M_try, }, 
-    dims=['N', 'gen_fun', 'fit_fun', 'M']
-)
+def calc_bias_variance(N, M, gf_name, ff_name, **kwargs):
+    """Calculate bias and variance as a function of input parameters
+    These input parameters are passed as the row of a pandas data frame
+    """
+    n_seq = kwargs.pop('n_seq', 100)
+    n_sim = kwargs.pop('n_sim', 100)
+    M_max = kwargs.pop('M_max', 150)
+    threshold = kwargs.pop('threshold', 5000)
+    t0 = kwargs.pop('t0', 0)
+    if M > M_max:
+        raise ValueError('M cannot be greater than M_max')
 
-fit = xr.Dataset({'bias': bias, 'variance': variance})
-fit.to_netcdf('data/stationary.nc')
+    generating_function = get_gen_fun(fun_name=gf_name, N=N, M=M_max, t0=t0, n_seq=n_seq)
+    gen_dat = generating_function.get_data('future').sel(year = slice(1, M))
+
+    fitting_function = get_fit_fun(fun_name=ff_name, gen_fun=generating_function, n_sim=n_sim)
+    fit_dat = fitting_function.get_data('future').sel(year = slice(1, M))
+    
+    exceed_gen = gen_dat > threshold
+    exceed_fit = fit_dat > threshold
+    
+    bias = exceed_fit.mean() - exceed_gen.mean()
+    variance = exceed_fit.std(dim='sim').mean()
+
+    return bias.values, variance.values
+
+def main():
+    
+    args = parser.parse_args()
+    
+    # Compiling in parallel --> nightmare so compile separately
+    compile_model('src/floodsampling/data/ln2-stationary.stan', model_name='StationaryLN2Stan')
+    compile_model('src/floodsampling/data/ln2-trend.stan', model_name='TrendLN2Stan')
+
+    # Get a grid of parameters
+    param_df = expand_grid({
+        #'N': np.array([10, 20, 30, 40, 50, 75, 100, 150]),
+        #'M': np.array([3, 5, 10, 20, 30, 50, 75, 150]), 
+        'N': np.array([30, 40]),
+        'M': np.array([3, 5]),
+        'gen_fun': np.array(['NINO3', 'Markov']), 
+        'fit_fun': np.array(['LN2 Stationary', 'LN2 Trend', 'HMM']),
+    })
+    print(param_df.head())
+
+    # Create a tuple of bias and variance
+    with Parallel(n_jobs=args.n_jobs) as parallel:
+        bv_tuple = parallel(
+            delayed(calc_bias_variance)(
+                N=row[1]['N'], 
+                M=row[1]['M'], 
+                gf_name=row[1]['gen_fun'], 
+                ff_name=row[1]['fit_fun'], 
+                M_max = np.max(param_df['M'])
+            ) for row in param_df.iterrows()
+        )
+    
+    param_df['bias'] = [tup[0] for tup in bv_tuple]
+    param_df['variance'] = [tup[1] for tup in bv_tuple]
+    print(param_df)
+
+if __name__ == '__main__':
+    main()
