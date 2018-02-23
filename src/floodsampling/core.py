@@ -87,7 +87,7 @@ class BaseSequence:
             file_string += 'simulated_{}{}'.format(key, val)
 
         file_string = md5(file_string.encode('ascii')).hexdigest()
-        file_string += '.pkl'
+        file_string += '.nc'
 
         file_path = os.path.join(get_cache_path(), file_string)
         return file_path
