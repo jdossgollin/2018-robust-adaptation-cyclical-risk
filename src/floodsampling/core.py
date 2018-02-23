@@ -1,14 +1,13 @@
 """Parent class for StreamflowCreator and FloodFit
 """
 import os
-import pickle
 from hashlib import md5
 from collections import OrderedDict
 
 import numpy as np
 import xarray as xr
 
-from floodsampling.util import get_cache_path, safe_pkl_dump
+from floodsampling.util import get_cache_path
 
 class BaseSequence:
     """A parent class for streamflow sequences or monte carlo model draws
@@ -108,7 +107,7 @@ class BaseSequence:
 
         data.attrs = self._get_attributes() # force the attrs object of the xarray object
         fname = self._get_filename()
-        safe_pkl_dump(obj=data, fname=fname) # use the function from util
+        data.to_netcdf(fname, format='netcdf4') # save to file
 
     def from_file(self):
         """Get data from file
@@ -128,7 +127,7 @@ class BaseSequence:
         """
         try:
             fname = self._get_filename()
-            data = pickle.load(open(fname, 'rb'))
+            data = xr.open_dataarray(fname)
             attrs_desired = self._get_attributes()
             attr_observed = data.attrs
             success = attrs_desired == attr_observed

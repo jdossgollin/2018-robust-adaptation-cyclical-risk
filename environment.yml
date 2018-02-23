@@ -7,7 +7,9 @@ dependencies:
     - bottleneck    # C-optimized array functions for NumPy
     - cython        # required for pystan
     - ipython       # IPython interpreter and tools
+    - joblib        # parallel execution
     - matplotlib    # 2D plotting library
+    - netcdf4       # xarray file i/o
     - notebook      # Notebook interface
     - numpy         # N-d array and numerics
     - pandas        # Labeled array library
@@ -15,9 +17,7 @@ dependencies:
     - pylint        # Code proofing
     - scipy         # Common math/stats/science functions
     - seaborn       # statistical plots including heatmap
-    - Sphinx        # Make documentation
     - tqdm          # progress bar
     - xarray        # N-d labeled array library
     - pip:
-      - sphinx-rtd-theme
       - pystan      # python interface to stan modeling language
