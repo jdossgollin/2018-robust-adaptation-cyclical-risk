@@ -7,7 +7,7 @@ from collections import OrderedDict
 import numpy as np
 import xarray as xr
 
-from floodsampling.util import get_cache_path
+from floodsampling.util import get_cache_path, safe_pkl_dump
 
 class BaseSequence:
     """A parent class for streamflow sequences or monte carlo model draws
@@ -87,7 +87,7 @@ class BaseSequence:
             file_string += 'simulated_{}{}'.format(key, val)
 
         file_string = md5(file_string.encode('ascii')).hexdigest()
-        file_string += '.nc'
+        file_string += '.pkl'
 
         file_path = os.path.join(get_cache_path(), file_string)
         return file_path
@@ -107,7 +107,7 @@ class BaseSequence:
 
         data.attrs = self._get_attributes() # force the attrs object of the xarray object
         fname = self._get_filename()
-        data.to_netcdf(fname, format='netcdf4') # save to file
+        safe_pkl_dump(data, fname=fname)
 
     def from_file(self):
         """Get data from file
@@ -127,7 +127,7 @@ class BaseSequence:
         """
         try:
             fname = self._get_filename()
-            data = xr.open_dataarray(fname)
+            data = pickle.load(open(fname, 'rb'))
             attrs_desired = self._get_attributes()
             attr_observed = data.attrs
             success = attrs_desired == attr_observed
