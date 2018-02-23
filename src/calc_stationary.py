@@ -60,8 +60,8 @@ def calc_bias_variance(N, M, gf_name, ff_name, **kwargs):
     """Calculate bias and variance as a function of input parameters
     These input parameters are passed as the row of a pandas data frame
     """
-    n_seq = kwargs.pop('n_seq', 100)
-    n_sim = kwargs.pop('n_sim', 100)
+    n_seq = kwargs.pop('n_seq', 1000)
+    n_sim = kwargs.pop('n_sim', 1000)
     M_max = kwargs.pop('M_max', 150)
     threshold = kwargs.pop('threshold', 5000)
     t0 = kwargs.pop('t0', 0)
@@ -93,7 +93,7 @@ def main():
     # Get a grid of parameters
     param_df = expand_grid({
         'N': np.array([10, 20, 30, 40, 50, 75, 100, 150]),
-        'M': np.array([3, 5, 10, 20, 30, 50, 75, 150]),
+        'M': np.array([3, 5, 10, 20, 30, 50, 75]),
         'gen_fun': np.array(['NINO3', 'Markov']), 
         'fit_fun': np.array(['LN2 Stationary', 'LN2 Trend', 'HMM']),
     })
