@@ -1,5 +1,6 @@
 *.pkl
 *.pdf
+data/*
 
 .vscode/
 
