@@ -12,6 +12,6 @@
 
  module load anaconda/3-4.4.0   # load the anaconda module
 source activate floodsampling   # activate the conda environment
-make data/trend.nc                   # run the make command specified in the Makefile
+make data/trend.csv                   # run the make command specified in the Makefile
 
 # End of script
