@@ -23,13 +23,13 @@ def get_gen_fun(fun_name, N, M, t0, n_seq):
     if fun_name == 'NINO3':
         gen_fun = CZNINO3LN2(
             N=N, M=M, t0=0, n_seq=n_seq,
-            mu_0=6, beta_mu=0.5, gamma=0,
+            mu_0=6, beta_mu=0.5, gamma=0.015,
             coeff_var=0.1, sigma_min=0.01
         )
     elif fun_name == 'Markov':
         gen_fun = TwoStateSymmetricMarkovLN2(
             N=N, M=M, t0=0, n_seq=n_seq,
-            mu_1=6.75, mu_0 = 6, gamma_1=0, gamma_2=0, pi=0.9,
+            mu_1=6.75, mu_0 = 6, gamma_1=0.015, gamma_2=0, pi=0.9,
             coeff_var = 0.1, sigma_min = 0.01
         )
     else:

@@ -1,3 +1,4 @@
+import argparse
 import numpy as np
 import xarray as xr
 import pandas as pd
@@ -6,10 +7,8 @@ import matplotlib.pyplot as plt
 from floodsampling.streamflow import CZNINO3LN2, TwoStateSymmetricMarkovLN2
 from floodsampling.fit import TrendLN2Stan, StationaryLN2Stan, HMM
 
-M = 150
-N = 30
-n_seq = 1
-n_sim = 100
+parser = argparse.ArgumentParser()
+parser.add_argument("--outfile", help="the filename of the data to save")
 
 def get_gen_fun(index):
     """Get a generating function as a function of the index 0 or 1
@@ -43,29 +42,39 @@ def get_fit_fun(index, gen_fun):
         raise ValueError('Invalid Index')
     return fit_fun
 
-# Initialize the bias and variance
-gen_names = np.array(['NINO3 Stationary', 'NINO3 Trend'])
-fit_names = np.array(['ln2_stationary', 'ln2_trend', 'hmm'])
+def main():
 
-fig, axes = plt.subplots(nrows=3, ncols=2, figsize=(12, 7), sharex=True, sharey=True)
-for g, gen_fun_name in enumerate(gen_names):
-    gen_fun = get_gen_fun(g)
-    for f, fit_fun_name in enumerate(fit_names):
-        fit_fun = get_fit_fun(f, gen_fun=gen_fun)
-        gen_dat = gen_fun.get_data('all')
-        fit_dat = fit_fun.get_data('future')
-        ax = axes[f, g]
-        for i in np.arange(n_sim):
-            ax.plot(fit_dat['year'], fit_dat.sel(sim=i).values.ravel(), c='gray', linewidth=0.5)
-        ax.plot(gen_dat['year'], gen_dat.values.ravel(), c='blue', linewidth=1)
-        ax.semilogy()
-        ax.grid()
-        ax.set_ylim([10, 100000])
-        if f == 0:
-            ax.set_title(gen_fun_name)
-        if g == len(gen_names)-1:
-            ax.set_ylabel(fit_fun_name)
-            ax.yaxis.set_label_position('right')
+    M = 150
+    N = 30
+    n_seq = 1
+    n_sim = 100
 
-fig.tight_layout()
-plt.savefig('figs/example_short.pdf')
+    # Initialize the bias and variance
+    gen_names = np.array(['NINO3 Stationary', 'NINO3 Trend'])
+    fit_names = np.array(['LN2 Stationary', 'LN2 Trend', 'HMM'])
+
+    fig, axes = plt.subplots(nrows=3, ncols=2, figsize=(12, 7), sharex=True, sharey=True)
+    for g, gen_fun_name in enumerate(gen_names):
+        gen_fun = get_gen_fun(g)
+        for f, fit_fun_name in enumerate(fit_names):
+            fit_fun = get_fit_fun(f, gen_fun=gen_fun)
+            gen_dat = gen_fun.get_data('all')
+            fit_dat = fit_fun.get_data('future')
+            ax = axes[f, g]
+            for i in np.arange(n_sim):
+                ax.plot(fit_dat['year'], fit_dat.sel(sim=i).values.ravel(), c='gray', linewidth=0.5)
+            ax.plot(gen_dat['year'], gen_dat.values.ravel(), c='blue', linewidth=1)
+            ax.semilogy()
+            ax.grid()
+            ax.set_ylim([10, 10000])
+            if f == 0:
+                ax.set_title(gen_fun_name)
+            if g == len(gen_names)-1:
+                ax.set_ylabel(fit_fun_name)
+                ax.yaxis.set_label_position('right')
+
+    fig.tight_layout()
+    plt.savefig(args.outfile)
+
+if __name__ == '__main__':
+    main()

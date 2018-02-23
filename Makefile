@@ -41,14 +41,16 @@ environment	:
 # MAKE SIMULATIONS
 ################################################################################
 
-data/stationary.nc	:	src/calc_stationary.py
-	$(PY_INTERP) $<
+NCORES=2 # how many cores to run on
 
-data/trend.nc	:	src/calc_trend.py
-	$(PY_INTERP) $<
+data/stationary.csv	:	src/calc_stationary.py
+	$(PY_INTERP) $< --outfile $@ --n_jobs $(NCORES)
+
+data/trend.csv	:	src/calc_trend.py
+	$(PY_INTERP) $< --outfile $@ --n_jobs $(NCORES)
 
 ## Make all simulations
-simulate:	dirs data/stationary.nc data/trend.nc
+simulate:	dirs data/stationary.csv data/trend.csv
 
 ################################################################################
 # MAKE PLOTS
