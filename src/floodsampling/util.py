@@ -58,7 +58,8 @@ def get_data_path():
     str
         The full path to the directory where the data is stored.
     """
-    data_dir = os.path.abspath(os.path.join('.', 'floodsampling', 'data'))
+    cur_dir = os.path.pardir(__file__)
+    data_dir = os.path.abspath(os.path.join(cur_dir, 'data'))
     return data_dir
 
 def get_cache_path():
