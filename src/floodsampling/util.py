@@ -58,7 +58,7 @@ def get_data_path():
     str
         The full path to the directory where the data is stored.
     """
-    cur_dir = os.path.pardir(__file__)
+    cur_dir = os.path.dirname(os.path.abspath(__file__))
     data_dir = os.path.abspath(os.path.join(cur_dir, 'data'))
     return data_dir
 
