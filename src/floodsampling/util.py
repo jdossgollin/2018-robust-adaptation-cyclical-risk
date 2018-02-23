@@ -3,11 +3,7 @@
 This module provides some functions which are useful to the entire project and
 whose utility is not limited to a single sub-module.
 """
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
 
-from pkg_resources import resource_filename
 import os
 import pickle
 from hashlib import md5
@@ -62,7 +58,9 @@ def get_data_path():
     str
         The full path to the directory where the data is stored.
     """
-    data_dir = resource_filename('floodsampling', 'data')
+    data_dir = os.path.abspath(os.path.join('.', 'data'))
+    if not os.path.isdir(data_dir):
+        raise ValueError('Uh Oh there is a path error')
     return data_dir
 
 def get_cache_path():
