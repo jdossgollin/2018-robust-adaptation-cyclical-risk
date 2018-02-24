@@ -90,15 +90,18 @@ def main():
     compile_model('src/floodsampling/data/ln2-stationary.stan', model_name='StationaryLN2Stan')
     compile_model('src/floodsampling/data/ln2-trend.stan', model_name='TrendLN2Stan')
 
-    # Get a grid of parameters
-    param_df = expand_grid({
-        'N': np.array([10, 20, 30, 40, 50, 75, 100, 150]),
-        'M': np.array([3, 5, 10, 20, 30, 50, 75]),
-        'gen_fun': np.array(['NINO3', 'Markov']), 
-        'fit_fun': np.array(['LN2 Stationary', 'LN2 Trend', 'HMM']),
-    })
+    # Parameters of the model
+    N_try = np.array([10, 20, 30, 40, 50, 75, 100, 150])
+    M_try = np.array([3, 5, 10, 20, 30, 50, 75])
+    gen_funs = np.array(['NINO3', 'Markov'])
+    fit_funs = np.array(['LN2 Stationary', 'LN2 Trend', 'HMM'])
 
-    # Create a tuple of bias and variance
+    # First step is to run the *simulations* in parallel, using only the
+    # largest value of M
+    simulation_df = expand_grid({
+        'N': N_try, 'M': M_try.max(),
+        'gen_fun': gen_funs, 'fit_fun': fit_funs,
+    })
     with Parallel(n_jobs=args.n_jobs) as parallel:
         bv_tuple = parallel(
             delayed(calc_bias_variance)(
@@ -106,13 +109,29 @@ def main():
                 M=row[1]['M'], 
                 gf_name=row[1]['gen_fun'], 
                 ff_name=row[1]['fit_fun'], 
-                M_max = np.max(param_df['M'])
-            ) for row in param_df.iterrows()
+                M_max = row[1]['M']
+            ) for row in simulation_df.iterrows()
         )
     
+    # Second step is to go through and calculate bias and variance in 
+    # parallel for many values of M
+    param_df = expand_grid({
+        'N': N_try, 'M': M_try,
+        'gen_fun': gen_funs, 'fit_fun': fit_funs,
+    })
+    with Parallel(n_jobs=args.n_jobs) as parallel:
+        bv_tuple = parallel(
+            delayed(calc_bias_variance)(
+                N=row[1]['N'], 
+                M=row[1]['M'], 
+                gf_name=row[1]['gen_fun'], 
+                ff_name=row[1]['fit_fun'], 
+                M_max = np.max(M_try),
+            ) for row in param_df.iterrows()
+        )
     param_df['bias'] = [tup[0] for tup in bv_tuple]
     param_df['variance'] = [tup[1] for tup in bv_tuple]
-    
+
     param_df.to_csv(args.outfile)
 
 if __name__ == '__main__':
