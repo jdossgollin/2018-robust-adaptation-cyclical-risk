@@ -228,8 +228,8 @@ class StationaryLN2Stan(FloodFit):
     sflow : `StreamflowCreator`
         The `StreamflowCreator` object that creates the streamflow sequences
     """
-    model_name = kwargs.pop('model_name', 'StationaryLN2Stan')
     def __init__(self, sflow, n_sim, **kwargs):
+        model_name = kwargs.pop('model_name', 'StationaryLN2Stan')
         super().__init__(sflow=sflow, model_name=model_name, n_sim=n_sim)
         self.param.update({
             'mu_mean': kwargs.pop('mu_mean', 0),
