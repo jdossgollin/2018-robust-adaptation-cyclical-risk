@@ -228,8 +228,9 @@ class StationaryLN2Stan(FloodFit):
     sflow : `StreamflowCreator`
         The `StreamflowCreator` object that creates the streamflow sequences
     """
+    model_name = kwargs.pop('model_name', 'StationaryLN2Stan')
     def __init__(self, sflow, n_sim, **kwargs):
-        super().__init__(sflow=sflow, model_name='StationaryLN2Stan', n_sim=n_sim)
+        super().__init__(sflow=sflow, model_name=model_name, n_sim=n_sim)
         self.param.update({
             'mu_mean': kwargs.pop('mu_mean', 0),
             'mu_sd': kwargs.pop('mu_mean', 10),
@@ -324,7 +325,8 @@ class TrendLN2Stan(FloodFit):
         The StreamflowCreator object that creates the streamflow sequences
     """
     def __init__(self, sflow, n_sim, **kwargs):
-        super().__init__(sflow=sflow, model_name='TrendLN2Stan', n_sim=n_sim)
+        model_name = kwargs.pop('model_name', 'TrendLN2Stan')
+        super().__init__(sflow=sflow, model_name=model_name, n_sim=n_sim)
         self.param.update({
             'warmup': kwargs.pop('warmup', 1000),
             'chains': kwargs.pop('chains', 1),
@@ -410,7 +412,8 @@ class HMM(FloodFit):
         The StreamflowCreator object that creates the streamflow sequences
     """
     def __init__(self, sflow, n_sim, **kwargs):
-        super().__init__(sflow=sflow, model_name='HMM', n_sim=n_sim)
+        model_name = kwargs.pop('model_name', 'HMM')
+        super().__init__(sflow=sflow, model_name=model_name, n_sim=n_sim)
         self.param.update({
             'n_components': kwargs.pop('n_components', 2),
             'pseudocount': kwargs.pop('pseudocount', 10),

@@ -218,8 +218,8 @@ class CZNINO3LN2(StreamflowCreator):
         The parameters of the model
     """
     def __init__(self, **kwargs):
-
-        super().__init__(model_name='NINO', **kwargs)
+        model_name = kwargs.pop('model_name', 'CZNINO3LN2')
+        super().__init__(model_name=model_name, **kwargs)
         self.param.update({
             'mu_0': kwargs.pop('mu_0', 6),
             'beta_mu': kwargs.pop('beta_mu', 1),
@@ -303,7 +303,7 @@ class TwoStateSymmetricMarkovLN2(StreamflowCreator):
         The parameters of the model
     """
     def __init__(self, **kwargs):
-
+        model_name = kwargs.pop('model_name', 'TwoStateSymmetricMarkovLN2')
         model_param = {
             'pi': kwargs.pop('pi'),
             'mu_1': kwargs.pop('mu_1', 6.5),
@@ -314,7 +314,7 @@ class TwoStateSymmetricMarkovLN2(StreamflowCreator):
             'sigma_min': kwargs.pop('sigma_min', 0.01)
         }
 
-        super().__init__(model_name='Markov', **kwargs)
+        super().__init__(model_name=model_name, **kwargs)
         self.param.update(model_param)
 
     def _calculate_one_seq(self):
