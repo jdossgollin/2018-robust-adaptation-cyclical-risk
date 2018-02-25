@@ -1,6 +1,4 @@
 """Get simulations of stationary data and save to file
-
-This can run in parallel.  This is set up in such a way that 
 """
 import argparse
 import itertools

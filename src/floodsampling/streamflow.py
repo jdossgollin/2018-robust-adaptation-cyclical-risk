@@ -219,16 +219,14 @@ class CZNINO3LN2(StreamflowCreator):
     """
     def __init__(self, **kwargs):
 
-        model_param = {
+        super().__init__(model_name='CZ-NINO3-LN2', **kwargs)
+        self.param.update({
             'mu_0': kwargs.pop('mu_0', 6),
             'beta_mu': kwargs.pop('beta_mu', 1),
             'gamma': kwargs.pop('gamma', 0),
             'coeff_var': kwargs.pop('coeff_var', 0.1),
             'sigma_min': kwargs.pop('sigma_min', 0.01),
-        }
-
-        super().__init__(model_name='CZ-NINO3-LN2', **kwargs)
-        self.param.update(model_param)
+        })
 
         # Read in the NINO3 data
         data_fname = os.path.join(get_data_path(), 'ramesh2017.nc')
