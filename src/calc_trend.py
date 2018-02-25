@@ -108,7 +108,7 @@ def main():
                 M=M_try.max(), 
                 gf_name=row[1]['gen_fun'], 
                 ff_name=row[1]['fit_fun'], 
-                M_max = row[1]['M']
+                M_max = M_try.max()
             ) for row in simulation_df.iterrows()
         )
     
@@ -125,7 +125,7 @@ def main():
                 M=row[1]['M'], 
                 gf_name=row[1]['gen_fun'], 
                 ff_name=row[1]['fit_fun'], 
-                M_max = np.max(M_try),
+                M_max = M_try.max()
             ) for row in param_df.iterrows()
         )
     param_df['bias'] = [tup[0] for tup in bv_tuple]
