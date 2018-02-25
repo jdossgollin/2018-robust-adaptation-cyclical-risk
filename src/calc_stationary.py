@@ -24,13 +24,15 @@ def get_gen_fun(fun_name, N, M, t0, n_seq):
         gen_fun = CZNINO3LN2(
             N=N, M=M, t0=0, n_seq=n_seq,
             mu_0=6, beta_mu=0.5, gamma=0,
-            coeff_var=0.1, sigma_min=0.01
+            coeff_var=0.1, sigma_min=0.01,
+            model_name='CZNINO3LN2_Stationary'
         )
     elif fun_name == 'Markov':
         gen_fun = TwoStateSymmetricMarkovLN2(
             N=N, M=M, t0=0, n_seq=n_seq,
             mu_1=6.75, mu_0 = 6, gamma_1=0, gamma_2=0, pi=0.9,
-            coeff_var = 0.1, sigma_min = 0.01
+            coeff_var = 0.1, sigma_min = 0.01,
+            model_name='TwoStateSymmetricMarkovLN2_Stationary'
         )
     else:
         raise ValueError('Invalid Index')
@@ -40,11 +42,11 @@ def get_fit_fun(fun_name, gen_fun, n_sim):
     """Get a fit function as a function of the fun_name 0 or 1 or 2
     """
     if fun_name == 'LN2 Stationary':
-        fit_fun = StationaryLN2Stan(sflow=gen_fun, n_sim=n_sim, chains=1, warmup=1000)
+        fit_fun = StationaryLN2Stan(sflow=gen_fun, n_sim=n_sim, chains=1, warmup=1000, model_name='StationaryLN2Stan_Stationary')
     elif fun_name == 'LN2 Trend':
-        fit_fun = TrendLN2Stan(sflow=gen_fun, n_sim=n_sim, chains=1, warmup=1000)
+        fit_fun = TrendLN2Stan(sflow=gen_fun, n_sim=n_sim, chains=1, warmup=1000, model_name='TrendLN2Stan_Stationary')
     elif fun_name == 'HMM':
-        fit_fun = HMM(sflow=gen_fun, n_sim=n_sim, n_components=2, n_init=50)
+        fit_fun = HMM(sflow=gen_fun, n_sim=n_sim, n_components=2, n_init=50, model_name='HMM_Stationary')
     else:
         raise ValueError('Invalid Index')
     return fit_fun
