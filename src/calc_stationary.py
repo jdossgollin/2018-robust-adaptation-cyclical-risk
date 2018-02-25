@@ -61,7 +61,7 @@ def calc_bias_variance(N, M, gf_name, ff_name, **kwargs):
     These input parameters are passed as the row of a pandas data frame
     """
     n_seq = kwargs.pop('n_seq', 1000)
-    n_sim = kwargs.pop('n_sim', 1000)
+    n_sim = kwargs.pop('n_sim', 2000)
     M_max = kwargs.pop('M_max', 150)
     threshold = kwargs.pop('threshold', 5000)
     t0 = kwargs.pop('t0', 0)
