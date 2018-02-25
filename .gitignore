@@ -1,3 +1,5 @@
+*.out
+
 *.pkl
 *.pdf
 data/*

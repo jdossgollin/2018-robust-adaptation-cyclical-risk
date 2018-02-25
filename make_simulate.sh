@@ -6,9 +6,9 @@
 #
 #SBATCH --account=cwc           # The account name for the job.
 #SBATCH --job-name=STATIONARY   # The job name.
-#SBATCH -N 2                    # The number of nodes to use
+#SBATCH -N 4                    # The number of nodes to use
 #SBATCH --exclusive
-#SBATCH --time=4:00:00          # The time the job will take to run.
+#SBATCH --time=3:59:00          # The time the job will take to run.
 
 module load anaconda/3-4.4.0    # load the anaconda module
 source activate floodsampling   # activate the conda environment
