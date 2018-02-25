@@ -60,8 +60,9 @@ class FloodFit(BaseSequence):
         self.time.update({'n_sim': n_sim})
         self.param.update(sflow.param)
         self.param.update({'category': 'fit'})
-        self.param.update({'model_name': model_name})
         self.sflow = sflow
+
+        self.model_name = model_name
 
     def _calculate_one_seq(self, one_seq):
         """Simulate a single sequence of annual maximum flood peaks
@@ -265,7 +266,7 @@ class StationaryLN2Stan(FloodFit):
             'sigma_sd': self.param['sigma_sd']
         }
         stan_file = os.path.join(get_data_path(), 'ln2-stationary.stan')
-        stan_model = compile_model(filename=stan_file, model_name=self.param['model_name'])
+        stan_model = compile_model(filename=stan_file, model_name=self.model_name)
         posterior = stan_model.sampling(
             data=stan_data,
             pars=['yhat'],
@@ -368,7 +369,7 @@ class TrendLN2Stan(FloodFit):
             'beta_sigma_sd': self.param['beta_sigma_sd']
         }
         stan_file = os.path.join(get_data_path(), 'ln2-trend.stan')
-        stan_model = compile_model(filename=stan_file, model_name=self.param['model_name'])
+        stan_model = compile_model(filename=stan_file, model_name=self.model_name)
         posterior = stan_model.sampling(
             data=stan_data,
             pars=['yhat'],

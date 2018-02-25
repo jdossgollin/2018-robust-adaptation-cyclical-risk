@@ -63,7 +63,7 @@ class StreamflowCreator(BaseSequence):
         super().__init__(**kwargs)
 
         self.param.update({'category': 'sequence'})
-        self.param.update({'model_name': model_name})
+        self.model_name = model_name
 
     def _calculate_one_seq(self):
         """Simulate a single sequence of annual maximum flood peaks
@@ -219,7 +219,7 @@ class CZNINO3LN2(StreamflowCreator):
     """
     def __init__(self, **kwargs):
 
-        super().__init__(model_name='CZ-NINO3-LN2', **kwargs)
+        super().__init__(model_name='NINO', **kwargs)
         self.param.update({
             'mu_0': kwargs.pop('mu_0', 6),
             'beta_mu': kwargs.pop('beta_mu', 1),
@@ -314,7 +314,7 @@ class TwoStateSymmetricMarkovLN2(StreamflowCreator):
             'sigma_min': kwargs.pop('sigma_min', 0.01)
         }
 
-        super().__init__(model_name='CZ-NINO3-LN2', **kwargs)
+        super().__init__(model_name='Markov', **kwargs)
         self.param.update(model_param)
 
     def _calculate_one_seq(self):
