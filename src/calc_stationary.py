@@ -98,15 +98,12 @@ def main():
 
     # First step is to run the *simulations* in parallel, using only the
     # largest value of M
-    simulation_df = expand_grid({
-        'N': N_try, 'M': M_try.max(),
-        'gen_fun': gen_funs, 'fit_fun': fit_funs,
-    })
+    simulation_df = expand_grid({'N': N_try, 'gen_fun': gen_funs, 'fit_fun': fit_funs,})
     with Parallel(n_jobs=args.n_jobs) as parallel:
         bv_tuple = parallel(
             delayed(calc_bias_variance)(
                 N=row[1]['N'], 
-                M=row[1]['M'], 
+                M=M_try.max(), 
                 gf_name=row[1]['gen_fun'], 
                 ff_name=row[1]['fit_fun'], 
                 M_max = row[1]['M']
