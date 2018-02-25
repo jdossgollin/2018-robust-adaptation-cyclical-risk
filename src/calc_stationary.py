@@ -89,8 +89,8 @@ def main():
     args = parser.parse_args()
     
     # Compiling in parallel --> nightmare so compile separately
-    compile_model('src/floodsampling/data/ln2-stationary.stan', model_name='StationaryLN2Stan')
-    compile_model('src/floodsampling/data/ln2-trend.stan', model_name='TrendLN2Stan')
+    compile_model('src/floodsampling/data/ln2-stationary.stan', model_name='')
+    compile_model('src/floodsampling/data/ln2-trend.stan', model_name='')
 
     # Parameters of the model
     N_try = np.array([10, 20, 30, 40, 50, 75, 100, 150])

@@ -267,7 +267,7 @@ class StationaryLN2Stan(FloodFit):
             'sigma_sd': self.param['sigma_sd']
         }
         stan_file = os.path.join(get_data_path(), 'ln2-stationary.stan')
-        stan_model = compile_model(filename=stan_file, model_name=self.model_name)
+        stan_model = compile_model(filename=stan_file, model_name='')
         posterior = stan_model.sampling(
             data=stan_data,
             pars=['yhat'],
@@ -371,7 +371,7 @@ class TrendLN2Stan(FloodFit):
             'beta_sigma_sd': self.param['beta_sigma_sd']
         }
         stan_file = os.path.join(get_data_path(), 'ln2-trend.stan')
-        stan_model = compile_model(filename=stan_file, model_name=self.model_name)
+        stan_model = compile_model(filename=stan_file, model_name='')
         posterior = stan_model.sampling(
             data=stan_data,
             pars=['yhat'],
