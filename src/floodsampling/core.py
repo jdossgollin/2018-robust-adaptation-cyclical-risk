@@ -91,7 +91,7 @@ class BaseSequence:
         file_string = md5(file_string.encode('ascii')).hexdigest()
         file_string += '.nc'
 
-        file_dir = os.path.join(get_cache_path(), self.model_name)
+        file_dir = os.path.join(get_cache_path(), self.category, self.model_name)
         file_dir = os.path.abspath(file_dir)
         if not os.path.isdir(file_dir):
             os.makedirs(file_dir)

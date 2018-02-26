@@ -59,11 +59,7 @@ class StreamflowCreator(BaseSequence):
 
         model_name = kwargs.pop('model_name')
         assert isinstance(model_name, str), 'model_name must be a string'
-
-        super().__init__(**kwargs)
-
-        self.param.update({'category': 'sequence'})
-        self.model_name = model_name
+        super().__init__(category='sequence', model_name=model_name, **kwargs)
 
     def _calculate_one_seq(self):
         """Simulate a single sequence of annual maximum flood peaks

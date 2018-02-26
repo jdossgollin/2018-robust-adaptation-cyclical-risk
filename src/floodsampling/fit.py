@@ -54,15 +54,13 @@ class FloodFit(BaseSequence):
         assert isinstance(sflow, StreamflowCreator), 'sflow must be a StreamflowCreator'
 
         super().__init__(
+            category='fit', model_name=model_name,
             N=sflow.time['N'], M=sflow.time['M'],
             t0=sflow.time['t0'], n_seq=sflow.time['n_seq']
         )
         self.time.update({'n_sim': n_sim})
         self.param.update(sflow.param)
-        self.param.update({'category': 'fit'})
         self.sflow = sflow
-
-        self.model_name = model_name
 
     def _calculate_one_seq(self, one_seq):
         """Simulate a single sequence of annual maximum flood peaks
