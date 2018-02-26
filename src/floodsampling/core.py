@@ -135,7 +135,7 @@ class BaseSequence:
         """
         try:
             fname = self._get_filename()
-            data = xr.open_dataarray(fname)    
+            data = xr.open_dataarray(fname).load()
             attrs_desired = self._get_attributes()
             attr_observed = data.attrs
             success = attrs_desired == attr_observed
