@@ -35,7 +35,7 @@ class BaseSequence:
         The parameters of the model or models
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self, category, model_name, **kwargs):
         self.time = {
             'M': int(kwargs.pop('M')),
             'N': int(kwargs.pop('N')),
@@ -43,6 +43,8 @@ class BaseSequence:
             'n_seq': int(kwargs.pop('n_seq', 3))
         }
         self.param = {} # must be added by child class
+        self.category = category
+        self.model_name = model_name
 
     def _get_attributes(self):
         """Get the key parameters of the data as an ordered dictionary.
@@ -82,12 +84,12 @@ class BaseSequence:
 
         attributes = self._get_attributes()
 
-        file_string = '' # initialize empty string
+        file_string = 'floodsampling' # initialize empty string
         for key, val in attributes.items():
-            file_string += 'simulated_{}{}'.format(key, val)
+            file_string += '{}{}'.format(key, val)
 
         file_string = md5(file_string.encode('ascii')).hexdigest()
-        file_string += '.pkl'
+        file_string += '.nc'
 
         file_dir = os.path.join(get_cache_path(), self.model_name)
         file_dir = os.path.abspath(file_dir)
@@ -99,8 +101,7 @@ class BaseSequence:
     def to_file(self, data):
         """Save the model sequences to file
 
-        Uses the `util.safe_pkl_dump()` function to create the desired parent directory
-        and delete existing file with same name, if necessary, and then dump to file.
+        Create the desired parent directory and delete existing file with same name, if necessary, and then dump to file.
 
         Parameters
         ----------
@@ -111,7 +112,7 @@ class BaseSequence:
 
         data.attrs = self._get_attributes() # force the attrs object of the xarray object
         fname = self._get_filename()
-        safe_pkl_dump(data, fname=fname)
+        data.to_netcdf(path=fname, mode='w', format='NETCDF4')
 
     def from_file(self):
         """Get data from file
@@ -131,8 +132,7 @@ class BaseSequence:
         """
         try:
             fname = self._get_filename()
-            with open(fname, "rb") as f:
-                data = pickle.load(f)
+            data = xr.open_dataarray(fname)    
             attrs_desired = self._get_attributes()
             attr_observed = data.attrs
             success = attrs_desired == attr_observed
