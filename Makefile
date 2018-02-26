@@ -41,7 +41,7 @@ environment	:
 # MAKE SIMULATIONS
 ################################################################################
 
-NCORES=8 # how many cores to run on
+NCORES=1 # how many cores to run on
 
 data/stationary.nc	:	src/get_bias_variance.py
 	$(PY_INTERP) $< --outfile $@ --n_jobs $(NCORES) --gamma 0

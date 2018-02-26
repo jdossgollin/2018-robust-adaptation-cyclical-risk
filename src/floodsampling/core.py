@@ -115,8 +115,6 @@ class BaseSequence:
         par_dir = os.path.dirname(fname)
         if not os.path.isdir(par_dir):
             os.makedirs(par_dir)
-        if os.path.isfile(fname):
-            os.remove(fname)
         data.to_netcdf(path=fname, mode='w', format='NETCDF4')
 
     def from_file(self):
