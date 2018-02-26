@@ -41,16 +41,16 @@ environment	:
 # MAKE SIMULATIONS
 ################################################################################
 
-NCORES=16 # how many cores to run on
+NCORES=8 # how many cores to run on
 
-data/stationary.csv	:	src/calc_stationary.py
-	$(PY_INTERP) $< --outfile $@ --n_jobs $(NCORES)
+data/stationary.nc	:	src/get_bias_variance.py
+	$(PY_INTERP) $< --outfile $@ --n_jobs $(NCORES) --gamma 0
 
-data/trend.csv	:	src/calc_trend.py
-	$(PY_INTERP) $< --outfile $@ --n_jobs $(NCORES)
+data/trend.nc	:	src/get_bias_variance.py
+	$(PY_INTERP) $< --outfile $@ --n_jobs $(NCORES) --gamma 0.015
 
 ## Make all simulations
-simulate:	dirs data/stationary.csv data/trend.csv
+simulate:	dirs data/stationary.nc data/trend.nc
 
 ################################################################################
 # MAKE PLOTS
