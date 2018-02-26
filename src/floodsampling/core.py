@@ -89,7 +89,7 @@ class BaseSequence:
             file_string += '{}{}'.format(key, val)
 
         file_string = md5(file_string.encode('ascii')).hexdigest()
-        file_string += '.nc'
+        file_string += '.pkl'
 
         file_dir = os.path.join(get_cache_path(), self.category, self.model_name)
         file_dir = os.path.abspath(file_dir)
@@ -112,10 +112,7 @@ class BaseSequence:
 
         data.attrs = self._get_attributes() # force the attrs object of the xarray object
         fname = self._get_filename()
-        par_dir = os.path.dirname(fname)
-        if not os.path.isdir(par_dir):
-            os.makedirs(par_dir)
-        data.to_netcdf(path=fname, mode='w', format='NETCDF4')
+        safe_pkl_dump(data, fname=fname)
 
     def from_file(self):
         """Get data from file
@@ -135,7 +132,8 @@ class BaseSequence:
         """
         try:
             fname = self._get_filename()
-            data = xr.open_dataarray(fname).load()
+            with open(fname, 'rb') as f:
+                data = pickle.load(f)
             attrs_desired = self._get_attributes()
             attr_observed = data.attrs
             success = attrs_desired == attr_observed
