@@ -153,8 +153,8 @@ def main():
     n_jobs = args.n_jobs
     parameters = {
         't0': 0,
-        'n_seq': 3,
-        'n_sim': 5,
+        'n_seq': 1000,
+        'n_sim': 2000,
         'gamma': args.gamma,
         'mu0': 6,
         'beta_mu': 0.5,
