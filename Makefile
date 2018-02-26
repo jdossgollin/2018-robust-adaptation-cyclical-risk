@@ -37,6 +37,10 @@ environment	:
 	conda env create --file environment.yml;\
 	conda activate floodsampling
 
+## Pull data from habanero
+pull	:
+	rsync -avz -e ssh jwd2136@habanero.rcs.columbia.edu:/rigel/cwc/users/jwd2136/MNPaper/data ./
+
 ################################################################################
 # MAKE SIMULATIONS
 ################################################################################
@@ -59,25 +63,31 @@ simulate:	dirs data/stationary.nc data/trend.nc
 figs/enso.pdf	:	src/plot_enso.py
 	$(PY_INTERP) $< --outfile $@
 
-figs/stationary_bias.pdf figs/stationary_variance.pdf	:	src/plot_stationary.py data/stationary.nc
-	$(PY_INTERP) $<
+figs/bias_stationary.pdf	:	src/plot_bias.py data/stationary.nc
+	$(PY_INTERP) $< --infile data/stationary.nc --outfile $@
 
-figs/trend_bias.pdf figs/trend_variance.pdf	:	src/plot_trend.py data/trend.nc
-	$(PY_INTERP) $<
+figs/variance_stationary.pdf	:	src/plot_variance.py data/stationary.nc
+	$(PY_INTERP) $< --infile data/stationary.nc --outfile $@
 
-figs/stationary_sequences.pdf	:	src/plot_stationary_sequences.py
-	$(PY_INTERP) $<
+figs/bias_trend.pdf	:	src/plot_bias.py data/trend.nc
+	$(PY_INTERP) $< --infile data/trend.nc --outfile $@
 
-figs/trend_sequences.pdf	:	src/plot_trend_sequences.py
-	$(PY_INTERP) $<
+figs/variance_trend.pdf	:	src/plot_variance.py data/trend.nc
+	$(PY_INTERP) $< --infile data/trend.nc --outfile $@
 
-figs/example_long.pdf	: src/plot_example_long.py
-	$(PY_INTERP) $<
+figs/example_long.pdf	: src/plot_example.py
+	$(PY_INTERP) $< --N 150 --outfile $@
 
-figs/example_short.pdf	: src/plot_example_short.py
-	$(PY_INTERP) $<
+figs/example_short.pdf	: src/plot_example.py
+	$(PY_INTERP) $< --N 50 --outfile $@
 
-plot: figs/enso.pdf figs/stationary_bias.pdf figs/trend_variance.pdf figs/trend_bias.pdf figs/trend_variance.pdf figs/stationary_sequences.pdf figs/trend_sequences.pdf figs/example_short.pdf figs/example_long.pdf
+figs/sequences_stationary.pdf	:	src/plot_sequences.py
+	$(PY_INTERP) $< --gamma 0 --outfile $@
+
+figs/sequences_trend.pdf	:	src/plot_sequences.py
+	$(PY_INTERP) $< --gamma 0.015 --outfile $@
+
+plot: figs/enso.pdf figs/bias_stationary.pdf figs/bias_trend.pdf figs/variance_stationary.pdf figs/variance_trend.pdf figs/example_short.pdf figs/example_long.pdf figs/sequences_stationary.pdf figs/sequences_trend.pdf
 
 ################################################################################
 # Self-Documenting Help Commands
