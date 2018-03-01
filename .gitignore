@@ -1,8 +1,8 @@
 *.out
 
 *.pkl
-*.pdf
 data/*
+writeup/*.pdf
 
 .vscode/
 
