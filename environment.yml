@@ -21,3 +21,4 @@ dependencies:
     - xarray        # N-d labeled array library
     - pip:
       - pystan      # python interface to stan modeling language
+      - colorcet

@@ -49,7 +49,7 @@ def main():
 
     M = 150
     n_seq = 1
-    n_sim = 500
+    n_sim = 5000
 
     # Initialize the bias and variance
     gen_names = np.array(['NINO3 Stationary', 'NINO3 Trend'])
@@ -63,8 +63,19 @@ def main():
             gen_dat = gen_fun.get_data('all')
             fit_dat = fit_fun.get_data('future')
             ax = axes[f, g]
-            for i in np.arange(n_sim):
-                ax.plot(fit_dat['year'], fit_dat.sel(sim=i).values.ravel(), c='gray', linewidth=0.1, alpha=0.1)
+            year = fit_dat['year']
+
+            q25 = fit_dat.quantile(0.25, dim='sim').values.ravel()
+            q75 = fit_dat.quantile(0.75, dim='sim').values.ravel()
+            q90 = fit_dat.quantile(0.90, dim='sim').values.ravel()
+            q10 = fit_dat.quantile(0.10, dim='sim').values.ravel()
+            q995 = fit_dat.quantile(0.995, dim='sim').values.ravel()
+            q005 = fit_dat.quantile(0.005, dim='sim').values.ravel()
+            
+            ax.fill_between(year, q005, q995, color='gray', alpha=0.5)
+            ax.fill_between(year, q10, q90, color='gray', alpha=0.5)
+            ax.fill_between(year, q25, q75, color='gray', alpha=0.5)
+            
             ax.plot(gen_dat['year'], gen_dat.values.ravel(), c='blue', linewidth=1)
             ax.semilogy()
             ax.grid()
