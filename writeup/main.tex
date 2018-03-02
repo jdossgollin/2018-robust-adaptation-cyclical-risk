@@ -3,7 +3,7 @@
 \input{header/macros.tex}
 \input{header/packages.tex}
 
-\title{Nonstationary, Quasi-Periodic Risk of Climate Extremes, and Decision Analysis}
+\title{Adapting to Quasi-Periodic and Secular Changes of Climate Risk}
 \author[1,2]{James Doss-Gollin}
 \author[1,2]{Upmanu Lall}
 \author[1,2]{David Farnham}
@@ -25,7 +25,7 @@
   Hydroclimatic systems vary on many timescales, including regime-like variability and secular variability  \citep[``nonstationarity'';][]{Milly2008,Merz2014,Hodgkins2017}.
   This multi-scale variability greatly complicates the estimation of future flood sequences, leading to ``low confidence in projections of changes in fluvial floods'' \citep{IPCC2012}.
   Despite broad recognition of nonstationarity's importance, there has been little theoretical development of ideas for the design and operation of infrastructure that simultaneously consider the potential for predictability of secular change and regime behavior or low-frequency variability.
-  Consequently, existing theories of flood risk assessment are well-suited to analysis of flood adaptation strategies with fixed project operation period \(M\), but not for analysis of sequential decision strategies.
+  Consequently, existing theories of flood risk assessment are well-suited to analysis of flood adaptation strategies with fixed project operation period $M$, but not for analysis of sequential decision strategies.
   In this paper we illustrate some basic considerations of uncertainty and risk analysis associated with the sequential decisions that may need to be made for climate risk adaptation in a nonstationary adaptation.
   We simulate synthetic data and fit the resulting simulations in a Bayesian context using stationary and non-stationary models to show \(\ldots{}\).
   This is a first conceptual step to the development of a full sequential decision analysis approach under nonstationarity.
@@ -37,17 +37,17 @@
 
 \section{Introduction}
 
-In 2011 five successive cyclones struck Thailand, causing massive damage to public and private infrastructure and crippling global supply chains.\footnote{See Masa Haraguchi's work}
-Later in June 2013 a long rainy period was followed by three summertime cyclones tracking over the same region, leading to massive flooding in central Europe \citep{Grams2014}.
-At the same time a multi-year drought in S\~ao Paulo threatened to dry out one of the world's largest cities, and in 2017 the Atlantic Hurricane season led to over \usd{100 billion} in reinsurance loss.\footnote{\href{http://www.artemis.bm/blog/2018/02/27/berkshire-hathaway-can-easily-weather-a-400bn-mega-catastrophe-buffett/}{Click for blog post on \url{artemis.bm}}}
-Since classical analysis of climate extremes for use in risk analysis and mitigation studies assumes that  the historical or simulated record of events constitutes an independent and identically distributed process, adaptation systems are overwhelmed by these multi-year droughts or multi-hurricane hits.
+In 2011 four typhoons struck northern Thailand \citep{Gale2013}, causing severe damage to public and private infrastructure and crippling global supply chains \citep{Haraguchi2015}.
+In June 2013, a rainy spring was followed by three summertime cyclones following highly similar tracks, leading to widespread flooding in central Europe \citep{Grams2014}.
+At the same time a multi-year drought in S\~ao Paolo threatened to dry out one of the world's largest cities \citep{Seth2015}, and more recently the 2017 Atlantic Hurricane season led to approximately \usd{100 billion} in insured losses.\footnote{\url{http://www.swissre.com/media/news_releases/nr20171220_sigma_estimates.html}}
+Since classical analysis of climate extremes for use in risk analysis and mitigation studies assumes that  the historical or simulated record of events constitutes an independent and identically distributed process, adaptation systems may be overwhelmed by events which violate these assumptions.\footnote{Do we need to add something about climate mechanisms such as wave resonance, blocking, \etc{} that can explain some of this? Or just cite \citet{Hannachi2017} to say the atmosphere has regimes?}
 
-Indeed, the scientific literature has recognized that even small nonstationarity (temporal changes in dynamics of the underlying hydroclimatalogical process) can lead to significant trends in the estimated $T$-year return periods or probability of exceedance $p_T$ \citep{Milly2008,Vogel2011,Salas2014,Merz2014,Obeysekera2016}.
-This has led to a plethora of efforts aimed at identifying the nature of the nonstationarity and modeling it, \eg{} by introducing time trends on statistical parameters \citep{Strupczewski2001,Vogel2011,Obeysekera2014,Serinaldi2015}, climate covariates \citep{Delgado2014,Griffis2007,Silva2016,Sun2014,Hall2014}, latent variable or state-based modeling approaches \citep{Griffis2007,Sveinsson2005,Waylen1986}, or using only the last $N$ years of the data.\footnote{Vogel}
+Indeed, the scientific literature has recognized that even small nonstationarity (temporal change in dynamics of the underlying physical process) can lead to significant trends in the estimated $T$-year return periods or probability of exceedance $p_T$ \citep{Milly2008,Vogel2011,Salas2014,Merz2014,Obeysekera2016}.\footnote{All of these citations are for floods, can we look at other types of extremes? Even droughts would be helpful.}
+This has led to a plethora of efforts aimed at identifying the nature of the nonstationarity and modeling it, \eg{} by introducing time trends on statistical parameters \citep{Strupczewski2001,Vogel2011,Obeysekera2014,Serinaldi2015}, climate covariates \citep{Delgado2014,Griffis2007,Silva2016,Sun2014,Hall2014}, latent variable or state-based modeling approaches \citep{Griffis2007,Sveinsson2005,Waylen1986}, or using only the last $N$ years of the data.\footnote{Rich Vogel citation?}
 Each model will necessarily give different estimates, which may fit the historical record with comparable accuracy but diverge at an increasing rate as the model is forecast further into the future.
-Despite the wide suite of available models, \emph{the question of how one should use these nonstationarity estimates for the design of risk mitigation infrastructure or the pricing of insurance like instruments has been much less studied}.\footnote{All of these citations are for floods, can we look at other types of extremes? Even droughts would be helpful.}
+Despite the wide suite of available models, \emph{the question of how one should use these nonstationarity estimates for the design of risk mitigation infrastructure or the pricing of insurance like instruments has been much less studied}.
 
-There are two kinds of nonstationairities of concern.
+There are two kinds of nonstationarities of concern.
 The first, secular change, may be related to anthropogenic climate change, river modification, or land use change \citep{Merz2014}.
 The uncertainties associated with this are not purely informational; both nature and future human actions will determine the outcomes, and neither is obviously predictable.
 The approach taken by many, including the IPCC, is to consider discrete scenarios for what humans may do with respect to greenhouse gas emissions and then use a sequence of physics-based numerical models with these scenarios to develop probabilistic statements as to the potential changes in the extremes.
@@ -58,26 +58,20 @@ Such a ``model chain'' typically encompasses:
   \item downscaling; and
   \item high-resolution model of the study region.
 \end{enumerate*}
-Because of errors inherent to discretization and parameterization of the laws of motion, bias correction methods are typically applied at each step of the chain; while this typically improves the model chain's representation of the historical record, the extrapolation of these bias corrections far into the future does not inspire confidence \citep{Dankers2009,Ott2013,Merz2014,Dittes2017}.\footnote{Farnham et al 2018!}
+Because of inherent errors due to, \eg{} the discretization and parameterization of the equations of motion, bias correction methods are typically applied at each step of the chain; while this typically improves the model chain's representation of the historical record, the extrapolation of these bias corrections far into the future does not inspire confidence \citep{Dankers2009,Ott2013,Merz2014,Dittes2017}.\footnote{Farnham et al 2018!}
 A critical question in this regard is how to assess whether any structure designed using these projections may actually perform in the future relative to the proposed level of risk protection.
 Would it be over- or under- designed?
 Would the bias and uncertainty in its estimation lead to sub-optimal investment strategies in risk mitigation?
-These questions go far beyond what can be reliably answered at this time, and this type of epistemic uncertainty clearly grows as we look out into the distant future.
+These questions go far beyond what can be reliably answered at this time, and this type of epistemic uncertainty clearly grows as we look out into the distant future.\footnote{Perhaps these sentences belong elsewhere?}
 
-If a positive discount rate is used for the future, as is typical in public and private sector planning models,\footnote{CITE} the investment returns on major public and private investment may diminish substantially far into the future.
-This consideration suggests that it may be more effective to understand the consequences for analysis focusing on shorter lived mitigation alternatives that may last for 1, 5, 10, 20, 30, or 50 years.
-Thus, sequences of such smaller projects may in some cases better reflect climate adaptation goals, particularly given the possibilities that major climate change impacts in a paticular place may occur far into the future; that climate mitigation efforts may be successful; or that the needs of human society may change drastically over these horizons.
+In addition to secular change, quasi-periodic inter-annual to multi-decadal modes of climate variability \citep[see][]{Hannachi2017} to influence the spatio-temporal expression of climate extremes in ways that violate the assumption of independent, identically distributed events \citep[see][]{Merz2014,Serinaldi2015,Hoskins2015}.
+For example, even when no secular trend exists the using past $N$ years to represent the next $N$ leads large surprise in estimates of floods relative to when the time series is fully shuffled to remove temporal clustering, even for very long ($N=\SI{200}{years}$) sequences \citep{Jain2001}.
 
-Consideration of these shorter time horizons brings up the concern associated with the second type of nonstationarity in climate: the quasi-periodic inter-annual, decadal and multidecadal modes of climate variability that have extensive spatial teleconnections and appear to influence the spatio-temporal expression of climate extremes in ways that violate the assumption of independent, identically distributed draws of events that is central to the classical analysis \citep[see][]{Merz2014,Serinaldi2015,Hoskins2015,Hannachi2017}.
-Using a bootstrap approach with a long, stationary ENSO data series, \citet{Jain2001} demonstrated that the using the past \(K\) years to represent the next \(K\) years led to large surprise relative to when the data was fully randomized and the temporal structure removed.
-Even for a very long sequence (\ie{} \(K=200\) years), the past was found to be a misleading representation of the future.
-Such clustering in the occurrence of extreme rainfall and drought is manifest in the potential exposure of mining companies,\footnote{Bonnafous et al (2017a,b)} who face spatial as well as temporal clustering.
-
-Clearly, in a nonstationary world the probability of exceedance is temporally variable over the project life.
-In this paper we provide some initial insight into the bias and uncertainty associated with flood frequency estimation for projects as a function of the project planning period \(M\) and the length of the historical record \(N\).
+When secular and quasi-periodic variability are both considered, it becomes clear the probability of exceedance is temporally variable over the life of a climate adaptation project.
+In this paper we provide some initial insight into the bias and uncertainty associated with flood frequency estimation for projects as a function of the project planning period $M$ as well as the length of the historical record $N$.
 This project planning period can be interpreted as the design life of a physical structure, or as the contract length of a financial instrument.
-Our aim is not to identify the ``best'' model, but rather to build some theory as to how the underlying nature of the natural variability and nonstationarity and the choice of model used to model future flood risk map onto estimation bias and variance in the context of many different \(M\) and \(N\).
-This estimation bias and variance may map directly onto the price of an insurance contract\footnote{cite} or the possibility of over/under-design of a flood control structure.
+Our aim is not to identify the ``best'' model, but rather to develop theory as to how the underlying nature of the natural variability and nonstationarity and the choice of model used to model future flood risk map onto estimation bias and variance in the context of many different $M$ and $N$.
+This estimation bias and variance may map directly onto the price of an insurance contract, or the possibility of over/under-design of a large structure like a dam or seawall used to protect against climate hazards.
 Though the specific examples target flood risk, this method and framework may be used for understanding the implications of uncertain projections of the future for climate hazards including drought, hurricanes, and wind.
 
 % -----------------------------------------------------------------------------
@@ -86,12 +80,12 @@ Though the specific examples target flood risk, this method and framework may be
 
 \section{Methods}\label{sec:methods}
 
-We use a highly idealized modeling framework to generate sequences of annual-maximum floods, fit these sequences in a probabilistic framework to three flood models that incorporate time in different ways, and evalaluate the performance of these models for multiple observational record lengths \(N\) and project planning periods \(M\).
+We use a statistical framework with highly idealized models to generate sequences of annual-maximum floods, fit these sequences to probabilistic models what incorporate time in different ways, and evaluate the performance of these models for multiple observational record lengths $N$ and project planning periods $M$.
 
 \subsection{Generating Synthetic Flood Sequences\label{sec:methods-generating}}
 
 We generate synthetic flood sequences from two different simple conceptual models that represent chaotic dynamics and long memory.
-For both cases, the expected value of the annual maximum flood flood follows a log-normal distribution, conditional on an expected value \(\mu(t)\) which depends on individual model:
+For both cases, the expected value of the annual maximum flood flood follows a log-normal distribution, conditional on an expected value $\mu(t)$ which depends on individual model:
 \begin{equation} \label{eq:lognormal}
   \log Q(t) \big| \mu(t),\sigma(t) \sim \normal \qty(\mu(t), \sigma(t)).
 \end{equation}.
@@ -103,54 +97,54 @@ For simplicitiy we assume a constant coefficient of variation:
     \sigma_\text{min} & \qqtext{else}
   \end{cases}
 \end{equation}
-where \(\sigma_\text{min}\) is a small constant that ensures non-trivial noise in the system.
+where $\sigma_\text{min}$ is a small constant that ensures non-trivial noise in the system.
 
 The procedure to generate a sequence of streamflow is thus:
 \begin{enumerate}
-  \item Choose \(t_0\), \(M\), and \(N\) so that the time is \(\vb{t}=t_0-N+1, \ldots, t_0+M\).
-  \item Use one of the models described below to simulate \(\mu(t)\)
-  \item Use \cref{eq:calc-sigma} to calculate \(\sigma(t)\)
-  \item For each time \(t \in \vb{t}\), draw \(Q(t)\) following \cref{eq:lognormal}.
+  \item Choose $t_0$, $M$, and $N$ so that the time is $\vb{t}=t_0-N+1, \ldots, t_0+M$.
+  \item Use one of the models described below to simulate $\mu(t)$
+  \item Use \cref{eq:calc-sigma} to calculate $\sigma(t)$
+  \item For each time $t \in \vb{t}$, draw $Q(t)$ following \cref{eq:lognormal}.
 \end{enumerate}
-Though both approaches used to generate sequences \( \mu(t) \) use highly simplified models neglecting many important mechanisms, they enable us to generate many synthetic sequences of \(\qty[M + N]\) years which exhibit chaotic but organized quasi-periodic behavior (regime behavior or low-frequency variability) plus a trend term, thereby capturing some essential features of hydrological variability.
+Though both approaches used to generate sequences $\mu(t)$ use highly simplified models neglecting many important mechanisms, they enable us to generate many synthetic sequences of $\qty[M + N]$ years which exhibit chaotic but organized quasi-periodic behavior (regime behavior or low-frequency variability) plus a trend term, thereby capturing some essential features of hydrological variability.
 
 \subsubsection{Synthetic NINO3 Model\label{sec:methods-nino}}
 
-ENSO is the dominant mode of tropical climate variability, impacts flood risk around the world, and varies in a quasi-oscillatory manner with variability on the order of 3 to 7 years with further low-frequency modulation \citep{Sarachik2010}.
+ENSO is the dominant mode of tropical climate variability, impacts flood risk around the world, and varies in a chaotic, quasi-oscillatory manner with variability on the order of 3 to 7 years with further low-frequency modulation \citep{Sarachik2010}.
 A \SI{100000}{year} integration of the Cane-Zebiak model \citep{Zebiak1987} was used to produce a monthly NINO3.4 index with stationary forcing as described in \citet{Ramesh2017}.
-A subset of this data is shown in \cref{fig:enso-ts}.
 To create an annual time series, we average the October-December values of the NINO3 index for each year.
+A \SI{1000}{year} subset of this data is plotted in \cref{fig:enso-ts} along with the average spectral power of the series.
 
 To generate $\mu(t)$, a sequence of length $M+N$ is randomly chosen from the \SI{100000}{year} NINO3 sequence.
-Next, \(\mu\) is calculated following by
+Next, $\mu(t)$ is calculated deterministically from the NINO3 time series $x(t)$ by
 \begin{equation}
   \mu(t) = \mu_0 + \beta x(t) + \gamma \qty(t - t_0)
 \end{equation}
-where parameter \(\gamma\) controls the magnitude of the secular trend (\(\gamma=0\) gives a stationary series).
+where $\beta$ controls the sensitivity to the NINO3 variation and $\gamma$ controls the magnitude of the secular trend ($\gamma=0$ gives a stationary series).
 
 \subsubsection{Markov Chain\label{sec:methods-markov}}
 
-To create sequences of floods with strong memory and regime-like behavior, we use a 2-state Markov chain to sample a sequence of states that are used to generate \(\mu(t\).
+To create sequences of floods with strong memory and regime-like behavior, we use a 2-state Markov chain to sample a sequence of states that are used to generate $\mu(t)$.
 This Markov chain is given a constant probability of persistence which is the same for both states, such that the transition matrix is
 \begin{equation*}
   P = \mqty[\pi & 1-\pi \\ 1-\pi & \pi]
 \end{equation*}
-This is first used to generate a sequence of states \(S(t)\).
-The value \( \mu(t) \) depends only on the \(S(t)\) and the time itself:
+This is first used to generate a sequence of states $S(t)$.
+The value $\mu(t)$ depends only on the $S(t)$ and the time itself:
 \begin{equation*}
   \mu(t) = \begin{cases}
     \mu_{0,1} + \gamma_1 \qty(t - t_0) & \qqtext{if} S(t) = 1 \\
     \mu_{0,2} + \gamma_2 \qty(t - t_0) & \qqtext{if} S(t) = 2
   \end{cases}
 \end{equation*}
-For simplicity, we assume that the coefficient of variation \( \alpha \) is the same for both states.
-We also assume \( \mu_{0, 1} > \mu_{0, 2} \) so that state 1 can be interpreted as the ``wet'' state and state 2 as the ``dry'' state.
+For simplicity, we assume that the coefficient of variation $\alpha$ is the same for both states.
+We also assume $\mu_{0, 1} > \mu_{0, 2}$ so that state 1 can be interpreted as the ``wet'' state and state 2 as the ``dry'' state.
 
 \subsection{Estimating Future Streamflow Sequences\label{sec:estimation}}
 
 This paper does not propose new models or suggest a general ``best'' model; instead it aims to describe the total uncertainty in estimates using easily methods which have been well studied in the literature.
 
-In general, each historical \(N\)-year sequence of streamflow is fit to a statistical model, from which 2000 sequences of future streamflow are generated using Monte Carlo simulation.
+In general, each historical $N$-year sequence of streamflow is fit to a statistical model, from which 2000 sequences of future streamflow are generated using Monte Carlo simulation.
 Three models are assessed for estimating future streamflow and are described in detail below.
 
 \subsubsection{Stationary LN2 Model\label{sec:method-stationary}}
@@ -158,7 +152,7 @@ Three models are assessed for estimating future streamflow and are described in 
 We first consider fitting a stationary model to the observed flood record, following classical assumptions of \iid sequences and stationarity.
 
 We use the log-normal model (\cref{eq:lognormal}) for its simplicity, interpretability, and good performance relative to other 2-parameter models \citep{Vogel1996}.
-For each simulation, the first \(N\) years \(\qty(t=[t_0-N+1, \ldots, t_0])\) are treated as observations (denoted \(Q_{\text{hist}}\) for clarity).
+For each simulation, the first $N$ years \(\qty(t=[t_0-N+1, \ldots, t_0])\) are treated as observations (denoted \(Q_{\text{hist}}\) for clarity).
 Then, the parameters are fit in a Bayesian framework to fully represent the posterior uncertainty as implemented in the \texttt{stan} probabilistic programming language \citep{Carpenter2016}.
 Weak (uninformative) priors are chosen; in the context of a synthetic data experiment using informative priors seems inappropriate but other studies\footnote{cite} have used scaling information and regional information to inform prior distributions and reduce posterior variance.
 The full probability model is thus:
@@ -190,15 +184,15 @@ As such, HMMs are a structured prediction method which extend general mixture mo
 Because this structure allows the hidden state to represent hydroclimatological ``regimes'' \citep{Reinhold1982,Michelangeli1995,Merz2014}, HMMs have have been used extensively to model hydrological variables such as streamflow \citep[\ie{}][]{Bracken2016} or climate states such as ENSO.\footnote{Julian's work}
 
 We fit observed streamflow sequences \(Q_\text{hist}\) using a HMM as implemented in the python \texttt{pomegranate} package \citep{Schreiber2016}.
-The model is fit to the \(N\) observed years of data using the Baum-Welch algorithm, assuming that the data follow a log-normal distribution conditional only on the state.
+The model is fit to the $N$ observed years of data using the Baum-Welch algorithm, assuming that the data follow a log-normal distribution conditional only on the state.
 This algorithm simultaneously estimates the transition matrix of the Markov process and the conditional parameters of each distribution.
 To choose the number of hidden states, a log probability score is used.\footnote{Need to implement this?}
 Future floods are estimated by simulating future states from the resulting matrix and then drawing floods log-normally using the estimated parameters.
 
 \subsection{Evaluating Fitting Models}
 
-For a given choice of \(M\), \(N\), generating model, and fitting model, \(J\) sequences of streamflow of length \(M+N\) years each are generated.
-For each of the \(J\) sequences, the fitting model is then fit on the \(N\)-year historical record.
+For a given choice of $M$, $N$, generating model, and fitting model, \(J\) sequences of streamflow of length \(M+N\) years each are generated.
+For each of the \(J\) sequences, the fitting model is then fit on the $N$-year historical record.
 \(K\) posterior simulations of future rainfall are then drawn from the fitted model.
 We then perform a standard decomposition of uncertainty:
 \begin{equation}
@@ -209,7 +203,7 @@ where the first term is the mean squared error, the second term is the bias squa
 \subsection{Code Availability}
 
 All computation was carried out in the \texttt{python} environment, making particular use of the \texttt{xarray}, \texttt{numpy}, \texttt{pandas}, and \texttt{matplotlib} libraries \citep{Hoyer2017,vanderWalt2011,McKinney2010,Hunter2007}.
-The codes used to generate the figures and text of this paper are available at \url{github.com/jdossgollin/MNpaper}.
+The codes used to generate the figures and text of this paper are available at \url{github.com/jdossgollin/MNpaper}.\footnote{It's currently a private repository}
 
 % -----------------------------------------------------------------------------
 % ESTIMATION BIAS AND UNCERTAINTY
@@ -217,64 +211,17 @@ The codes used to generate the figures and text of this paper are available at \
 
 \section{Estimation Bias and Uncertainty}\label{sec:results}
 
-We begin by showing the types of synthetic streamflow sequence that are by the two models discussed \cref{sec:methods-generating}.
-We then examine how different statistical models for estimating future flood sequences perform under stationary conditions and when a secular trend is introduced.
-
-\subsection{Are Generated Sequences Realistic?\label{sec:sequence-realistic}}
-
-The models used to generate synthetic flood sequences used simple dynamics, but nevertheless were designed to incorporate regime-like and quasi-period variability at multiple timescales.
-
-To verify that these synthetic streamflow sequences sufficiently represent these behaviors, we plot several sequences.
-The ENSO model used a long run of the Cane-Zebiak model \citep{Zebiak1987,Ramesh2017} to determine \(\mu(t)\); a \SI{2500}{year} sub-set of the annualized time series is shown in \cref{fig:enso-ts}.
-As described in the literature,\footnote{citations, and maybe some paleo stuff as well} this model shows quasi-periodic oscillations in the \SIrange{3}{7}{year} band but with substantial low-frequency modulation of extreme activity.
-The index is also asymmetrically distributed, with a longer tail on the positive (El Ni\~{n}o) side than the negative (La Ni\~{n}a) phase, which is consistent with observations of ENSO.
-Analysis of the power density spectrum shows a strong peak around 3-6 years.
-\begin{figure}
-  \includegraphics[width=\textwidth]{enso.pdf}
-  \caption{
-    (L): A \SI{1000}{year} sub-set of the synthetic time series described in \cref{sec:methods-nino}.
-    (R): The power spectral density of the annualized time series. A moving window was applied to the density for smoothing.\label{fig:enso-ts}
-  }
-\end{figure}
-
-\Cref{fig:stationary-sequences} shows 50 streamflow sequences generated with \(M=50\) and \(N=100\).
-The ENSO sequences were generated with \(\gamma=0, \beta_\mu=0.5, \mu_0=6\), which gives a strong (but still noisy) relationship between the NINO3 index \(x(t)\)) and the annual-maximum streamflow \(Q(t)\).
-The Markov sequences were generated with \(\mu_1 = 6.55, \mu_2=5.7, \gamma_1=0, \gamma_2=0, \pi=0.9\), which gives a large difference between the two states.
-For both, the coefficient of variation \(\alpha=0.1\) and the minimum value of sigma \(\sigma_\text{min}=0.01\).
-\begin{figure}[b]
-  \includegraphics[width=\textwidth]{sequences_stationary.pdf}  
-  \caption{
-    50 streamflow sequences from (Top) the ENSO-based model described in \cref{sec:methods-nino} and (Bottom) the Markov chain modle described in \cref{sec:methods-markov}.
-    Both models use a stationary parameterization \(\gamma=0\).
-    49 of the 50 sequences are plotted in gray, and one (randomly chosen) is plotted in blue for emphasis.
-    Note that $y$-axis has a log scale.\label{fig:stationary-sequences}
-  }
-\end{figure}
-
-To incorporate secular variability into our model, we repeat the exercise but add a trend term to the data.
-For the ENSO time series, this mean setting \(\gamma=0.015\) while for the Markov case this meant a trend term on the wet state only, so that \(\gamma_1=0.015\).
-The resulting sequences are shown in \cref{fig:trend-sequences}.
-The trend has an extremely large impact on the probability of an extremely high flood, but the underlying time series structure is generally preserved.
-\begin{figure}[b]d
-  \includegraphics[width=\textwidth]{sequences_trend.pdf}
-  \caption{
-    As \cref{fig:stationary-sequences} but a trend term has been added by setting \(\gamma=0.015\).\label{fig:trend-sequences}
-  }
-\end{figure}
-
-This choice of parameterizing secular change as a linear trend on the expected value of log streamflow was made to aid interpretability, and not because of any particular physical reasoning.
-Indeed, for large \(N\) this model suggests implausibly dry conditions and implausibly wet conditions for very large \(M\).
-However, given widespread use of trend-based models in the flood frequency analysis literature it is informative to consider the ``best-case'' scenario in which the model is correctly specified and there is a true, linear trend in the data.
+We begin by considering how different statistical models for estimating future flood sequences perform under stationary conditions and when a secular trend is introduced.
 
 \subsection{Stationary Case}\label{sec:results-stationary}
 
-We next consider the estimation bias and variance as a function of \(M\) and \(N\) when the true generative process is stationary.
+We first consider the estimation bias and variance as a function of $M$ and $N$ when the true generative process is stationary.
 
-To do this we generate 1000 sequences of streamflow for each combination of \(M\), \(N\), and generative process.
-We then fit each estimation model to each sequence and draw 2000 estimates of future streamflow from the fitted model.
-These are then used to determine \(\hat{p}_T\), allowing calculation of the expected bias and variance for each combination of \(M\), \(N\), generative model, and estimating model.
+To do this we generate 1000 sequences of streamflow for each combination of $M$, $N$, and generative process.
 The parameters for the NINO3 model are given in \cref{tab:nino-stationary} and for the Markov model in \cref{tab:nino-stationary}.
 We use a threshold $Q_T = \SI{5000}{units}$.
+We then fit each estimation model to each sequence and draw 2000 estimates of future streamflow from the fitted model.
+These are then used to determine $\hat{p}_T$, allowing calculation of the expected bias and variance in its estimation for each combination of $M$, $N$, generative model, and estimating model.
 
 \begin{table}[ht]
   \begin{tabular}{L{1in}L{3.75in}L{0.75in}}
@@ -306,23 +253,22 @@ We use a threshold $Q_T = \SI{5000}{units}$.
   \caption{Parameters of Markov model under stationary case}\label{tab:markov-stationary}
 \end{table}
 
-
 \Cref{fig:stationary-bias} shows that in general, bias is quite similar across generative models but varies substantially between the models used for estimation.
-The HMM and LN2 Stationary models have no time term, and so their bias is independent of \(M\).
-In general both of these models have very low bias, though the LN2 Stationary model tends to over-estimate the probability of flooding for very short \(N\), unsurprising since the true distribution of streamflow is bimodal for both generating functions. 
-The LN2 trend model registers a non-trivial probability of a positive time trend, particularly for short \(N\), leading to large bias in estimation.
-For very long \(M\) the bias is higher, as estimated probability of exceeding the threshold is exceeded.
+The HMM and LN2 Stationary models have no time term, and so their bias is independent of $M$.
+In general both of these models have very low bias, though the LN2 Stationary model tends to over-estimate the probability of flooding for very short $N$, unsurprising since the true distribution of streamflow is bimodal for both generating functions. 
+The LN2 trend model registers a non-trivial probability of a positive time trend, particularly for short $N$, leading to large bias in estimation.
+For very long $M$ the bias is higher, as estimated probability of exceeding the threshold is exceeded.
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{bias_stationary.pdf}
-  \caption{The estimation bias for 1000 sequences generated by each of two stationary generating functions (row) and fit by each of three fitting functions (columns) as a function of \(M\) and \(N\).\label{fig:stationary-bias}}
+  \caption{The estimation bias for 1000 sequences generated by each of two stationary generating functions (row) and fit by each of three fitting functions (columns) as a function of $M$ and $N$.\label{fig:stationary-bias}}
 \end{figure}
 
 Analysis of the variance, in these estimates, shown in \cref{fig:stationary-variance} as the log standard deviation, is similar.
 As suggested in the bias plots, the HMM and LN2 Stationary models have very low variance of their estimates.
-The LN2 Trend model has much higher variance in estimates, particularly for short \(N\) or short \(M\).
+The LN2 Trend model has much higher variance in estimates, particularly for short $N$ or short $M$.
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{variance_stationary.pdf}
-  \caption{The estimation variance for 1000 sequences generated by each of two stationary generating functions (row) and fit by each of three fitting functions (columns) as a function of \(M\) and \(N\).\label{fig:stationary-variance}}
+  \caption{The estimation variance for 1000 sequences generated by each of two stationary generating functions (row) and fit by each of three fitting functions (columns) as a function of $M$ and $N$.\label{fig:stationary-variance}}
 \end{figure}
 
 \subsection{Trend Case}
@@ -330,48 +276,26 @@ The LN2 Trend model has much higher variance in estimates, particularly for shor
 We next repeat the previous example but introduce a time trend in the data.
 Thus the parameters of the NINO3 model are as \cref{tab:nino-stationary} except that $\gamma=0.015$ and the parameters of the Markov model are as \cref{tab:markov-stationary} except that $\gamma_1 = 0.015$.
 
-For short \(M\), particularly when \(N\) is not too big, the stationary models (HMM and LN2 Stationary) perform well for both generative functions.
-As \(M\) increases, they begin to substantially underestimate the probability of future flooding.
-As for the stationary case, when \(N\) is short the LN2 Stationary model tends to over-estimate $\hat{p}_T$ because it sees variation caused by the NINO3 time series or the Markov state switching and assigns it to internal variability, leading to unrealistically fat tails in the estimate.
+For short $M$, particularly when $N$ is not too big, the stationary models (HMM and LN2 Stationary) perform well for both generative functions.
+As $M$ increases, they begin to substantially underestimate the probability of future flooding.
+As for the stationary case, when $N$ is short the LN2 Stationary model tends to over-estimate $\hat{p}_T$ because it sees variation caused by the NINO3 time series or the Markov state switching and assigns it to internal variability, leading to unrealistically fat tails in the estimate.
 The trend model, by contrast, over-estimates $p_T$ except when $N$ is very large, mainly because the posterior uncertainty in the magnitude of the trend means that the model believes that a trend larger than observed is not unlikely.
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{bias_trend.pdf}
-  \caption{The estimation bias for 1000 sequences generated by each of two non-stationary generating functions (row) and fit by each of three fitting functions (columns) as a function of \(M\) and \(N\).\label{fig:trend-bias}}
+  \caption{The estimation bias for 1000 sequences generated by each of two non-stationary generating functions (row) and fit by each of three fitting functions (columns) as a function of $M$ and $N$.\label{fig:trend-bias}}
 \end{figure}
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{variance_trend.pdf}
-  \caption{The estimation variance for 1000 sequences generated by each of two non-stationary generating functions (row) and fit by each of three fitting functions (columns) as a function of \(M\) and \(N\).\label{fig:trend-variance}}
+  \caption{The estimation variance for 1000 sequences generated by each of two non-stationary generating functions (row) and fit by each of three fitting functions (columns) as a function of $M$ and $N$.\label{fig:trend-variance}}
 \end{figure}
-
-% -----------------------------------------------------------------------------
-% DISCUSSION
-% -----------------------------------------------------------------------------
-
-\section{Discussion}
-
-% PHYSICAL PLAUSABILITY OF TRENDS 
-% SPATIAL CASE
-% THIS IS RELEVANT FOR OTHER NATURAL HAZARDS -- DISCUSS
-% IMPLICATIONS FOR INSURANCE / DESIGN
-
-For the type of extreme flood events we are interested in, the nominal return period at some location flooded during the event will typically be larger than 10 years.
-While this is a relatively rare event at a given location, across a geography as large as the United States, one can expect to see such events rather frequently, emphasizing the need to understand and predict the risk of such events over a season or few years to facilitate preparation and mitigation strategies.
-
-From a decision making perspective, one could either design and build a project that gives us protection through the year 2100 considering both types of nonstationarities, or consider a sequence of projects every M years that incrementally add (or not) protection. How does the uncertainty and hence risk for these decisions manifest depending on the design level p, the duration M, and the uncertainty associated with the estimation of the \( f(Qp(t)) \) given a methodology used for prediction -- \eg{} the model chain using gcms and such and models fitted to a historical data length \(M\).
-What is the implication for choices of p and M under different models for stationarity and uncertainty using some simple loss and cost  functions.
-
-How could  financial risk mitigation instruments be used in conjunction with structural design to identify a robust, adaptive climate risk mitigation strategy with sequential decisions that are informed by updated estimates of risk.
-
-Since we know the true distribution of the flood sequences (we have generated them ourselves), using the log-normal for both generating and fitting enables interpretation of results as a lower bound on total uncertainty.
 
 \begin{figure}
   \includegraphics[width=\textwidth]{example_long.pdf}
   \caption{
-    A single sequence of streamflow generated by the NINO3 function with (L) no trend and (R) \(\gamma=0.01\). 
-    The sequence is fit to each fit to three different fitting models (rows).
-    Confidence intervals shown are 50\%, 80\%, and 99\%.
-    Generated with \(M=N=150\).\label{fig:example-long}
+    A single sequence of streamflow generated by the NINO3 function with (L) $\gamma=0$ and (R) $\gamma=0.015$. 
+    The sequence is fit to each fit to three different fitting models (rows); the grey shading indicates the posterior 50\%, 80\%, and 99\% confidence intervals of $\hat{P}_T(t)$.
+    Here $M=N=150$.\label{fig:example-long}
   }
 \end{figure}
 
@@ -381,6 +305,67 @@ Since we know the true distribution of the flood sequences (we have generated th
     As \cref{fig:example-short} except \(N=50\).\label{fig:example-short}
   }
 \end{figure}
+
+% -----------------------------------------------------------------------------
+% CASE STUDY
+% -----------------------------------------------------------------------------
+
+\section{Case Study}
+
+I would go back to a case study and look at a 500-year streamflow sample (could be generated synthetically if we can't get a good real one).
+Fix $N=100$ (say) and choose between $M=5$ or $M=50$. 
+Estimate this model with 
+\begin{enumerate}[label=(\roman*)]
+  \item HMM;
+  \item LN2 Stationary;
+  \item LN2 Trend; and
+  \item Perfect Information (\ie{} knowing the future exactly)
+\end{enumerate}
+Then at each time, calculate the insurance price for each model from \cref{eq:insurance-price} (the perfect information model will have a risk premium of zero) and summarize the over or under-pricing of the risk premium.
+Then explain that one would be unlikely to buy a 50-year insurance contract but that it's helpful to compare the two models using equal criteria.
+We could extend to include NPV analysis if desired.
+
+\emph{Please comment: should this be part of our paper?}
+
+% -----------------------------------------------------------------------------
+% DISCUSSION
+% -----------------------------------------------------------------------------
+
+\section{Discussion}
+
+Infrastructure in the developed world is aging \citep{Ho2017}, leading to questions of whether and how to replace it.
+In the developed world new infrastructure is being built.\footnote{citations}
+Given a positive future discount rate and uncertainty associated with future urbanization, economic growth, and climate change, the expected net benefits of this infrastructure are highly uncertain.
+At the same time the private sector has accepted an increasing share of global risk \citep{WorldEconomicForum2016}, which it has mitigated primarily through financial instruments.
+How should different contracts be priced? When does it make sense to build large infrastructure?
+These questions cannot be answered with existing methodologies.
+
+The assessment of sampling bias and variance associated with estimating the occurrence probability of an extreme event, $\hat{p}_T$, maps directly into this insurance contract, where a typical price for a $M$-year contract is given by
+\begin{equation}\label{eq:insurance-price}
+  \frac{\mathbb{C}}{M} = \lambda \qty(\mathbb{E} \qty[p_T] + c \mathbb{V} \qty[p_T])
+\end{equation}
+where $\mathbb{E}$ denotes the expectation operator, $\mathbb{V}$ the variance operator, $\lambda$ the profit margin, and $c$ the risk premium.
+Bias in $\hat{P}_T$ leads to inefficient pricing, since if the price is too low, the insurer is exposed to failure and if it is too high the buyer will be less inclined to purchase insurance.
+
+We illustrated sampling uncertainty and inter-model disagreement using several simple models for annual-maximum floods.
+In more realistic applications, analysis of flood frequency can be improved by combining information across space \citep{Lima2016,Merz2008a}, combining model forecasts, \etc{}.
+Analysis of other weather and climate hazards may use different distributions, and the time structure of the underlying climate process may be different.
+
+For the type of extreme flood events we are interested in, the nominal return period at some location flooded during the event will typically be larger than 10 years.
+While this is a relatively rare event at a given location, across a geography as large as the United States, one can expect to see such events rather frequently, emphasizing the need to understand and predict the risk of such events over a season or few years to facilitate preparation and mitigation strategies.
+Recent efforts\footnote{Prad's work} to identify regions where risk of a particular event is negatively correlated in space.
+
+Such clustering in the occurrence of extreme rainfall and drought is manifest in the potential exposure of mining companies,\footnote{Bonnafous et al (2017a,b)} who face spatial as well as temporal clustering.
+
+How could  financial risk mitigation instruments be used in conjunction with structural design to identify a robust, adaptive climate risk mitigation strategy with sequential decisions that are informed by updated estimates of risk.
+
+Since we know the true distribution of the flood sequences (we have generated them ourselves), using the log-normal for both generating and fitting enables interpretation of results as a lower bound on total uncertainty.
+
+From a decision making perspective, one could either design and build a project that gives us protection through the year 2100 considering both types of nonstationarities, or consider a sequence of projects every M years that incrementally add (or not) protection. How does the uncertainty and hence risk for these decisions manifest depending on the design level p, the duration M, and the uncertainty associated with the estimation of the \( f(Qp(t)) \) given a methodology used for prediction -- \eg{} the model chain using gcms and such and models fitted to a historical data length $M$.
+What is the implication for choices of p and M under different models for stationarity and uncertainty using some simple loss and cost  functions.
+If a positive discount rate is used for the future, as is typical in public and private sector planning models,\footnote{CITE} the investment returns on major public and private investment may diminish substantially far into the future.
+This consideration suggests that it may be more effective to understand the consequences for analysis focusing on shorter lived mitigation alternatives that may last for 1, 5, 10, 20, 30, or 50 years.
+Thus, sequences of such smaller projects may in some cases better reflect climate adaptation goals, particularly given the possibilities that major climate change impacts in a particular place may occur far into the future; that climate mitigation efforts may be successful; or that the needs of human society may change drastically over these horizons.
 
 
 % -----------------------------------------------------------------------------
@@ -396,13 +381,13 @@ We actually demonstrate that the potential loss in a 2100 scenario has to be cat
 If we accept this proposition then we have a strong case for the mitigation of climate change but a much weaker case for adaptation, since if we are not able to mitigate that scenario then building a giant wall to control the 2100 scenario today will be economically and socially infeasible anyway.
 So the next obvious question is in which situation would waiting and updating the decision make sense and this can be set up and explored or just discussed.
 
-Implications
+To really drive this paper home, we ought to end with a few recommendations for practitioners estimating and adapting to future climate risk such as:
 \begin{itemize}
-  \item Blind use of trend models leads to sub-optimal models \emph{even when there is a trend} for many combination of \(M,N\)
-  \item Bias-variance tradeoff of model complexity
-  \item Need to consider the structure of the underlying trend, $N$, and $M$ when choosing a model
-  \item Should consider multiple models, \eg by ``stacking'' \citep{Yao2017}
+  \item For some combinations of $M$ and $N$, use of trend models leads to sub-optimal decisions \emph{even when there is a truely linear trend and the model is correctly specified}
+  \item Consider the structure of the underlying trend, $N$, and $M$ when choosing a model
+  \item Consider the bias-variance tradeoff of model complexity
 \end{itemize}
+We could even offer some recommendations as to when to choose ``insurance'' projects versus ``infrastructure'' projects, but this may just needlessly antagonize readers.
 
 % -----------------------------------------------------------------------------
 % END HERE
@@ -416,6 +401,50 @@ The authors thank Columbia ITS for support running simulations on the cluster.
 James thanks NSF.
 Dave thanks grant.
 
+\subsection{Are Generated Sequences Realistic?\label{sec:sequence-realistic}}
+
+The models used to generate synthetic flood sequences used simple dynamics, but nevertheless were designed to incorporate regime-like and quasi-period variability at multiple timescales.
+
+To verify that these synthetic streamflow sequences sufficiently represent these behaviors, we plot several sequences.
+The ENSO model used a long run of the Cane-Zebiak model \citep{Zebiak1987,Ramesh2017} to determine \(\mu(t)\); a \SI{2500}{year} sub-set of the annualized time series is shown in \cref{fig:enso-ts}.
+As described in the literature,\footnote{citations, and maybe some paleo stuff as well} this model shows quasi-periodic oscillations in the \SIrange{3}{7}{year} band but with substantial low-frequency modulation of extreme activity.
+The index is also asymmetrically distributed, with a longer tail on the positive (El Ni\~{n}o) side than the negative (La Ni\~{n}a) phase, which is consistent with observations of ENSO.
+Analysis of the power density spectrum shows a strong peak around 3-6 years.
+\begin{figure}
+  \includegraphics[width=\textwidth]{enso.pdf}
+  \caption{
+    (L): A \SI{1000}{year} sub-set of the synthetic time series described in \cref{sec:methods-nino}.
+    (R): The power spectral density of the annualized time series. A moving window was applied to the density for smoothing.\label{fig:enso-ts}
+  }
+\end{figure}
+
+\Cref{fig:stationary-sequences} shows 50 streamflow sequences generated with $M=50$ and $N=100$.
+The ENSO sequences were generated with the parameters shown in \cref{tab:nino-stationary} Markov sequences were generated with the parameters shown in \cref{tab:markov-stationary}.
+\begin{figure}[b]
+  \includegraphics[width=\textwidth]{sequences_stationary.pdf}  
+  \caption{
+    50 streamflow sequences from (Top) the ENSO-based model described in \cref{sec:methods-nino} and (Bottom) the Markov chain modle described in \cref{sec:methods-markov}.
+    Both models use a stationary parameterization $\gamma=0$.
+    49 of the 50 sequences are plotted in gray, and one (randomly chosen) is plotted in blue for emphasis.
+    Note that $y$-axis has a log scale.\label{fig:stationary-sequences}
+  }
+\end{figure}
+
+To incorporate secular variability into our model, we repeat the exercise but add a trend term to the data.
+For the ENSO time series, this mean setting \(\gamma=0.015\) while for the Markov case this meant a trend term on the wet state only, so that \(\gamma_1=0.015\).
+The resulting sequences are shown in \cref{fig:trend-sequences}.
+The trend has an extremely large impact on the probability of an extremely high flood, but the underlying time series structure is generally preserved.
+\begin{figure}[b]d
+  \includegraphics[width=\textwidth]{sequences_trend.pdf}
+  \caption{
+    As \cref{fig:stationary-sequences} but a trend term has been added by setting \(\gamma=0.015\).\label{fig:trend-sequences}
+  }
+\end{figure}
+
+This choice of parameterizing secular change as a linear trend on the expected value of log streamflow was made to aid interpretability, and not because of any particular physical reasoning.
+Indeed, for large $N$ this model suggests implausibly dry conditions and implausibly wet conditions for very large $M$.
+However, given widespread use of trend-based models in the flood frequency analysis literature it is informative to consider the ``best-case'' scenario in which the model is correctly specified and there is a true, linear trend in the data.
+
 \section{Notation}
 
 \begin{description}
@@ -425,8 +454,8 @@ Dave thanks grant.
   \item[\( M \)] the project planning period
   \item[\( N \)] the length of the observational record, in years
   \item[\( x(t) \)] the annualized time series of the NINO3 index
-  \item[\( p_T \)] the true probability that \( Q(t) \geq Q_T \) in the future \(M\)-year period
-  \item[\( \hat{p}_T \)] the estimated probability that \( Q(t) \geq Q_T \) in the future \(M\)-year period
+  \item[\( p_T \)] the true probability that \( Q(t) \geq Q_T \) in the future $M$-year period
+  \item[\( \hat{p}_T \)] the estimated probability that \( Q(t) \geq Q_T \) in the future $M$-year period
 \end{description}
 
 \printbibliography{}
