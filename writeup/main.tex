@@ -37,31 +37,31 @@
 
 \section{Introduction}
 
-The \nth{20} century saw the evolution of a nearly universal approach to the statistical analysis of climate extremes for use in risk analysis and mitigation studies \citep[\ie{} Bulletin 17-B for flood frequency analysis;][]{IACWD1982} in which event risk is assessed as a relationship between the event magnitude and its annual probability of exceedance.
-Under the assumption that the historical or simulated record of events constitutes an independent and identically distributed process, and using an appropriate statistical inference model, an estimate of this relationship and often its uncertainty based on a finite \(N\) year record is developed.
-This is then used as a measure for decision analysis for infrastructure, flood zoning and insurance instruments for event risk mitigation, typically using an expected net present value criteria applied to the costs and residual losses expected from the mitigation instrument.
+In 2011 five successive cyclones struck Thailand, causing massive damage to public and private infrastructure and crippling global supply chains.\footnote{See Masa Haraguchi's work}
+Later in June 2013 a long rainy period was followed by three summertime cyclones tracking over the same region, leading to massive flooding in central Europe \citep{Grams2014}.
+At the same time a multi-year drought in S\~ao Paulo threatened to dry out one of the world's largest cities, and in 2017 the Atlantic Hurricane season led to over \usd{100 billion} in reinsurance loss.\footnote{\href{http://www.artemis.bm/blog/2018/02/27/berkshire-hathaway-can-easily-weather-a-400bn-mega-catastrophe-buffett/}{Click for blog post on \url{artemis.bm}}}
+Since classical analysis of climate extremes for use in risk analysis and mitigation studies assumes that  the historical or simulated record of events constitutes an independent and identically distributed process, adaptation systems are overwhelmed by these multi-year droughts or multi-hurricane hits.
 
-Over time it has become clear that even small nonstationarity (temporal changes in dynamics of the underlying hydroclimatalogical process) can lead to significant trends in the estimated \(T\)-year return periods or probability of exceedance \( p_T \) \citep{Milly2008,Vogel2011,Salas2014,Merz2014,Obeysekera2016}.
-This has led to a plethora of efforts aimed at identifying the nature of the nonstationarity and modeling it, \eg{} by introducing time trends on statistical parameters \citep{Strupczewski2001,Vogel2011,Obeysekera2014,Serinaldi2015}, climate covariates \citep{Delgado2014,Griffis2007,Silva2016,Sun2014,Hall2014}, latent variable or state-based modeling approaches \citep{Griffis2007,Sveinsson2005,Waylen1986}, or using only the last \(N\) years of the data.\footnote{Vogel}
+Indeed, the scientific literature has recognized that even small nonstationarity (temporal changes in dynamics of the underlying hydroclimatalogical process) can lead to significant trends in the estimated $T$-year return periods or probability of exceedance $p_T$ \citep{Milly2008,Vogel2011,Salas2014,Merz2014,Obeysekera2016}.
+This has led to a plethora of efforts aimed at identifying the nature of the nonstationarity and modeling it, \eg{} by introducing time trends on statistical parameters \citep{Strupczewski2001,Vogel2011,Obeysekera2014,Serinaldi2015}, climate covariates \citep{Delgado2014,Griffis2007,Silva2016,Sun2014,Hall2014}, latent variable or state-based modeling approaches \citep{Griffis2007,Sveinsson2005,Waylen1986}, or using only the last $N$ years of the data.\footnote{Vogel}
 Each model will necessarily give different estimates, which may fit the historical record with comparable accuracy but diverge at an increasing rate as the model is forecast further into the future.
-Despite the wide suite of available models, the question of how one should use these nonstationarity estimates for the design of risk mitigation infrastructure or the pricing of insurance like instruments has been much less studied.
+Despite the wide suite of available models, \emph{the question of how one should use these nonstationarity estimates for the design of risk mitigation infrastructure or the pricing of insurance like instruments has been much less studied}.\footnote{All of these citations are for floods, can we look at other types of extremes? Even droughts would be helpful.}
 
 There are two kinds of nonstationairities of concern.
 The first, secular change, may be related to anthropogenic climate change, river modification, or land use change \citep{Merz2014}.
 The uncertainties associated with this are not purely informational; both nature and future human actions will determine the outcomes, and neither is obviously predictable.
 The approach taken by many, including the IPCC, is to consider discrete scenarios for what humans may do with respect to greenhouse gas emissions and then use a sequence of physics-based numerical models with these scenarios to develop probabilistic statements as to the potential changes in the extremes.
-Such a= ``model chain'' typically encompasses:
+Such a ``model chain'' typically encompasses:
 \begin{enumerate*}[label= (\roman*) ]
   \item emission scenario;
   \item general circulation model (GCM);
-  \item downscaling;
-  \item hydrological catchment model; and
-  \item flood frequency analysis.
+  \item downscaling; and
+  \item high-resolution model of the study region.
 \end{enumerate*}
-Bias correction methods are typically applied at each step of the chain, and while this typically improves the model chain's representation of the historical record the extrapolation of these bias corrections far into the future does not inspire confidence \citep{Dankers2009,Ott2013,Merz2014,Dittes2017}.\footnote{Farnham et al 2018!}
+Because of errors inherent to discretization and parameterization of the laws of motion, bias correction methods are typically applied at each step of the chain; while this typically improves the model chain's representation of the historical record, the extrapolation of these bias corrections far into the future does not inspire confidence \citep{Dankers2009,Ott2013,Merz2014,Dittes2017}.\footnote{Farnham et al 2018!}
 A critical question in this regard is how to assess whether any structure designed using these projections may actually perform in the future relative to the proposed level of risk protection.
 Would it be over- or under- designed?
-Would the high degree of bias and uncertainty in its estimation lead to sub-optimal investment strategies in risk mitigation?
+Would the bias and uncertainty in its estimation lead to sub-optimal investment strategies in risk mitigation?
 These questions go far beyond what can be reliably answered at this time, and this type of epistemic uncertainty clearly grows as we look out into the distant future.
 
 If a positive discount rate is used for the future, as is typical in public and private sector planning models,\footnote{CITE} the investment returns on major public and private investment may diminish substantially far into the future.
@@ -121,7 +121,7 @@ A \SI{100000}{year} integration of the Cane-Zebiak model \citep{Zebiak1987} was 
 A subset of this data is shown in \cref{fig:enso-ts}.
 To create an annual time series, we average the October-December values of the NINO3 index for each year.
 
-To generate \(\mu(t)\), a sequence of length \(M+N\) is randomly chosen from the \SI{100000}{year} NINO3 sequence.
+To generate $\mu(t)$, a sequence of length $M+N$ is randomly chosen from the \SI{100000}{year} NINO3 sequence.
 Next, \(\mu\) is calculated following by
 \begin{equation}
   \mu(t) = \mu_0 + \beta x(t) + \gamma \qty(t - t_0)
@@ -336,38 +336,24 @@ As for the stationary case, when \(N\) is short the LN2 Stationary model tends t
 The trend model, by contrast, over-estimates $p_T$ except when $N$ is very large, mainly because the posterior uncertainty in the magnitude of the trend means that the model believes that a trend larger than observed is not unlikely.
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{bias_trend.pdf}
-  \caption{The estimation bias for 1000 sequences generated by each of two non-stationary generating functions (row) and fit by each of three fitting functions (columns) as a function of \(M\) and \(N\).\label{fig:stationary-bias}}
+  \caption{The estimation bias for 1000 sequences generated by each of two non-stationary generating functions (row) and fit by each of three fitting functions (columns) as a function of \(M\) and \(N\).\label{fig:trend-bias}}
 \end{figure}
 
 \begin{figure}[ht]
   \includegraphics[width=\textwidth]{variance_trend.pdf}
-  \caption{The estimation variance for 1000 sequences generated by each of two non-stationary generating functions (row) and fit by each of three fitting functions (columns) as a function of \(M\) and \(N\).\label{fig:stationary-bias}}
+  \caption{The estimation variance for 1000 sequences generated by each of two non-stationary generating functions (row) and fit by each of three fitting functions (columns) as a function of \(M\) and \(N\).\label{fig:trend-variance}}
 \end{figure}
-
-% -----------------------------------------------------------------------------
-% SPATIALLY CORRELATED RISK
-% -----------------------------------------------------------------------------
-
-\section{Spatially Correlated Risk}
-
-The setup:
-\begin{enumerate}
-  \item Take one of the models -- say the NINO3 model -- and calculate \(\mu(t)\)
-  \item For each of \(J\) locations, sample \(Q(t)\)
-  \item Take threshold to be ``true'' 50-year flood
-  \item Plot expected damages as a function of time
-\end{enumerate}
-Some alternate ideas:
-\begin{itemize}
-  \item Represent different cities with different \(\beta\)?
-  \item OK to do \(C \propto \qty(Q - Q_T)\)
-\end{itemize}
 
 % -----------------------------------------------------------------------------
 % DISCUSSION
 % -----------------------------------------------------------------------------
 
 \section{Discussion}
+
+% PHYSICAL PLAUSABILITY OF TRENDS 
+% SPATIAL CASE
+% THIS IS RELEVANT FOR OTHER NATURAL HAZARDS -- DISCUSS
+% IMPLICATIONS FOR INSURANCE / DESIGN
 
 For the type of extreme flood events we are interested in, the nominal return period at some location flooded during the event will typically be larger than 10 years.
 While this is a relatively rare event at a given location, across a geography as large as the United States, one can expect to see such events rather frequently, emphasizing the need to understand and predict the risk of such events over a season or few years to facilitate preparation and mitigation strategies.
@@ -410,6 +396,14 @@ We actually demonstrate that the potential loss in a 2100 scenario has to be cat
 If we accept this proposition then we have a strong case for the mitigation of climate change but a much weaker case for adaptation, since if we are not able to mitigate that scenario then building a giant wall to control the 2100 scenario today will be economically and socially infeasible anyway.
 So the next obvious question is in which situation would waiting and updating the decision make sense and this can be set up and explored or just discussed.
 
+Implications
+\begin{itemize}
+  \item Blind use of trend models leads to sub-optimal models \emph{even when there is a trend} for many combination of \(M,N\)
+  \item Bias-variance tradeoff of model complexity
+  \item Need to consider the structure of the underlying trend, $N$, and $M$ when choosing a model
+  \item Should consider multiple models, \eg by ``stacking'' \citep{Yao2017}
+\end{itemize}
+
 % -----------------------------------------------------------------------------
 % END HERE
 % -----------------------------------------------------------------------------
@@ -418,8 +412,9 @@ So the next obvious question is in which situation would waiting and updating th
 \section{Thanks}
 
 The authors thank Nandini Ramesh of Columbia University for providing the synthetic NINO3 index from a \SI{1000000}{year} run of the Cane-Zebiak model as described in \citet{Ramesh2017}.
-Kyle Johnson of Columbia University for his suggestions for improving reliability and documentation of the \texttt{floodsampling} package.
-The authors thank Columbia ITS for support running on the cluster Habanero.
+The authors thank Columbia ITS for support running simulations on the cluster.
+James thanks NSF.
+Dave thanks grant.
 
 \section{Notation}
 

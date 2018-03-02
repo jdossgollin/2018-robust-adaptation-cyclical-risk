@@ -65,16 +65,16 @@ def main():
             ax = axes[f, g]
             year = fit_dat['year']
 
-            q25 = fit_dat.quantile(0.25, dim='sim').values.ravel()
-            q75 = fit_dat.quantile(0.75, dim='sim').values.ravel()
-            q90 = fit_dat.quantile(0.90, dim='sim').values.ravel()
-            q10 = fit_dat.quantile(0.10, dim='sim').values.ravel()
-            q995 = fit_dat.quantile(0.995, dim='sim').values.ravel()
-            q005 = fit_dat.quantile(0.005, dim='sim').values.ravel()
+            c50l = fit_dat.quantile(0.25, dim='sim').values.ravel()
+            c50u = fit_dat.quantile(0.75, dim='sim').values.ravel()
+            c80u = fit_dat.quantile(0.90, dim='sim').values.ravel()
+            c80l = fit_dat.quantile(0.10, dim='sim').values.ravel()
+            c99u = fit_dat.quantile(0.995, dim='sim').values.ravel()
+            c99l = fit_dat.quantile(0.005, dim='sim').values.ravel()
             
-            ax.fill_between(year, q005, q995, color='gray', alpha=0.5)
-            ax.fill_between(year, q10, q90, color='gray', alpha=0.5)
-            ax.fill_between(year, q25, q75, color='gray', alpha=0.5)
+            ax.fill_between(year, c99l, c99u, color='gray', alpha=0.33, label='99% CI')
+            ax.fill_between(year, c80l, c80u, color='gray', alpha=0.33, label='80% CI')
+            ax.fill_between(year, c50l, c50u, color='gray', alpha=0.33, label='50% CI')
             
             ax.plot(gen_dat['year'], gen_dat.values.ravel(), c='blue', linewidth=1)
             ax.semilogy()

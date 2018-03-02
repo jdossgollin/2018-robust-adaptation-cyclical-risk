@@ -20,11 +20,11 @@ def main():
     data_fname = os.path.join(get_data_path(), 'ramesh2017.nc')
     enso = xr.open_dataarray(data_fname)
 
-    fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(12, 4), gridspec_kw={'width_ratios': [2, 1]})
+    fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(14, 4), gridspec_kw={'width_ratios': [2, 1]})
     enso.sel(year=slice(1000, 2000)).plot(
         c='blue',
         linewidth=0.5,
-        ax=axes[0]
+        ax=axes[0],
     )
     axes[0].grid(True)
     axes[0].set_xlabel('Year')
@@ -35,7 +35,7 @@ def main():
     fs = 1
     f, Pxx_den = signal.periodogram(x, fs)
     periodogram = pd.Series(Pxx_den, index=f)
-    smoothed = periodogram.rolling(1000, win_type='hamming').mean()
+    smoothed = periodogram.rolling(100, win_type='hamming').mean()
 
     smoothed.plot(ax=axes[1], label='smoothed')
     axes[1].set_xlabel('frequency [Year$^{-1}$]')
