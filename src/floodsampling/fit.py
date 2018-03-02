@@ -279,7 +279,6 @@ class StationaryLN2Stan(FloodFit):
             coords={'sim': sim, 'year': years},
             dims=['sim', 'year']
         )
-        samples = np.exp(samples)
 
         return samples
 
@@ -383,7 +382,6 @@ class TrendLN2Stan(FloodFit):
             coords={'sim': sim, 'year': years},
             dims=['sim', 'year']
         )
-        samples = np.exp(samples)
         return samples
 
 class HMM(FloodFit):

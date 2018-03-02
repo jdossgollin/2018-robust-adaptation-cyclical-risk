@@ -14,12 +14,6 @@ data {
   real beta_sigma_mean; // prior mean
   real beta_sigma_sd; // prior sd
 }
-transformed data {
-  vector[N] Q; // log streamflow
-  for (n in 1:N){
-    Q[n] = log(y[n]);
-  }
-}
 parameters {
   real mu0;
   real beta_mu;
@@ -34,7 +28,7 @@ model {
     sigma[n] = sigma0 + beta_sigma * (n - N);
     sigma[n] = sigma[n] >= 0.05 ? sigma[n] : 0.05; // lower limit on sigma
   }
-  Q ~ normal(mu, sigma);
+  y ~ lognormal(mu, sigma);
   // regularizing priors
   beta_mu ~ normal(beta_mu_mean, beta_mu_sd);
   beta_sigma ~ normal(beta_sigma_mean, beta_sigma_sd);
@@ -49,6 +43,6 @@ generated quantities{
     mu[m] = mu0 + beta_mu * m;
     sigma[m] = sigma0 + beta_sigma * m;
     sigma[m] = sigma[m] >= 0.05 ? sigma[m] : 0.05; // lower limit on sigma
-    yhat[m] = normal_rng(mu[m], sigma[m]);
+    yhat[m] = lognormal_rng(mu[m], sigma[m]);
   }
 }
