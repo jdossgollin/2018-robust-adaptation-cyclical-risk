@@ -85,11 +85,11 @@ We use a statistical framework with highly idealized models to generate sequence
 \subsection{Generating Synthetic Flood Sequences\label{sec:methods-generating}}
 
 We generate synthetic flood sequences from two different simple conceptual models that represent chaotic dynamics and long memory.
-For both cases, the expected value of the annual maximum flood flood follows a log-normal distribution, conditional on an expected value $\mu(t)$ which depends on individual model:
+For both cases, the expected value of the annual maximum flood follows a log-normal distribution, conditional on an expected value $\mu(t)$, which in turn depends on individual models described in \cref{sec:methods-nino,sec:methods-markov}:
 \begin{equation} \label{eq:lognormal}
   \log Q(t) \big| \mu(t),\sigma(t) \sim \normal \qty(\mu(t), \sigma(t)).
-\end{equation}.
-For simplicitiy we assume a constant coefficient of variation:
+\end{equation}
+For simplicity we assume a constant coefficient of variation:
 \begin{equation}\label{eq:calc-sigma}
   \sigma(t) = 
   \begin{cases} 
@@ -112,7 +112,7 @@ Though both approaches used to generate sequences $\mu(t)$ use highly simplified
 
 ENSO is the dominant mode of tropical climate variability, impacts flood risk around the world, and varies in a chaotic, quasi-oscillatory manner with variability on the order of 3 to 7 years with further low-frequency modulation \citep{Sarachik2010}.
 A \SI{100000}{year} integration of the Cane-Zebiak model \citep{Zebiak1987} was used to produce a monthly NINO3.4 index with stationary forcing as described in \citet{Ramesh2017}.
-To create an annual time series, we average the October-December values of the NINO3 index for each year.
+To create an annual time series, we average the October-December values of the NINO3 index for each year\footnote{So is this nino3.4 or 3?}.
 A \SI{1000}{year} subset of this data is plotted in \cref{fig:enso-ts} along with the average spectral power of the series.
 
 To generate $\mu(t)$, a sequence of length $M+N$ is randomly chosen from the \SI{100000}{year} NINO3 sequence.
@@ -142,7 +142,7 @@ We also assume $\mu_{0, 1} > \mu_{0, 2}$ so that state 1 can be interpreted as t
 
 \subsection{Estimating Future Streamflow Sequences\label{sec:estimation}}
 
-This paper does not propose new models or suggest a general ``best'' model; instead it aims to describe the total uncertainty in estimates using easily methods which have been well studied in the literature.
+This paper does not propose new models or suggest a general ``best'' model; instead it aims to describe the total uncertainty in estimates using methods that have been well studied in the literature.
 
 In general, each historical $N$-year sequence of streamflow is fit to a statistical model, from which 2000 sequences of future streamflow are generated using Monte Carlo simulation.
 Three models are assessed for estimating future streamflow and are described in detail below.
@@ -154,7 +154,7 @@ We first consider fitting a stationary model to the observed flood record, follo
 We use the log-normal model (\cref{eq:lognormal}) for its simplicity, interpretability, and good performance relative to other 2-parameter models \citep{Vogel1996}.
 For each simulation, the first $N$ years \(\qty(t=[t_0-N+1, \ldots, t_0])\) are treated as observations (denoted \(Q_{\text{hist}}\) for clarity).
 Then, the parameters are fit in a Bayesian framework to fully represent the posterior uncertainty as implemented in the \texttt{stan} probabilistic programming language \citep{Carpenter2016}.
-Weak (uninformative) priors are chosen; in the context of a synthetic data experiment using informative priors seems inappropriate but other studies\footnote{cite} have used scaling information and regional information to inform prior distributions and reduce posterior variance.
+Weak (uninformative) priors are chosen; in the context of a synthetic data experiment using informative priors seems inappropriate but other studies\footnote{cite} have used scaling information and regional information to inform prior distributions and reduce posterior variance\footnote{Prob you can drop this aside -- might just serve as a distraction to the main point here}.
 The full probability model is thus:
 \begin{align}
   \log Q_\text{hist} & \sim \normal \qty(\mu, \sigma) \\
