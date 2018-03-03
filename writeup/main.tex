@@ -22,11 +22,11 @@
 \maketitle
 \RaggedRight{}
 \begin{abstract}
-  Hydroclimatic systems vary on many timescales, including regime-like variability and secular variability  \citep[``nonstationarity'';][]{Milly2008,Merz2014,Hodgkins2017}.
+  Hydroclimatic systems vary on many timescales, including regime-like variability and secular variability  \citep[``nonstationarity'';][]{Milly2008,Merz2014,Hodgkins2017}\footnote{Some people don't like citations in the abstract unless the paper is a rebuttal to another -- in which case citing the original is probably good. My impression is that our citations int he abstract are not highly necessary so I may take them out. Up to you.}.
   This multi-scale variability greatly complicates the estimation of future flood sequences, leading to ``low confidence in projections of changes in fluvial floods'' \citep{IPCC2012}.
   Despite broad recognition of nonstationarity's importance, there has been little theoretical development of ideas for the design and operation of infrastructure that simultaneously consider the potential for predictability of secular change and regime behavior or low-frequency variability.
   Consequently, existing theories of flood risk assessment are well-suited to analysis of flood adaptation strategies with fixed project operation period $M$, but not for analysis of sequential decision strategies.
-  In this paper we illustrate some basic considerations of uncertainty and risk analysis associated with the sequential decisions that may need to be made for climate risk adaptation in a nonstationary adaptation.
+  In this paper we illustrate some considerations of uncertainty and risk analysis associated with the sequential decisions that may need to be made for climate risk adaptation in a nonstationary setting.
   We simulate synthetic data and fit the resulting simulations in a Bayesian context using stationary and non-stationary models to show \(\ldots{}\).
   This is a first conceptual step to the development of a full sequential decision analysis approach under nonstationarity.
 \end{abstract}
@@ -40,12 +40,12 @@
 In 2011 four typhoons struck northern Thailand \citep{Gale2013}, causing severe damage to public and private infrastructure and crippling global supply chains \citep{Haraguchi2015}.
 In June 2013, a rainy spring was followed by three summertime cyclones following highly similar tracks, leading to widespread flooding in central Europe \citep{Grams2014}.
 At the same time a multi-year drought in S\~ao Paolo threatened to dry out one of the world's largest cities \citep{Seth2015}, and more recently the 2017 Atlantic Hurricane season led to approximately \usd{100 billion} in insured losses.\footnote{\url{http://www.swissre.com/media/news_releases/nr20171220_sigma_estimates.html}}
-Since classical analysis of climate extremes for use in risk analysis and mitigation studies assumes that  the historical or simulated record of events constitutes an independent and identically distributed process, adaptation systems may be overwhelmed by events which violate these assumptions.\footnote{Do we need to add something about climate mechanisms such as wave resonance, blocking, \etc{} that can explain some of this? Or just cite \citet{Hannachi2017} to say the atmosphere has regimes?}
+Since classical analysis of climate extremes for use in risk analysis and mitigation studies assumes that  the historical or simulated record of events constitutes an independent and identically distributed process, adaptation systems may be overwhelmed by events which violate these assumptions.\footnote{Do we need to add something about climate mechanisms such as wave resonance, blocking, \etc{} that can explain some of this? Or just cite \citet{Hannachi2017} to say the atmosphere has regimes?} \footnote{As for $\uparrow$, I would avoid the impulse to get too into the dynamics in this paper (i.e. wave resonance, etc). However, I do think that this paragraph could be a bit more direct. There is ample evidence that climate extremes are not IID $\rightarrow$ for example, Thailand, etc $\rightarrow$ thus risk analyses need to consider this... Basically my critique is that three sentences about recent disasters without the context of why we particularly care about these things may be a bit of a misdirection for the reader}.
 
 Indeed, the scientific literature has recognized that even small nonstationarity (temporal change in dynamics of the underlying physical process) can lead to significant trends in the estimated $T$-year return periods or probability of exceedance $p_T$ \citep{Milly2008,Vogel2011,Salas2014,Merz2014,Obeysekera2016}.\footnote{All of these citations are for floods, can we look at other types of extremes? Even droughts would be helpful.}
 This has led to a plethora of efforts aimed at identifying the nature of the nonstationarity and modeling it, \eg{} by introducing time trends on statistical parameters \citep{Strupczewski2001,Vogel2011,Obeysekera2014,Serinaldi2015}, climate covariates \citep{Delgado2014,Griffis2007,Silva2016,Sun2014,Hall2014}, latent variable or state-based modeling approaches \citep{Griffis2007,Sveinsson2005,Waylen1986}, or using only the last $N$ years of the data.\footnote{Rich Vogel citation?}
 Each model will necessarily give different estimates, which may fit the historical record with comparable accuracy but diverge at an increasing rate as the model is forecast further into the future.
-Despite the wide suite of available models, \emph{the question of how one should use these nonstationarity estimates for the design of risk mitigation infrastructure or the pricing of insurance like instruments has been much less studied}.
+Despite the wide suite of available models, \emph{the question of how one should use these nonstationarity estimates for the design of risk mitigation infrastructure or the pricing of insurance instruments has been much less studied}.
 
 There are two kinds of nonstationarities of concern.
 The first, secular change, may be related to anthropogenic climate change, river modification, or land use change \citep{Merz2014}.
@@ -58,21 +58,21 @@ Such a ``model chain'' typically encompasses:
   \item downscaling; and
   \item high-resolution model of the study region.
 \end{enumerate*}
-Because of inherent errors due to, \eg{} the discretization and parameterization of the equations of motion, bias correction methods are typically applied at each step of the chain; while this typically improves the model chain's representation of the historical record, the extrapolation of these bias corrections far into the future does not inspire confidence \citep{Dankers2009,Ott2013,Merz2014,Dittes2017}.\footnote{Farnham et al 2018!}
-A critical question in this regard is how to assess whether any structure designed using these projections may actually perform in the future relative to the proposed level of risk protection.
+Because of inherent errors due to, \eg{} the discretization and parameterization of the equations of motion, bias correction methods are typically applied at each step of the chain; while this typically improves the model chain's representation of the historical record, the extrapolation of these bias corrections far into the future does not inspire confidence\footnote{Is "inspire confidence" too informal?... I'm not sure}. \citep{Dankers2009,Ott2013,Merz2014,Dittes2017}.\footnote{Farnham et al 2018!}
+A critical question in this regard is how to assess whether any structure\footnote{or other risk management instrument such as an insurance product?} designed using these projections may actually perform in the future relative to the proposed level of risk protection.
 Would it be over- or under- designed?
 Would the bias and uncertainty in its estimation lead to sub-optimal investment strategies in risk mitigation?
 These questions go far beyond what can be reliably answered at this time, and this type of epistemic uncertainty clearly grows as we look out into the distant future.\footnote{Perhaps these sentences belong elsewhere?}
 
 In addition to secular change, quasi-periodic inter-annual to multi-decadal modes of climate variability \citep[see][]{Hannachi2017} to influence the spatio-temporal expression of climate extremes in ways that violate the assumption of independent, identically distributed events \citep[see][]{Merz2014,Serinaldi2015,Hoskins2015}.
-For example, even when no secular trend exists the using past $N$ years to represent the next $N$ leads large surprise in estimates of floods relative to when the time series is fully shuffled to remove temporal clustering, even for very long ($N=\SI{200}{years}$) sequences \citep{Jain2001}.
+For example, even when no secular trend exists, using the past $N$ years to project the next $N$ leads to different estimates of floods relative to when the time series is fully shuffled to remove temporal clustering, even for very long ($N=\SI{200}{years}$) sequences \citep{Jain2001}.
 
 When secular and quasi-periodic variability are both considered, it becomes clear the probability of exceedance is temporally variable over the life of a climate adaptation project.
 In this paper we provide some initial insight into the bias and uncertainty associated with flood frequency estimation for projects as a function of the project planning period $M$ as well as the length of the historical record $N$.
 This project planning period can be interpreted as the design life of a physical structure, or as the contract length of a financial instrument.
 Our aim is not to identify the ``best'' model, but rather to develop theory as to how the underlying nature of the natural variability and nonstationarity and the choice of model used to model future flood risk map onto estimation bias and variance in the context of many different $M$ and $N$.
 This estimation bias and variance may map directly onto the price of an insurance contract, or the possibility of over/under-design of a large structure like a dam or seawall used to protect against climate hazards.
-Though the specific examples target flood risk, this method and framework may be used for understanding the implications of uncertain projections of the future for climate hazards including drought, hurricanes, and wind.
+Though the specific examples target flood risk, this method and framework may be used for understanding the implications of uncertain projections of the future for climate hazards including drought, hurricanes, and wind. \footnote{Overall comment on the introduction:  We may consider hinting at some of the results a bit more, otherwise the introduction is fairly wide open and I'm not sure the reader gets a good sense for what she is in for... but then again, perhaps that's OK}.
 
 % -----------------------------------------------------------------------------
 % METHODS
@@ -80,7 +80,7 @@ Though the specific examples target flood risk, this method and framework may be
 
 \section{Methods}\label{sec:methods}
 
-We use a statistical framework with highly idealized models to generate sequences of annual-maximum floods, fit these sequences to probabilistic models what incorporate time in different ways, and evaluate the performance of these models for multiple observational record lengths $N$ and project planning periods $M$.
+We use a statistical framework with highly idealized models to generate sequences of annual-maximum floods, fit these sequences to probabilistic models that incorporate time in different ways, and evaluate the performance of these models for multiple observational record lengths $N$ and project planning periods $M$.
 
 \subsection{Generating Synthetic Flood Sequences\label{sec:methods-generating}}
 
