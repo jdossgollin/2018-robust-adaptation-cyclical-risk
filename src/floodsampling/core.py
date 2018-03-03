@@ -3,6 +3,7 @@
 import os
 from hashlib import md5
 from collections import OrderedDict
+import pickle
 
 import numpy as np
 import xarray as xr
