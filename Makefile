@@ -87,7 +87,10 @@ figs/sequences_stationary.pdf	:	src/plot_sequences.py
 figs/sequences_trend.pdf	:	src/plot_sequences.py
 	$(PY_INTERP) $< --gamma 0.015 --outfile $@
 
-plot: figs/enso.pdf figs/bias_stationary.pdf figs/bias_trend.pdf figs/variance_stationary.pdf figs/variance_trend.pdf figs/example_short.pdf figs/example_long.pdf figs/sequences_stationary.pdf figs/sequences_trend.pdf
+figs/case_study.pdf	:	src/case_study.py
+	$(PY_INTERP) $< --outfile $@ --N_sites 250 --N_years 300
+
+plot: figs/enso.pdf figs/bias_stationary.pdf figs/bias_trend.pdf figs/variance_stationary.pdf figs/variance_trend.pdf figs/example_short.pdf figs/example_long.pdf figs/sequences_stationary.pdf figs/sequences_trend.pdf figs/case_study.pdf
 
 ################################################################################
 # Self-Documenting Help Commands
