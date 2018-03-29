@@ -128,6 +128,14 @@ Some stuff on decisions and insurance which may be relevant for the introduction
   \end{enumerate*} \citep{Wolfrom2016}.
 \end{enumerate}
 
+The assessment of sampling bias and variance associated with estimating the occurrence probability of an extreme event, $\hat{p}_T$, maps directly into this insurance contract, where a typical price for a $M$-year contract is given by
+\begin{equation}\label{eq:insurance-price}
+  \frac{\mathbb{C}}{M} = \lambda \qty(\mathbb{E} \qty[p_T] + c \mathbb{V} \qty[p_T])
+\end{equation}
+where $\mathbb{E}$ denotes the expectation operator, $\mathbb{V}$ the variance operator, $\lambda$ the profit margin, and $c$ the risk premium.
+Bias in $\hat{P}_T$ leads to inefficient pricing, since if the price is too low, the insurer is exposed to failure and if it is too high the buyer will be less inclined to purchase insurance.
+
+
 
 % ------------------------------------------------------------------------------
 \section{Physical Drivers of Floods and Flooding}

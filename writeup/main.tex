@@ -3,7 +3,7 @@
 \input{header/macros.tex}
 \input{header/packages.tex}
 
-\title{Adapting to Quasi-Periodic and Secular Variation of Climate Risk}
+\title{Planning for Quasi-Periodic and Secular Variability of Climate Risk}
 \author[1,2]{James Doss-Gollin}
 \author[1,2]{David Farnham}
 \author[1,2]{Upmanu Lall}
@@ -316,7 +316,7 @@ The trend model, by contrast, over-estimates $p_T$ except when $N$ is very large
 % CASE STUDY
 % -----------------------------------------------------------------------------
 
-\section{Spatial Risk}
+\section{Portfolio Risk Across Space}
 
 Many actors, particularly those in the private sector such as reinsurance vendors, may be exposed to concurrent risk in many different locations.
 It is consequently of interest to examine how their risk portfolio risk may vary as a function of time.
@@ -345,6 +345,29 @@ In other words, even though the portfolio has managed its risk by choosing locat
 
 \section{Discussion}
 
+Although the flood sequences shown in \cref{fig:example-long,fig:example-short,fig:stationary-sequences,fig:trend-sequences} exhibit the regime-like, quasi-periodic behavior observed in analysis of observational streamflow records, the assumption that the deterministic component of flood risk varies linearly with time and \gls{enso} is a simplification.
+Reality, of course, is more complicated.
+The probability of flooding in a particular location is modulated by multiple physical mechanisms, and dependence on a particular driver is rarely linear.
+Further, the linear time dependance assumed is merely a placeholder for physical drivers, such as water storage capacity of the catchment's soil or the regional average specific humidity, that experience secular change.
+
+More complex strategies also exist for estimating the risk of flood, or another natural hazard, from an observational record.
+For example, analysis of flood frequency can be improved by combining information across space \citep{Merz2008a,Lima2016}, combining predictions from many models, or by through use of frequency- or wavelet-based methods \citep{Kwon2007}.
+The approach being taken by many, including the \gls{ipcc}, is to consider discrete scenarios for what humans may do with respect to greenhouse gas emissions, and then attempt to use climate models to estimate the probability of extreme events conditional on occurrence of a particular scenario.
+Because of inherent errors due to the discretization and parameterization of the equations of motion, as well as uncertainty about the underlying physical parameters, bias correction methods \citep[\eg quantile-quantile mapping;][]{Rajczak2016} are typically applied to the final outputs.
+While this typically improves the model chain's representation of the historical record, this approach assumes a stationary relationship between modeled and observed rainfall at a point-by-point scale, an assumption that is unlikely to hold under the kinds of spatial and dynamical shifts anticipated under increased greenhouse gas scenarios such as expansion of the tropics and altered equator-pole temperature contrasts.\citep{Dankers2009,Ott2013,Merz2014,Dittes2017}.\footnote{Farnham et al 2018!}
+
+From a decision making perspective, one could either design and build a project that gives us protection through the year 2100 considering both types of nonstationarities, or consider a sequence of projects every $M$ years that incrementally add (or not) protection.
+In this context one could ask how the uncertainty (and hence risk) for these decisions depends on the design level, the project duration $M$, and the uncertainty associated with the estimation of $f(\hat{p}_T)$.
+This study has considered only uncertainty associated with changing flood hazard, yet the large uncertainty associated with flood risk hazard and possible adaptation technologies would necessarily be relevant.
+
+
+
+What is the implication for choices of p and M under different models for stationarity and uncertainty using some simple loss and cost  functions.
+This consideration suggests that it may be more effective to understand the consequences for analysis focusing on shorter lived mitigation alternatives that may last for 1, 5, 10, 20, 30, or 50 years.
+Thus, sequences of such smaller projects may in some cases better reflect climate adaptation goals, particularly given the possibilities that major climate change impacts in a particular place may occur far into the future; that climate mitigation efforts may be successful; or that the needs of human society may change drastically over these horizons.
+
+The results presented in \cref{sec:results} illustrate sampling uncertainty and inter-model disagreement using several simple models for annual-maximum floods.
+In reality, 
 
 Infrastructure in the developed world is aging \citep{Ho2017}, leading to questions of whether and how to replace it.
 In the developed world new infrastructure is being built.
@@ -353,36 +376,10 @@ At the same time the private sector has accepted an increasing share of global r
 How should different contracts be priced? When does it make sense to build large infrastructure?
 These questions cannot be answered with existing methodologies.
 
-The assessment of sampling bias and variance associated with estimating the occurrence probability of an extreme event, $\hat{p}_T$, maps directly into this insurance contract, where a typical price for a $M$-year contract is given by
-\begin{equation}\label{eq:insurance-price}
-  \frac{\mathbb{C}}{M} = \lambda \qty(\mathbb{E} \qty[p_T] + c \mathbb{V} \qty[p_T])
-\end{equation}
-where $\mathbb{E}$ denotes the expectation operator, $\mathbb{V}$ the variance operator, $\lambda$ the profit margin, and $c$ the risk premium.
-Bias in $\hat{P}_T$ leads to inefficient pricing, since if the price is too low, the insurer is exposed to failure and if it is too high the buyer will be less inclined to purchase insurance.
-
-We illustrated sampling uncertainty and inter-model disagreement using several simple models for annual-maximum floods.
-In more realistic applications, analysis of flood frequency can be improved by combining information across space \citep{Lima2016,Merz2008a}, combining model forecasts, \etc{}.
-Analysis of other weather and climate hazards may use different distributions, and the time structure of the underlying climate process may be different.
-
-For the type of extreme flood events we are interested in, the nominal return period at some location flooded during the event will typically be larger than 10 years.
-While this is a relatively rare event at a given location, across a geography as large as the United States, one can expect to see such events rather frequently, emphasizing the need to understand and predict the risk of such events over a season or few years to facilitate preparation and mitigation strategies.
-Recent efforts\footnote{Prad's work} to identify regions where risk of a particular event is negatively correlated in space.
-
-Such clustering in the occurrence of extreme rainfall and drought is manifest in the potential exposure of mining companies, who face spatial as well as temporal clustering \citep{Bonnafous2017a,Bonnafous2017b}.
-
 How could  financial risk mitigation instruments be used in conjunction with structural design to identify a robust, adaptive climate risk mitigation strategy with sequential decisions that are informed by updated estimates of risk.
 
+
 Since we know the true distribution of the flood sequences (we have generated them ourselves), using the log-normal for both generating and fitting enables interpretation of results as a lower bound on total uncertainty.
-
-From a decision making perspective, one could either design and build a project that gives us protection through the year 2100 considering both types of nonstationarities, or consider a sequence of projects every M years that incrementally add (or not) protection. How does the uncertainty and hence risk for these decisions manifest depending on the design level p, the duration M, and the uncertainty associated with the estimation of the \( f(Qp(t)) \) given a methodology used for prediction -- \eg{} the model chain using gcms and such and models fitted to a historical data length $M$.
-What is the implication for choices of p and M under different models for stationarity and uncertainty using some simple loss and cost  functions.
-If a positive discount rate is used for the future, as is typical in public and private sector planning models,\footnote{CITE} the investment returns on major public and private investment may diminish substantially far into the future.
-This consideration suggests that it may be more effective to understand the consequences for analysis focusing on shorter lived mitigation alternatives that may last for 1, 5, 10, 20, 30, or 50 years.
-Thus, sequences of such smaller projects may in some cases better reflect climate adaptation goals, particularly given the possibilities that major climate change impacts in a particular place may occur far into the future; that climate mitigation efforts may be successful; or that the needs of human society may change drastically over these horizons.
-
-The approach being taken by many, including the \gls{ipcc}, is to consider discrete scenarios for what humans may do with respect to greenhouse gas emissions, and then attempt to use climate models to estimate the probability of extreme events conditional on occurrence of a particular scenario.
-Because of inherent errors due to the discretization and parameterization of the equations of motion, as well as uncertainty about the underlying physical parameters, bias correction methods \citep[\eg quantile-quantile mapping;][]{Rajczak2016} are typically applied to the final outputs.
-While this typically improves the model chain's representation of the historical record, this approach assumes a stationary relationship between modeled and observed rainfall at a point-by-point scale, an assumption that is unlikely to hold under the kinds of spatial and dynamical shifts anticipated under increased greenhouse gas scenarios such as expansion of the tropics and altered equator-pole temperature contrasts.\citep{Dankers2009,Ott2013,Merz2014,Dittes2017}.\footnote{Farnham et al 2018!}
 
 The idea that one needs to consider the joint uncertainty in the estimation and occurrence of climate extremes for the $N$ and $M$ periods for stationary conditions was originally considered by \citet{Lall1987}.
 That analysis corresponds to what one would expect under \gls{iid} conditions, and would hence provide a baseline to compare the uncertainty distribution associated with a portfolio whose elements were designed using $N$ years of data with an application to $M$ future years at a common design probability of exceedance for the elements. 

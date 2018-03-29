@@ -36,10 +36,10 @@ def main():
 
     exceedances_iid = np.random.binomial(n=N_sites, p=0.01, size=N_years) / N_sites
     exceedances_iid = xr.DataArray(exceedances_iid, coords=exceedances.coords, dims=['time'])
-    print(exceedances_iid.max())
-    print(exceedances_iid.min())
+    print(exceedances_iid.max().values)
+    print(exceedances_iid.min().values)
 
-    fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(14, 5), gridspec_kw={'width_ratios': [3.5, 1]}, sharey=True)
+    fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(12, 4), gridspec_kw={'width_ratios': [4.5, 1]}, sharey=True)
     
     ax = axes[0]
     sub_ex = exceedances.sel(time=slice(0, 250))
@@ -50,7 +50,6 @@ def main():
     ax.set_ylabel('Proportion of Sites Experiencing 100-Year Flood'.format(N_sites))
     ax.grid()
     ax.axhline(0.01, c='gray')
-    ax.legend()
 
     ax = axes[1]
     sns.distplot(exceedances, vertical=True, label='Simulated')
