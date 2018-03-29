@@ -1,6 +1,8 @@
 import xarray as xr
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
+import string
 
 import argparse
 
@@ -29,13 +31,43 @@ def main():
         coords = {'location': np.arange(1, N_sites + 1), 'time': np.arange(1, N_years + 1)},
         dims = ['time', 'location']
     )
-    threshold = sflow.quantile(0.99).values
+    threshold = sflow.quantile(0.99, dim='time')
+    exceedances = (sflow > threshold).mean(dim='location')
 
-    (sflow > threshold).mean(dim='location').plot(figsize=(12, 6))
-    plt.xlabel('Year')
-    plt.ylabel('Proportion of {} Sites Experiencing Flood'.format(N_sites))
-    plt.grid()
-    plt.savefig(args.outfile, bbox_inches='tight')
+    exceedances_iid = np.random.binomial(n=N_sites, p=0.01, size=N_years) / N_sites
+    exceedances_iid = xr.DataArray(exceedances_iid, coords=exceedances.coords, dims=['time'])
+    print(exceedances_iid.max())
+    print(exceedances_iid.min())
+
+    fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(14, 5), gridspec_kw={'width_ratios': [3.5, 1]}, sharey=True)
+    
+    ax = axes[0]
+    sub_ex = exceedances.sel(time=slice(0, 250))
+    sub_iid = exceedances_iid.sel(time=slice(0, 250))
+    ax.plot(sub_ex['time'], sub_ex.values, label='Simulated')
+    ax.plot(sub_iid['time'], sub_iid.values, label='IID')
+    ax.set_xlabel('Year')
+    ax.set_ylabel('Proportion of Sites Experiencing 100-Year Flood'.format(N_sites))
+    ax.grid()
+    ax.axhline(0.01, c='gray')
+    ax.legend()
+
+    ax = axes[1]
+    sns.distplot(exceedances, vertical=True, label='Simulated')
+    sns.distplot(exceedances_iid, vertical=True, label='IID')
+    ax.set_xticks([])
+    ax.axhline(0.01, c='gray')
+    ax.grid()
+    ax.legend()
+
+    letters = string.ascii_lowercase
+    for i, ax in enumerate(axes.flat):
+        label = '({})'.format(letters[i])
+        t = ax.text(0.075, 0.925, label, fontsize=14, transform=ax.transAxes)
+        t.set_bbox(dict(facecolor='white', edgecolor='black'))
+
+    fig.tight_layout()
+    fig.savefig(args.outfile, bbox_inches='tight')
     
 if __name__ == '__main__':
     main()

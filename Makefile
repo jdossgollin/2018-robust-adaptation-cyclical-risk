@@ -88,7 +88,7 @@ figs/sequences_trend.pdf	:	src/plot_sequences.py
 	$(PY_INTERP) $< --gamma 0.015 --outfile $@
 
 figs/case_study.pdf	:	src/case_study.py
-	$(PY_INTERP) $< --outfile $@ --N_sites 250 --N_years 300
+	$(PY_INTERP) $< --outfile $@ --N_sites 5000 --N_years 2000
 
 plot: figs/enso.pdf figs/bias_stationary.pdf figs/bias_trend.pdf figs/variance_stationary.pdf figs/variance_trend.pdf figs/example_short.pdf figs/example_long.pdf figs/sequences_stationary.pdf figs/sequences_trend.pdf figs/case_study.pdf
 
