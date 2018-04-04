@@ -35,8 +35,8 @@ def main():
     fs = 1
     f, Pxx_den = signal.periodogram(x, fs)
     periodogram = pd.Series(Pxx_den, index=f)
-    smoothed = periodogram.rolling(100, win_type='hamming').mean()
-
+    smoothed = periodogram.rolling(100, win_type='hamming').mean().dropna()
+    
     smoothed.plot(ax=axes[1], label='smoothed')
     axes[1].set_xlabel('frequency [Year$^{-1}$]')
     axes[1].set_ylabel('Power Spectral Density')
