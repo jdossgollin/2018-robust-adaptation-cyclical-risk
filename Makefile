@@ -81,6 +81,12 @@ figs/example_long.pdf	: src/plot_example.py
 figs/example_short.pdf	: src/plot_example.py
 	$(PY_INTERP) $< --N 50 --outfile $@
 
+figs/example_markov_long.pdf	:	src/plot_example_markov.py
+	$(PY_INTERP) $< --N 150 --outfile $@
+
+figs/example_markov_short.pdf	:	src/plot_example_markov.py
+	$(PY_INTERP) $< --N 50 --outfile $@
+
 figs/sequences_stationary.pdf	:	src/plot_sequences.py
 	$(PY_INTERP) $< --gamma 0 --outfile $@
 
@@ -90,7 +96,7 @@ figs/sequences_trend.pdf	:	src/plot_sequences.py
 figs/case_study.pdf	:	src/case_study.py
 	$(PY_INTERP) $< --outfile $@ --N_sites 5000 --N_years 2000
 
-plot: figs/enso.pdf figs/bias_stationary.pdf figs/bias_trend.pdf figs/variance_stationary.pdf figs/variance_trend.pdf figs/example_short.pdf figs/example_long.pdf figs/sequences_stationary.pdf figs/sequences_trend.pdf figs/case_study.pdf
+plot: figs/enso.pdf figs/bias_stationary.pdf figs/bias_trend.pdf figs/variance_stationary.pdf figs/variance_trend.pdf figs/example_short.pdf figs/example_long.pdf figs/sequences_stationary.pdf figs/sequences_trend.pdf figs/case_study.pdf figs/example_markov_long.pdf figs/example_markov_short.pdf
 
 ################################################################################
 # Self-Documenting Help Commands
