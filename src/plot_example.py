@@ -18,7 +18,7 @@ def get_gen_fun(index, N, M, t0, n_seq):
         gen_fun = CZNINO3LN2(
             N=N, M=M, t0=0, n_seq=n_seq,
             mu_0=6, beta_mu=0.5, gamma=0,
-            coeff_var=0.1, sigma_min=0.01
+            coeff_var=0.1, sigma_min=0. 01
         )
     elif index == 1:
         gen_fun = CZNINO3LN2(

@@ -53,8 +53,11 @@ data/stationary.nc	:	src/get_bias_variance.py
 data/trend.nc	:	src/get_bias_variance.py
 	$(PY_INTERP) $< --outfile $@ --n_jobs $(NCORES) --gamma 0.015
 
+data/nino3.csv	:	src/nc_to_csv.py
+	$(PY_INTERP) $< --infile src/floodsampling/data/ramesh2017.nc --outfile $@
+
 ## Make all simulations
-simulate:	dirs data/stationary.nc data/trend.nc
+simulate:	dirs data/stationary.nc data/trend.nc data/nino3.csv
 
 ################################################################################
 # MAKE PLOTS
