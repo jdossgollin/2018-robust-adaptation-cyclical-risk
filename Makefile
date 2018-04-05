@@ -63,11 +63,17 @@ simulate:	dirs data/stationary.nc data/trend.nc data/nino3.csv
 # MAKE PLOTS
 ################################################################################
 
-figs/enso.pdf	:	src/plot_enso.py
-	$(PY_INTERP) $< --outfile $@
+figs/bias_nino.pdf	:	src/plot_bias.py data/stationary.nc
+	$(PY_INTERP) $< --stationary data/stationary.nc --trend data/trend.nc --NINO3 1 --outfile $@
 
-figs/bias_stationary.pdf	:	src/plot_bias.py data/stationary.nc
-	$(PY_INTERP) $< --infile data/stationary.nc --outfile $@
+figs/bias_markov.pdf	:	src/plot_bias.py data/stationary.nc
+	$(PY_INTERP) $< --stationary data/stationary.nc --trend data/trend.nc --NINO3 0 --outfile $@
+
+figs/variance_nino.pdf	:	src/plot_variance.py data/stationary.nc
+	$(PY_INTERP) $< --stationary data/stationary.nc --trend data/trend.nc --NINO3 1 --outfile $@
+
+figs/variance_markov.pdf	:	src/plot_variance.py data/stationary.nc
+	$(PY_INTERP) $< --stationary data/stationary.nc --trend data/trend.nc --NINO3 0 --outfile $@
 
 figs/variance_stationary.pdf	:	src/plot_variance.py data/stationary.nc
 	$(PY_INTERP) $< --infile data/stationary.nc --outfile $@
@@ -99,7 +105,7 @@ figs/sequences_trend.pdf	:	src/plot_sequences.py
 figs/case_study.pdf	:	src/case_study.py
 	$(PY_INTERP) $< --outfile $@ --N_sites 5000 --N_years 2000
 
-plot: figs/enso.pdf figs/bias_stationary.pdf figs/bias_trend.pdf figs/variance_stationary.pdf figs/variance_trend.pdf figs/example_short.pdf figs/example_long.pdf figs/sequences_stationary.pdf figs/sequences_trend.pdf figs/case_study.pdf figs/example_markov_long.pdf figs/example_markov_short.pdf
+plot: figs/example_short.pdf figs/example_long.pdf figs/sequences_stationary.pdf figs/sequences_trend.pdf figs/case_study.pdf figs/example_markov_long.pdf figs/example_markov_short.pdf figs/bias_nino.pdf figs/bias_markov.pdf figs/variance_markov.pdf figs/variance_nino.pdf
 
 ################################################################################
 # Self-Documenting Help Commands

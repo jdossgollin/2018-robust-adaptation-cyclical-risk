@@ -8,33 +8,45 @@ import colorcet as cc
 import argparse
 
 parser = argparse.ArgumentParser()
-parser = argparse.ArgumentParser()
-parser.add_argument("--infile", help="the filename of the saved bias/variance data")
+parser.add_argument("--trend", help="the filename of the saved bias/variance data")
+parser.add_argument("--stationary", help="the filename of the saved bias/variance data")
+parser.add_argument("--NINO3", type=int)
 parser.add_argument("--outfile", help="the filename of the figure to save")
 
 def main():
     args = parser.parse_args()
 
-    fit = xr.open_dataset(args.infile)
-    fit_df = fit.to_dataframe().reset_index().set_index(['M', 'N'])
+    trend = xr.open_dataset(args.trend).to_dataframe().reset_index()
+    trend['Stationarity'] = 'Trend'
+    stationary = xr.open_dataset(args.stationary).to_dataframe().reset_index()
+    stationary['Stationarity'] = 'Stationary'
+    if args.NINO3 == 1:
+        trend = trend.loc[trend['Generating Function'] == 'NINO3']
+        stationary = stationary.loc[stationary['Generating Function'] == 'NINO3']
+    else:
+        trend = trend.loc[trend['Generating Function'] == 'Markov']
+        stationary = stationary.loc[stationary['Generating Function'] == 'Markov']
+
+    fit = pd.concat([stationary, trend], axis=0)
+    fit_df = fit.reset_index().set_index(['M', 'N'])
 
     vmin = -0.02
     vmax = 0.02
     cmap = cc.cm['gwv']
 
     fig, axes = plt.subplots(
-        nrows=fit['Generating Function'].size, 
-        ncols=fit['Fitting Function'].size, 
+        nrows=fit['Stationarity'].unique().size, 
+        ncols=fit['Fitting Function'].unique().size, 
         sharex=True, sharey=True, figsize=(10, 6)
     )
-    for col,f in enumerate(fit['Fitting Function'].values):
-        for row,g in enumerate(fit['Generating Function'].values):
-            sub = fit_df.loc[np.logical_and(fit_df['Generating Function'] == g, fit_df['Fitting Function'] == f)].reset_index().pivot('M', 'N', 'bias')
+    for col,f in enumerate(fit_df['Fitting Function'].unique()):
+        for row,g in enumerate(fit_df['Stationarity'].unique()):
+            sub = fit_df.loc[np.logical_and(fit_df['Stationarity'] == g, fit_df['Fitting Function'] == f)].reset_index().pivot('M', 'N', 'bias')
             ax=axes[row, col]
             C = sns.heatmap(sub, ax=ax, vmin=vmin, vmax=vmax, cmap=cmap, cbar=False, linewidths=0.1)
             if row == 0:
                 ax.set_title(f)            
-            if col  == (fit['Fitting Function'].size - 1):
+            if col  == (axes.shape[1] - 1):
                 ax.set_ylabel(g)
                 ax.yaxis.set_label_position('right')
     
