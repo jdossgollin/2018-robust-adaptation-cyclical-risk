@@ -113,3 +113,4 @@ ENV/
 .mypy_cache/
 *.nc
 *.txt
+*.py#

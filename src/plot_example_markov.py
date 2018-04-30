@@ -47,7 +47,7 @@ def main():
     
     args = parser.parse_args()
 
-    M = 150
+    M = 100
     n_seq = 1
     n_sim = 5000
 
