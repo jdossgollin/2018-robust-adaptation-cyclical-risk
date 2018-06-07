@@ -2,6 +2,7 @@ name: STXCluster
 channels:
     - conda-forge
     - defaults
+    - r
 dependencies:
     - python=3.6    # Python version 3.6
     - bottleneck    # C-optimized array functions for NumPy
@@ -19,6 +20,7 @@ dependencies:
     - seaborn       # statistical plots including heatmap
     - tqdm          # progress bar
     - xarray        # N-d labeled array library
+    - r-essentials  # install R packages for wavelet
     - pip:
       - pystan      # python interface to stan modeling language
       - colorcet

@@ -1,4 +1,7 @@
-pacman::p_load(WaveletComp, readr, dplyr)
+require(WaveletComp)
+require(readr)
+require(dplyr)
+
 df <- read_csv('../data/nino3.csv', col_names = c('Year', 'NINO3'))
 wc <- WaveletComp::analyze.wavelet(my.data = df, my.series = 'Year', dt=1, make.pval = FALSE, upperPeriod = 2048)
 
