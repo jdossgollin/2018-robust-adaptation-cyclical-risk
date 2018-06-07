@@ -1,4 +1,4 @@
-name: floodsampling
+name: STXCluster
 channels:
     - conda-forge
     - defaults
