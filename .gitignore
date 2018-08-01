@@ -114,3 +114,4 @@ ENV/
 *.nc
 *.txt
 *.py#
+src/Tests.ipynb
