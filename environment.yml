@@ -2,25 +2,23 @@ name: STXCluster
 channels:
     - conda-forge
     - defaults
-    - r
 dependencies:
     - python=3.6    # Python version 3.6
     - bottleneck    # C-optimized array functions for NumPy
+    - colorcet      # Collection of perceptually uniform colormaps 
     - cython        # required for pystan
     - ipython       # IPython interpreter and tools
     - joblib        # parallel execution
+    - jupyter       # notebooks
     - matplotlib    # 2D plotting library
+    - mypy          # catch many common issues
     - netcdf4       # xarray file i/o
-    - notebook      # Notebook interface
     - numpy         # N-d array and numerics
     - pandas        # Labeled array library
+    - pickle        # save objects (ie stan models)
     - pomegranate   # Hidden Markov Model implementation
-    - pylint        # Code proofing
+    - pylint        # catch other issues
+    - pystan        # python interface to stan modeling language
     - scipy         # Common math/stats/science functions
     - seaborn       # statistical plots including heatmap
-    - tqdm          # progress bar
     - xarray        # N-d labeled array library
-    - r-essentials  # install R packages for wavelet
-    - pip:
-      - pystan      # python interface to stan modeling language
-      - colorcet
