@@ -13,25 +13,4 @@ conda env create -f environment.yml
 conda activate STXCluster
 ```
 
-That file is written in **R**: `/src/wavelet.R`.
-
 ## Running
-
-The code is run using GNU Make, as specified in `Makefile`.
-To generate all plots, just run
-
-```
-make all
-```
-
-Please note that computation is fairly involved and you may need to run simulations on a cluster.
-
-## To Do
-
-This code is not in a final version, and some minor changes need to be made before it is published.
-These include:
-
-- Remove `ssh` call specific to JDG in `Makefile`
-- Remove `slurm` file `make_simulate.sh`
-- Provide guideline on running on a cluster (ie number of cores and hours needed)
-- Can we do the wavelet analysis in **R**?
