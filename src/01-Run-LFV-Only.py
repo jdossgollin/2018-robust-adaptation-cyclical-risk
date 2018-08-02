@@ -1,20 +1,15 @@
-import itertools
 import numpy as np
-import pandas as pd
 import os
 
 from codebase.synthetic import NINO3Linear, MarkovTwoStateChain
 from codebase.statfit import LN2Stationary, LN2LinearTrend, TwoStateHMM
 from codebase.path import cache_path
-
-def expand_grid(data_dict):
-    """Create a dataframe from every combination of given values.
-    See https://stackoverflow.com/questions/12130883/r-expand-grid-function-in-python
-    """
-    rows = itertools.product(*data_dict.values())
-    return pd.DataFrame.from_records(rows, columns=data_dict.keys())
+from codebase.util import expand_grid, run_experiment
 
 def get_generator(M, N, n_seq, model):
+    """Here is where you specify the parameters of each model for creating synthetic sequences.
+    This is what makes this experiment LFV Only.
+    """
     if model == 'MarkovTwoStateChain':
         generator = MarkovTwoStateChain(
             M=M, N=N, n_seq=n_seq,
@@ -32,55 +27,63 @@ def get_generator(M, N, n_seq, model):
     return generator
 
 def get_fitter(n_mcsim, generator, model):
+    """Here is where the parameters (particularly priors) are specified
+    for each fitting model.
+    """
     if model == 'LN2Stationary':
-        fitter = LN2Stationary(synthetic=generator, n_mcsim=n_mcsim)
+        fitter = LN2Stationary(
+            synthetic=generator, n_mcsim=n_mcsim, 
+            mu_sd = 1.5, mu_mean = 7, sigma_mean=1, sigma_sd=1,
+        )
     elif model == 'LN2LinearTrend':
-        fitter = LN2LinearTrend(synthetic=generator, n_mcsim=n_mcsim)
+        fitter = LN2LinearTrend(
+            synthetic=generator, n_mcsim=n_mcsim,
+            mu0_mean=7, mu0_sd=1.5, beta_mu_mean=0, beta_mu_sd=0.1,
+            cv_logmean=np.log(0.1), cv_logsd=0.1, n_warmup=1500
+        )
     elif model == 'TwoStateHMM':
         fitter = TwoStateHMM(synthetic=generator, n_mcsim=n_mcsim, n_init=50)
     else:
         raise ValueError('invalid argument for model')
     return fitter
 
-def get_bias_variance(N, M, gen_fun, fit_fun, n_seq, n_mcsim, threshold):
-    generator = get_generator(N=N, M=M, model=gen_fun, n_seq=n_seq)
-    generator.get_data()
-    fitter = get_fitter(generator=generator, model=fit_fun, n_mcsim=n_mcsim)
-    df = fitter.evaluate(threshold=threshold)
-    df['Generating_Function'] = gen_fun
-    df.drop(columns='Generating Function', inplace=True)
-    df.rename(columns={'Fitting Function': 'Fitting_Function'}, inplace=True)
-    return df
-
 def main():
+    """Here is where we run the body of the code
+    """
     param_df = expand_grid({
-        'N': [20, 30, 50, 100, 500],
-        'M': [2, 5, 10, 30, 50, 100],
+        'N': [20, 30, 50, 100, 500],            # these can be edited
+        'M': [2, 5, 10, 30, 50, 100],           # these can be edited
         'gen_fun': ['MarkovTwoStateChain', 'NINO3Linear'],
         'fit_fun': ['LN2Stationary', 'LN2LinearTrend', 'TwoStateHMM'],
     })
     param_df.sort_values(['M', 'N'], ascending=False, inplace=True)
+    param_df.reset_index(inplace=True, drop=True)
 
-    n_seq = 100
-    n_mcsim = 1000
-    threshold = 5000
-    n_jobs = 4 # set >1 for parallel computing
+    # specify more parameters here
+    n_seq = 5           # how many sequences to generate
+    n_mcsim = 1000      # no reason for less
+    threshold = 5000    # what constitutes a flood
+    n_jobs = 2          # run in parallel
 
-    result_list = [get_bias_variance(
-        M = param_df.loc[i, 'M'],
-        N = param_df.loc[i, 'N'],
-        gen_fun = param_df.loc[i, 'gen_fun'],
-        fit_fun = param_df.loc[i, 'fit_fun'],
-        n_seq=n_seq, n_mcsim=n_mcsim, threshold=threshold
-    ) for i in np.arange(param_df.shape[0])]
 
-    results_df = pd.concat(result_list, axis=0)
-    results_df.reset_index(inplace=True)
-    results_df.set_index(['M', 'N', 'Generating_Function', 'Fitting_Function'], inplace=True)
-    results_ds = results_df.to_xarray()
+    # get the actual functions for generating
+    for i,row in param_df.iterrows():
+        param_df.loc[i, 'generator'] = get_generator(M=row['M'], N=row['N'], model=row['gen_fun'], n_seq=n_seq)
+        param_df.loc[i, 'fitter'] = get_fitter(generator=param_df.loc[i, 'generator'], model=row['fit_fun'], n_mcsim=n_mcsim)
+
+    param_df.drop(columns=['gen_fun', 'fit_fun'], inplace=True)
+
+    results_ds = run_experiment(
+        param_df=param_df,
+        n_seq=n_seq,
+        n_mcsim=n_mcsim,
+        threshold=threshold,
+        n_jobs=n_jobs,
+    )
+   
     fn = os.path.join(cache_path, 'lfv-only-bias-variance.nc')
     if os.path.isfile(fn):
-        os.path.remove(fn)
+        os.remove(fn)
     results_ds.to_netcdf(fn)
 
 if __name__ == '__main__':

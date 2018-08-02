@@ -2,13 +2,15 @@
 
 These are broadly useful for the rest of the package
 """
-
+from typing import Any
+import itertools
 import os
 import pickle
-from hashlib import md5
 import stat
+from hashlib import md5
 from pystan import StanModel
-from typing import Any
+from joblib import Parallel, delayed
+import pandas as pd
 
 from .path import data_path, cache_path
 
@@ -71,3 +73,42 @@ def safe_pkl_dump(obj: Any, fname: str) -> None:
     # dump the object to file
     with open(fname, 'wb') as file:
         pickle.dump(obj, file)
+
+def expand_grid(data_dict):
+    """Create a dataframe from every combination of given values.
+    See https://stackoverflow.com/questions/12130883/r-expand-grid-function-in-python
+    """
+    rows = itertools.product(*data_dict.values())
+    return pd.DataFrame.from_records(rows, columns=data_dict.keys())
+
+def get_bias_variance(generator, fitter, threshold):
+    """Helpful for running experiments
+    """
+    N = generator.N
+    M = generator.M
+    generator.get_data()
+    fitter.get_data()
+    df = fitter.evaluate(threshold=threshold)
+    df['Generating_Function'] = generator.model_name
+    df.drop(columns='Generating Function', inplace=True)
+    df.rename(columns={'Fitting Function': 'Fitting_Function'}, inplace=True)
+    return df
+
+def run_experiment(param_df, n_jobs, n_seq, n_mcsim, threshold):
+    """Run in parallel
+    """
+    with Parallel(n_jobs=n_jobs) as parallel:
+        result_list =  parallel(
+            delayed(get_bias_variance)(
+                generator = row['generator'],
+                fitter = row['fitter'],
+                threshold=threshold
+            ) for i,row in param_df.iterrows()
+        )
+    
+    results_df = pd.concat(result_list, axis=0)
+    results_df.reset_index(inplace=True)
+    results_df.set_index(['M', 'N', 'Generating_Function', 'Fitting_Function'], inplace=True)
+    results_ds = results_df.to_xarray()
+    
+    return results_ds
