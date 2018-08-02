@@ -61,10 +61,10 @@ def main():
     param_df.reset_index(inplace=True, drop=True)
 
     # specify more parameters here
-    n_seq = 5           # how many sequences to generate
+    n_seq = 1000        # how many sequences to generate
     n_mcsim = 1000      # no reason for less
     threshold = 5000    # what constitutes a flood
-    n_jobs = 2          # run in parallel
+    n_jobs = 8          # run in parallel
 
 
     # get the actual functions for generating
