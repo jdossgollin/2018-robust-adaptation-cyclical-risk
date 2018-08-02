@@ -48,14 +48,28 @@ class StatisticalModel(BaseSequence):
         input_data = self.synthetic.data.sel(year=self._get_time('historical'))
         sequences = 1 + np.arange(self.param.get('n_seq'))
         simulations = 1 + np.arange(self.param.get('n_mcsim'))
-        fits = xr.concat([
-            xr.DataArray(
-                data=self._calculate_one(data = input_data.sel(sequence = seq).values),
-                coords={'year': self._get_time('future'), 'simulation': simulations},
-                dims=['simulation', 'year'],
-                name='Statistical Monte Carlo Projection'
-            ) for seq in sequences
-        ], dim='sequence')
+        fits = []
+        for seq in sequences:
+            success = False
+            n_try = 0
+            while success is False and n_try < 5:
+                try:
+                    fits.append(xr.DataArray(
+                        data=(np.nan * np.ones(shape=(self.param.get('n_mcsim'), self.M))),
+                        coords={'year': self._get_time('future'), 'simulation': simulations},
+                        dims=['simulation', 'year'],
+                        name='Statistical Monte Carlo Projection'
+                    ))
+                except BaseException:
+                    n_try += 1
+            if success is False:
+                fits.append(xr.DataArray(
+                        data=self._calculate_one(data = input_data.sel(sequence = seq).values),
+                        coords={'year': self._get_time('future'), 'simulation': simulations},
+                        dims=['simulation', 'year'],
+                        name='Statistical Monte Carlo Projection'
+                    ))
+        fits = xr.concat(fits, dim='sequence')
         fits['sequence'] = sequences
         fits.attrs = self._get_attributes()
         return fits

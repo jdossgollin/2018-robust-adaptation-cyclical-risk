@@ -22,22 +22,15 @@ class TwoStateHMM(StatisticalModel):
         """Simulate a single sequence of annual maximum flood peaks using LN2
         """
         data = np.log(data)[:, np.newaxis] # need to reshape it for pomegranate
-        success = False
-        n_try = 0
-        while success is False and n_try < 5:
-            samples = np.nan * np.ones(shape=(self.param.get('n_mcsim'), self.M))
-            try:
-                model = pm.HiddenMarkovModel.from_samples(
-                    pm.NormalDistribution,
-                    n_components=2,
-                    X=data,
-                    pseudocount=self.param.get('pseudocount'),
-                    n_init=self.param.get('n_init'),
-                )
-                for j in np.arange(self.param.get('n_mcsim')):
-                    samples[j, :] = np.exp(np.array(model.sample(length=self.M)))
-                success = True
-            except:
-                n_try += 1
+        samples = np.nan * np.ones(shape=(self.param.get('n_mcsim'), self.M))
+        model = pm.HiddenMarkovModel.from_samples(
+            pm.NormalDistribution,
+            n_components=2,
+            X=data,
+            pseudocount=self.param.get('pseudocount'),
+            n_init=self.param.get('n_init'),
+        )
+        for j in np.arange(self.param.get('n_mcsim')):
+            samples[j, :] = np.exp(np.array(model.sample(length=self.M)))
 
         return samples
