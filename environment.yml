@@ -15,7 +15,6 @@ dependencies:
     - netcdf4       # xarray file i/o
     - numpy         # N-d array and numerics
     - pandas        # Labeled array library
-    - pickle        # save objects (ie stan models)
     - pomegranate   # Hidden Markov Model implementation
     - pylint        # catch other issues
     - pystan        # python interface to stan modeling language
