@@ -121,16 +121,18 @@ class StatisticalModel(BaseSequence):
         p_exceed_estimated = (future_estimates > threshold).mean().values
         p_exceed_obs = (future_obs > threshold).mean().values
         bias = p_exceed_estimated - p_exceed_obs
-        variance = (future_estimates > threshold).std(dim='simulation').mean(dim=['sequence', 'year']).values
+        stdev = (future_estimates > threshold).std(dim='simulation').mean(dim=['sequence', 'year']).values
 
         results = pd.DataFrame({
+            'N': self.N,
+            'M': self.M,
             'p_exceed_estimated': p_exceed_estimated  - 0,
             'p_exceed_obs': p_exceed_obs  - 0,
             'bias': bias  - 0,
-            'variance': variance  - 0,
-            'MSE': bias**2 + variance  - 0,
+            'variance': stdev ** 2,
+            'MSE': bias**2 + stdev**2  - 0,
             'Generating Function': self.synthetic.model_name,
             'Fitting Function': self.model_name
-        }, index=[0]).set_index(['Generating Function', 'Fitting Function'])
+        }, index=[0]).set_index(['N', 'M'])
 
         return results
