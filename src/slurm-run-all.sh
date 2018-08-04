@@ -6,7 +6,7 @@
 #SBATCH --job-name=STATIONARY   # The job name.
 #SBATCH -N 8                    # The number of nodes to use
 #SBATCH --exclusive
-#SBATCH --time=3:59:00          # The time the job will take to run.
+#SBATCH --time=12:00:00          # The time the job will take to run.
 
 module load anaconda/3-4.4.0    # load the anaconda module
 source activate STXCluster      # activate the conda environment
