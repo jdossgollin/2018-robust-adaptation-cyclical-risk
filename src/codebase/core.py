@@ -78,7 +78,7 @@ class BaseSequence:
         assert isinstance(data, xr.DataArray), 'data must be data array'
 
         data.attrs = self._get_attributes() # save all the model parameters
-        if os.path.exists(self._get_filename()):
+        if os.path.isfile(self._get_filename()):
             os.remove(self._get_filename())
         data.to_netcdf(self._get_filename(), mode='w', format='netCDF4')
 
