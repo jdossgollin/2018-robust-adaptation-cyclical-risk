@@ -80,7 +80,7 @@ class BaseSequence:
         data.attrs = self._get_attributes() # save all the model parameters
         if os.path.isfile(self._get_filename()):
             os.remove(self._get_filename())
-        data.to_netcdf(self._get_filename(), mode='w', format='netCDF4')
+        data.to_netcdf(self._get_filename(), mode='w', format='netCDF4', engine='netcdf4', compute=True)
 
     def _from_file(self) -> Tuple[xr.DataArray, bool]:
         """Get data from file
