@@ -3,7 +3,7 @@
 # Run the code on a slurm server
 #
 #SBATCH --account=cwc           # The account name for the job.
-#SBATCH --job-name=LFV-ONLY     # The job name.
+#SBATCH --job-name=SECULAR-ONLY # The job name.
 #SBATCH -N 8                    # The number of nodes to use
 #SBATCH --exclusive
 #SBATCH --time=12:00:00          # The time the job will take to run.
