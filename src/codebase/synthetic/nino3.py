@@ -5,6 +5,7 @@ import os
 import numpy as np
 import pandas as pd
 import xarray as xr
+from datetime import datetime
 
 from .synthetic import SyntheticFloodSequence
 from ..path import data_path
@@ -29,10 +30,13 @@ class NINO3Linear(SyntheticFloodSequence):
     def _calculate_one(self) -> np.ndarray:
         """Run the calculation
         """
+        np.random.seed(datetime.now().microsecond)
         filename = os.path.join(data_path, 'ramesh2017.csv')
         nino3 = pd.read_csv(filename, index_col='year')
-        syear = np.random.choice(np.arange(0, nino3.index.max() - (self.M + self.N)))
-        nino3_sub = nino3.loc[syear:(syear + self.M + self.N - 1)].nino3.values
+        valid_start_years = np.arange(nino3.index.max() - (self.M + self.N))
+        syear = np.random.choice(valid_start_years)
+        eyear = syear + self.N + self.M - 1
+        nino3_sub = nino3.loc[syear:eyear]['nino3'].values
         
         mu = self.param.get('mu0') + self.param.get('gamma') * self._get_time(period='all') + self.param.get('beta') * nino3_sub
         sigma = self.param.get('coeff_var') * mu
