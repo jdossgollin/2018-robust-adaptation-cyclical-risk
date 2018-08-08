@@ -9,7 +9,6 @@ import pickle
 import stat
 from hashlib import md5
 from pystan import StanModel
-from joblib import Parallel, delayed
 import pandas as pd
 
 from .path import data_path, cache_path
@@ -94,17 +93,15 @@ def get_bias_variance(generator, fitter, threshold):
     df.rename(columns={'Fitting Function': 'Fitting_Function'}, inplace=True)
     return df
 
-def run_experiment(param_df, n_jobs, n_seq, n_mcsim, threshold):
-    """Run in parallel
-    """
-    with Parallel(n_jobs=n_jobs) as parallel:
-        result_list =  parallel(
-            delayed(get_bias_variance)(
-                generator = row['generator'],
-                fitter = row['fitter'],
-                threshold=threshold
-            ) for i,row in param_df.iterrows()
-        )
+def run_experiment(param_df, n_seq, n_mcsim, threshold):
+    # Run through the parameters
+    result_list = [
+        get_bias_variance(
+            generator = row['generator'],
+            fitter = row['fitter'],
+            threshold=threshold
+        ) for i,row in param_df.iterrows()
+    ]
     
     results_df = pd.concat(result_list, axis=0)
     results_df.reset_index(inplace=True)
