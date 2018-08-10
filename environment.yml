@@ -2,6 +2,7 @@ name: STXCluster
 channels:
     - conda-forge
     - defaults
+    - r
 dependencies:
     - python=3.6    # Python version 3.6
     - bottleneck    # C-optimized array functions for NumPy
@@ -18,6 +19,12 @@ dependencies:
     - pomegranate   # Hidden Markov Model implementation
     - pylint        # catch other issues
     - pystan        # python interface to stan modeling language
+    - r-base        # the R language
+    - r-irkernel    # jupyter kernel for R
+    - r-dplyr       # data manipulation in R
+    - r-lubridate   # dates in R
+    - r-readr       # file I/O in R
+    - r-zoo         # easy moving averages
     - scipy         # Common math/stats/science functions
     - seaborn       # statistical plots including heatmap
     - xarray        # N-d labeled array library
