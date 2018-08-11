@@ -1,0 +1,21 @@
+# This is a reduced conda environment for running simulations.
+# I found this particularly helpful for running simultations on 
+# a remote computing cluster where I did not need to compute
+# wavelet spectra in R, create plots, or use jupyter notebooks
+# This is a subset of the full environment.yml
+name: STXCluster
+channels:
+    - conda-forge
+    - defaults
+dependencies:
+    - python=3.6    # Python version 3.6
+    - bottleneck    # C-optimized array functions for NumPy
+    - cython        # required for pystan
+    - joblib        # parallel execution
+    - netcdf4       # xarray file i/o
+    - numpy         # N-d array and numerics
+    - pandas        # Labeled array library
+    - pomegranate   # Hidden Markov Model implementation
+    - pystan        # python interface to stan modeling language
+    - scipy         # Common math/stats/science functions
+    - xarray        # N-d labeled array library
