@@ -51,7 +51,7 @@ def main():
     """Here is where we run the body of the code
     """
     param_df = expand_grid({
-        'N': [20, 25, 30, 50, 75, 100, 200, 500],   # these can be edited
+        'N': [20, 25, 30, 50, 75, 100, 150, 250],   # these can be edited
         'M': [2, 5, 10, 20, 30, 50, 100],           # these can be edited
         'gen_fun': ['MarkovTwoStateChain', 'NINO3Linear'],
         'fit_fun': ['LN2Stationary', 'LN2LinearTrend', 'TwoStateHMM'],
