@@ -63,7 +63,7 @@ def main():
     # specify more parameters here
     n_seq = 1000        # how many sequences to generate
     n_mcsim = 1000      # no reason for less
-    threshold = 5000    # what constitutes a flood
+    threshold = 3000    # what constitutes a flood
 
 
     # get the actual functions for generating
