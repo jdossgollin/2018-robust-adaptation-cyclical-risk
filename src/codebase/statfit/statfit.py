@@ -120,7 +120,7 @@ class StatisticalModel(BaseSequence):
         future_estimates = self.data.sel(year=self._get_time('future'))
         future_obs = self.synthetic.data.sel(year=self._get_time('future'))
         
-        bias = ((future_estimates > threshold) - (future_obs > threshold)).mean().values
+        bias = (future_estimates > threshold).mean().values - (future_obs > threshold).mean().values
         stdev = (future_estimates > threshold).std(dim='simulation').mean(dim=['sequence', 'year']).values
 
         results = pd.DataFrame({
