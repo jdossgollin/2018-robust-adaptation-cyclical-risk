@@ -130,7 +130,7 @@ class StatisticalModel(BaseSequence):
             'N': self.N,
             'M': self.M,
             'bias': bias  - 0,
-            'stdev': stdev_est - 0,
+            'stdev': stdev - 0,
             'Generating Function': self.synthetic.model_name,
             'Fitting Function': self.model_name
         }, index=[0]).set_index(['N', 'M'])
