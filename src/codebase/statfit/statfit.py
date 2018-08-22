@@ -116,21 +116,21 @@ class StatisticalModel(BaseSequence):
         """
         if self.data is None:
             self.get_data()
+        
         future_estimates = self.data.sel(year=self._get_time('future'))
         future_obs = self.synthetic.data.sel(year=self._get_time('future'))
-        p_exceed_estimated = (future_estimates > threshold).mean().values
-        p_exceed_obs = (future_obs > threshold).mean().values
-        bias = p_exceed_estimated - p_exceed_obs
-        stdev = (future_estimates > threshold).std(dim='simulation').mean(dim=['sequence', 'year']).values
+        
+        p_exceed_estimated = (future_estimates > threshold).mean(dim='year')
+        p_exceed_obs = (future_obs > threshold).mean(dim='year')
+        
+        bias = (p_exceed_estimated - p_exceed_obs).mean().values
+        stdev = p_exceed_estimated.std(dim='simulation').mean().values
 
         results = pd.DataFrame({
             'N': self.N,
             'M': self.M,
-            'p_exceed_estimated': p_exceed_estimated  - 0,
-            'p_exceed_obs': p_exceed_obs  - 0,
             'bias': bias  - 0,
-            'variance': stdev ** 2,
-            'MSE': bias**2 + stdev**2  - 0,
+            'stdev': stdev_est - 0,
             'Generating Function': self.synthetic.model_name,
             'Fitting Function': self.model_name
         }, index=[0]).set_index(['N', 'M'])
