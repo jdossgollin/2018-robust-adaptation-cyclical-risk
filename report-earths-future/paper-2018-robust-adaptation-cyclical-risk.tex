@@ -1,0 +1,603 @@
+\documentclass[
+  draft,
+  linenumbers
+]{agujournal2018}
+\journalname{Earth's Future}
+
+% Macros and newcommands
+\usepackage{xspace}
+\newcommand{\eg}{e.g.\@\xspace}
+\newcommand{\ie}{i.e.\@\xspace}
+\newcommand{\normal}{\mathcal{N}}
+\makeatletter
+\newcommand*{\etc}{%
+    \@ifnextchar{.}%
+        {etc}%
+        {etc.\@\xspace}%
+}
+\makeatother
+
+% Package calls with options
+\usepackage[letterpaper, margin=1in]{geometry} % page geometry
+\usepackage[american]{babel} % language setting
+\usepackage[inline]{enumitem} % in-line lists
+
+% Other package calls
+\usepackage{
+  amssymb, amsmath, % for math symbols
+  booktabs, % for nice tables
+  graphicx, % for figures
+  physics, % for physics notation
+  siunitx, % for SI notation
+  apacite, % AGU style citations apparently
+}
+
+% Fixed-width columns
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+% Some package settings
+\sisetup{round-mode=figures,round-precision=3,scientific-notation=false}
+\graphicspath{{./figs/}{../fig/}} % folders of figures
+\allowdisplaybreaks{} % let the align environment span multiple pages
+
+% Use the glossaries package
+\usepackage[acronym]{glossaries}
+\makeglossaries
+\newacronym{acc}{ACC}{anthropogenic climate change}
+\newacronym{amo}{AMO}{Atlantic Multidecadal Oscillation}
+\newacronym{cba}{CBA}{cost-benefit analysis}
+\newacronym{enso}{ENSO}{the El Ni\~{n}o-Southern Oscillation}
+\newacronym{ffa}{FFA}{flood frequency analysis}
+\newacronym{gcm}{GCM}{general circulation model}
+\newacronym{hmm}{HMM}{hidden Markov model}
+\newacronym{iid}{IID}{independent and identically distributed}
+\newacronym{ipcc}{IPCC}{International Panel on Climate Change}
+\newacronym{ipo}{IPO}{Interdecadal Pacific Oscillation}
+\newacronym{lbda}{LBDA}{living blended drought analysis}
+\newacronym{lfv}{LFV}{low-frequency climate variability}
+\newacronym{nao}{NAO}{North Atlantic Oscillation}
+\newacronym{pdo}{PDO}{Pacific Decadal Oscillation}
+\newacronym{s2d}{S2D}{seasonal to decadal}
+\newacronym{s2s}{S2S}{sub-seasonal to seasonal}
+
+% These package calls need to come last
+\usepackage[hidelinks]{hyperref}
+\usepackage{cleveref}
+
+
+% -----------------------------------------------------------------------------
+% ABSTRACT
+% -----------------------------------------------------------------------------
+
+\begin{document}
+
+% Title and Authors
+\title{Robust Adaptation to Multi-Scale Climate Variability}
+\authors{James Doss-Gollin\affil{1,2}, David J. Farnham\affil{1,2}, Scott Steinschneider\affil{3}, Upmanu Lall\affil{1,2}}
+\correspondingauthor{James Doss-Gollin}{james.doss-gollin@columbia.edu}
+\affiliation{1}{Department of Earth and Environmental Engineering, Columbia University}
+\affiliation{2}{Columbia Water Center, Columbia University}
+\affiliation{3}{Department of Biological and Environmental Engineering, Cornell University}
+
+% Key Points
+\begin{keypoints}
+  \item Climate risk varies in time over a project's finite planning period
+  \item The dominant driver of climate risk depends on the length of the planning period 
+  \item Potentially predictable cyclical climate variability dominates near-term climate risk
+  \item Successful climate adaptation requires prediction of short- and long-term climate variability over the planning period
+\end{keypoints}
+
+% Abstract
+\begin{abstract}
+  The assessment and implementation of structural or financial instruments for climate risk mitigation requires projections of future climate risk over the operational life of each proposed instrument.
+  A point often neglected in the climate adaptation literature is that the physical sources of predictability differ between projects with long and short planning periods: while historical and paleo climate records highlight the role of \acrlong{lfv} in modulating climate extremes at interannual to multidecadal time scales, \acrlong{acc} is expected to alter their occurrence at longer time scales.
+  In this paper we present a set of stylized experiments to assess the uncertainties and biases involved in estimating future climate risk over a finite future period, given a limited observational record.
+  These experiments consider both quasi-periodic and secular change for the underlying risk, as well as statistical models for estimating this risk from an $N$-year historical record.
+  The uncertainty of \acrshort{ipcc}-like future scenarios is considered through an equivalent sample size $N$. 
+  The relative importance of estimating the short- or long-term risk extremes depends on the investment life $M$ and the future discount rate for investment.
+  Shorter design lives are preferred where inter-annual to decadal variability can be successfully identified and predicted, suggesting the importance of sequential investment strategies for adaptation. 
+\end{abstract}
+
+% -----------------------------------------------------------------------------
+% INTRO
+% -----------------------------------------------------------------------------
+
+\section{Introduction}\label{sec:introduction}
+
+Recent climate extremes such as floods, droughts, hurricanes, tornadoes, hailstorms, and heat waves have caused death and destruction, motivating investments in climate adaptation for the public and private sectors.
+This climate risk, which is  defined as the product of exposure (the damage that a particular event may cause) and hazard (the probability that this event occurs), is rapidly increasing, at least at the global scale: population growth and urbanization drive increases in exposure \citep{Jongman:2012cr} while \gls{acc} affects the frequency, intensity, and location of extreme events \citep{IPCC:2012wt, Merz:2014gf, Shaw:2016bo}.
+
+Public or private sector investments in climate adaptation require not only the design of each potential structural (\eg, a levee) or non-structural (\eg, a catastrophe bond) risk mitigation instrument, but also selecting between instruments with vastly different operational planning periods.
+This project planning period describes the nominal economic or physical lifespan of the structure or contract and may vary from one year for  a financial contract to 100 years or longer for a permanent structure, as illustrated in \cref{tab:real-world-M}.
+Complex, real-world climate adaptation strategies often consist of many risk mitigation instruments \citep[\eg,][]{CityofNewYork:2013uh}, each of which has its own planning period or design life $M$.
+
+\noindent\begin{table}
+  {\footnotesize
+    \begin{tabular}{L{1in}L{2.5in}L{0.3in}L{1.7in}}
+      \toprule
+      Location & Description & $M$ & Reference \\
+      \midrule
+      Iowa River & Purchase options for inundation of downstream agricultural lands to allow higher release flows from the flood control reservoir & 1 & \citet{Spence:2016ca} \\
+      New York City & Catastrophe bond for protection against storm surge caused by named storms and earthquakes & 3 &  \\
+      County of Santa Barbara, California & Emergency improvements to portions of the Santa Maria Levee to reduce risk of levee failure & 5 & \citet{USACE:2007ta} \\
+      Iowa River & Raise levees by 6 feet & 30 & \citet{Spence:2016ca} \\
+      Dallas, TX & Evacuation of Rockefeller Boulevard & 50 & \citet{USACE:2014vn} \\
+      Central California & Tulare Lake storage and floodwater protection project & 100 & \citet{GEI:gIaEZ-gS} \\
+      \bottomrule
+    \end{tabular}
+    \caption{
+      Several examples of real-world risk mitigation instruments and the associated project planning period ($M$).
+    }\label{tab:real-world-M}
+  }
+\end{table}
+
+Assessing the utility of a particular risk mitigation instrument involves projecting the climate hazard against which the instrument protects over the $M$-year planning period.
+However, an often neglected point is that the sources of predictability differ between projects with long and short planning periods.
+As illustrated in \cref{fig:conceptual-sketch} (a), the lifetime risk of a permanent structure with a 100 year planning period depends on the magnitude and extent of future human activities, with very large associated uncertainty.
+By contrast, a three-year insurance contract may be well informed by a skillful forecast of \gls{lfv}.
+Although \cref{fig:conceptual-sketch} shows a highly stylized depiction of \gls{lfv}, analyses of historical and paleo records, like those shown in \cref{fig:observed-lfv}, highlight that subseasonal to multidecadal modes of climate variability such as \gls{enso}, the \gls{pdo}, and the \gls{amo} strongly modulate the occurrence of climate extremes around the world \citep{Ropelewski:1987do, Cook:2010bz, Swierczynski:2012km, Hodgkins:2017hw, Woollings:2018ea}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.7\textwidth]{conceptual-sketch.pdf}
+  \caption{
+    A stylized illustration of (a) irreducible and (b) estimation uncertainty.
+    (a): Irreducible uncertainty cannot be resolved with better models or data and is dominated in the short term by chaotic behavior of the climate, and in the long term by the uncertainty in future \acrlong{acc}.
+    (b): The length of a historical record limits the potential to identify different climate signals.
+    The blue line shows an idealized climate signal and the black line shows observations, which are scattered stochastically around the signal line.
+    The green shading shows the true range within which observations will occur 95\% of the time, while the gray shading the 95\% confidence interval as estimated with a linear trend model.
+    }\label{fig:conceptual-sketch}
+\end{figure}
+
+Since different physical processes control climate risk at different timescales, successful integration of probabilistic climate projections into decision frameworks depends on identifying, and subsequently predicting, these processes.
+A key question is whether the limited information in an $N$-year observational record permits the identification and projection of cyclical climate variability and secular change, and what the resulting bias and uncertainty portends for risk mitigation instruments with a planning period ranging from a few years to several decades.
+As shown in \cref{fig:conceptual-sketch} (b), the combination of \gls{lfv}, stochastic variability, and secular change in a limited record can lead to large uncertainty in estimated future risk, which may in turn lead to high premiums of an insurance policy \citep{Kunreuther:1996kp}.
+The consequences of this uncertainty also interact with those of any estimation bias as illustrated in \cref{fig:conceptual-bias-variance}.
+An instrument designed based on overestimated variance and positive bias will be over-designed, either causing the risk manager to avoid the investmenet, given its higher cost, or will lead to unnecessary diversion of funds from other instruments.
+Similarly, an instrument designed based on underestimated variance or negative bias may be under-designed, and thus fail to protect the user.
+\begin{figure}
+  \centering
+  \includegraphics[width=0.5\textwidth]{Bias-Variance-Sketch.pdf}
+  \caption{
+    Consequences of model bias or incorrect model representation of uncertainty.
+    If an estimate has a positive bias and overestimates uncertainty, the instrument may be too expensive for the user.
+    If an estimate has negative bias and underestimates uncertainty, it will be likely to fail.
+  }\label{fig:conceptual-bias-variance}
+\end{figure}
+
+In this paper we present a set of stylized experiments to assess how well one can identify and predict risk associated with cyclical and secular climate signals for the design life ($M$ years) and the probability of over- or under-design of a climate adaptation strategy based on these projections.
+We consider different temporal structures for the underlying risk which encompass quasi-periodic, regime-like, and secular change, as well as simple statistical models for estimating this risk from an $N$-year historical record.
+The relative importance of estimating the short- or long-term risk associated with these extremes depends on the design life $M$, but the potential to understand and predict these different types of variability depends on the informational uncertainty in the $N$-year historical record.
+Though we use floods as an example, the framework also applies to other forms of climate extremes.
+
+% -----------------------------------------------------------------------------
+% METHODS
+% -----------------------------------------------------------------------------
+
+\section{Methods}\label{sec:methods}
+
+We use a statistical framework to
+\begin{enumerate*}[label= (\roman*)]
+  \item generate synthetic sequences of annual-maximum floods;
+  \item fit these sequences to probabilistic models that parameterize time in different ways; and
+  \item evaluate the performance of these models as a function of $M$ and $N$ (\cref{fig:methods-summary})
+\end{enumerate*}.
+
+As shown in \cref{fig:methods-summary}, we first specify $N$, $M$, the flood threshold (\eg, the design level of a structure or the level at which an insurance contract is triggered), the method for generating synthetic streamflow sequences, and the method for estimating flood risk given an $N$-year historical record.
+The methods for generating synthetic streamflow sequences are discussed in \cref{sec:methods-generating} and for estimating flood risk in \cref{sec:methods-estimating}.
+For each scenario of climate risk structure, and for its identification from the $N$ year length historical data, the bias and variance of the estimated flood risk over the $M$ year design life relative to the ``true model'' are computed.
+We repeat the simulations $J = 2000$ times for each combination of experiment parameters to estimate the bias and variance of the statistical estimate (\cref{sec:methods-evaluating}).
+The scenarios considered are summarized in \cref{sec:methods-experiments}.
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{flowchart.pdf}
+  \caption{
+    Framework for assessing flood risk from synthetic streamflow sequences.
+    Red boxes indicate parameters that are chosen for each experiment, white boxes calculated quantities, and blue boxes the final values used to evalute the model fit.
+  }\label{fig:methods-summary}
+\end{figure}
+
+\subsection{Sampling Climate Risk}\label{sec:methods-generating}
+
+We consider two approaches for modeling the influence of quasi-periodic variability and secular climate change on flood risk.
+For each, we take the annual-maximum sequences to follow a log-normal distribution, conditional on a location parameter which may vary in time:
+\begin{equation} \label{eq:lognormal}
+  \log Q(t) \sim \normal \qty(\mu(t), \sigma(t)).
+\end{equation}
+We further assume a constant coefficient of variation of the log streamflow, $\sigma(t) = \xi \mu(t)$, and apply a lower threshold on the standard deviation $\sigma(t) \geq \sigma_\text{min} > 0$.
+The procedure to generate a single sequence of streamflow is thus:
+\begin{enumerate}
+  \item choose $t_0$, $M$, and $N$ so that the time is $\vb{t}=t_0-N+1, \ldots, t_0+M$
+  \item use one of the models described below to simulate $\mu(t)$
+  \item calculate $\sigma(t) = \xi \mu(t)$
+  \item for each time $t \in \vb{t}$, draw $Q(t)$ stochastically following \cref{eq:lognormal}.
+\end{enumerate}
+We consider two approaches for simulating $\mu(t)$.
+
+The first approach considers $\mu(t)$ as a function of a variable which explicitly represents quasi-periodic climate variability.
+We use an index for \gls{enso}, which has been shown to impact flood risk around the world \citep{Ropelewski:1987do, Ward:2014gg} and has characteristic variability on timescales of 3 to 7 years \citep{Sarachik:2009dr} plus a ``staircase'' of lower-frequency scales \citep{Jin:1994wq}.
+We also allow for the inclusion of secular trends.
+We represent \gls{enso} variability by taking a \SI{20000}{year} integration of the Cane-Zebiak model \citep{Zebiak:1987cl} to produce a monthly NINO3 index \citep{Ramesh:2016hf}.
+To create an annual time series, we average the October-December values of the NINO3 index for each year.
+\Cref{sec:supp-nino-spectrum} shows a wavelet spectrum and time series plot of the resulting annual time series.
+To generate $\mu(t)$, a sequence of length $M+N$ is randomly chosen from the \SI{20000}{year} NINO3 sequence.
+Next, $\mu(t)$ is calculated from the NINO3 time series, denoted as $x(t)$, as
+\begin{equation}\label{eq:nino3}
+  \mu(t) = \mu_0 + \beta x(t) + \gamma \qty(t - t_0),
+\end{equation}
+where $\beta$ controls the sensitivity to the NINO3 variation and $\gamma$ controls the magnitude of the secular trend.
+
+The second model to create sequences of annual-maxima is a two-state Markov chain model to explicitly enforce persistence and regime structure in $\mu(t)$.
+A Markov chain explicitly models transition between a fixed number of regimes, mimicking similar phenomena observed in nature.
+The transition matrix is
+\begin{equation}
+  P = \mqty[\pi_1 & 1-\pi_1 \\ 1-\pi_2 & \pi_2].
+\end{equation}
+The transition matrix is first used to generate a sequence of states $S(t)$.
+The value $\mu(t)$ depends only on $S(t)$ and on time itself:
+\begin{equation}
+  \mu(t) = \begin{cases}
+    \mu_{1} + \gamma_1 \qty(t - t_0) & \qqtext{if} S(t) = 1 \\
+    \mu_{2} + \gamma_2 \qty(t - t_0) & \qqtext{if} S(t) = 2
+  \end{cases}
+\end{equation}
+For simplicity, we assume that the coefficient of variation is the same for both states and that $\pi_1=\pi_2$.
+We further impose $\mu_{1} > \mu_{2}$ so that state 1 can be interpreted as the ``wet'' state and state 2 as the ``dry'' state.
+
+We use the NINO3 and Markov Chain models described above to create three scenarios:
+\begin{enumerate*}[label= (\roman*)]
+  \item \gls{lfv} only;
+  \item secular change only; and
+  \item \gls{lfv} plus secular change.
+\end{enumerate*}
+\gls{lfv} is added to the NINO3 model through $\beta$, which increases the dependence on a climate signal which itself exhibits \gls{lfv}, and to the Markov chain model by making the two states more distinct (increasing $\mu_1 - \mu_2$, or $\gamma_1 - \gamma_2$).
+Secular change is applied by increasing $\gamma$, which gives the time dependence.
+The parameter values used to create these three scenarios are listed in \cref{sec:supp-methods}.
+
+\subsection{Projecting Climate Risk over the Future $M$ years}\label{sec:methods-estimating}
+
+
+We use three well-studied statistical methods for future flood risk, each of which parameterizes time in a different way.
+One is purely stationary, another captures \gls{lfv}, and the third captures secular change.
+We choose these models for their interpretability and simplicity, rather than because of a belief that they are generally valid, and note that the key conclusions hold for more sophisticated \gls{ffa} methods using statistical or dynamical models.
+
+For each synthetic flood sequence to be analyzed, the first $N$ years are treated as observations, denoted $Q_{\text{hist}}$.
+Once a statistical model is fit to $Q_{\text{hist}}$, $K=\num{2000}$ sequences of future annual-maximum streamflow over the future $M$-year record are generated from the fitted model using Monte Carlo simulation.
+
+We first consider fitting a stationary model to the observed flood record, following classical assumptions of \gls{iid} sequences.
+In this model annual-maximum streamflow are taken to follow a log-normal distribution with constant mean and variance.
+The parameters of the model are fit  in a Bayesian framework to fully represent the posterior uncertainty, using the stan probabilistic computing package \citep{Carpenter:2017ke} with weakly informative priors for regularization.
+The full model is given in \cref{eq:ln2-stationary}.
+
+Next, we expand this stationary model to incorporate secular change.
+Many studies have done this by regressing certain parameters of the model on time \citep{Merz:2014gf, Salas:2018ge}.
+We consider an extension of the stationary LN2 model by adding a time trend on the scale parameter and maintaining a constant coefficient of variation, as given in \cref{eq:ln2-trend}.
+
+Finally, we consider a model which explicitly represents low-frequency variability.
+A \gls{hmm} is a latent variable model in which the system being modeled is assumed to follow a Markov process with unobserved (\ie{} hidden) states $S(t)$ \citep{Rabiner:1986jk}.
+The (unobserved) states evolve following a first-order Markov process, and the observed variable (\eg streamflow) depends only on the underlying state.
+We fit  streamflow sequences $Q_\text{hist}$ simulated using the scenarios in Section 2.1, using a \gls{hmm} with two states.
+The model is fit using the Baum-Welch algorithm, assuming that the data follow a log-normal distribution conditional only on the state.
+This algorithm simultaneously estimates the transition matrix of the Markov process and the conditional parameters of each distribution.
+For simplicity, we fit only a two-state \gls{hmm} to each sequence.
+Future floods are then estimated by simulating future states from the estimated transition matrix and then drawing $Q(t)$ conditional on the simulated state.
+
+\subsection{Evaluating Fitting Models}\label{sec:methods-evaluating}
+
+For a given choice of $M$, $N$, generating model, and fitting model, we generate a streamflow sequence of length $M+N$ years.
+The fitting model is applied to the synthetic streamflow sequence's $N$-year ``historical record'', and $K=2000$ posterior simulations of future flows are then drawn from the fitted model.
+
+The quantity $\hat{p}_T$, the estimated expected number of floods per year, is taken by calculating, for each of the $K$ posterior simulations, the number of exceedances of the flood design threshold, then dividing by $M$ to get exceedances per year.
+We then compute the variance of these $K$ estimates of $\hat{p}_T$.
+We further calculate the bias of $\hat{p}_T$ by averaging it across the $K$ samples and comparing this to the number of times the $M$-year ``future period'' of the synthetic streamflow sequence exceeds the flood design threshold.
+
+Since the ``observed'' number of flood exceedances from the generating model is inherently noisy for an $M$-year period, we repeat this analysis for $J=1000$ different streamflow sequences.
+These are generated with the same underlying parameters, but the specific synthetic NINO3 sequence (or set of Markov states) may be different between the $J$ sequences.
+In \cref{sec:results} we report the expected bias and variance by averaging over the $J$ sequences.
+
+\subsection{Computation}\label{sec:methods-computation}
+
+Computation was carried out in the python programming language, making particular use of the matplotlib, numpy, pandas, pomegranate, scipy, and xarray libraries for scientific computing \citep{Hunter:2007ih, vanderWalt:2011dp, McKinney:2010un, Schreiber:2017tg, Jones:2001uv, Hoyer:2017hs}.
+Wavelet analysis was conducted using the WaveletComp package \citep{Roesch:wlBQQoIs} in the R programming language.
+Bayesian models were written in the stan probabilistic programming language \citep{Carpenter:2017ke}.
+The codes used to generate the figures and text of this paper are available at \url{https://github.com/jdossgollin/robust-adaptation-cyclical-risk}\footnote{Dear reviewers: this GitHub repository is currently not publicly available, but codes are provided in the online supplemental information. The repository will be made publicly available if and when this work is published.} or in the online supplemental material of this paper.
+
+% -----------------------------------------------------------------------------
+% RESULTS
+% -----------------------------------------------------------------------------
+
+\section{Results}\label{sec:results}
+
+We assess estimation bias and variance for three cases.
+First, we consider an idealized scenario where only secular change is present in the system and \gls{lfv} is fully damped.
+Next, we consider the ``pre-industrial'' case where there is no secular change but \gls{lfv} modulates climate risk in time.
+Finally, we consider a more realistic (though still idealized) case with both \gls{lfv} and secular change.
+These three cases are illustrated in \cref{fig:example-fit}, which shows a single synthetic streamflow sequence generated with $N=50$ and $M=100$.
+Projections with each of the three fitting models are also shown.
+In the remainder of this section we present a more systmematic analysis of each of these three cases.
+\begin{figure}
+  \includegraphics[width=\textwidth]{Example-NINO3-M100-N50.pdf}
+  \caption{
+    An illustration of the estimation procedure.
+    A single streamflow sequence with $N=50$ and $M=100$ is shown for each of the three cases (secular only, \gls{lfv} only, and secular plus \gls{lfv}) considered.
+    The blue line shows the observed sequence.
+    The gray shading indicates the 50\% and 95\% confidence intervals using each of the three fitting methods discussed.
+    The horizontal black line indicates the flood threshold.
+  }\label{fig:example-fit}
+\end{figure}
+
+\subsection{Secular Change Only}
+
+In the idealized case where only secular change exists, accurate climate predictions need to either use a long record to identify and model this trend, or to ignore the trend and predict only a few years ahead.
+This is shown in \cref{fig:secular-nino3-bias-variance}, which depicts the estimation bias and variance for each of the three estimation models for many combinations of $M$ and $N$.
+
+The LN2 linear trend model tends to over-estimate risk (positive bias), except when $N$ is large, because the model gives a non-zero probability to the trend being larger than it actually is.
+The variance of these estimates is also large.
+This again highlights the difficulty of identifying the magnitude of secular change, which strongly controls climate risk far into the future, from a single noisy time series.
+By contrast, the stationary LN2 model and \gls{hmm}, which do not account for secular change, show relatively low variance of their estimates and exhibit low bias for short $M$.
+As $N \rightarrow \infty$, these (mis-specified) models can only represent the trend by setting the scale parameter very large, leading to high estimation variance and (as $M \rightarrow \infty$) also a large bias.
+This principle has prompted some to consider only the most recent years of the data, deliberately shortening $N$ \citep[\ie,][]{Muller:2014fc}.
+However, these results also highlight that the increase in variance as $N$ is reduced may quickly outpace any bias reductions.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{secular-only-nino3-bias-variance.pdf}
+  \caption{
+    Expected estimation bias and variance for sequences generated from the NINO3 model with secular change only (no \gls{lfv}).
+    Sequences were fit to each of three statistical models (colulmns) for different $N$ and $M$ ($x$ and $y$ axis, repsectively).
+    Top row shows estimation bias and bottom row shows log standard deviation of estimates.
+    Note the uneven spacing of the $x$ and $y$ axes.
+  }\label{fig:secular-nino3-bias-variance}
+\end{figure}
+
+If the analyst could know \emph{a priori} that secular change is present in a time series, and if $M$ is long, then the use of a model that captures this secular trend is essential.
+Here the LN2 linear trend model has the advantage of being correctly specified (both the generating and fitting processes assume a log-normal distribution conditional on a linear time trend), which is generally not the case in the real world \citep{Serinaldi:2015bq, Montanari:2014hl}.
+As a result, in real-world settings longer $N$ may be required to identify trends whose exact form is not known.
+Here, $N$ implicitly refers to the uncertainty in trend estimation and may represent an ``equivalent sample size'' if \gls{ipcc}-like projections are used.
+Alternatively, if $M$ is small then it may be reasonable to use a stationary estimate, since the bias will be small and the variance substantially lower.
+
+\subsection{Low-Frequency Variability Only}
+
+Next, in the idealized case where  \gls{lfv} is present but there is no secular change, the identification of nonexistent trends may lead to gross over-estimation of true risk through an increase in the variance of the estimated risk.
+
+Results for this scenario are shown in \cref{fig:lfv-nino3-bias-variance} for the NINO3 model and \cref{fig:lfv-markov-bias-variance} for the two-state Markov model.
+As expected, the stationary model (right column) performs well overall, with low bias and low variance.
+The \gls{hmm} (left column) actually out-performs the stationary model, with slightly lower variance than the stationary model, because it better captures the true multimodal distribution that emerges from dependence on the NINO3 index which exhibits several regimes.
+By contrast, the linear trend model (middle column) performs poorly for low $N$ and high $M$ because a positive probability is assigned to the existence of a positive trend.
+
+Of particular relevance to analysis of real-world data sets is the ratio of the project planning period $M$ to the characteristic periods of variability of the \gls{lfv}, denoted $T_{\text{LFV}}$.
+As shown in \cref{fig:enso-ts}, the NINO3 time series is most active in the \SIrange{3}{6}{year} band.
+If $T_{\text{LFV}} \ll M$, then a stationary assumption may provide reasonable estimates, and fewer observations may be required (shorter $N$).
+In the real world, however, many hydroclimate time series vary at multidecadal and longer frequencies.
+In this case, as illustrated in \cref{fig:conceptual-sketch}, the characteristic frequencies $T_{\text{LFV}}$ may be as large or larger than $M$, particularly if multidecadal modes such as the \gls{pdo} or \gls{amo} are involved, and the \gls{lfv} must therefore be estimated explicitly.
+This in turn requires a longer observational record $N$ in order to identify and predict these different signals.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{lfv-only-nino3-bias-variance.pdf}
+  \caption{
+    As \cref{fig:secular-nino3-bias-variance} but for sequences generated with zero secular change and \gls{lfv} from the NINO3 model.
+  }\label{fig:lfv-nino3-bias-variance}
+\end{figure}
+
+\subsection{Low-Frequency Variability and Secular Change}
+
+In the final and most realistic case, where both \gls{lfv} and secular change are present, stationary models perform well for short $M$ while for long $M$ the trend must be identified from a long record and modeled explicitly.
+
+Simulation results are presented for the NINO3 model in \cref{fig:lfv-secular-nino3-bias-variance} and for the two-state Markov chain model in \cref{fig:lfv-secular-markov-bias-variance}.
+Consistent with the conceptual illustration of \cref{fig:conceptual-sketch}, the relative importance of secular change and \gls{lfv} depends on $M$.
+When $M$ is long, climate risk is dominated by secular change and it becomes essential to model this risk explicitly (\ie, through the linear trend model).
+Alternatively, when $M$ is short, \gls{lfv} dominates and the increased variance associated with estimating a trend is not worth the modest reduction in bias.
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{lfv-secular-nino3-bias-variance.pdf}
+  \caption{
+    As \cref{fig:secular-nino3-bias-variance} but for sequences generated from the NINO3 model with both \gls{lfv} and secular change.
+  }\label{fig:lfv-secular-nino3-bias-variance}
+\end{figure}
+
+% -----------------------------------------------------------------------------
+% DISCUSSION
+% -----------------------------------------------------------------------------
+
+\clearpage
+\section{Discussion}\label{sec:discussion-conclusions}
+
+Evaluating and implementing investments for climate risk mitigation demands making projections of climate risk, which exhibits both \gls{lfv} and secular trends, over the $M$-year project life of the instrument.
+The success of this prediction will depend on the identifiability of different signals from an $N$-year sample, the time scales of \gls{lfv} relative to the project life of the instrument, and the uncertainty associated with the estimation.
+In this paper we took a synthetic data approach to explore the implications of varying $M$ and $N$ in stylized scenarios which represent important features of real-world hydroclimate systems.
+
+The stationary, linear trend, and \gls{hmm} models considered for estimation present an idealized alternative to more complex, physically based models for future risk projection.
+They were chosen to represent the ability of simple models to capture two features of interest: \gls{lfv} and secular trends.
+The models were assessed on their performance over a complete future period of length $M$ years; as discussed in \cref{sec:introduction} the bias and variance computed together represent the likelihood for over- or under-design of the instrument in a given climate scenario (see \cref{fig:conceptual-bias-variance}).
+If more complex methods, such as analysis of \gls{ipcc} scenarios, are used, the sample size $N$ used in our experiments may be straightforwardly interpreted as a surrogate for the total informational uncertainty in the analysis.
+
+The climate adaptation decisions which this analysis can inform are typically framed as economic cost-benefit analyses which discount future cash flows at some annual rate.
+The application of a positive discount rate, as is typical in the public and private sectors, emphasizes the importance of predicting near-term risk.
+Even ignoring this, however, if the uncertainty associated with the performance of the instrument increases into the future (as shown in \cref{fig:conceptual-sketch}) then adaptation strategies with a short $M$ are preferred.
+This is consistent with recent emphasis on the importance of making decisions that are robust to a wide range of possible future climates \citep[\ie,][]{Haasnoot:2013im, Poff:2015jn}.
+
+For these short-$M$ projects, cyclical climate variability is dominant over the project planning period \citep{Hodgkins:2017hw, Jain:2001hz}.
+Analysis of the former using the wavelet transformation \citep{Torrence:1998jp} shows dominant spectral peaks at 8, 20, and 64 years, and of the latter at 2 and 15 years.
+This is illustrated in \cref{sec:observed-lfv}, which shows the cyclical variability of two real-world hydroclimate systems: a 500 year drought reconstruction from the \gls{lbda} \citep{Cook:2010bz} and a \SI{107}{year} record of naturalized daily river stage on the American River at the Folsom Dam.
+The long periods and high amplitudes of the oscillations present in these time series highlight the importance of adapting not only to secular change but also, simultaneously, to \gls{lfv}.
+Interestingly, our results show that even though the two-state \gls{hmm} is an imperfect analog for the \gls{lfv} represented in the \gls{enso} process, it performs quite well for short $M$.
+This highlights that even imperfect estimates of \gls{lfv} can support suffessful climate adaptation.
+
+For projects with longer $M$, it becomes necessary to consider the role of secular change.
+As illustrated schematically in \cref{fig:conceptual-sketch}, uncertainties as to future population, economic development, renewable energy technology, and greenhouse gas mitigation collectively lead to very high uncertainty in projections of future climate risk.
+As the physical mechanisms cascade from global (\eg, global mean surface temperature) to regional  \citep[\eg, storm track position][]{Barnes:2015gl} and local (\eg, annual-maximum streamflows) scales, uncertainties compound and increase \citep{Dittes:2017he}.
+We find that when making risk projections that consider secular change, mis-specification of a trend's mathematical form yields estimates which are increasingly unreliable as $M$ increases.
+This is particularly important given that in real-world settings the true form of the trend is not known and thus ``nonstationary'' projections which assume a particular type of trend are likely to perform poorly \citep{Montanari:2014hl, Serinaldi:2015bq}.
+
+Although the simulations presented here are neatly divided into secular change, \gls{lfv} only, and \gls{lfv} plus secular change, real-world hydroclimate time series exhibit \gls{lfv} on many timescales and several sources of (not necessarily linear) secular change, as shown in \cref{fig:observed-lfv}.
+Identifying and modeling these different physical signals requires a large amount of information, represented here by the length of the $N$-year historical record.
+In places where long records are not available, however, information from nearby locations, reanalysis products, or \acrshort{gcm} runs may increase the amount of available information \citep{Merz:2008eh}, effectively increasing $N$.
+
+Depending on the specific climate mechanisms that impact a particular site, and the predictability thereof, the cost and risk associated with a sequence of short-term adaptation projects may be lower than with building a single, permanent structure to prepare for a worst-case scenario far into the future.
+For most large actors, a portfolio of both large $M$ and small $M$ projects will likely be necessary, none of which precludes the need for mitigation of global and local climate change and the development and execution of vulnerability reduction strategies.
+
+% -----------------------------------------------------------------------------
+% END MATTER
+% -----------------------------------------------------------------------------
+
+\acknowledgments
+
+The authors thank Nandini Ramesh of Columbia University for providing the synthetic NINO3 index from a \SI{100000}{year} run of the Cane-Zebiak model as described in \citet{Ramesh:2016hf}.
+The authors thank John High of the United States Army Corps of Engineers for providing the naturalized daily streamflows at the Folsom Dam.
+JDG thanks the NSF GRFP program for support (grant DGE 16-44869: ``Understanding \& Predicting Climate Drivers of Extreme, Mid-latitude River Floods'').
+DJF thanks SERDP program for support (grant 2516: ``Climate Informed Estimation of Hydrologic Extremes for Robust Adaptation to Non-Stationary Climate'').
+
+\bibliography{library}
+
+% -----------------------------------------------------------------------------
+% SUPPLEMENTAL INFORMATION -- CURRENTLY INCLUDED IN THIS FILE FOR CONVENIENCE
+% -----------------------------------------------------------------------------
+
+\clearpage
+\appendix
+
+\renewcommand{\thefigure}{S\arabic{figure}}
+\setcounter{figure}{0}
+\renewcommand{\theequation}{S\arabic{equation}}
+\setcounter{equation}{0}
+\renewcommand{\thetable}{S\arabic{table}}
+\setcounter{table}{0}
+
+\section{Supplemental Methods}\label{sec:supp-methods}
+
+In this section we provide further equations and parameter values used to generate and fit synthetic streamflow sequences.
+
+\subsection{Sampling Climate Risk}\label{sec:supp-nino-spectrum}
+
+As described in \cref{sec:methods-generating}, we use a synthetic NINO3 time series, as described in \citep{Ramesh:2016hf}, to represent low-frequency climate variability.
+\Cref{fig:enso-ts} shows the wavelet spectrum of this time serties, calculated using WaveletComp software \citep{Roesch:wlBQQoIs}.
+The global (average) wavelet power spectrum shows a clear peak around 3-7 years, in line with previous studies of \gls{enso} although interactions with other modes of \acrfull{lfv} found in some studies \citep{Jin:1994wq} is dampened in this model.
+There are, however, modes of \gls{lfv} between \SIrange{16}{128}{year} which are \emph{locally} strong at some points in time, which captures at least some effects of very low-frequency behavior for the purposes of this study.
+\begin{figure}
+  \includegraphics[width=\textwidth]{enso_wavelet.png}
+  \caption{
+    Wavelet analysis of the synthetic annual NINO3 time series described in \cref{sec:methods-generating}.
+    (L): wavelet power spectrum.
+    (R): global (average) power spectrum.
+    Blue dots indicate frequencies which are significant at $\alpha=0.10$ and red dots frequencies which are significant at $\alpha=0.05$ compared to white noise.
+  }\label{fig:enso-ts}
+\end{figure}
+
+\subsection{Projecting Climate Risk over the Future $M$ Years}
+
+As described in \cref{sec:methods}, we implement the stationary and trend lognormal models in a Bayesian framework using the stan programming language \citep{Carpenter:2017ke}.
+The full model, including priors, for the stationary lognormal model is given by \cref{eq:ln2-stationary}:
+\begin{align}\label{eq:ln2-stationary}
+  \begin{split}
+    \log Q_\text{hist} & \sim \normal \qty(\mu, \ \sigma) \\
+    \mu &\sim \normal \qty(0, 10) \\
+    \sigma &\sim \normal^+ \qty(0, 2)
+  \end{split}
+\end{align}
+where $\normal$ denotes the normal distribution and $\normal^+$ denotes a half-normal distribution.
+The full model, including priors, for the trend lognormal model is given by \cref{eq:ln2-trend}:
+\begin{align}\label{eq:ln2-trend}
+  \begin{split}
+    \mu &= \mu_0 + \beta_\mu \qty(t - t_0) \\
+  \log Q_\text{hist} & \sim \normal \qty(\mu, \ \xi \mu) \\
+  \mu_0 & \sim \normal \qty(0, 10) \\
+  \beta_\mu & \sim \normal \qty(0, 0.1) \\
+  \log \xi & \sim \normal \qty(0.1, 0.1)
+  \end{split}
+\end{align}
+where $\xi$ is an estimated coefficient of variation.
+
+\subsection{Experiment Design}\label{sec:methods-experiments}
+
+In this section we describe the parameters used to generate the specific sets of sequences that are analyzed in the results section.
+To explore the temporal structure of risk, we generate $J=2000$ sequences of streamflow, using both the NINO3 and Markov models, for each of several combinations of $M$ and $N$.
+Streamflow sequences are generated using the stationary generating functions both with and without superimposing a secular trend.
+Both the NINO3 model and the Markov model are used; the parameters are shown in \cref{tab:nino-stationary} and \cref{tab:markov-stationary}, respectively.
+
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{llll}
+    \toprule
+    Parameter & \gls{lfv} Only & Secular Only & Secular + \gls{lfv} \\
+    \midrule
+    $\mu_0$             & 6     & 6.5   & 6 \\
+    $\gamma$            & 0     & 0.015 & 0.015\\
+    $\beta$             & 0.5   & 0     & 0.5\\
+    $\xi$               & 0.1   & 0.1   & 0.1\\
+    $\sigma_\text{min}$ & 0.01  & 0.01  & 0.01\\
+    Threshold           & 3000  & 3000  & 3000 \\
+    \bottomrule
+  \end{tabular}
+  \caption{
+    Parameters of the NINO3 model for the \gls{lfv} only, secular only, and secular plus \gls{lfv} experiments.
+  }\label{tab:nino-stationary}
+\end{table}
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{llll}
+    \toprule
+    Parameter & \gls{lfv} Only & Secular Only & Secular + \gls{lfv} \\
+    \midrule
+    $\mu_1$             & 6.75  & 6.5   & 6.75\\
+    $\mu_2$             & 6     & 6.5   & 6\\
+    $\gamma_1$          & 0     & 0.015 & 0.015\\
+    $\gamma_2$          & 0     & 0.015 & 0\\
+    $\xi$               & 0.1   & 0.1   & 0.1\\
+    $\sigma_\text{min}$ & 0.01  & 0.01  & 0.01\\
+    Threshold           & 3000  & 3000  & 3000 \\
+    \bottomrule
+  \end{tabular}
+  \caption{
+    Parameters of the two-state Markov chain model for the \gls{lfv} only, secular only, and secular plus \gls{lfv} experiments.
+  }\label{tab:markov-stationary}
+\end{table}
+
+\section{Supplemental Results}
+
+\subsection{Observed Low-Frequency Hydroclimate Variability}\label{sec:observed-lfv}
+
+\Acrfull{lfv} of the climate is present in a wide range of real-world time series \citep{Hodgkins:2017hw, Swierczynski:2012km, Cook:2010bz}.
+This variability is illustrated in \cref{fig:observed-lfv}, which shows a \SI{500}{year} drought reconstruction from the \gls{lbda}, a \SI{100}{year} record of daily river stage on the American River at Folsom, and the wavelet \citep{Torrence:1998jp} average spectrum for both.
+Peaks for the American River time series are apparent at approximately 2 and 15 years and in the \gls{lbda} time series at approximately 8, 20, and 64 years.
+This is illustrated by the blue line in the top left panel of \cref{fig:observed-lfv}, which shows a \SI{20}{year} moving average of the \gls{lbda} time series.
+This clearly illustrates the strong observed multidecadal variability.
+For further discussion of the \gls{lbda} time series we refer the reader to \citet{Cook:2010bz}.
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{observed-lfv.pdf}
+  \caption{
+    Hydroclimate time series vary on many time scales.
+    (a) A \SI{500}{year} reconstruction of summer rainfall over Arizona from the \acrfull{lbda}.
+    High numbers indicate more severe drought.
+    A 20-year running mean is also shown in blue.
+    (b) A \SI{100}{year} record of annual-maximum streamflows for the American River at Folsom.
+    (c) the wavelet global (average) spectrum of the \gls{lbda} time series (a).
+    Blue dots indicate frequencies which are significant at $\alpha=0.10$ and red dots frequencies which are significant at $\alpha=0.05$ compared to white noise.
+    (d) wavelet spectrum, like (c), for the American River data.
+  }\label{fig:observed-lfv}
+\end{figure}
+
+\subsection{Results for the Markov Model}
+
+In \cref{sec:results} all results given use the NINO3 model to generate synthetic flood sequences.
+In this section equivalent results are given for sequences generated with the two-state Markov chain model described in \cref{sec:methods}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{lfv-only-markov-bias-variance.pdf}
+  \caption{
+    \Gls{lfv} only: as \cref{fig:lfv-nino3-bias-variance} for sequences generated with the two-state Markov chain model.
+  }\label{fig:lfv-markov-bias-variance}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{lfv-secular-markov-bias-variance.pdf}
+  \caption{
+    \Gls{lfv} plus secular change: as \cref{fig:lfv-secular-nino3-bias-variance} for sequences generated with the two-state Markov chain model.
+  }\label{fig:lfv-secular-markov-bias-variance}
+\end{figure}
+
+\end{document}
