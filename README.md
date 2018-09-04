@@ -10,7 +10,7 @@ You can install all the required packages in `conda`:
 
 ```
 conda env create -f environment.yml
-conda activate STXCluster
+conda activate robust-adaptation-cyclical-risk
 ```
 
 ## Running

@@ -3,3 +3,5 @@
 *.prv
 *.#*
 robust-adaptation-cyclical-risk.pdf
+*.pkl
+*/.ipynb_checkpoints/*.ipynb

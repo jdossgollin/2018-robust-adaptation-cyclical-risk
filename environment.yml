@@ -1,4 +1,4 @@
-name: STXCluster
+name: robust-adaptation-cyclical-risk
 channels:
     - conda-forge
     - defaults
