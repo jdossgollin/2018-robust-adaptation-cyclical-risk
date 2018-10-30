@@ -1,0 +1,33 @@
+\begin{block}{Experiment Design}
+    \begin{figure}
+        \centering
+        \includegraphics[width=\textwidth]{flowchart.pdf}
+        \caption{
+          Framework for assessing flood risk from synthetic streamflow sequences.
+        }\label{fig:methods-summary}
+      \end{figure}
+      Stylized experiment design (\cref{fig:methods-summary}):
+      \begin{enumerate}
+        \item For each, generate many synthetic streamflow sequences embedded with one of
+        \begin{enumerate}
+          \item Secular trend only
+          \item \gls{lfv} from \gls{enso} only
+          \item both \gls{lfv} and secular trend
+        \end{enumerate}
+        plus stochastic variability.
+        \item Fit using simple Bayesian model
+        \item Evaluate estimation bias and variance across all synthetic streamflow sequences
+        \item Repeat for many combinations of $N$ (length of historical record: proxy for informational uncertainty) and $M$ (project planning period)
+      \end{enumerate}
+      This approach is illustrated in \cref{fig:example-fit}
+      \begin{figure}
+        \includegraphics[width=\textwidth]{Example-NINO3-M100-N50.pdf}
+        \caption{
+          An illustration of the estimation procedure.
+          A single streamflow sequence with $N=50$ and $M=100$ is shown for each of the three cases (secular only, \gls{lfv} only, and secular plus \gls{lfv}) considered.
+          The blue line shows the observed sequence.
+          The gray shading indicates the 50\% and 95\% confidence intervals using each of the three fitting methods discussed.
+          The horizontal black line indicates the flood threshold.
+        }\label{fig:example-fit}
+      \end{figure}
+\end{block}

@@ -1,0 +1,174 @@
+\documentclass[serif,mathserif,final]{beamer}
+\mode<presentation>{\usetheme{Lankton}}
+
+
+\usepackage[
+  orientation=landscape,
+  width=40in,height=30in,%size=a0, % paper size
+  scale=1.10 % font scale factor
+]{beamerposter}
+\setbeamertemplate{caption}[numbered] % number figs
+
+% Graphics Path
+\usepackage{graphicx}
+\graphicspath{{./figs/}{../fig/}{./}} % folders of figures
+
+% OTHER PACKAGE CALLS
+\usepackage[utf8]{inputenc}
+\usepackage{
+  amsmath,amsfonts,amssymb,
+  booktabs, % for nice tables
+  xspace,
+  framed,
+  siunitx,
+  nth,
+  physics
+}
+
+% Fixed-width columns
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+% SIUNITX
+\sisetup{round-mode=figures, round-precision=3}
+
+% cross-refs
+\usepackage{cleveref}
+
+%------ USE BIBLATEX WITH EXTREMELY MINAMALIST STYLE -----
+% Use BibLaTeX
+\usepackage[
+	backend=biber,
+	url=false,
+	isbn=false,
+	doi=false,
+	maxnames = 2,
+	style=numeric-comp,
+	uniquename=false,
+	uniquelist=false,
+	firstinits=true,
+	sorting=nyt,
+	natbib=false,
+	isbn=false,
+]{biblatex}
+\addbibresource{./library.bib}
+\renewbibmacro{in:}{}
+
+% One-paragraph bibliography environment
+\defbibenvironment{bibliography}
+{\list%
+  {\printtext[labelnumberwidth]{%
+    \printfield{prefixnumber}%
+    \printfield{labelnumber}}%
+  \ifentrytype{article}{}{}}%
+    {\setlength{\leftmargin}{0pt}%
+    \setlength{\topsep}{0pt}}%
+    \renewcommand*{\makelabel}[1]{##1}}%
+  {\endlist}%
+{\mkbibitem}
+
+% \mkbibitem just prints item label and non-breakable space
+\makeatletter
+\newcommand{\mkbibitem}{\@itemlabel\addnbspace}
+\makeatother
+
+% Add breakable space between bibliography items
+\renewcommand*{\finentrypunct}{\addperiod\space}
+
+% Set fields to clear
+\AtEveryBibitem{%
+	\clearfield{month}%
+	\clearfield{day}%
+  \clearlist {language}%why this has to be clear list.....
+  \clearfield{pages}%
+	\clearfield{pagetotal}%
+	\clearfield{eprinttype}%
+	\clearfield{eprint}%
+	\clearfield{number}%
+	\clearfield{volume}%
+	\clearfield{issue}%
+	\clearfield{name:given}
+	\clearfield{name:first}
+	\ifentrytype{article}{%
+		\clearfield{title}%
+	}%
+}
+
+%------- GLOSSARIES PACKAGE -------
+\usepackage[acronym]{glossaries}
+\makeglossaries
+\newacronym{acc}{ACC}{anthropogenic climate change}
+\newacronym{amo}{AMO}{Atlantic Multidecadal Oscillation}
+\newacronym{cba}{CBA}{cost-benefit analysis}
+\newacronym{enso}{ENSO}{the El Ni\~{n}o-Southern Oscillation}
+\newacronym{ffa}{FFA}{flood frequency analysis}
+\newacronym{gcm}{GCM}{general circulation model}
+\newacronym{hmm}{HMM}{hidden Markov model}
+\newacronym{iid}{IID}{independent and identically distributed}
+\newacronym{ipcc}{IPCC}{International Panel on Climate Change}
+\newacronym{ipo}{IPO}{Interdecadal Pacific Oscillation}
+\newacronym{lbda}{LBDA}{living blended drought analysis}
+\newacronym{lfv}{LFV}{low-frequency climate variability}
+\newacronym{nao}{NAO}{North Atlantic Oscillation}
+\newacronym{pdo}{PDO}{Pacific Decadal Oscillation}
+\newacronym{s2d}{S2D}{seasonal to decadal}
+\newacronym{s2s}{S2S}{sub-seasonal to seasonal}
+
+%-- Header and footer information ----------------------------------
+\newcommand{\footleft}{Correspondence to: \url{james.doss-gollin@columbia.edu}}
+\newcommand{\footright}{Article submitted to Earth's Future}
+
+\title{Robust Adaptation to Multi-Scale Climate Variability}
+\author{James Doss-Gollin\inst{1} \quad David J. Farnham\inst{2} \quad Scott Steinschneider\inst{3} \quad Upmanu Lall\inst{1}}
+\institute
+{\inst{1} Department of Earth and Environmental Engineering Columbia University \inst{2} Carnegie Institution for Science \inst{3} Department of Biological and Environmental Engineering, Cornell University}
+
+%-------------------------------------------------------------------
+
+
+%-- Main Document --------------------------------------------------
+\begin{document}
+\begin{frame}{}
+  \begin{columns}[t]
+
+    %-- Column 1 ---------------------------------------------------
+    \begin{column}{0.22\linewidth}
+
+        \input{blocks/at-a-glance.tex}
+        \input{blocks/observed-lfv.tex}
+        \input{blocks/climate-change.tex}
+
+    \end{column}%1
+
+    %-- Column 2 ---------------------------------------------------
+    \begin{column}{0.22\linewidth}
+
+      \input{blocks/uncertainty.tex}
+      \input{blocks/uncertainty-implications.tex}
+      
+    \end{column}%2
+
+    %-- Column 3 ---------------------------------------------------
+    \begin{column}{0.22\linewidth}
+
+      \input{blocks/experiment-design.tex}
+      \input{blocks/conclusions.tex}
+
+    \end{column}%3
+
+
+    %-- Column 4 ---------------------------------------------------
+    \begin{column}{0.22\linewidth}
+
+      \input{blocks/systematic-experiments.tex}
+      \begin{block}{References}
+        \renewcommand*{\bibfont}{\footnotesize}
+        \printbibliography[heading=none]
+      \end{block}
+  
+
+    \end{column}%1
+
+  \end{columns}
+\end{frame}
+\end{document}
