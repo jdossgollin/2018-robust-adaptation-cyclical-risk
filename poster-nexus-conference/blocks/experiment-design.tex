@@ -1,12 +1,5 @@
 \begin{block}{Experiment Design}
-    \begin{figure}
-        \centering
-        \includegraphics[width=\textwidth]{flowchart.pdf}
-        \caption{
-          Framework for assessing flood risk from synthetic streamflow sequences.
-        }\label{fig:methods-summary}
-      \end{figure}
-      Stylized experiment design (\cref{fig:methods-summary}):
+      Stylized experiment design:
       \begin{enumerate}
         \item For each, generate many synthetic streamflow sequences embedded with one of
         \begin{enumerate}
@@ -15,7 +8,12 @@
           \item both \gls{lfv} and secular trend
         \end{enumerate}
         plus stochastic variability.
-        \item Fit using simple Bayesian model
+        \item Fit using probabilistic model:
+        \begin{enumerate}
+          \item Bayesian log-normal model
+          \item Bayesian log-normal model with linear trend
+          \item Two-state \gls{hmm}
+        \end{enumerate}
         \item Evaluate estimation bias and variance across all synthetic streamflow sequences
         \item Repeat for many combinations of $N$ (length of historical record: proxy for informational uncertainty) and $M$ (project planning period)
       \end{enumerate}
