@@ -1,6 +1,6 @@
 \documentclass[
   10pt,     % set default generic font size
-  handout   % ignores all the \pause commands
+  %handout   % ignores all the \pause commands
 ]{beamer}
 \usetheme[block=fill]{metropolis}
 
@@ -12,7 +12,10 @@
 \subtitle{Toward Better Water Planning and Management in an Uncertain World I}
 \date{19 October 2018}
 \author{\alert{James Doss-Gollin}$^1$, David J. Farnham$^2$, Scott Steinschneider$^3$, Upmanu Lall$^1$}
-\institute{$^1$: Columbia University Department of Earth and Environmental Engineering\\$^2$: Carnegie Institution for Science\\$^3$: Department of Biological and Environmental Engineering, Cornell University}
+\institute{
+  $^1$Columbia University Department of Earth and Environmental Engineering\\
+  $^2$Carnegie Institution for Science\\
+  $^3$Department of Biological and Environmental Engineering, Cornell University}
 \titlegraphic{\hfill\includegraphics[height=1.25cm]{SeasCrown_blue.png}}
 
 % -----------------------------------------------------------------------------
@@ -36,9 +39,6 @@
 \usepackage{fontspec}
 \usepackage{fontawesome5}
 
-% Use TIKZ
-\input{tikz_setup.tex}
-
 % figures
 \usepackage{graphicx}
 \graphicspath{{../fig/}} % can add more
@@ -61,6 +61,8 @@
         {etc.\@\xspace}%
 }
 \makeatother
+\newcommand{\usd}[1]{\SI[round-precision=2,round-mode=places,round-integer-to-decimal]{#1}[\$]{}}
+\newcommand{\normal}{\mathcal{N}}
 
 % Biblatex Setup using a file called library.bib
 \setbeamertemplate{bibliography item}[text] % don't print the symbols
@@ -100,21 +102,22 @@
     \begin{column}{0.5\textwidth}
       \begin{figure}
         \includegraphics[width=\columnwidth]{three-barriers.png}
-        \caption{Possible construction of barriers for storm surge protection in New York}
       \end{figure}
-      Structural ``Mega-Project'':
       \begin{itemize}
-        \item Expensive: $\approx$ \$ 25 billion
         \item Environmental, social impacts
+        \item Permanent and inflexible: $\mathcal{O} \qty(\$25 \text{billion})$ is ``locked-in''
+        \item Potential for over- or under-design
       \end{itemize}
     \end{column}
     \pause
     \begin{column}{0.5\textwidth}
-      Alternative:
+      \begin{figure}
+        \includegraphics[width=\columnwidth]{flood-concept.png}
+      \end{figure}
       \begin{itemize}
-        \item Lots of local-scale projects
-        \item Resilience boosting and vulnerability reduction
-        \item Ecological restoration, financial instruments, zoning changes, structures where needed
+        \item Local resilience and vulnerability reduction
+        \item Portfolio of long- and short-term investments
+        \item Update portfolio regularly
       \end{itemize}
     \end{column}
   \end{columns}
@@ -305,10 +308,62 @@
 \setcounter{equation}{0}
 \renewcommand{\thetable}{A\arabic{table}}
 \setcounter{table}{0}
-\section{Supplemental Figures}
 
-\begin{frame}
-  We can add more figures here
+\section{Generating Synthetic Streamflow Sequences}
+
+\begin{frame}{Equations for Synthetic Streamflow Generation}
+  First
+  \begin{equation} \label{eq:lognormal}
+    \log Q(t) \sim \normal \qty(\mu(t), \sigma(t)).
+  \end{equation}
+  Where $\sigma(t) = \xi \mu(t)$, with $\sigma(t) \geq \sigma_\text{min} > 0$.
+  Then,
+  \begin{equation}\label{eq:nino3}
+    \mu(t) = \mu_0 + \beta x(t) + \gamma \qty(t - t_0),
+  \end{equation}
+  and where $x(t)$ is NINO3.4 index from realistic ENSO model \citep{Zebiak:1987cl,Ramesh:2016hf}
+\end{frame}
+
+\begin{frame}{Spectrum of LFV Used}
+  \begin{figure}
+    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio=true]{enso_wavelet}
+    \caption{Wavelet spectrum of (sub-set of) ENSO model used to embed synthetic streamflow sequences with low-frequency variability}
+  \end{figure}
+\end{frame}
+
+\section{Climate Risk Estimation}
+
+\begin{frame}{Stationary LN2 Model}
+  Treat the $N$ historical observations as IID draws from stationary distribution
+  \begin{align}\label{eq:ln2-stationary}
+    \begin{split}
+      \log Q_\text{hist} & \sim \normal \qty(\mu, \ \sigma) \\
+      \mu &\sim \normal \qty(7, 1.5) \\
+      \sigma &\sim \normal^+ \qty(1, 1)
+    \end{split}
+  \end{align}
+  where $\normal$ denotes the normal distribution and $\normal^+$ denotes a half-normal distribution.
+  Fit in Bayesian framework using stan \citep{Carpenter:2017ke}.
+\end{frame}
+
+\begin{frame}{Trend LN2 Model}
+  Treat the $N$ historical observations as IID draws from log-normal distribution with linear trend
+  \begin{align}\label{eq:ln2-trend}
+    \begin{split}
+      \mu &= \mu_0 + \beta_\mu \qty(t - t_0) \\
+    \log Q_\text{hist} & \sim \normal \qty(\mu, \ \xi \mu) \\
+    \mu_0 & \sim \normal \qty(7, 1.5) \\
+    \beta_\mu & \sim \normal \qty(0, 0.1) \\
+    \log \xi & \sim \normal \qty(0.1, 0.1)
+    \end{split}
+  \end{align}
+  where $\xi$ is an estimated coefficient of variation.
+  Also fit in stan.
+\end{frame}
+
+\begin{frame}{Hidden Markov Model}
+  Two-state HMM \citep[see][]{Rabiner:1986jk} implemented using pomegranate python package \citep{Schreiber:2017tg}.
+  See package documentation for reference.
 \end{frame}
 
 \end{document}
