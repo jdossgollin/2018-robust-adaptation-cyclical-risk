@@ -1,0 +1,314 @@
+\documentclass[
+  10pt,     % set default generic font size
+  handout   % ignores all the \pause commands
+]{beamer}
+\usetheme[block=fill]{metropolis}
+
+% -----------------------------------------------------------------------------
+% Title and Author Information -- Need to Edit
+% -----------------------------------------------------------------------------
+
+\title{H52F-05H: Robust Adaptation to\\Multi-Scale Climate Variability}
+\subtitle{Toward Better Water Planning and Management in an Uncertain World I}
+\date{19 October 2018}
+\author{\alert{James Doss-Gollin}$^1$, David J. Farnham$^2$, Scott Steinschneider$^3$, Upmanu Lall$^1$}
+\institute{$^1$: Columbia University Department of Earth and Environmental Engineering\\$^2$: Carnegie Institution for Science\\$^3$: Department of Biological and Environmental Engineering, Cornell University}
+\titlegraphic{\hfill\includegraphics[height=1.25cm]{SeasCrown_blue.png}}
+
+% -----------------------------------------------------------------------------
+% Package Configuration -- Don't Necessarily Need to Edit
+% -----------------------------------------------------------------------------
+
+% Packages with Options
+\usepackage[english]{babel}
+
+% Package List
+\usepackage{
+  array,                              % for custom table widths
+  appendixnumberbeamer,               % don't count appendix slides in progress bar
+	booktabs,                           % for better (alternative?) tables
+  natbib,                             % references!
+	physics,                            % for better notation
+  siunitx,                            % for SI notation
+}
+
+% cool fonts
+\usepackage{fontspec}
+\usepackage{fontawesome5}
+
+% Use TIKZ
+\input{tikz_setup.tex}
+
+% figures
+\usepackage{graphicx}
+\graphicspath{{../fig/}} % can add more
+
+% Fixed-width columns
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+% Change the captions
+\setbeamerfont{caption}{size=\scriptsize}
+
+% macros
+\usepackage{xspace}
+\newcommand*{\eg}{e.g.\@\xspace}
+\newcommand*{\ie}{i.e.\@\xspace}
+\makeatletter
+\newcommand*{\etc}{%
+    \@ifnextchar{.}%
+        {etc}%
+        {etc.\@\xspace}%
+}
+\makeatother
+
+% Biblatex Setup using a file called library.bib
+\setbeamertemplate{bibliography item}[text] % don't print the symbols
+
+% this has to come last
+\usepackage{cleveref}
+
+% -----------------------------------------------------------------------------
+% BEGIN DOCUMENT HERE
+% -----------------------------------------------------------------------------
+
+\begin{document}
+
+% TITLE PAGE
+\maketitle
+
+\begin{frame}{Thanks to...}
+  \begin{itemize}
+    \item Co-authors
+    \begin{itemize}
+      \item Upmanu Lall
+      \item David J. Farnham
+      \item Scott Steinschneider
+    \end{itemize}
+    \item Funders
+    \begin{itemize}
+      \item NSF GRPF
+      \item Columbia University Fu Foundation SEAS
+      \item DoD SERDP
+    \end{itemize}
+    \item Conveners
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{NYC After Sandy \citep{CityofNewYork:2013uh}}
+  \begin{columns}%[T]
+    \begin{column}{0.5\textwidth}
+      \begin{figure}
+        \includegraphics[width=\columnwidth]{three-barriers.png}
+        \caption{Possible construction of barriers for storm surge protection in New York}
+      \end{figure}
+      Structural ``Mega-Project'':
+      \begin{itemize}
+        \item Expensive: $\approx$ \$ 25 billion
+        \item Environmental, social impacts
+      \end{itemize}
+    \end{column}
+    \pause
+    \begin{column}{0.5\textwidth}
+      Alternative:
+      \begin{itemize}
+        \item Lots of local-scale projects
+        \item Resilience boosting and vulnerability reduction
+        \item Ecological restoration, financial instruments, zoning changes, structures where needed
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Planning Periods}
+  Projects are designed for finite ``planning periods'' $M$ over which climate risk must be estimated.
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+      \begin{itemize}
+        \item Success of ``mega-project'' depends on climate conditions $M \geq \SI{50}{years}$ in the future
+        \item Success of flexible, non-structural strategy (\ie financial instrument) depends on climate conditions $M \leq \SI{5}{years}$ in the future
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \begin{figure}
+        \includegraphics[width=\columnwidth]{Bias-Variance-Sketch.pdf}
+        \caption{Consequences of over- or under-estimating climate risk and associated uncertainty}
+      \end{figure}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}{Drivers of Future Climate Risk}
+  The physical drivers of hazard depend on the projection horizon ($M$).
+  However, our ability to identify these drivers depends on information available (\eg, the length of an $N$-year observational record).
+  \begin{figure}
+    \centering
+    \includegraphics[width=\textwidth,height=0.55\textheight,keepaspectratio=true]{conceptual-sketch.pdf}
+    \caption{Schematic description of (a) intrinsic and (b) estimation uncertainty.}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Real-World Climate Signals}
+  Real-world hydroclimate systems vary on many time and space scales
+  \begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{observed-lfv.pdf}
+    \caption{
+      (a) \SI{500}{year} reconstruction of summer rainfall over Arizona from LBDA \citep{Cook:2010bz}.
+      (b) A \SI{100}{year} record of annual-maximum streamflows for the American River at Folsom.
+      (c),(d): wavelet global (average) spectra.
+    }\label{fig:observed-lfv}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Research Objective}
+  How well can one identify and predict risk associated with cyclical and secular climate signals for the design life ($M$ years) and the probability of over- or under-design of a climate adaptation strategy given limited information (for which an $N$-year record is a proxy).
+  In particular, we consider:
+  \begin{itemize}
+    \item the specific roles of $M$ and $N$;
+    \item the choice of estimation strategy; and
+    \item the form of the underlying climate signal.
+  \end{itemize}
+\end{frame}
+
+\section{Stylized Experiments}
+
+\begin{frame}{Research Plan}
+  \begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{flowchart.pdf}
+    \caption{Flow chart of methods used.}
+  \end{figure}
+  \pause
+  \emph{N.B.}: models used for generating sequences and estimating risk chosen for \emph{interpretability}, not general \emph{validity} in applications.
+  Results are similar with other models.
+\end{frame}
+
+\begin{frame}{Example Sequences}
+  \begin{figure}
+    \centering
+    \includegraphics[width=\textwidth,height=0.65\textheight,keepaspectratio=true]{Example-NINO3-M100-N50.pdf}
+    \caption{
+      Synthetic flood sequences (blue) and estimated 50\%, 95\% intervals (gray).
+      Three scenarios are used for generating sequences (columns) and three models are used for estimating risk (rows).
+      Here $N=50$ and $M=100$.
+    }
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Stationarity: LFV Only}
+  Estimating a trend when none exists may lead to substantial over-estimation of risk, particularly for short $N$ or long $M$.
+  Explicitly modeling LFV improves estimates.
+  \begin{figure}
+    \centering
+    \includegraphics[width=\textwidth,height=0.65\textheight,keepaspectratio=true]{lfv-only-nino3-bias-variance.pdf}
+    \caption{
+      Expected estimation bias and variance for sequences with LFV but zero trend.
+    }\label{fig:lfv-nino3-bias-variance}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Nonstationarity: Secular Change Only}
+  Stationary models under-estimate risk, particularly for long $M$.
+  For short $M$ and short $N$, the uncertainty by estimating a trend is not worth the bias reduction.
+  \begin{figure}
+    \centering
+    \includegraphics[width=\textwidth,height=0.65\textheight,keepaspectratio=true]{secular-only-nino3-bias-variance.pdf}
+    \caption{
+      Expected estimation bias and variance for sequences with secular change only (no LFV).
+    }\label{fig:secular-nino3-bias-variance}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Nonstationarity: Secular Change + LFV}
+  Long $M$ requires trend estimation, but without sufficient data (long $N$) trend estimates are strongly biased.
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=\textwidth,height=0.65\textheight,keepaspectratio=true]{lfv-secular-nino3-bias-variance.pdf}
+    \caption{
+      As \cref{fig:secular-nino3-bias-variance} but for sequences generated with both LFV and secular change.
+    }\label{fig:lfv-secular-nino3-bias-variance}
+  \end{figure}
+\end{frame}
+
+\section{Discussion}
+
+\begin{frame}{Idealized Experiments $\iff$ Real World}
+  The idealizations and ``toy'' models used here are analogues for more complex real-world situations.
+  \begin{table}
+    \begin{tabular}{L{0.425\textwidth}L{0.525\textwidth}}
+      \toprule
+      Analysis & Real World \\\midrule
+      $N$-year record & Total informational uncertainty of an estimate \\\midrule
+      Statistical models of increasing complexity and \# parameters & Statistical and dynamical model chains of increasing complexity and \# parameters \\\midrule
+      LFV comes from ENSO only & LFV comes from many signals \\\midrule
+      Linear trends & Secular changes of unknown form \\\midrule
+      Trends and LFV Independent & Trends and LFV modes interact\\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+\begin{frame}{Key Findings}
+  Depending on the specific climate mechanisms that impact a particular site, and the predictability thereof, the cost and risk associated with a sequence of short-term adaptation projects may be lower than with building a single, permanent structure to prepare for a worst-case scenario far into the future:
+  \begin{itemize}
+      \item As uncertainty increases, adaptation strategies with short planning periods are preferred
+      \item Risk profile of short-$M$ projects dominated by LFV \citep{Jain:2001hz, Hodgkins:2017hw}
+      \item When the planning period is long, trends must be estimated explicitly -- requiring more data
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Some Potential Implications}
+  \begin{table}
+    \begin{tabular}{L{0.425\textwidth}L{0.525\textwidth}}
+      \toprule
+      Question & Analysis \\\midrule
+      Linear trend models? & No, that was just for demonstration -- avoid un-physical extrapolation \\\midrule
+      Use only last 30 years to address nonstationarity? & No, this increases variance; use paleo records, observations, and climate models for risk estimation \\\midrule
+      Build large infrastructure to manage a changing climate? & Sometimes, but consider alternatives, including postponing construction to increase $N$\\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+% -----------------------------------------------------------------------------
+% QUESTIONS, BIBLIOGRAPHY
+% -----------------------------------------------------------------------------
+
+\begin{frame}[allowframebreaks]{References}
+  \renewcommand*{\bibfont}{\footnotesize}
+  \renewcommand{\bibsection}{}
+  \nocite{DossGollin:TjTkb07T}
+	\bibliographystyle{agufull08}
+  \bibliography{library}
+\end{frame}
+
+\begin{frame}[standout]
+  \alert{Thanks for your attention!}\\\vspace{1.5cm}
+  \begin{tabular}{rl}
+    \faIcon[regular]{twitter},\faIcon[regular]{github} & \url{@jdossgollin} \\
+    \faIcon[regular]{envelope} & \url{james.doss-gollin@columbia.edu}\\
+    \faIcon[regular]{paperclip} & \url{www.jamesdossgollin.me}
+  \end{tabular}
+\end{frame}
+
+% -----------------------------------------------------------------------------
+% BACKUP SLIDES
+% -----------------------------------------------------------------------------
+
+\appendix
+\renewcommand{\thefigure}{A\arabic{figure}}
+\setcounter{figure}{0}
+\renewcommand{\theequation}{A\arabic{equation}}
+\setcounter{equation}{0}
+\renewcommand{\thetable}{A\arabic{table}}
+\setcounter{table}{0}
+\section{Supplemental Figures}
+
+\begin{frame}
+  We can add more figures here
+\end{frame}
+
+\end{document}
