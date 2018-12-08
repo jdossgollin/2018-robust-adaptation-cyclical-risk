@@ -10,7 +10,7 @@
 
 \title{H52F-05H: Robust Adaptation to\\Multi-Scale Climate Variability}
 \subtitle{Toward Better Water Planning and Management in an Uncertain World I}
-\date{19 October 2018}
+\date{14 December 2018}
 \author{\alert{James Doss-Gollin}$^1$, David J. Farnham$^2$, Scott Steinschneider$^3$, Upmanu Lall$^1$}
 \institute{
   $^1$Columbia University Department of Earth and Environmental Engineering\\
@@ -33,6 +33,7 @@
   natbib,                             % references!
 	physics,                            % for better notation
   siunitx,                            % for SI notation
+  appendixnumberbeamer,               % don't number slides / sections in appendix
 }
 
 % cool fonts
@@ -63,12 +64,35 @@
 \makeatother
 \newcommand{\usd}[1]{\SI[round-precision=2,round-mode=places,round-integer-to-decimal]{#1}[\$]{}}
 \newcommand{\normal}{\mathcal{N}}
+\newcommand*{\ditto}{---''---}
 
 % Biblatex Setup using a file called library.bib
 \setbeamertemplate{bibliography item}[text] % don't print the symbols
 
+% Use the glossaries package
+\usepackage[acronym]{glossaries}
+\makeglossaries
+\newacronym{acc}{ACC}{anthropogenic climate change}
+\newacronym{amo}{AMO}{Atlantic Multidecadal Oscillation}
+\newacronym{cba}{CBA}{Cost-Benefit Analysis}
+\newacronym{enso}{ENSO}{the El Ni\~{n}o-Southern Oscillation}
+\newacronym{ffa}{FFA}{flood frequency analysis}
+\newacronym{gcm}{GCM}{general circulation model}
+\newacronym{hmm}{HMM}{hidden Markov model}
+\newacronym{iid}{IID}{independent and identically distributed}
+\newacronym{ipcc}{IPCC}{International Panel on Climate Change}
+\newacronym{ipo}{IPO}{Interdecadal Pacific Oscillation}
+\newacronym{lbda}{LBDA}{living blended drought analysis}
+\newacronym{lfv}{LFV}{low-frequency climate variability}
+\newacronym{nao}{NAO}{North Atlantic Oscillation}
+\newacronym{npv}{NPV}{Net Present Value}
+\newacronym{pdo}{PDO}{Pacific Decadal Oscillation}
+\newacronym{s2d}{S2D}{seasonal to decadal}
+\newacronym{s2s}{S2S}{sub-seasonal to seasonal}
+
 % this has to come last
 \usepackage{cleveref}
+\usepackage{hyperref}
 
 % -----------------------------------------------------------------------------
 % BEGIN DOCUMENT HERE
@@ -93,20 +117,22 @@
       \item Columbia University Fu Foundation SEAS
       \item DoD SERDP
     \end{itemize}
-    \item Conveners
+    \item Conveners, colleagues, collaborators
   \end{itemize}
 \end{frame}
 
+\section{Setup}
+
 \begin{frame}{NYC After Sandy \citep{CityofNewYork:2013uh}}
-  \begin{columns}%[T]
+  \begin{columns}[T]
+    \pause
     \begin{column}{0.5\textwidth}
       \begin{figure}
         \includegraphics[width=\columnwidth]{three-barriers.png}
       \end{figure}
       \begin{itemize}
         \item Environmental, social impacts
-        \item Permanent and inflexible: $\mathcal{O} \qty(\$25 \text{billion})$ is ``locked-in''
-        \item Potential for over- or under-design
+        \item Permanent: $\approx \$25 \text{billion}$ ``locked-in''
       \end{itemize}
     \end{column}
     \pause
@@ -115,162 +141,157 @@
         \includegraphics[width=\columnwidth]{flood-concept.png}
       \end{figure}
       \begin{itemize}
-        \item Local resilience and vulnerability reduction
-        \item Portfolio of long- and short-term investments
-        \item Update portfolio regularly
+        \item Targeted local resilience $\Uparrow$ and vulnerability $\Downarrow$
+        \item Portfolio of investments
+        \item Update regularly
       \end{itemize}
     \end{column}
   \end{columns}
+  \pause
+  \begin{alertblock}{How should NYC allocate resources, over time,}
+    for infrastructure and climate adaptation given uncertainty in future climate and societal needs?
+  \end{alertblock}
 \end{frame}
 
-\begin{frame}{Planning Periods}
-  Projects are designed for finite ``planning periods'' $M$ over which climate risk must be estimated.
+\begin{frame}{Idea 1: Risk Estimates over Finite Future Periods}
+  \begin{alertblock}{Typical Approach:}
+    \gls{cba} over a \alert{finite} planning horizon of $M$ years (explicitly or implicitly).
+  \end{alertblock}
   \begin{columns}
-    \begin{column}{0.6\textwidth}
+    \pause
+    \begin{column}{0.55\textwidth}
+      Thus, evaluation of project depends on climate conditions over the next $M$ years:
       \begin{itemize}
-        \item Success of ``mega-project'' depends on climate conditions $M \geq \SI{50}{years}$ in the future
-        \item Success of flexible, non-structural strategy (\ie financial instrument) depends on climate conditions $M \leq \SI{5}{years}$ in the future
+        \item For ``mega-project'', $M \geq \SI{50}{years}$
+        \item For small, flexible project, $M \leq \SI{5}{years}$
       \end{itemize}
+      \pause
+      So, misrepresentation of climate risk over $M$ years $\rightarrow$ bias in \gls{cba}
     \end{column}
+    \pause
     \begin{column}{0.4\textwidth}
-      \begin{figure}
-        \includegraphics[width=\columnwidth]{Bias-Variance-Sketch.pdf}
-        \caption{Consequences of over- or under-estimating climate risk and associated uncertainty}
-      \end{figure}
+      \includegraphics[width=\textwidth]{Bias-Variance-Sketch}
+      {\small Estimation bias and variance drive project success!}
     \end{column}
   \end{columns}
 \end{frame}
 
-
-\begin{frame}{Drivers of Future Climate Risk}
+\begin{frame}{Idea 2: Physical Drivers of Risk Depend on $M$}
   The physical drivers of hazard depend on the projection horizon ($M$).
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth,keepaspectratio=true]{conceptual-sketch-a.png}\\
+  \end{figure}
+  \pause
   However, our ability to identify these drivers depends on information available (\eg, the length of an $N$-year observational record).
   \begin{figure}
     \centering
-    \includegraphics[width=\textwidth,height=0.55\textheight,keepaspectratio=true]{conceptual-sketch.pdf}
-    \caption{Schematic description of (a) intrinsic and (b) estimation uncertainty.}
+    \includegraphics[width=0.7\textwidth,keepaspectratio=true]{conceptual-sketch-b.png}
   \end{figure}
-\end{frame}
-
-\begin{frame}{Real-World Climate Signals}
-  Real-world hydroclimate systems vary on many time and space scales
-  \begin{figure}
-    \centering
-    \includegraphics[width=\textwidth]{observed-lfv.pdf}
-    \caption{
-      (a) \SI{500}{year} reconstruction of summer rainfall over Arizona from LBDA \citep{Cook:2010bz}.
-      (b) A \SI{100}{year} record of annual-maximum streamflows for the American River at Folsom.
-      (c),(d): wavelet global (average) spectra.
-    }\label{fig:observed-lfv}
-  \end{figure}
+  \emph{(informational uncertainty $\Leftarrow$ clouds, sea ice, subsurface, \etc)}
 \end{frame}
 
 \begin{frame}{Research Objective}
-  How well can one identify and predict risk associated with cyclical and secular climate signals for the design life ($M$ years) and the probability of over- or under-design of a climate adaptation strategy given limited information (for which an $N$-year record is a proxy).
+  \begin{alertblock}{How well can one identify and predict risk}
+     associated with cyclical and secular climate signals over a finite design life ($M$),  given limited information (\eg, an $N$-year record).
+  \end{alertblock}
+  \pause
   In particular, we consider:
   \begin{itemize}
     \item the specific roles of $M$ and $N$;
-    \item the choice of estimation strategy; and
-    \item the form of the underlying climate signal.
+    \pause\item the choice of estimation strategy; and
+    \pause\item the form of the underlying climate signal.
   \end{itemize}
+  \pause
+  Use simplest possible representation of key processes.
 \end{frame}
 
 \section{Stylized Experiments}
 
-\begin{frame}{Research Plan}
-  \begin{figure}
-    \centering
-    \includegraphics[width=\textwidth]{flowchart.pdf}
-    \caption{Flow chart of methods used.}
-  \end{figure}
-  \pause
-  \emph{N.B.}: models used for generating sequences and estimating risk chosen for \emph{interpretability}, not general \emph{validity} in applications.
-  Results are similar with other models.
+\begin{frame}{Breathless Overview of Methods}
+  \begin{columns}[T]
+    \begin{column}{0.475\textwidth}
+      We will consider:
+      \begin{itemize}
+        \item 3 scenarios:
+        \begin{itemize}
+          \item \gls{lfv} only
+          \item linear trend only
+          \item trend + \gls{lfv}
+        \end{itemize}
+        \item 3 fitting models:
+        \begin{itemize}
+          \item stationary
+          \item trend
+          \item \gls{hmm}
+        \end{itemize}
+        \item Many values of $\qty{M, N}$
+      \end{itemize}
+    \end{column}
+    \pause
+    \begin{column}{0.475\textwidth}
+      \begin{itemize}
+        \item \gls{lfv} from \gls{enso} model \citep{Ramesh:2016hf, Zebiak:1987cl}
+        \item For each combination, use \num{1000} synthetic streamflow sequences to evaluate the expected bias and variance (recall: these map to bias of \gls{cba})
+      \end{itemize}
+    \end{column}
+  \end{columns}
 \end{frame}
 
-\begin{frame}{Example Sequences}
-  \begin{figure}
-    \centering
-    \includegraphics[width=\textwidth,height=0.65\textheight,keepaspectratio=true]{Example-NINO3-M100-N50.pdf}
-    \caption{
-      Synthetic flood sequences (blue) and estimated 50\%, 95\% intervals (gray).
-      Three scenarios are used for generating sequences (columns) and three models are used for estimating risk (rows).
-      Here $N=50$ and $M=100$.
-    }
-  \end{figure}
-\end{frame}
-
-\begin{frame}{Stationarity: LFV Only}
+\begin{frame}{Stationary Scenario (LFV Only)}
   Estimating a trend when none exists may lead to substantial over-estimation of risk, particularly for short $N$ or long $M$.
-  Explicitly modeling LFV improves estimates.
+  Explicitly modeling \gls{lfv} improves estimates, particularly for long $N$.
   \begin{figure}
     \centering
-    \includegraphics[width=\textwidth,height=0.65\textheight,keepaspectratio=true]{lfv-only-nino3-bias-variance.pdf}
-    \caption{
-      Expected estimation bias and variance for sequences with LFV but zero trend.
-    }\label{fig:lfv-nino3-bias-variance}
+    \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio=true]{lfv-only-nino3-bias-variance.pdf}
   \end{figure}
 \end{frame}
 
-\begin{frame}{Nonstationarity: Secular Change Only}
-  Stationary models under-estimate risk, particularly for long $M$.
-  For short $M$ and short $N$, the uncertainty by estimating a trend is not worth the bias reduction.
+\begin{frame}{Nonstationary Scenario I (Secular Change Only)}
+  For long $M$, it's important to estimate the trend -- but only works well if $N$ also long.
+  For short $M$ and short $N$, the uncertainty added by estimating a trend is not worth the bias reduction.
   \begin{figure}
     \centering
-    \includegraphics[width=\textwidth,height=0.65\textheight,keepaspectratio=true]{secular-only-nino3-bias-variance.pdf}
-    \caption{
-      Expected estimation bias and variance for sequences with secular change only (no LFV).
-    }\label{fig:secular-nino3-bias-variance}
+    \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio=true]{secular-only-nino3-bias-variance.pdf}
   \end{figure}
 \end{frame}
 
-\begin{frame}{Nonstationarity: Secular Change + LFV}
-  Long $M$ requires trend estimation, but without sufficient data (long $N$) trend estimates are strongly biased.
-
+\begin{frame}{Nonstationary Scenario II (Secular Change + LFV)}
+  Conclusions are similar to ``Secular Change Only'' but variance has increased -- \ie as the system becomes more complex, more data is needed to understand it.
   \begin{figure}
     \centering
-    \includegraphics[width=\textwidth,height=0.65\textheight,keepaspectratio=true]{lfv-secular-nino3-bias-variance.pdf}
-    \caption{
-      As \cref{fig:secular-nino3-bias-variance} but for sequences generated with both LFV and secular change.
-    }\label{fig:lfv-secular-nino3-bias-variance}
+    \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio=true]{lfv-secular-nino3-bias-variance.pdf}
   \end{figure}
 \end{frame}
 
 \section{Discussion}
 
-\begin{frame}{Idealized Experiments $\iff$ Real World}
-  The idealizations and ``toy'' models used here are analogues for more complex real-world situations.
-  \begin{table}
-    \begin{tabular}{L{0.425\textwidth}L{0.525\textwidth}}
-      \toprule
-      Analysis & Real World \\\midrule
-      $N$-year record & Total informational uncertainty of an estimate \\\midrule
-      Statistical models of increasing complexity and \# parameters & Statistical and dynamical model chains of increasing complexity and \# parameters \\\midrule
-      LFV comes from ENSO only & LFV comes from many signals \\\midrule
-      Linear trends & Secular changes of unknown form \\\midrule
-      Trends and LFV Independent & Trends and LFV modes interact\\
-      \bottomrule
-    \end{tabular}
-  \end{table}
-\end{frame}
-
 \begin{frame}{Key Findings}
-  Depending on the specific climate mechanisms that impact a particular site, and the predictability thereof, the cost and risk associated with a sequence of short-term adaptation projects may be lower than with building a single, permanent structure to prepare for a worst-case scenario far into the future:
+  \begin{alertblock}{How should NYC allocate resources, over time,}
+    for infrastructure and climate adaptation given uncertainty in future climate and societal needs?
+  \end{alertblock}
   \begin{itemize}
-      \item As uncertainty increases, adaptation strategies with short planning periods are preferred
-      \item Risk profile of short-$M$ projects dominated by LFV \citep{Jain:2001hz, Hodgkins:2017hw}
-      \item When the planning period is long, trends must be estimated explicitly -- requiring more data
+    \pause
+    \item When planning period is short, \gls{lfv} dominates \citep{Hodgkins:2017hw} $\Rightarrow$ uncertainty small
+    \pause
+    \item When $M$ long, future changes must be estimated using complex models which require more information $\Rightarrow$ more uncertainty
+    \pause
+    \item As uncertainty increases, adaptation strategies with short planning periods are preferred
   \end{itemize}
 \end{frame}
 
 \begin{frame}{A Shameless Pitch!}
-  I'm working to quantify these principles.
+  I'm working on turning these concepts for project \emph{evaluation} into models for \emph{decision-making}.
   Specifically:
+  \pause
   \begin{itemize}
-    \item Statistical models for integrating paleo records, observations, and GCMs towards climate risk projection
-    \item Financial valuation of the ``option'' to build a particular project
+    \item Integrating paleo records, observations, and \glspl{gcm} for climate risk projection
+    \pause
+    \item Valuing the ``option'' to build a particular project
+    \pause
     \item Optimizing portfolios of long- and short-term investments
   \end{itemize}
+  \pause
   If you have a working model of your system and are making long-/short-term investment choices I'd \alert{love to talk} further!
 \end{frame}
 
@@ -279,18 +300,18 @@
 % -----------------------------------------------------------------------------
 
 \begin{frame}[allowframebreaks]{References}
-  \renewcommand*{\bibfont}{\footnotesize}
+  \renewcommand*{\bibfont}{\scriptsize}
   \renewcommand{\bibsection}{}
   \nocite{DossGollin:TjTkb07T}
-	\bibliographystyle{agufull08}
+	\bibliographystyle{agu}
   \bibliography{library}
 \end{frame}
 
 \begin{frame}[standout]
   \alert{Thanks for your attention!}\\\vspace{1.5cm}
   \begin{tabular}{rl}
-    \faIcon[regular]{twitter},\faIcon[regular]{github} & \url{@jdossgollin} \\
-    \faIcon[regular]{envelope} & \url{james.doss-gollin@columbia.edu}\\
+    \faIcon[regular]{twitter},\faIcon[regular]{github} & \href{https://twitter.com/jdossgollin}{@jdossgollin} \\
+    \faIcon[regular]{envelope} & \href{mailto:james.doss-gollin@columbia.edu}{james.doss-gollin@columbia.edu}\\
     \faIcon[regular]{paperclip} & \url{www.jamesdossgollin.me}
   \end{tabular}
 \end{frame}
@@ -307,6 +328,38 @@
 \renewcommand{\thetable}{A\arabic{table}}
 \setcounter{table}{0}
 
+\section{Relating our Analysis to Observations}
+
+\begin{frame}{Idealized Experiments $\iff$ Real World}
+  The idealized models used here are analogs:
+  \begin{table}
+    \centering
+    \begin{tabular}{L{0.425\textwidth}L{0.525\textwidth}}
+      \toprule
+      Analysis & Real World \\\midrule
+      $N$-year record & Total informational uncertainty of an estimate \\\midrule
+      Statistical models of increasing complexity and \# parameters & Statistical and dynamical model chains of increasing complexity and \# parameters \\\midrule
+      Linear trends & Secular changes of unknown form \\\midrule
+      \gls{lfv} from \gls{enso} & \gls{lfv} from many sources \\\midrule
+      \gls{lfv} and trend additive & \gls{lfv} and trend interact \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+\begin{frame}{Real-World Climate Signals}
+  Real-world hydroclimate systems vary on many time and space scales
+  \begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{observed-lfv.pdf}
+    \caption{
+      (a) \SI{500}{year} reconstruction of summer rainfall over Arizona from LBDA \citep{Cook:2010bz}.
+      (b) A \SI{100}{year} record of annual-maximum streamflows for the American River at Folsom.
+      (c),(d): wavelet global (average) spectra.
+    }\label{fig:observed-lfv}
+  \end{figure}
+\end{frame}
+
 \section{Generating Synthetic Streamflow Sequences}
 
 \begin{frame}{Equations for Synthetic Streamflow Generation}
@@ -319,20 +372,23 @@
   \begin{equation}\label{eq:nino3}
     \mu(t) = \mu_0 + \beta x(t) + \gamma \qty(t - t_0),
   \end{equation}
-  and where $x(t)$ is NINO3.4 index from realistic ENSO model \citep{Zebiak:1987cl,Ramesh:2016hf}
+  and where $x(t)$ is NINO3.4 index from realistic \gls{enso} model \citep{Zebiak:1987cl,Ramesh:2016hf}
 \end{frame}
 
-\begin{frame}{Spectrum of LFV Used}
+\begin{frame}{Spectrum of \gls{lfv} Used}
   \begin{figure}
     \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio=true]{enso_wavelet}
-    \caption{Wavelet spectrum of (sub-set of) ENSO model used to embed synthetic streamflow sequences with low-frequency variability}
+    \caption{
+      Wavelet spectrum of (sub-set of) \gls{enso} model used to embed synthetic streamflow sequences with low-frequency variability.
+      \gls{enso} data from \citet{Ramesh:2016hf}.
+    }
   \end{figure}
 \end{frame}
 
 \section{Climate Risk Estimation}
 
 \begin{frame}{Stationary LN2 Model}
-  Treat the $N$ historical observations as IID draws from stationary distribution
+  Treat the $N$ historical observations as \gls{iid} draws from stationary distribution
   \begin{align}\label{eq:ln2-stationary}
     \begin{split}
       \log Q_\text{hist} & \sim \normal \qty(\mu, \ \sigma) \\
@@ -345,7 +401,7 @@
 \end{frame}
 
 \begin{frame}{Trend LN2 Model}
-  Treat the $N$ historical observations as IID draws from log-normal distribution with linear trend
+  Treat the $N$ historical observations as \gls{iid} draws from log-normal distribution with linear trend
   \begin{align}\label{eq:ln2-trend}
     \begin{split}
       \mu &= \mu_0 + \beta_\mu \qty(t - t_0) \\
@@ -360,7 +416,7 @@
 \end{frame}
 
 \begin{frame}{Hidden Markov Model}
-  Two-state HMM \citep[see][]{Rabiner:1986jk} implemented using pomegranate python package \citep{Schreiber:2017tg}.
+  Two-state \gls{hmm} \citep[see][]{Rabiner:1986jk} implemented using pomegranate python package \citep{Schreiber:2017tg}.
   See package documentation for reference.
 \end{frame}
 
