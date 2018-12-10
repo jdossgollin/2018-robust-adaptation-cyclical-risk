@@ -1,6 +1,6 @@
 \documentclass[
   10pt,     % set default generic font size
-  %handout   % ignores all the \pause commands
+  handout   % ignores all the \pause commands
 ]{beamer}
 \usetheme[block=fill]{metropolis}
 
@@ -17,6 +17,18 @@
   $^2$Carnegie Institution for Science\\
   $^3$Department of Biological and Environmental Engineering, Cornell University}
 \titlegraphic{\hfill\includegraphics[height=1.25cm]{SeasCrown_blue.png}}
+
+
+% Add footer for AGU
+\setbeamertemplate{footline}[text line]{%
+  \parbox{0.8\linewidth}{
+    \vspace*{-8pt}James Doss-Gollin (\url{james.doss-gollin@columbia.edu})
+  }
+  \hfill%
+  \parbox{0.15\linewidth}{
+    \vspace*{-8pt}\raggedleft\insertpagenumber
+  }
+}
 
 % -----------------------------------------------------------------------------
 % Package Configuration -- Don't Necessarily Need to Edit
@@ -121,57 +133,49 @@
   \end{itemize}
 \end{frame}
 
-\section{Setup}
-
-\begin{frame}{NYC After Sandy \citep{CityofNewYork:2013uh}}
+\begin{frame}{Motivating Example}
   \begin{columns}[T]
     \pause
     \begin{column}{0.5\textwidth}
       \begin{figure}
-        \includegraphics[width=\columnwidth]{three-barriers.png}
+        \centering
+        \caption{
+          Permanent structural solution would pose environmental and social impacts and lock in $\approx \$25 \text{billion}$;
+          a portfolio of smaller projects may allow a more flexible strategy.
+        }
+        \includegraphics[width=0.85\columnwidth]{three-barriers.png}\\
+        \includegraphics[width=0.85\columnwidth]{flood-concept.png}
       \end{figure}
-      \begin{itemize}
-        \item Environmental, social impacts
-        \item Permanent: $\approx \$25 \text{billion}$ ``locked-in''
-      \end{itemize}
     \end{column}
     \pause
     \begin{column}{0.5\textwidth}
-      \begin{figure}
-        \includegraphics[width=\columnwidth]{flood-concept.png}
-      \end{figure}
       \begin{itemize}
-        \item Targeted local resilience $\Uparrow$ and vulnerability $\Downarrow$
-        \item Portfolio of investments
-        \item Update regularly
+        \item ``Because present decisions impact a system's ability to adapt to future needs, flexibility in activating, delaying, and replacing engineering projects should be considered in least‐cost water supply intervention scheduling,'' \citep{erfani:2018}.
+        \item How to build a portfolio of risk management investments, over time, given uncertain future climate/society/technology?
       \end{itemize}
     \end{column}
   \end{columns}
-  \pause
-  \begin{alertblock}{How should NYC allocate resources, over time,}
-    for infrastructure and climate adaptation given uncertainty in future climate and societal needs?
-  \end{alertblock}
 \end{frame}
+
+\section{Underlying Ideas}
 
 \begin{frame}{Idea 1: Risk Estimates over Finite Future Periods}
   \begin{alertblock}{Typical Approach:}
-    \gls{cba} over a \alert{finite} planning horizon of $M$ years (explicitly or implicitly).
+    \gls{cba}, probably with discounting, over a \alert{finite} planning horizon of $M$ years (explicitly or implicitly).
   \end{alertblock}
   \begin{columns}
     \pause
-    \begin{column}{0.55\textwidth}
+    \begin{column}{0.5\textwidth}
       Thus, evaluation of project depends on climate conditions over the next $M$ years:
       \begin{itemize}
         \item For ``mega-project'', $M \geq \SI{50}{years}$
         \item For small, flexible project, $M \leq \SI{5}{years}$
       \end{itemize}
-      \pause
-      So, misrepresentation of climate risk over $M$ years $\rightarrow$ bias in \gls{cba}
     \end{column}
     \pause
-    \begin{column}{0.4\textwidth}
-      \includegraphics[width=\textwidth]{Bias-Variance-Sketch}
-      {\small Estimation bias and variance drive project success!}
+    \begin{column}{0.5\textwidth}
+      Misrepresentation of climate risk over $M$ years $\rightarrow$ bias in \gls{cba}
+      \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio=true]{Bias-Variance-Sketch}
     \end{column}
   \end{columns}
 \end{frame}
@@ -183,13 +187,14 @@
     \includegraphics[width=0.7\textwidth,keepaspectratio=true]{conceptual-sketch-a.png}\\
   \end{figure}
   \pause
-  However, our ability to identify these drivers depends on information available (\eg, the length of an $N$-year observational record).
+  However, our ability to identify these mechanisms depends on information available (\eg, the length of an $N$-year observational record).
   \begin{figure}
     \centering
     \includegraphics[width=0.7\textwidth,keepaspectratio=true]{conceptual-sketch-b.png}
   \end{figure}
-  \emph{(informational uncertainty $\Leftarrow$ clouds, sea ice, subsurface, \etc)}
 \end{frame}
+
+\section{Stylized Experiments}
 
 \begin{frame}{Research Objective}
   \begin{alertblock}{How well can one identify and predict risk}
@@ -199,14 +204,14 @@
   In particular, we consider:
   \begin{itemize}
     \item the specific roles of $M$ and $N$;
-    \pause\item the choice of estimation strategy; and
-    \pause\item the form of the underlying climate signal.
+    \pause
+    \item estimation strategy (few processes/parameters $\Rightarrow$ many processes/parameters)
+    \pause
+    \item the form of the underlying climate signal.
   \end{itemize}
   \pause
   Use simplest possible representation of key processes.
 \end{frame}
-
-\section{Stylized Experiments}
 
 \begin{frame}{Breathless Overview of Methods}
   \begin{columns}[T]
@@ -230,10 +235,11 @@
     \end{column}
     \pause
     \begin{column}{0.475\textwidth}
-      \begin{itemize}
-        \item \gls{lfv} from \gls{enso} model \citep{Ramesh:2016hf, Zebiak:1987cl}
-        \item For each combination, use \num{1000} synthetic streamflow sequences to evaluate the expected bias and variance (recall: these map to bias of \gls{cba})
-      \end{itemize}
+      \begin{figure}
+        \caption{Over- or under-estimating uncertainty leads to biased estimates of $p(X > X^*)$ even if estimate of $X$ is unbiased}
+        \includegraphics[width=\textwidth]{Example-NINO3-M100-N50-LN2.jpg}
+      \end{figure}
+      For each combination, use \num{1000} synthetic streamflow sequences to evaluate the expected bias and variance of $p(X > X^*)$
     \end{column}
   \end{columns}
 \end{frame}
@@ -243,7 +249,7 @@
   Explicitly modeling \gls{lfv} improves estimates, particularly for long $N$.
   \begin{figure}
     \centering
-    \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio=true]{lfv-only-nino3-bias-variance.pdf}
+    \includegraphics[width=\textwidth,height=0.625\textheight,keepaspectratio=true]{lfv-only-nino3-bias-variance.pdf}
   \end{figure}
 \end{frame}
 
@@ -252,7 +258,7 @@
   For short $M$ and short $N$, the uncertainty added by estimating a trend is not worth the bias reduction.
   \begin{figure}
     \centering
-    \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio=true]{secular-only-nino3-bias-variance.pdf}
+    \includegraphics[width=\textwidth,height=0.625\textheight,keepaspectratio=true]{secular-only-nino3-bias-variance.pdf}
   \end{figure}
 \end{frame}
 
@@ -260,39 +266,37 @@
   Conclusions are similar to ``Secular Change Only'' but variance has increased -- \ie as the system becomes more complex, more data is needed to understand it.
   \begin{figure}
     \centering
-    \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio=true]{lfv-secular-nino3-bias-variance.pdf}
+    \includegraphics[width=\textwidth,height=0.625\textheight,keepaspectratio=true]{lfv-secular-nino3-bias-variance.pdf}
   \end{figure}
 \end{frame}
 
 \section{Discussion}
 
-\begin{frame}{Key Findings}
-  \begin{alertblock}{How should NYC allocate resources, over time,}
-    for infrastructure and climate adaptation given uncertainty in future climate and societal needs?
-  \end{alertblock}
+\begin{frame}{Summary}
+  Starting point:
+  \begin{enumerate}
+    \item Investment evaluation depends on climate condition over finite planning period
+    \item Physical drivers of risk depend on planning period
+  \end{enumerate}
+  \pause
+  As a consequence:
   \begin{itemize}
-    \pause
-    \item When planning period is short, \gls{lfv} dominates \citep{Hodgkins:2017hw} $\Rightarrow$ uncertainty small
-    \pause
-    \item When $M$ long, future changes must be estimated using complex models which require more information $\Rightarrow$ more uncertainty
-    \pause
-    \item As uncertainty increases, adaptation strategies with short planning periods are preferred
+    \item \emph{Ability} to identify and predict different climate signals depends on information available (\eg, $N$)
+    \item \emph{Importance} of identifying and predicting different climate signals depends on degree of extrapolation desired (\ie, $M$)
   \end{itemize}
+  \pause
+  In general, low risk tolerance and/or short $N$ favor short-$M$ investments relative to long-$M$ ones.
 \end{frame}
 
 \begin{frame}{A Shameless Pitch!}
   I'm working on turning these concepts for project \emph{evaluation} into models for \emph{decision-making}.
   Specifically:
-  \pause
   \begin{itemize}
     \item Integrating paleo records, observations, and \glspl{gcm} for climate risk projection
-    \pause
     \item Valuing the ``option'' to build a particular project
-    \pause
     \item Optimizing portfolios of long- and short-term investments
   \end{itemize}
-  \pause
-  If you have a working model of your system and are making long-/short-term investment choices I'd \alert{love to talk} further!
+  If you have a working model of your system and are making long/short-term investment choices I'd \alert{love to talk} further!
 \end{frame}
 
 % -----------------------------------------------------------------------------
@@ -361,6 +365,13 @@
 \end{frame}
 
 \section{Generating Synthetic Streamflow Sequences}
+
+\begin{frame}{Example Sequences and Fits}
+  \begin{figure}
+    \includegraphics[width=\textwidth]{Example-NINO3-M100-N50.pdf}
+    \caption{Example of sequences generated with $M=100$ and $N=50$}
+  \end{figure}
+\end{frame}
 
 \begin{frame}{Equations for Synthetic Streamflow Generation}
   First
