@@ -115,46 +115,28 @@
 % TITLE PAGE
 \maketitle
 
-\begin{frame}{Thanks to...}
-  \begin{itemize}
-    \item Co-authors
-    \begin{itemize}
-      \item Upmanu Lall
-      \item David J. Farnham
-      \item Scott Steinschneider
-    \end{itemize}
-    \item Funders
-    \begin{itemize}
-      \item NSF GRPF
-      \item Columbia University Fu Foundation SEAS
-      \item DoD SERDP
-    \end{itemize}
-    \item Conveners, colleagues, collaborators
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Motivating Example}
+\begin{frame}{Motivating Example \citep{CityofNewYork:2013uh}}
   \begin{columns}[T]
-    \pause
     \begin{column}{0.5\textwidth}
       \begin{figure}
-        \centering
+        \includegraphics[width=\columnwidth]{three-barriers.png}
         \caption{
-          Permanent structural solution would pose environmental and social impacts and lock in $\approx \$25 \text{billion}$;
-          a portfolio of smaller projects may allow a more flexible strategy.
+          Large, permanent project would lock in $\approx \$25 \text{billion}$ for fixed protection.
         }
-        \includegraphics[width=0.85\columnwidth]{three-barriers.png}\\
-        \includegraphics[width=0.85\columnwidth]{flood-concept.png}
       \end{figure}
     \end{column}
-    \pause
     \begin{column}{0.5\textwidth}
-      \begin{itemize}
-        \item ``Because present decisions impact a system's ability to adapt to future needs, flexibility in activating, delaying, and replacing engineering projects should be considered in least‐cost water supply intervention scheduling,'' \citep{erfani:2018}.
-        \item How to build a portfolio of risk management investments, over time, given uncertain future climate/society/technology?
-      \end{itemize}
+      \begin{figure}
+        \includegraphics[width=\columnwidth]{flood-concept.png}
+        \caption{
+          A sequenced portfolio of smaller investments may be more flexible and adaptive.
+        }
+      \end{figure}
     \end{column}
   \end{columns}
+  \begin{alertblock}{Scheduling and sequencing:}
+    \alert{If} and \alert{when} to build the permanent project?
+  \end{alertblock}
 \end{frame}
 
 \section{Underlying Ideas}
@@ -163,31 +145,34 @@
   \begin{alertblock}{Typical Approach:}
     \gls{cba}, probably with discounting, over a \alert{finite} planning horizon of $M$ years (explicitly or implicitly).
   \end{alertblock}
-  \begin{columns}
-    \pause
-    \begin{column}{0.5\textwidth}
-      Thus, evaluation of project depends on climate conditions over the next $M$ years:
-      \begin{itemize}
-        \item For ``mega-project'', $M \geq \SI{50}{years}$
-        \item For small, flexible project, $M \leq \SI{5}{years}$
-      \end{itemize}
-    \end{column}
-    \pause
-    \begin{column}{0.5\textwidth}
-      Misrepresentation of climate risk over $M$ years $\rightarrow$ bias in \gls{cba}
-      \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio=true]{Bias-Variance-Sketch}
-    \end{column}
-  \end{columns}
+  \pause
+  Project should be evaluated on climate conditions over this finite planning period:
+  \begin{itemize}
+    \item For ``mega-project'', $M \geq \SI{50}{years}$
+    \item For small, flexible project, $M \leq \SI{5}{years}$
+  \end{itemize}
 \end{frame}
 
-\begin{frame}{Idea 2: Physical Drivers of Risk Depend on $M$}
-  The physical drivers of hazard depend on the projection horizon ($M$).
+\begin{frame}{Idea 2: Hydroclimate Systems Vary on Many Scales}
+  \begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{observed-lfv.pdf}
+    \caption{
+      (a) \SI{500}{year} reconstruction of summer rainfall over Arizona from LBDA \citep{Cook:2010bz}.
+      (b) A \SI{100}{year} record of annual-maximum streamflows for the American River at Folsom.
+      (c),(d): wavelet global (average) spectra.
+    }\label{fig:observed-lfv}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Idea 3: Physical Drivers of Risk Depend on $M$}
+  The physical drivers of hazard depend on the projection horizon ($M$),
   \begin{figure}
     \centering
     \includegraphics[width=0.7\textwidth,keepaspectratio=true]{conceptual-sketch-a.png}\\
   \end{figure}
   \pause
-  However, our ability to identify these mechanisms depends on information available (\eg, the length of an $N$-year observational record).
+  but our ability to identify these mechanisms depends on information available (\eg, the length of an $N$-year observational record).
   \begin{figure}
     \centering
     \includegraphics[width=0.7\textwidth,keepaspectratio=true]{conceptual-sketch-b.png}
@@ -210,7 +195,7 @@
     \item the form of the underlying climate signal.
   \end{itemize}
   \pause
-  Use simplest possible representation of key processes.
+  Use parsimonious representation of key processes.
 \end{frame}
 
 \begin{frame}{Breathless Overview of Methods}
@@ -273,19 +258,24 @@
 \section{Discussion}
 
 \begin{frame}{Summary}
-  Starting point:
-  \begin{enumerate}
-    \item Investment evaluation depends on climate condition over finite planning period
-    \item Physical drivers of risk depend on planning period
-  \end{enumerate}
-  \pause
-  As a consequence:
-  \begin{itemize}
-    \item \emph{Ability} to identify and predict different climate signals depends on information available (\eg, $N$)
-    \item \emph{Importance} of identifying and predicting different climate signals depends on degree of extrapolation desired (\ie, $M$)
-  \end{itemize}
-  \pause
-  In general, low risk tolerance and/or short $N$ favor short-$M$ investments relative to long-$M$ ones.
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      Assertions:
+      \begin{enumerate}
+        \item Investment evaluation depends on climate condition over finite planning period
+        \item Physical hydroclimate systems vary on many scales
+        \item Physical drivers of risk depend on planning period
+      \end{enumerate}    
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      Implications:
+      \begin{itemize}
+        \item \emph{Ability} to identify and predict different climate signals depends on information available (\eg, $N$)
+        \item \emph{Importance} of identifying and predicting different climate signals depends on degree of extrapolation desired (\ie, $M$)
+        \item In general, low risk tolerance and/or short $N$ favor short-$M$ investments relative to long-$M$ ones.
+      \end{itemize}    
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{A Shameless Pitch!}
@@ -349,19 +339,6 @@
       \bottomrule
     \end{tabular}
   \end{table}
-\end{frame}
-
-\begin{frame}{Real-World Climate Signals}
-  Real-world hydroclimate systems vary on many time and space scales
-  \begin{figure}
-    \centering
-    \includegraphics[width=\textwidth]{observed-lfv.pdf}
-    \caption{
-      (a) \SI{500}{year} reconstruction of summer rainfall over Arizona from LBDA \citep{Cook:2010bz}.
-      (b) A \SI{100}{year} record of annual-maximum streamflows for the American River at Folsom.
-      (c),(d): wavelet global (average) spectra.
-    }\label{fig:observed-lfv}
-  \end{figure}
 \end{frame}
 
 \section{Generating Synthetic Streamflow Sequences}
