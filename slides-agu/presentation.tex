@@ -1,6 +1,6 @@
 \documentclass[
   10pt,     % set default generic font size
-  handout   % ignores all the \pause commands
+  %handout   % ignores all the \pause commands
 ]{beamer}
 \usetheme[block=fill]{metropolis}
 
@@ -41,11 +41,10 @@
 \usepackage{
   array,                              % for custom table widths
   appendixnumberbeamer,               % don't count appendix slides in progress bar
-	booktabs,                           % for better (alternative?) tables
+  booktabs,                           % for better (alternative?) tables
   natbib,                             % references!
 	physics,                            % for better notation
   siunitx,                            % for SI notation
-  appendixnumberbeamer,               % don't number slides / sections in appendix
 }
 
 % cool fonts
@@ -115,31 +114,28 @@
 % TITLE PAGE
 \maketitle
 
-\begin{frame}{Motivating Example \citep{CityofNewYork:2013uh}}
-  \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      \begin{figure}
-        \includegraphics[width=\columnwidth]{three-barriers.png}
-        \caption{
-          Large, permanent project would lock in $\approx \$25 \text{billion}$ for fixed protection.
-        }
-      \end{figure}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-      \begin{figure}
-        \includegraphics[width=\columnwidth]{flood-concept.png}
-        \caption{
-          A sequenced portfolio of smaller investments may be more flexible and adaptive.
-        }
-      \end{figure}
-    \end{column}
-  \end{columns}
+\begin{frame}{Motivating Example}
+  What to do after Sandy? \citep{CityofNewYork:2013uh}
+  \begin{figure}
+    \centering
+    \includegraphics[height=0.3\textheight]{three-barriers.png}~
+    \includegraphics[height=0.3\textheight]{flood-concept.png}
+    \caption{
+      A large, permanent project would lock in $\approx \$25 \text{billion}$ for fixed protection; a portfolio of smaller investments may be more flexible and adaptive.
+    }
+  \end{figure}
+  \pause
   \begin{alertblock}{Scheduling and sequencing:}
-    \alert{If} and \alert{when} to build the permanent project?
+    When (and how) to build a flexible portfolio vs mega-project
   \end{alertblock}
 \end{frame}
 
-\section{Underlying Ideas}
+\begin{frame}{Table of contents}
+  \setbeamertemplate{section in toc}[sections numbered]
+  \tableofcontents[hideallsubsections]
+\end{frame}
+
+\section{Hypotheses}
 
 \begin{frame}{Idea 1: Risk Estimates over Finite Future Periods}
   \begin{alertblock}{Typical Approach:}
@@ -154,9 +150,10 @@
 \end{frame}
 
 \begin{frame}{Idea 2: Hydroclimate Systems Vary on Many Scales}
+  Inter-annual to multi-decadal variability very important in near future (\ie, for small $M$) \citep{Hodgkins:2017hw}
   \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{observed-lfv.pdf}
+    \includegraphics[width=\textwidth,height=0.55\textheight,keepaspectratio=true]{observed-lfv.pdf}
     \caption{
       (a) \SI{500}{year} reconstruction of summer rainfall over Arizona from LBDA \citep{Cook:2010bz}.
       (b) A \SI{100}{year} record of annual-maximum streamflows for the American River at Folsom.
@@ -183,48 +180,30 @@
 
 \begin{frame}{Research Objective}
   \begin{alertblock}{How well can one identify and predict risk}
-     associated with cyclical and secular climate signals over a finite design life ($M$),  given limited information (\eg, an $N$-year record).
+     associated with cyclical and secular climate signals over a finite planning period ($M$),  given limited information (\eg, an $N$-year record).
   \end{alertblock}
   \pause
-  In particular, we consider:
-  \begin{itemize}
-    \item the specific roles of $M$ and $N$;
-    \pause
-    \item estimation strategy (few processes/parameters $\Rightarrow$ many processes/parameters)
-    \pause
-    \item the form of the underlying climate signal.
-  \end{itemize}
-  \pause
-  Use parsimonious representation of key processes.
-\end{frame}
-
-\begin{frame}{Breathless Overview of Methods}
-  \begin{columns}[T]
-    \begin{column}{0.475\textwidth}
-      We will consider:
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      In particular, we consider:
       \begin{itemize}
-        \item 3 scenarios:
-        \begin{itemize}
-          \item \gls{lfv} only
-          \item linear trend only
-          \item trend + \gls{lfv}
-        \end{itemize}
-        \item 3 fitting models:
-        \begin{itemize}
-          \item stationary
-          \item trend
-          \item \gls{hmm}
-        \end{itemize}
-        \item Many values of $\qty{M, N}$
+        \item the specific roles of $M$ and $N$;
+        \pause
+        \item estimation strategy (few processes/parameters $\Rightarrow$ many processes/parameters)
+        \pause
+        \item the form of the underlying climate signal.
       \end{itemize}
     \end{column}
     \pause
-    \begin{column}{0.475\textwidth}
+    \begin{column}{0.5\textwidth}
       \begin{figure}
-        \caption{Over- or under-estimating uncertainty leads to biased estimates of $p(X > X^*)$ even if estimate of $X$ is unbiased}
         \includegraphics[width=\textwidth]{Example-NINO3-M100-N50-LN2.jpg}
+        \caption{
+          What is the bias and spread of $p(X > X^*)$?
+          Here, $M=100$ and $N=50$.
+          Subsequent results are tested systematically over $J=1000$ sequences.
+        }
       \end{figure}
-      For each combination, use \num{1000} synthetic streamflow sequences to evaluate the expected bias and variance of $p(X > X^*)$
     \end{column}
   \end{columns}
 \end{frame}
@@ -258,7 +237,7 @@
 \section{Discussion}
 
 \begin{frame}{Summary}
-  \begin{columns}
+  \begin{columns}[T]
     \begin{column}{0.5\textwidth}
       Assertions:
       \begin{enumerate}
@@ -267,26 +246,19 @@
         \item Physical drivers of risk depend on planning period
       \end{enumerate}    
     \end{column}
+    \pause
     \begin{column}{0.5\textwidth}
       Implications:
       \begin{itemize}
+        \pause
         \item \emph{Ability} to identify and predict different climate signals depends on information available (\eg, $N$)
+        \pause
         \item \emph{Importance} of identifying and predicting different climate signals depends on degree of extrapolation desired (\ie, $M$)
+        \pause
         \item In general, low risk tolerance and/or short $N$ favor short-$M$ investments relative to long-$M$ ones.
       \end{itemize}    
     \end{column}
   \end{columns}
-\end{frame}
-
-\begin{frame}{A Shameless Pitch!}
-  I'm working on turning these concepts for project \emph{evaluation} into models for \emph{decision-making}.
-  Specifically:
-  \begin{itemize}
-    \item Integrating paleo records, observations, and \glspl{gcm} for climate risk projection
-    \item Valuing the ``option'' to build a particular project
-    \item Optimizing portfolios of long- and short-term investments
-  \end{itemize}
-  If you have a working model of your system and are making long/short-term investment choices I'd \alert{love to talk} further!
 \end{frame}
 
 % -----------------------------------------------------------------------------
@@ -302,7 +274,11 @@
 \end{frame}
 
 \begin{frame}[standout]
-  \alert{Thanks for your attention!}\\\vspace{1.5cm}
+  \alert{Thanks for your attention!}\\
+  \vspace{1.5cm}
+  Interested in making these ideas more concrete?
+  I'd love to collaborate!\\
+  \vspace{1.5cm}
   \begin{tabular}{rl}
     \faIcon[regular]{twitter},\faIcon[regular]{github} & \href{https://twitter.com/jdossgollin}{@jdossgollin} \\
     \faIcon[regular]{envelope} & \href{mailto:james.doss-gollin@columbia.edu}{james.doss-gollin@columbia.edu}\\
