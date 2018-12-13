@@ -118,10 +118,10 @@
   What to do after Sandy? \citep{CityofNewYork:2013uh}
   \begin{figure}
     \centering
-    \includegraphics[height=0.3\textheight]{three-barriers.png}~
+    \includegraphics[height=0.3\textheight]{three-barriers.png}
     \includegraphics[height=0.3\textheight]{flood-concept.png}
     \caption{
-      A large, permanent project would lock in $\approx \$25 \text{billion}$ for fixed protection; a portfolio of smaller investments may be more flexible and adaptive.
+      A large, permanent structure (L) would lock in $\approx \$25 \text{billion}$; a portfolio of smaller investments (R) may be more flexible and robust.
     }
   \end{figure}
   \pause
@@ -183,23 +183,13 @@
     cyclical and secular climate signals over a finite planning period ($M$),  given limited information (\eg, an $N$-year record).
  \end{alertblock}
  \pause
-  \begin{columns}
-    \begin{column}{0.5\textwidth}
-      In particular, we consider:
-      \begin{itemize}
-        \item the specific roles of $M$ and $N$;
-        \item estimation strategy
-        \item structure of climate signal
-      \end{itemize}
-      \pause
-      To analyze predictions, we assess the \emph{bias} and \emph{variance} of predicted flood occurrence.
-    \end{column}
-    \begin{column}{0.5\textwidth}
-      \begin{figure}
-        \includegraphics[width=\textwidth]{Bias-Variance-Sketch.pdf}
-      \end{figure}
-    \end{column}
-  \end{columns}
+  \begin{figure}
+    \includegraphics[width=\textwidth]{flowchart.pdf}
+  \end{figure}
+  defining $P^* \def \mathbb{P} \qty(X > X^*)$, the insurance premium
+  \begin{equation*}
+    R = \mathbb{E}\qty[ P^*] + \lambda \mathbb{V} \qty[P^*]
+  \end{equation*}
 \end{frame}
 
 \begin{frame}{Stationary Scenario (LFV Only)}
