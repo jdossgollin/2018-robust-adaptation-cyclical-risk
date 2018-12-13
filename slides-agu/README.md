@@ -115,11 +115,11 @@ In order to identify complex signals, like those observed in the real world, we 
 However, feeding limited data sets into complex models can lead to large biases and uncertainties, and if we're being honest with ourselves, we recognize that these are only partially represented by ensemble and scenario techniques.
 
 The types of signals that we care about may vary.
-If we're looking at a project with a short planning period, we don't need to model all relevant processes, and so we can use simpler models which have lower uncertainties.
-On the other hand, if we are evaluating a project with a long planning period, then a greater degree of extrapolation -- and therefore uncertainty -- is required.
+If we're looking at a project with a short planning period, we don't need to model all relevant processes, and so we both *can* and *should* use simpler models which have lower uncertainties.
+On the other hand, if we are evaluating a project with a long planning period, then complex models -- with greater uncertainties -- may be required.
 
-Of course, explicit policy guidance depends on a decision-maker's preferences.
-In general, though, limited data sets and low risk tolerance favor short-term investments relative to those with long planning periods.
+This informs our choice of strategy.
+Though the details will be project-specific, we can say that in general, limited data sets and low risk tolerance favor short-term investments relative to those with long planning periods.
 
 ## References
 
