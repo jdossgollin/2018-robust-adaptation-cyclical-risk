@@ -26,7 +26,7 @@
   }
   \hfill%
   \parbox{0.15\linewidth}{
-    \vspace*{-8pt}\raggedleft\insertpagenumber
+    \vspace*{-8pt}\raggedleft\insertframenumber
   }
 }
 
@@ -179,38 +179,31 @@
 \section{Stylized Experiments}
 
 \begin{frame}{Research Objective}
-  \begin{alertblock}{How well can one identify and predict risk}
-     associated with cyclical and secular climate signals over a finite planning period ($M$),  given limited information (\eg, an $N$-year record).
-  \end{alertblock}
-  \pause
+  \begin{alertblock}{How to identify \& predict}
+    cyclical and secular climate signals over a finite planning period ($M$),  given limited information (\eg, an $N$-year record).
+ \end{alertblock}
+ \pause
   \begin{columns}
     \begin{column}{0.5\textwidth}
       In particular, we consider:
       \begin{itemize}
         \item the specific roles of $M$ and $N$;
-        \pause
-        \item estimation strategy (few processes/parameters $\Rightarrow$ many processes/parameters)
-        \pause
-        \item the form of the underlying climate signal.
+        \item estimation strategy
+        \item structure of climate signal
       \end{itemize}
+      \pause
+      To analyze predictions, we assess the \emph{bias} and \emph{variance} of predicted flood occurrence.
     \end{column}
-    \pause
     \begin{column}{0.5\textwidth}
       \begin{figure}
-        \includegraphics[width=\textwidth]{Example-NINO3-M100-N50-Stationary-Trend.pdf}
-        \caption{
-          What is the bias and spread of $p(X > X^*)$?
-          Here, $M=100$ and $N=50$.
-          Subsequent results are tested systematically over $J=1000$ sequences.
-        }
+        \includegraphics[width=\textwidth]{Bias-Variance-Sketch.pdf}
       \end{figure}
     \end{column}
   \end{columns}
 \end{frame}
 
 \begin{frame}{Stationary Scenario (LFV Only)}
-  Estimating a trend when none exists may lead to substantial over-estimation of risk, particularly for short $N$ or long $M$.
-  Explicitly modeling \gls{lfv} improves estimates, particularly for long $N$.
+  With limited data, the uncertainties caused by extrapolating from complex models lead to poor performance.
   \begin{figure}
     \centering
     \includegraphics[width=\textwidth,height=0.625\textheight,keepaspectratio=true]{lfv-only-nino3-bias-variance.pdf}
@@ -218,7 +211,7 @@
 \end{frame}
 
 \begin{frame}{Nonstationary Scenario I (Secular Change Only)}
-  For long $M$, it's important to estimate the trend -- but only works well if $N$ also long.
+  For long $M$, it's important to estimate the trend -- but this works well only if $N$ also long.
   For short $M$ and short $N$, the uncertainty added by estimating a trend is not worth the bias reduction.
   \begin{figure}
     \centering
@@ -253,10 +246,10 @@
         \pause
         \item \emph{Ability} to identify and predict different climate signals depends on information available (\eg, $N$)
         \pause
-        \item \emph{Importance} of identifying and predicting different climate signals depends on degree of extrapolation desired (\ie, $M$)
+        \item \emph{Importance} of predicting different climate signals depends on extrapolation desired (\ie, planning period)
         \pause
-        \item In general, low risk tolerance and/or short $N$ favor short-$M$ investments relative to long-$M$ ones.
-      \end{itemize}    
+        \item In general, low risk tolerance and/or limited information favor investments with short planning periods.
+      \end{itemize}
     \end{column}
   \end{columns}
 \end{frame}
@@ -298,7 +291,7 @@
 \renewcommand{\thetable}{A\arabic{table}}
 \setcounter{table}{0}
 
-\section{Relating our Analysis to Observations}
+\section{Supplemental Discussion}
 
 \begin{frame}{Idealized Experiments $\iff$ Real World}
   The idealized models used here are analogs:

@@ -9,17 +9,18 @@ Before I get started I'd like to thank my co-authors: David Farnham, Scott Stein
 ## Motivating Example
 
 The example here depicts a decision that New York City faced in the aftermath of Hurricane Sandy, but this question could just as easily apply to Phoenix, or Sonoma County, or Bangladesh.
-In fact it's quite often that decision-makers face tradeoffs between a large, permanent structure for managing water or climate risk, or, a sequence -- a portfolio -- of smaller, targeted, local projects.
-On the one hand, large structures provide unmatched protection against some types of risk, but on the other hand a portfolio of smaller projects is likely to better meet goals of robustness and flexibility.
+Decision-makers often have tradeoffs between a large, permanent structure and a sequence -- or portfolio -- of smaller, local projects.
+On the one hand, large structures -- like a sea wall to block storm surges -- provide unmatched protection against some types of risk.
+On the other hand a portfolio of smaller projects may be more robust, and is certainly more flexible.
 
-So, the questions that I hope to work towards today involve scheduling, sequencing, and portfolio optimization.
-In other words, should we build a portfolio of small projects; what is the trigger which tells us to build a big project, and how can we balance robustness against performance in an economic framework?
+With this in mind, the questions that I hope to work towards today involve scheduling, sequencing, and portfolio optimization.
+In other words, how should we build a portfolio of small projects, and what is the trigger which might tell us when we need to invest in a permanent structure?
 
 ## Table of Contents
 
-I'm not going to perfectly answer these questions today.
-Instead, I'm going to lay out three interesting hypotheses about the world, which I think are probably uncontroversial but also under-appreciated.
-I'll then show you some stylized experiments which probe the implications of these hypotheses, and finally I'll try to relate my experiments back to the real world.
+These are deep questions.
+My approach today will be to lay out three interesting hypotheses about the world, which I may seem obvious, but are under-appreciated.
+I'll then show you some stylized experiments which probe the implications of these hypotheses.
 
 ## Hypotheses
 
@@ -27,11 +28,12 @@ So let's jump in.
 
 ## Idea 1
 
-When evaluating an investment in water or climate risk management, we typically perform a cost-benefit analysis (or variant thereof).
+When evaluating an investment in water or climate risk management, we typically perform cost-benefit analysis (or some variant thereof).
 Explicitly or implicitly, this means that we assess the net benefits of a project over a *finite* planning period, which I'll denote by the letter $M$.
 
 This means that when we incorporate climate into our analysis, we need to consider climate conditions over this finite period, rather than infinitely into the future.
-For our giant sea wall this might be a planning period of 50 to 100 years, while an insurance contract might have a planning period of only one to five years.
+For our giant sea wall this might be a planning period of 50 to 100 years.
+Alternatively, an insurance contract might have a planning period of only one to five years.
 
 ## Idea 2
 
