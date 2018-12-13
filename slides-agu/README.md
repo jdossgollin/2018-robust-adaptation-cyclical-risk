@@ -8,29 +8,25 @@ Before I get started I'd like to thank my co-authors: David Farnham, Scott Stein
 
 ## Motivating Example
 
-The example here depicts a decision that New York City faced in the aftermath of Hurricane Sandy, but this question could just as easily apply to Phoenix, or Sonoma County, or Bangladesh.
-Decision-makers often have tradeoffs between a large, permanent structure and a sequence -- or portfolio -- of smaller, local projects.
-On the one hand, large structures -- like a sea wall to block storm surges -- provide unmatched protection against some types of risk.
-However, they lock in funds and are difficult to modify should requirements change.
-On the other hand, a portfolio of smaller projects may be more robust, and is certainly more flexible and adaptive.
+I'm going to start by thinking about a decision that New York City faced in the aftermath of Hurricane Sandy, but really I could just as easily apply to Phoenix, or Sonoma County, or Bangladesh.
+Since hurricanes will return, and since the sea level is rising, how should the City manage future flood damages?
+On the one hand, large structures -- like a sea wall to block storm surges shown in the top left -- provide unmatched protection against some types of risk.
+However, this project would lock in funds and be difficult to modify should future climatic or societal conditions change unexpectedly.
+Alternatively, a portfolio of smaller projects may be more robust, and is certainly more flexible and adaptive.
+These measures might be smaller structures, financial instruments, or policy and operational shifts.
 
-With this in mind, the questions that I hope to work towards today involve scheduling, sequencing, and portfolio optimization.
-In other words, how should we build a portfolio of small projects, and what is the trigger which might tell us when we need to invest in a permanent structural solution?
-
-## Table of Contents
-
-These are deep questions.
-My approach today will be to lay out three interesting hypotheses about the world, which might seem obvious, but which are under-appreciated.
-I'll then show you some stylized experiments which probe the implications of these hypotheses, and which I think are of interest if you're wrestling with these deep questions.
+With this in mind, I'm going to ask about how we ought to build a portfolio of small projects, how to maintain adaptability, and what, if any, is the trigger trigger which might tell us when we need to invest in a permanent structural solution.
 
 ## Hypotheses
 
-So let's jump in.
+These are deep questions which I won't fully answer.
+My approach today will be to lay out a few interesting hypotheses about the world, which might seem obvious, but which are also under-appreciated.
+Then, I'll show you some stylized experiments which probe some implications of these hypotheses.
 
 ## Idea 1
 
 When evaluating an investment in water or climate risk management, we typically perform cost-benefit analysis (or some variant thereof).
-Explicitly or implicitly, this means that we assess the net benefits of a project over a *finite* planning period, which I'll denote by the letter $M$.
+Explicitly or implicitly, this means that we assess the net benefits of a project over a *finite* planning period.
 
 This means that when we incorporate climate into our analysis, we need to consider climate conditions over this finite period, rather than infinitely into the future.
 For our giant sea wall this might be a planning period of 50 to 100 years.
@@ -45,15 +41,14 @@ The point I want to make is not the specific data sets or time series, but just 
 
 ## Idea 3
 
-Though we've often considered this background noise, it may be useful!
-Imagine we go for a walk tomorrow along the coast, find a bottle, open it, and out pops a genie.
-We're AGU members, so with our first wish, we of course ask for a perfect climate model, and with our second we ask for a magical earth monitoring system to initialize our model.
-In the near term we might be able to model this inter-annual to decadal variability fairly well.
-However, as we look far into the future we have more intrinsic uncertainties: does Elon Musk quit Twitter and solve our fossil fuel dependency, or do we burn all the rainforests and coal?
+In the climate and hydrology spaces we often consider this a background noise, but it can be useful!
+Given a magically perfect climate model, we might be able to model this inter-annual to decadal variability quite successfully.
+However, as we look far into the future, our uncertainties grow.
+We're familiar with chaos in the climate, but there are more intrinsic uncertainties: does Elon Musk quit Twitter and solve our fossil fuel dependency, or do we burn all the rainforests and coal?
 Our magic climate model can't answer these questions, and so the uncertainty associated with our investment grows as we look further into the future.
 
-Of course, we're scientists, and so we don't believe in genies.
-Instead, we use imperfect, non-magical, models that we have made, and we have limited information to fit them.
+Of course, we're scientists, and so we don't want to depend on magic.
+Instead, we use imperfect  models, and we have limited information to fit them.
 This limits our ability to identify and predict different climate signals.
 
 ## Stylized Experiments
@@ -63,23 +58,22 @@ These points may seem obvious, but they have some interesting implications.
 ## Research Objective
 
 Essentially, I want to show you how well it's possible to identify and predict water or climate risk, which has both cyclical and trend-like signals, over a finite planning period, given limited information.
+To measure our ability to identify and predict these signals, I'm going to show you the expected bias and variance of estimated flood occurrence.
+As this risk premium equation highlights, both the bias and the variance of our risk estimate map onto the insurance premium that we would pay; if we're instead considering a structural solution, this insurance premium can be interpreted as a risk factor which would affect our over- or under-design.
 
-I'm going to do this by generating synthetic streamflow sequences for three different idealized climate scenarios.
-Then I fit the first $N$ years to a statistical model, and use this model to project $M$ years forward.
-Then, repeating this many times, I evaluate the bias and variance of this statistical fit.
-As this risk premium equation highlights, both the bias and the variance of our risk estimate map onto the insurance premium that we would pay.
-If we're instead considering a structural solution, this insurance premium can be interpreted as a risk factor which would affect our over- or under-design.
-
-In these experiments, I'll consider three scenarios for what the underlying climate signal might be.
-In each, I look at what happens as we vary our planning period and our informational uncertainty.
-I'll also consider changes as we move from simple, parsimonious models for risk estimation to more complex ones which represent more processes but also have more parameters and therefore more uncertainty.
+This figure on the left here shows how we do this.
+First, we generate a synthetic streamflow sequence, as shown in blue.
+Next, we fit the first $N$ years to a statistical model, use this model to project $M$ years forward, as shown in gray.
+By repeating this many times, we can evaluate the expected bias and variance of our estimates.
+Using this framework, we explore what happens as we vary the planning period, the informational record, and the structure of the climate signal.
+We also look at what happens as we move from simple, parsimonious models for risk estimation to complex models with more parameters and thus greater uncertainty.
 
 ## Stationary Scenario
 
 In this first scenario, there is no trend -- our synthetic streamflow sequences depend only on a model for ENSO.
 On the top row we show the bias and on the second row the variance of our flood occurrence probabilities.
 The three columns show the three toy models we use to estimate risk: a hidden markov model, a linear trend model, and a stationary log-normal model.
-I chose these models for their interpretability, not because I recommend them, but results are similar with more complex models.
+I want to highlight that I chose these models for their interpretability, not because I recommend them, but results are similar with more complex models.
 Within each plot, the $x$-axis shows $N$ and the $y$-axis shows the planning period $M$.
 In this figure, the largest bias occurs when we fit the most complex model -- the trend model.
 Even though no trend exists, when $N$ is short (left) we can't be sure.
@@ -106,7 +100,7 @@ OK, so I hope that was interesting.
 
 ## Summary
 
-To wrap up here, we started with a few observations, or assertions, about the world.
+To wrap up here, we started with a few observations, or really assertions, about the world.
 
 By running some stylized experiments, we probed their implications.
 

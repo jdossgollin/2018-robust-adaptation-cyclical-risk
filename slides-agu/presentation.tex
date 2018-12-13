@@ -118,21 +118,11 @@
   What to do after Sandy? \citep{CityofNewYork:2013uh}
   \begin{figure}
     \centering
-    \includegraphics[height=0.3\textheight]{three-barriers.png}
-    \includegraphics[height=0.3\textheight]{flood-concept.png}
-    \caption{
-      A large, permanent structure (L) would lock in $\approx \$25 \text{billion}$; a portfolio of smaller investments (R) may be more flexible and robust.
-    }
+    \includegraphics[height=0.35\textheight]{three-barriers.png}~
+    \includegraphics[height=0.35\textheight]{dull-disasters.png}\\
+    \includegraphics[height=0.3\textheight]{flood-concept.png}~
+    \includegraphics[height=0.3\textheight]{coastal-resiliency.png}
   \end{figure}
-  \pause
-  \begin{alertblock}{Scheduling and sequencing:}
-    When (and how) to build a flexible portfolio vs mega-project
-  \end{alertblock}
-\end{frame}
-
-\begin{frame}{Table of contents}
-  \setbeamertemplate{section in toc}[sections numbered]
-  \tableofcontents[hideallsubsections]
 \end{frame}
 
 \section{Hypotheses}
@@ -150,7 +140,7 @@
 \end{frame}
 
 \begin{frame}{Idea 2: Hydroclimate Systems Vary on Many Scales}
-  Inter-annual to multi-decadal variability very important in near future (\ie, for small $M$) \citep{Hodgkins:2017hw}
+  Inter-annual to multi-decadal cyclical variability key (for small $M$)
   \begin{figure}
     \centering
     \includegraphics[width=\textwidth,height=0.55\textheight,keepaspectratio=true]{observed-lfv.pdf}
@@ -178,22 +168,31 @@
 
 \section{Stylized Experiments}
 
-\begin{frame}{Research Objective}
-  \begin{alertblock}{How to identify \& predict}
-    cyclical and secular climate signals over a finite planning period ($M$),  given limited information (\eg, an $N$-year record).
+\begin{frame}{Experiment Setup}
+  \begin{alertblock}{Research Objective}
+    How well can one identify \& predict cyclical and secular climate signals over a finite planning period ($M$),  given limited information?
  \end{alertblock}
- \pause
-  \begin{figure}
-    \includegraphics[width=\textwidth]{flowchart.pdf}
-  \end{figure}
-  defining $P^* \def \mathbb{P} \qty(X > X^*)$, the insurance premium
+  Let $P^* \def \mathbb{P} \qty(X > X^*)$.
+  Note that the insurance premium (or risk factor) is:
   \begin{equation*}
     R = \mathbb{E}\qty[ P^*] + \lambda \mathbb{V} \qty[P^*]
   \end{equation*}
+  \pause
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{figure}
+        \includegraphics[width=\textwidth]{Example-NINO3-M100-N50-Stationary-Trend.pdf}
+      \end{figure}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      Systematic, stylized experiments:
+      what happens as we vary $M$, $N$, climate structure, estimating model?
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{Stationary Scenario (LFV Only)}
-  With limited data, the uncertainties caused by extrapolating from complex models lead to poor performance.
+  \emph{With limited data, the uncertainties caused by extrapolating from complex models lead to poor performance.}
   \begin{figure}
     \centering
     \includegraphics[width=\textwidth,height=0.625\textheight,keepaspectratio=true]{lfv-only-nino3-bias-variance.pdf}
@@ -201,8 +200,8 @@
 \end{frame}
 
 \begin{frame}{Nonstationary Scenario I (Secular Change Only)}
-  For long $M$, it's important to estimate the trend -- but this works well only if $N$ also long.
-  For short $M$ and short $N$, the uncertainty added by estimating a trend is not worth the bias reduction.
+  \emph{Long planning periods need trend estimation, but this demands lots of information.
+  For short planning periods, simple models may be better.}
   \begin{figure}
     \centering
     \includegraphics[width=\textwidth,height=0.625\textheight,keepaspectratio=true]{secular-only-nino3-bias-variance.pdf}
@@ -210,7 +209,7 @@
 \end{frame}
 
 \begin{frame}{Nonstationary Scenario II (Secular Change + LFV)}
-  As the system becomes more complex, more data is needed to understand it.
+  \emph{As the system becomes more complex, more data is needed to understand it.}
   \begin{figure}
     \centering
     \includegraphics[width=\textwidth,height=0.625\textheight,keepaspectratio=true]{lfv-secular-nino3-bias-variance.pdf}
