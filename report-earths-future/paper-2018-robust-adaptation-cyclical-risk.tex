@@ -166,7 +166,7 @@ For example, \citet{Jain:2001hz} demonstrated that in a system with substantial 
 We illustrate this type of \gls{lfv} in \cref{fig:observed-lfv}, which shows a \SI{500}{year} drought reconstruction from the \gls{lbda} \citep{Cook:2010bz}, a \SI{100}{year} record of daily river stage on the American River at Folsom, and the wavelet average spectrum for both \citep{Torrence:1998jp,Roesch:wlBQQoIs}.
 Peaks for the American River time series are apparent at approximately 2 and 15 years and in the \gls{lbda} time series at approximately 8, 20, and 64 years.
 This is illustrated by the blue line in the top left panel of \cref{fig:observed-lfv}, which shows a \SI{20}{year} moving average of the \gls{lbda} time series.
-A detailed analysis of these time series is beyond the scope of this paper, but we note that these findings are illustrative of other analyses of climatic \gls{lfv} \citep{Jain:2001hz,Kiem:2002kq,Cook:2010bz,Swierczynski:2012km,Woollings:2014kd,Hodgkins:2017hw,Cassou:2018cs}.
+A detailed analysis of these time series is beyond the scope of this paper, but we note that these findings are consistent with analyses of \gls{lfv} in other hydroclimate systems \citep{Jain:2001hz,Kiem:2002kq,Cook:2010bz,Swierczynski:2012km,Woollings:2014kd,Hodgkins:2017hw,Cassou:2018cs}.
 
 \begin{figure}
   \centering
@@ -189,7 +189,7 @@ Assessing the utility of a particular risk mitigation instrument involves projec
 Consequently, the physical mechanisms which impart predictability on the system differ between projects with long and short planning periods.
 As illustrated in \cref{fig:conceptual-sketch} (a), the lifetime risk of a permanent structure with a \SI{100}{year} planning period depends on the magnitude and extent of future human activities, with very large associated uncertainty.
 Even with a perfect climate model, these uncertainties will be large.
-By contrast, our perfect climate model may usefully inform climate hazard over a three-year insurance contract with much less associated uncertainty.
+By contrast, this perfect climate model may usefully inform estimates of climate hazard over a three-year insurance contract with much less associated uncertainty.
 
 Of course, scientists are not equipped with perfect models.
 Since different physical processes control climate risk at different timescales, successful integration of climate projections into decision frameworks depends on identifying, and subsequently predicting, these processes.
@@ -226,7 +226,7 @@ We consider three scenarios for climate risk, which we define by the structure o
   \item secular change only.
 \end{enumerate*}
 For each scenario, and for its identification from the $N$ year length historical data, the bias and variance of the estimated flood risk over the $M$ year design life relative to the ``true model'' are computed.
-We repeat the simulations $J = 2000$ times for each combination of experiment parameters to estimate the bias and variance of the statistical estimate (\cref{sec:methods-evaluating}).
+We repeat the simulations $J = 2000$ times for each combination of experiment parameters to obtain estimates of the expected bias and variance for each scenario given $M$ and $N$ (\cref{sec:methods-evaluating}).
 
 We caution the reader that the models for sampling climate risk and for statistically projecting future risk were chosen for their intuitive interpretation, rather than their general validity \citep[see][for a thoughtful discussion of the value of simple models]{Held:2005cj}.
 We do not, in general, endorse these models for practical use but instead argue that the conclusions drawn from these simple models may be straightforwardly applied to more complex and realistic models.
@@ -235,7 +235,7 @@ This discussion continues in \cref{sec:discussion-conclusions}.
 \subsection{Sampling Climate Risk}\label{sec:methods-generating}
 
 The first step is to sample climate risk by generating synthetic streamflow sequences.
-To do this, we take the annual-maximum sequences to follow a log-normal distribution, conditional on a location parameter which may vary in time:
+To do this, we model  annual-maximum flood peaks following a log-normal distribution, conditional on a location parameter which may vary in time:
 \begin{equation} \label{eq:log-normal}
   \log Q(t) \sim \normal \qty(\mu(t), \sigma(t)).
 \end{equation}
@@ -261,8 +261,8 @@ This parameterization is analagous to the ``climate-informed'' approach describe
 Thus, when $\beta \neq 0$ there will be \gls{lfv}, and when $\gamma \neq 0$ there will be secular change.
 The values of all parameters used for sampling climate risk are listed in \cref{sec:supp-methods} for each of the three scenarios considered.
 
-We represent the climate index $x(t)$ through an index for \gls{enso}, which has been shown to impact flood risk around the world \citep{Ropelewski:1987do, Ward:2014gg} and has characteristic variability on timescales of 3 to 7 years \citep{Sarachik:2009dr} plus a ``staircase'' of lower-frequency scales \citep{Jin:1994wq}.
-We represent \gls{enso} variability by taking a \SI{20000}{year} integration of the Cane-Zebiak model \citep{Zebiak:1987cl} to produce a monthly NINO3 index \citep{Ramesh:2016hf}.
+We represent the climate state variable $x(t)$ by an index for \gls{enso}, which has been shown to impact flood risk around the world \citep{Ropelewski:1987do, Ward:2014gg} and has characteristic variability on timescales of 3 to 7 years \citep{Sarachik:2009dr} as well as a ``staircase'' of lower-frequency scales \citep{Jin:1994wq}.
+We model \gls{enso} variability by taking a \SI{20000}{year} integration of the Cane-Zebiak model \citep{Zebiak:1987cl} to produce a monthly NINO3 index \citep{Ramesh:2016hf}.
 To create an annual time series, we average the October-December values of the NINO3 index for each year.
 \Cref{sec:supp-nino-spectrum} shows a wavelet spectrum and time series plot of the resulting annual time series.
 In \cref{sec:markov-generating} we consider an alternative parameterization of $\mu(t)$, \ie an alternative to \cref{eq:nino3}, which considers a Markovian state transition rather than an explicit \gls{enso} model, and note a general agreement of results.
@@ -273,17 +273,18 @@ Once a synthetic streamflow sequence has been generated, we evaluate the identif
 We use three well-studied statistical methods for future flood risk, each of which parameterizes time in a different way.
 One is purely stationary, another captures \gls{lfv}, and the third captures secular change.
 We choose these models for their interpretability and simplicity, rather than because of a belief that they are generally valid.
-For each synthetic flood sequence to be analyzed, the first $N$ years are treated as observations, denoted $Q_{\text{hist}}$.
-Once a statistical model is fit to $Q_{\text{hist}}$, then $K=\num{2000}$ sequences of future annual-maximum streamflow over the future $M$-year record are generated from the fitted model using Monte Carlo simulation.
+For each synthetic flood sequence to be analyzed, the first $N$ years are treated as observations.
+Once a statistical model is fit to these ``observations'', then $K=\num{1000}$ sequences of future annual-maximum streamflow over the future $M$-year record are generated from the fitted model using Monte Carlo simulation.
 
 We first consider fitting a stationary model to the observed flood record, following classical assumptions of \gls{iid} sequences.
 In this model annual-maximum streamflow are taken to follow a log-normal distribution with constant mean and variance.
 The parameters of the model are fit  in a Bayesian framework to fully represent the posterior uncertainty, using the stan probabilistic computing package \citep{Carpenter:2017ke} with weakly informative priors for regularization.
 The full model is given in \cref{eq:log-normal-stationary}.
 
-Next, we expand this stationary model to incorporate secular change.
-Many studies have done this by regressing certain parameters of the model on time \citep[see][]{Salas:2018ge}.
+Next, we modify this stationary model to incorporate secular change.
+Many studies have done this by regressing certain parameters of the model on time \citep[see][for a comprehensive review]{Salas:2018ge}.
 We consider an extension of the stationary log-normal model by adding a time trend on the scale parameter and maintaining a constant coefficient of variation, as given in \cref{eq:log-normal-trend}.
+This model gives a lower bound on total informational uncertainty because it correctly represents the form of a trend, whereas in real-world analyses the form of the trend is unknown.
 
 Finally, we consider a model which explicitly represents \acrlong{lfv}.
 A \gls{hmm} is a latent variable model in which the system being modeled is assumed to follow a Markov process with unobserved (\ie hidden) states $S(t)$ \citep{Rabiner:1986jk}.
@@ -319,7 +320,7 @@ These are generated with the same underlying parameters, but the specific synthe
 
 \subsection{Computation}\label{sec:methods-computation}
 
-Computation was carried out in the python programming language, making particular use of the matplotlib, numpy, pandas, pomegranate, scipy, and xarray libraries for scientific computing \citep{Hunter:2007ih, vanderWalt:2011dp, McKinney:2010un, Schreiber:2017tg, Jones:2001uv, Hoyer:2017hs}.
+Computation was carried out in the python programming language, making particular use of the matplotlib, numpy, pandas, pomegranate, scipy, and xarray libraries for scientific computing \citep{Hunter:2007ih, vanderWalt:2011dp, McKinney:2010un, schreiber:2017, Jones:2001uv, Hoyer:2017hs}.
 Wavelet analysis was conducted using the WaveletComp package \citep{Roesch:wlBQQoIs} in the R programming language.
 Bayesian models were written in the stan probabilistic programming language \citep{Carpenter:2017ke}.
 The codes used to generate the figures and text of this paper are available at \url{https://github.com/jdossgollin/robust-adaptation-cyclical-risk} or in the online supplemental material of this paper.
@@ -443,6 +444,7 @@ We show that mis-specification of a trend's mathematical form yields estimates w
 
 The stationary, linear trend, and \gls{hmm} models considered for estimation present an idealized alternative to more complex, physically based models for future risk projection.
 For example, flood frequency analysis may join observations across time and space \citep{Lima:2016kd,Merz:2008eh} or apply model chains based on \glspl{gcm} and hydrologic models \citep[see][]{Merz:2014gf}.
+In places where long records are not available, for example, information from nearby locations, reanalysis products, or \acrshort{gcm} runs may increase the amount of available information \citep{Merz:2008eh}, effectively increasing $N$.
 We suggest, then, that the sample size $N$ defined in our experiments may be straightforwardly interpreted as a measure of the total informational uncertainty in the analysis; as $N$ increases, informational uncertainty decreases.
 
 Similarly, real-world climate adaptation plans will typically include multiple instruments which may be placed in different locations and times in a sequential fashion.
@@ -464,8 +466,19 @@ We began with three premises, or observations, about the nature of climate risk:
   \item that the dominant processes that control this risk depend on the planning period itself.
 \end{enumerate*}
 Although the simulations presented here are neatly divided into secular change, \gls{lfv} only, and \gls{lfv} plus secular change, real-world hydroclimate time series exhibit \gls{lfv} on many timescales and several sources of (not necessarily linear) secular change, as shown in \cref{fig:observed-lfv}.
-Identifying and modeling these different physical signals requires a large amount of information, represented here by the length of the $N$-year historical record.
-In places where long records are not available, however, information from nearby locations, reanalysis products, or \acrshort{gcm} runs may increase the amount of available information \citep{Merz:2008eh}, effectively increasing $N$.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.5\textwidth]{M-N-Sketch.pdf}
+  \caption{
+    The importance of predicting different signals, and the identifiability and predictability of the signals, depends on the degree of informational uncertainty ($N$) and the project planning period ($M$).
+  }\label{fig:m-n-sketch}
+\end{figure}
+As shown in \cref{fig:m-n-sketch}, the importance of predicting, and potential for doing so skillfully, depend on the project planning period $M$ and the information available, $N$.
+When $M$ and $N$ are short, only a ``rough guess'' using simple models is feasible, and increases in model complexity only add uncertainty.
+If $M$ is short and $N$ is long, however, the \gls{lfv} in the system may be skillfully predicted, thereby reducing the cost of such an instrument.
+If $N$ remains long but $M$ increases, then informational uncertainty may be reduced, but intrinsic uncertainty will remain, and may be large.
+Finally, if $M$ is long but $N$ is short, then the analysis will lead to the ``danger zone'' of extrapolation and a high potential for misleading estimates.
 
 Depending on the specific climate mechanisms that impact a particular site, and the predictability thereof, the cost and risk associated with a sequence of short-term adaptation projects may be lower than with building a single, permanent structure to prepare for a worst-case scenario far into the future.
 For most large actors, a portfolio of both large $M$ and small $M$ projects will likely be necessary, none of which precludes the need for mitigation of global and local climate change and the development and execution of vulnerability reduction strategies.
