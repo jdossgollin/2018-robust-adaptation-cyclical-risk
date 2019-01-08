@@ -1,6 +1,6 @@
 \documentclass[
-  %draft,
-  %linenumbers
+  draft,
+  linenumbers
 ]{agujournal2018}
 \journalname{Earth's Future}
 
@@ -110,7 +110,7 @@ At the same time, anthropogenic modification of global and local climate process
 Even if mitigation efforts are successful, novel adaptation strategies are needed.
 
 This need has motivated a multitude of approaches for estimating the probability distribution of future climate risk, and for choosing between different risk mitigation instruments based on these estimates \citep[see, \eg,][]{Merz:2014gf}.
-Although climate risk has been traditionally managed with centrally planned structural instruments (\eg, a levee), the high price \citep{Papakonstantinou:2016ve}, environmental costs,\footnote{cite the environmental costs of big infrastructure projects} and concerns of making adaptation decisions based on potentially incorrect climate projections \citep{lempert:2007} have slowed their deployment.
+Although climate risk has been traditionally managed with centrally planned structural instruments (\eg, a levee), the high price \citep{Papakonstantinou:2016ve}, environmental costs \citep{dugan:2010}, and concerns of making adaptation decisions based on potentially incorrect climate projections \citep{lempert:2007} have slowed their deployment.
 Instead, actors such as New York City have turned to a combination of structural, operational, and financial instruments for reducing vulnerability and increasing resilience to climate extremes \citep{CityofNewYork:2013uh}.
 These instruments are not typically implemented in isolation or statically.
 Instead, investment decisions made at each point in time affect the viability, costs, and benefits of future decisions, causing the system to trace a ``pathway'' through time \citep{Walker:2013gi,Haasnoot:2013im,Haasnoot:2015dh}.
@@ -127,7 +127,7 @@ We continue this section with three specific observations about climate risk whi
 Public or private sector investments in climate adaptation require not only the design of each potential structural instrument, but also selecting between instruments with vastly different operational planning periods.
 This project planning period, which we define as being $M$ years, describes the nominal economic or physical lifespan of the structure or contract.
 Typical planning periods may vary from $M=1$ year or less for a financial contract to $M=100$ years or longer for a structural instrument, as illustrated in \cref{tab:real-world-M}.
-The planning period can also be interpreted as the finite period over which \gls{cba} is conducted when assessing the project.\footnote{we should add a citation about \gls{cba} here, perhaps a technical spec from the Army Corps?}
+The planning period can also be interpreted as the finite period over which \gls{cba} is conducted when assessing the project.
 
 \noindent\begin{table}
   {\footnotesize
@@ -157,7 +157,7 @@ The costs and benefits of each individual instrument will be assessed over its i
 \subsection{Climate risk varies on many scales}\label{sec:intro-lfv}
 
 Climate risk is governed by a variety of physical processes which occur on scales ranging from local and transient to global and permanent.
-Of these processes, \gls{acc} has received the most attention in the climate adaptation literature and its influence on river floods, droughts, hurricanes, urban flooding, and many other climate hazards are well documented.\footnote{Add citations of \gls{acc} influences on climate hazards}
+Of these processes, \gls{acc} has received the most attention in the climate adaptation literature and its influence on river floods, droughts, hurricanes, urban flooding, and many other climate hazards are well documented \citep[\eg,][]{Coumou:2012bc,Milly:2008dg,OGorman:2009hj,Trenberth:2003bj}.
 Human activities can also affect climate risk through modification of local land or river systems \citep[see][]{Merz:2014gf}, and through changes in exposure to extremes \citep{baldassarre:2018,Jongman:2012cr}.
 In combination, these effects highlight that the past may not be an adequate representation of future climate risk \citep[termed ``nonstationarity'' by][]{Milly:2008dg}.
 
@@ -312,7 +312,7 @@ Similarly, an instrument designed based on underestimated variance or negative b
 We evaluate both the estimation bias and estimation uncertainty.
 For a given choice of $M$, $N$, generating model, we compare the synthetic streamflow sequence's $N$-year ``historical record'', and the $K=2000$ posterior simulations of future flows.
 The quantity $\hat{p}_T$, the estimated expected number of floods per year, is taken by calculating, for each of the $K$ posterior simulations, the number of exceedances of the flood design threshold, then dividing by $M$ to get exceedances per year.
-We then compute the variance of these $K$ estimates of their variance.
+We then compute the variance of these $K$ estimates.
 We further calculate the bias of $\hat{p}_T$ by averaging it across the $K$ samples and comparing this to the number of times the $M$-year ``future period'' of the synthetic streamflow sequence exceeds the flood design threshold.
 Since the ``observed'' number of flood exceedances from the generating model is inherently noisy for an $M$-year period, we repeat this analysis for $J=1000$ different streamflow sequences.
 These are generated with the same underlying parameters, but the specific synthetic NINO3 sequence (or set of Markov states) may be different between the $J$ sequences.
@@ -322,7 +322,7 @@ These are generated with the same underlying parameters, but the specific synthe
 Computation was carried out in the python programming language, making particular use of the matplotlib, numpy, pandas, pomegranate, scipy, and xarray libraries for scientific computing \citep{Hunter:2007ih, vanderWalt:2011dp, McKinney:2010un, Schreiber:2017tg, Jones:2001uv, Hoyer:2017hs}.
 Wavelet analysis was conducted using the WaveletComp package \citep{Roesch:wlBQQoIs} in the R programming language.
 Bayesian models were written in the stan probabilistic programming language \citep{Carpenter:2017ke}.
-The codes used to generate the figures and text of this paper are available at \url{https://github.com/jdossgollin/robust-adaptation-cyclical-risk}\footnote{Dear reviewers: this GitHub repository is currently not publicly available, but codes are provided in the online supplemental information. The repository will be made publicly available if and when this work is published.} or in the online supplemental material of this paper.
+The codes used to generate the figures and text of this paper are available at \url{https://github.com/jdossgollin/robust-adaptation-cyclical-risk} or in the online supplemental material of this paper.
 
 % -----------------------------------------------------------------------------
 % RESULTS
@@ -389,11 +389,11 @@ As expected, the stationary model (right column) performs well overall, with low
 The \gls{hmm} (left column) actually out-performs the stationary model, with slightly lower variance than the stationary model, because it better captures the true multimodal distribution that emerges from dependence on the NINO3 index which exhibits several regimes.
 By contrast, the linear trend model (middle column) performs poorly for low $N$ and high $M$ because a positive probability is assigned to the existence of a positive trend.
 
-Of particular relevance to analysis of real-world data sets is the ratio of the project planning period $M$ to the characteristic periods of variability of the \gls{lfv}, denoted $T_{\text{LFV}}$.
+Of particular relevance to analysis of real-world data sets is the ratio of the project planning period $M$ to the characteristic periods of variability $T_{\text{LFV}}$ of the \gls{lfv}.
 As shown in \cref{fig:enso-ts}, the NINO3 time series is most active in the \SIrange{3}{6}{year} band.
 If $T_{\text{LFV}} \ll M$, then a stationary assumption may provide reasonable estimates, and fewer observations may be required (shorter $N$).
 In the real world, however, many hydroclimate time series vary at multidecadal and longer frequencies.
-In this case, as illustrated in \cref{fig:conceptual-sketch}, the characteristic frequencies $T_{\text{LFV}}$ may be as large or larger than $M$, particularly if multidecadal modes such as the \gls{pdo} or \gls{amo} are involved, and the \gls{lfv} must therefore be estimated explicitly.
+In this case, as illustrated in \cref{fig:conceptual-sketch}, the characteristic frequencies $T_{\text{LFV}}`$ may be as large or larger than $M$, particularly if multidecadal modes such as the \gls{pdo} or \gls{amo} are involved, and the \gls{lfv} must therefore be estimated explicitly.
 This in turn requires a longer observational record $N$ in order to identify and predict these different signals.
 
 \begin{figure}
@@ -438,7 +438,7 @@ If sufficient information is not available, then simple models which represent f
 
 For projects with longer $M$, it becomes necessary to consider the role of secular change.
 As illustrated schematically in \cref{fig:conceptual-sketch}, uncertainties as to future population, economic development, renewable energy technology, and greenhouse gas mitigation collectively lead to very high uncertainty in projections of future climate risk.
-As the physical mechanisms cascade from global (\eg, global mean surface temperature) to regional  \citep[\eg, storm track position][]{Barnes:2015gl} and local (\eg, annual-maximum streamflows) scales, uncertainties compound and increase \citep{Dittes:2017he}.\footnote{Let's add a citation here from the climate literature}
+As the physical mechanisms cascade from global (\eg, global mean surface temperature) to regional  \citep[\eg, storm track position][]{Barnes:2015gl} and local (\eg, annual-maximum streamflows) scales, uncertainties compound and increase \citep{Dittes:2017he}.
 We show that mis-specification of a trend's mathematical form yields estimates which are increasingly unreliable as $M$ increases, an important caution for the field of ``nonstationary'' flood frequency analysis as noted by \citet{Montanari:2014hl} and \citet{Serinaldi:2015bq}.
 
 The stationary, linear trend, and \gls{hmm} models considered for estimation present an idealized alternative to more complex, physically based models for future risk projection.
@@ -450,9 +450,9 @@ Even if the planning period of a portfolio is long, the individual instruments w
 Since \cref{sec:results} shows that the bias and variance of climate risk projections tend to increase with $M$, the total bias and variance associated with sequencing 20 consecutive $M=\SI{5}{year}$ projects will be less than that associated with making a single $M=\SI{100}{year}$ project.
 This effect will be exacerbated by the fact that if the first $M=\SI{5}{year}$ project is based on estimates with informational uncertainty $N$, the second will have $N+5$, the third $N+10$, and so on.
 
-The climate adaptation decisions which this analysis can inform are typically framed as economic cost-benefit analyses which discount future cash flows at some annual rate.
+The climate adaptation decisions which this analysis can inform are typically framed as economic cost-benefit analyses which discount future cash flows at some annual rate \citep{sodastrom:1999,powers:2003}.
 The application of a positive discount rate, as is typical in the public and private sectors, emphasizes the importance of predicting near-term risk.
-Consequently, projects with long $M$ must overcome future discounting, the potential for large bias or variance, and that all estimates are made with informational uncertainty $N$ rather than a sequence of $N$, $N+\Delta N, \ldots$.\footnote{Should we create a new section called summary for these last two paragraphs?}
+Consequently, projects with long $M$ must overcome future discounting, the potential for large bias or variance, and that all estimates are made with informational uncertainty $N$ rather than a sequence of $N$, $N+\Delta N, \ldots$.
 
 \section{Summary}
 
