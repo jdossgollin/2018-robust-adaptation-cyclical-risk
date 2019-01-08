@@ -336,6 +336,8 @@ Next, we consider the ``pre-industrial'' case where there is no secular change b
 Finally, we consider a more realistic (though still idealized) case with both \gls{lfv} and secular change.
 These three cases are illustrated in \cref{fig:example-fit}, which shows a single synthetic streamflow sequence generated with $N=50$ and $M=100$.
 Projections with each of the three fitting models are also shown.
+This figure highlights that even where projections of average streamflow are unbiased, if the spread is too large then projection of the threshold exceedance probability may be too large.
+
 In the remainder of this section we present a more systematic analysis of each of these three cases.
 \begin{figure}
   \includegraphics[width=\textwidth]{Example-NINO3-M100-N50.pdf}
@@ -425,30 +427,42 @@ Alternatively, when $M$ is short, \gls{lfv} dominates and the increased variance
 \clearpage
 \section{Discussion}\label{sec:discussion-conclusions}
 
-Evaluating and implementing investments for climate risk mitigation demands making projections of climate risk, which exhibits both \gls{lfv} and secular trends, over the $M$-year project life of the instrument.
+Evaluating and implementing investments for climate risk mitigation involves making projections of climate risk, which exhibits both \gls{lfv} and secular trends, over the $M$-year project life of the instrument.
 The success of this prediction will depend on the identifiability of different signals from an $N$-year sample, the time scales of \gls{lfv} relative to the project life of the instrument, and the uncertainty associated with the estimation.
 In this paper we took a synthetic data approach to explore the implications of varying $M$ and $N$ in stylized scenarios which represent important features of real-world hydroclimate systems.
 
-The stationary, linear trend, and \gls{hmm} models considered for estimation present an idealized alternative to more complex, physically based models for future risk projection.
-They were chosen to represent the ability of simple models to capture two features of interest: \gls{lfv} and secular trends.
-The models were assessed on their performance over a complete future period of length $M$ years; as discussed in \cref{sec:introduction} the bias and variance computed together represent the likelihood for over- or under-design of the instrument in a given climate scenario (see \cref{fig:conceptual-bias-variance}).
-If more complex methods, such as model chains based on \glspl{gcm} and hydrologic models, are used, the sample size $N$ used in our experiments may be straightforwardly interpreted as a surrogate for the total informational uncertainty in the analysis.
-
-The climate adaptation decisions which this analysis can inform are typically framed as economic cost-benefit analyses which discount future cash flows at some annual rate.
-The application of a positive discount rate, as is typical in the public and private sectors, emphasizes the importance of predicting near-term risk.
-Even ignoring this, however, if the uncertainty associated with the performance of the instrument increases into the future (as shown in \cref{fig:conceptual-sketch}) then adaptation strategies with a short $M$ are preferred.
-This is consistent with recent emphasis on the importance of making decisions that are robust to a wide range of possible future climates \citep[\ie,][]{Haasnoot:2013im, Poff:2015jn}.
-
 For projects where $M$ is sufficiently short, cyclical climate variability is dominant over the project planning period \citep{Jain:2001hz,Hodgkins:2017hw}.
-The long periods and high amplitudes of the oscillations shown in \cref{fig:observed-lfv} and discussed in \cref{sec:intro-lfv} highlight the importance of adapting not only to secular change but also, simultaneously, to \gls{lfv}.
-
+The long periods and high amplitudes of the oscillations shown in \cref{fig:observed-lfv} and discussed in \cref{sec:intro-lfv} highlight the \emph{importance} of identifying and predicting this variability.
+However, one's \emph{ability} to do so depends on having a model of sufficient complexity to represent the processes that cause \gls{lfv}, and the data to fit the model.
+If sufficient information is not available, then simple models which represent fewer processes may be preferred.
 
 For projects with longer $M$, it becomes necessary to consider the role of secular change.
 As illustrated schematically in \cref{fig:conceptual-sketch}, uncertainties as to future population, economic development, renewable energy technology, and greenhouse gas mitigation collectively lead to very high uncertainty in projections of future climate risk.
-As the physical mechanisms cascade from global (\eg, global mean surface temperature) to regional  \citep[\eg, storm track position][]{Barnes:2015gl} and local (\eg, annual-maximum streamflows) scales, uncertainties compound and increase \citep{Dittes:2017he}.
-We find that when making risk projections that consider secular change, mis-specification of a trend's mathematical form yields estimates which are increasingly unreliable as $M$ increases.
-This is particularly important given that in real-world settings the true form of the trend is not known and thus ``nonstationary'' projections which assume a particular type of trend are likely to perform poorly \citep{Montanari:2014hl, Serinaldi:2015bq}.
+As the physical mechanisms cascade from global (\eg, global mean surface temperature) to regional  \citep[\eg, storm track position][]{Barnes:2015gl} and local (\eg, annual-maximum streamflows) scales, uncertainties compound and increase \citep{Dittes:2017he}.\footnote{Let's add a citation here from the climate literature}
+We show that mis-specification of a trend's mathematical form yields estimates which are increasingly unreliable as $M$ increases, an important caution for the field of ``nonstationary'' flood frequency analysis as noted by \citet{Montanari:2014hl} and \citet{Serinaldi:2015bq}.
 
+The stationary, linear trend, and \gls{hmm} models considered for estimation present an idealized alternative to more complex, physically based models for future risk projection.
+For example, flood frequency analysis may join observations across time and space \citep{Lima:2016kd,Merz:2008eh} or apply model chains based on \glspl{gcm} and hydrologic models \citep[see][]{Merz:2014gf}.
+We suggest, then, that the sample size $N$ defined in our experiments may be straightforwardly interpreted as a measure of the total informational uncertainty in the analysis; as $N$ increases, informational uncertainty decreases.
+
+Similarly, real-world climate adaptation plans will typically include multiple instruments which may be placed in different locations and times in a sequential fashion.
+Even if the planning period of a portfolio is long, the individual instruments within the portfolio may have short planning periods.
+Since \cref{sec:results} shows that the bias and variance of climate risk projections tend to increase with $M$, the total bias and variance associated with sequencing 20 consecutive $M=\SI{5}{year}$ projects will be less than that associated with making a single $M=\SI{100}{year}$ project.
+This effect will be exacerbated by the fact that if the first $M=\SI{5}{year}$ project is based on estimates with informational uncertainty $N$, the second will have $N+5$, the third $N+10$, and so on.
+
+The climate adaptation decisions which this analysis can inform are typically framed as economic cost-benefit analyses which discount future cash flows at some annual rate.
+The application of a positive discount rate, as is typical in the public and private sectors, emphasizes the importance of predicting near-term risk.
+Consequently, projects with long $M$ must overcome future discounting, the potential for large bias or variance, and that all estimates are made with informational uncertainty $N$ rather than a sequence of $N$, $N+\Delta N, \ldots$.\footnote{Should we create a new section called summary for these last two paragraphs?}
+
+\section{Summary}
+
+In this paper we considered how the temporal structure of the climate affects the potential for successful prediction over a finite $M$-year future period.
+We began with three premises, or observations, about the nature of climate risk:
+\begin{enumerate*}[label= (\roman*)]
+  \item that planning decisions are made with finite horizons;
+  \item that climate risk varies on many scales; and
+  \item that the dominant processes that control this risk depend on the planning period itself.
+\end{enumerate*}
 Although the simulations presented here are neatly divided into secular change, \gls{lfv} only, and \gls{lfv} plus secular change, real-world hydroclimate time series exhibit \gls{lfv} on many timescales and several sources of (not necessarily linear) secular change, as shown in \cref{fig:observed-lfv}.
 Identifying and modeling these different physical signals requires a large amount of information, represented here by the length of the $N$-year historical record.
 In places where long records are not available, however, information from nearby locations, reanalysis products, or \acrshort{gcm} runs may increase the amount of available information \citep{Merz:2008eh}, effectively increasing $N$.
