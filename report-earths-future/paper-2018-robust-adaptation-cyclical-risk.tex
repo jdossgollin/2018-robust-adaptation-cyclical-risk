@@ -110,7 +110,7 @@ At the same time, anthropogenic modification of global and local climate process
 Even if mitigation efforts are successful, novel adaptation strategies are needed.
 
 This need has motivated a multitude of approaches for estimating the probability distribution of future climate risk, and for choosing between different risk mitigation instruments based on these estimates \citep[see, \eg,][]{Merz:2014gf}.
-Although climate risk has been traditionally managed with centrally planned structural instruments (\eg, a levee), the high price \citep{Papakonstantinou:2016ve}, environmental costs \citep{dugan:2010}, and concerns of making adaptation decisions based on potentially incorrect climate projections \citep{lempert:2007} have recently slowed their implementation.
+Although climate risk has been traditionally managed with centrally planned structural instruments (\eg, a levee), the high price \citep{Papakonstantinou:2016ve}, environmental costs \citep{dugan:2010}, and vulnerability to biased climate projections \citep{lempert:2007} have recently slowed their implementation.
 Instead, actors such as New York City have turned to a combination of structural, operational, and financial instruments for reducing vulnerability and increasing resilience to climate extremes \citep{CityofNewYork:2013uh}.
 These instruments are not typically implemented in isolation or statically.
 Instead, investment decisions made at each point in time affect the viability, costs, and benefits of future decisions, causing the system to trace a ``pathway'' through time \citep{Walker:2013gi,Haasnoot:2013im,Haasnoot:2015dh}.
@@ -209,7 +209,7 @@ Although \cref{fig:conceptual-sketch} focuses on physical processes, similar con
   \caption{
     A stylized illustration of (a) irreducible and (b) estimation uncertainty.
     (a): Irreducible uncertainty cannot be resolved with better models or data and is dominated in the short term by chaotic behavior of the climate, and in the long term by the uncertainty in future \acrlong{acc}.
-    (b): The length of a historical record limits the potential to identify different climate signals.
+    (b): Informational uncertainty limits the potential to identify different climate signals.
     The blue line shows an idealized climate signal and the black line shows observations, which are scattered stochastically around the signal line.
     The green shading shows the true range within which observations will occur 95\% of the time, while the gray shading the 95\% confidence interval as estimated with a linear trend model.
     }\label{fig:conceptual-sketch}
@@ -224,7 +224,7 @@ Although \cref{fig:conceptual-sketch} focuses on physical processes, similar con
 We consider a set of stylized experiments to assess how well one can identify and predict risk associated with cyclical and secular climate signals for the $M$-year planning period and the probability of over- or under-design of a climate adaptation strategy based on these projections.
 We consider different temporal structures for the underlying risk which encompass quasi-periodic, regime-like, and secular change, as well as simple statistical models for estimating this risk from an $N$-year historical record.
 The relative importance of estimating the short- or long-term risk associated with these extremes depends on the design life $M$, but the potential to understand and predict these different types of variability depends on the informational uncertainty in the $N$-year historical record.
-Though we use floods as an example, the framework also applies to other forms of climate extremes.
+Though we illustrate our findings with a simple flood risk example, the conclusions drawn apply to other hydroclimate hazards, and in particular those typically characterized through a time series of annual maxima or minima.
 
 We consider three scenarios for climate risk, which we define by the structure of the underlying climate signal:
 \begin{enumerate*}[label= (\roman*)]
@@ -241,8 +241,6 @@ This discussion continues in \cref{sec:discussion-conclusions}.
 
 \subsection{Sampling Climate Risk}\label{sec:methods-generating}
 
-We illustrate our findings with a simple flood risk example.
-The conclusions drawn apply to other hydroclimate hazards, and in particular those which may be easily characterized through a time series of annual maxima or minima of the process.
 The first step is to sample climate risk by generating synthetic streamflow sequences.
 To do this, we model  annual-maximum flood peaks with a log-normal distribution, conditional on a location parameter which varies in time:
 \begin{equation} \label{eq:log-normal}
@@ -293,9 +291,9 @@ The full model, including priors, is given in \cref{eq:log-normal-stationary}.
 Next, we modify this stationary model to incorporate secular change.
 Many studies have done this by regressing certain parameters of the model on time \citep[see][for a comprehensive review]{Salas:2018ge}.
 We consider an extension of the stationary log-normal model by adding a time trend on the scale parameter and maintaining a constant coefficient of variation, as given in \cref{eq:log-normal-trend}.
-This model gives a lower bound on total informational uncertainty because it correctly represents the form of the trend, which is known, whereas in real-world analyses the form of the trend is unknown.
+This model gives a lower bound on total informational uncertainty because it correctly represents the trend's known form, whereas in real-world analyses the form of the trend is unknown.
 
-Finally, we consider a model which explicitly represents \acrlong{lfv}.
+We finally consider a model which explicitly represents \acrlong{lfv}.
 A \gls{hmm} is a latent variable model in which the system being modeled is assumed to follow a Markov process with unobserved (\ie hidden) states $S(t)$ \citep{Rabiner:1986jk}.
 The (unobserved) states evolve following a first-order Markov process, and the observed variable (\eg streamflow) depends only on the underlying state.
 We fit  streamflow sequences $Q_\text{hist}$ simulated using the scenarios in Section 2.1, using a \gls{hmm} with two states.
@@ -320,7 +318,7 @@ Similarly, an instrument designed based on underestimated variance or negative b
 \end{figure}
 
 We evaluate both the estimation bias and estimation uncertainty.
-For a given choice of $M$, $N$, generating model, we compare the synthetic streamflow sequence's $N$-year ``historical record'', and the $K=2000$ posterior simulations of future flows.
+For a given choice of $M$, $N$, generating model, we compare the synthetic streamflow sequence's $N$-year ``historical record'', and the $K=1000$ posterior simulations of future flows.
 The quantity $\hat{p}_T$, the estimated expected number of floods per year, is taken by calculating, for each of the $K$ posterior simulations, the number of exceedances of the flood design threshold, then dividing by $M$ to get exceedances per year.
 We then compute the variance of these $K$ estimates.
 We further calculate the bias of $\hat{p}_T$ by averaging it across the $K$ samples and comparing this to the number of times the $M$-year ``future period'' of the synthetic streamflow sequence exceeds the flood design threshold.
@@ -355,7 +353,7 @@ In the remainder of this section we present a more systematic analysis of each o
     An illustration of the estimation procedure.
     A single streamflow sequence with $N=50$ and $M=100$ is shown for each of the three cases (secular only, \gls{lfv} only, and secular plus \gls{lfv}) considered.
     The blue line shows the observed sequence.
-    The gray shading indicates the 50\% and 95\% confidence intervals using each of the three fitting methods discussed.
+    The gray shading indicates the 50\% and 95\% confidence intervals using each of the three fitting methods discussed (rows).
     The horizontal black line indicates the flood threshold.
   }\label{fig:example-fit}
 \end{figure}
@@ -517,8 +515,8 @@ In this section we provide further equations and parameter values used to genera
 
 \subsection{Sampling Climate Risk}\label{sec:supp-nino-spectrum}
 
-As described in \cref{sec:methods-generating}, we use a synthetic NINO3 time series, as described in \citep{Ramesh:2016hf}, to represent low-frequency climate variability.
-\Cref{fig:enso-ts} shows the wavelet spectrum of this time series, calculated using WaveletComp software \citep{Roesch:wlBQQoIs}.
+As described in \cref{sec:methods-generating}, we use a synthetic \gls{enso} time series, specifically a NINO3 time series, from \citep{Ramesh:2016hf} to represent low-frequency climate variability.
+\Cref{fig:enso-ts} shows the wavelet spectrum of this time series, calculated using the WaveletComp package \citep{Roesch:wlBQQoIs}.
 The global (average) wavelet power spectrum shows a clear peak around 3-7 years, in line with previous studies of \gls{enso} although interactions with other modes of \acrfull{lfv} found in some studies \citep{Jin:1994wq} is dampened in this model.
 There are, however, modes of \gls{lfv} between \SIrange{16}{128}{year} which are \emph{locally} strong at some points in time, which captures at least some effects of very low-frequency behavior for the purposes of this study.
 \begin{figure}
@@ -558,9 +556,8 @@ where $\xi$ is an estimated coefficient of variation.
 \subsection{Experiment Design}\label{sec:methods-experiments}
 
 In this section we describe the parameters used to generate the specific sets of sequences that are analyzed in the results section.
-To explore the temporal structure of risk, we generate $J=2000$ sequences of streamflow, using both the NINO3 and Markov models, for each of several combinations of $M$ and $N$.
+To explore the temporal structure of risk, we generate $J=1000$ sequences of streamflow, for each of several combinations of $M$ and $N$.
 Streamflow sequences are generated using the stationary generating functions both with and without superimposing a secular trend.
-Both the NINO3 model and the Markov model are used; the parameters are shown in \cref{tab:nino-stationary} and \cref{tab:markov-stationary}, respectively.
 
 \begin{table}[ht]
   \centering
