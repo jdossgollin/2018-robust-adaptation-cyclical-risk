@@ -296,7 +296,8 @@ This model gives a lower bound on total informational uncertainty because it cor
 We finally consider a model which explicitly represents \acrlong{lfv}.
 A \gls{hmm} is a latent variable model in which the system being modeled is assumed to follow a Markov process with unobserved (\ie hidden) states $S(t)$ \citep{Rabiner:1986jk}.
 The (unobserved) states evolve following a first-order Markov process, and the observed variable (\eg streamflow) depends only on the underlying state.
-We fit  streamflow sequences $Q_\text{hist}$ simulated using the scenarios in Section 2.1, using a \gls{hmm} with two states.
+\Glspl{hmm} have been widely used for modeling streamflow sequences \citep{Bracken:2016ba} and \gls{enso} \citep{rojohernandez:2017}.
+We fit  streamflow sequences using a \gls{hmm} with two states.
 The model is fit using the Baum-Welch algorithm, assuming that the data follow a log-normal distribution conditional only on the state.
 This algorithm simultaneously estimates the transition matrix of the Markov process and the conditional parameters of each distribution.
 For simplicity, we fit only a two-state \gls{hmm} to each sequence.
