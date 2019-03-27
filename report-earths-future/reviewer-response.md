@@ -76,15 +76,24 @@ It is an interesting exploration the interaction of various types of climatic va
 As this paper uses the word robust in the title, the introduction needs to link the concept of robustness to their questions and methods.
 Suggest citing literature on robust adaptation if you keep ‘robust’ in the title.
 
-> We have updated the key point in the summary
+> See Line 39 (verify)
 
 In Sections 2.1 and 2.2 you describe the three models of climatic change, and three ways of modeling each climate model.
 Is there a way to clarify the structure of your computational experiment in these two sections, including your intent of using multiple methods of generating these types of climate variability?
+
+> **QUESTION**: I think we just need to modify the beginning of the results section. Is there anything we can make clearer?
+
 Please explicitly link the lognormal model with the LN2 acronym in text before using in figures.
+
+> We have done this in section 2.2
 
 It would be interesting to see whether there is a relationship in the results between bias and variance; e.g. can the variance inform or predict the bias in each of the three types of climate variability?
 
+> This is certainly an interesting question. However, the precise structure of bias and variance as a function of $N$ and $M$ depends strongly on the specific model used to create nonstationarity and to estimate future climate risk. As such, we cannot expect that any answer we obtain to this question would generalize beyond the specific assumptions of our stylized computational experiment. For this reason we have determined not to address this question in this work.
+
 The discussion needs to reference the computational results, at minimum to justify the computational experiment as opposed to solely a conceptual exploration.
+
+> We have added some modifications to the discussion to reference our computational results more directly and clearly.
 
 ### Key points
 

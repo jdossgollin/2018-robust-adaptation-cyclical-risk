@@ -82,9 +82,8 @@
 
 % Key Points
 \begin{keypoints}
-  \item Climate risk varies over the planned lifespan of a project
-  \item Importance of predicting different climate signals depends on extrapolation desired (planning period)
-  \item Ability to identify and predict different climate signals depends on information available (\eg, data)
+  \item \add{Climate risk varies over the planned lifespan of a climate risk mitigation instrument}
+  \item 
 \end{keypoints}
 
 % Abstract
@@ -111,6 +110,7 @@ At the same time, anthropogenic modification of global and local climate process
 Even if \add{future} mitigation efforts are successful, \add{existing levels of atmospheric $\text{CO}_2$ and ocean heat content mean that} novel adaptation strategies are needed.
 
 This need has motivated a multitude of approaches for estimating the probability distribution of future climate risk, and for choosing between different risk mitigation instruments based on these estimates \citep[see, \eg,][]{Merz:2014gf}.
+\add{A typical goal is to create systems which are robust in the sense that they perform well over a wide range of plausible futures} \citep{lempert:2007,Borgomeo:2018hk} \add{and which fail along non-catastrophic modes} \citep{brown:2010}.
 Although climate risk has been traditionally managed with centrally planned structural instruments (\eg, a levee), the high price \citep{Papakonstantinou:2016ve}, environmental costs \citep{dugan:2010}, and vulnerability to biased climate projections \citep{lempert:2007} have recently slowed their implementation.
 \remove{Instead}\add{Rather}, actors such as New York City have turned to a combination of structural\add{ (\eg, a stormwater barrier)}, operational\add{ (\eg, improved evacuation routes)}, and financial\add{ (\eg, index insurance)} instruments for reducing vulnerability and increasing resilience to climate extremes \citep{CityofNewYork:2013uh}.
 These instruments are not typically implemented in isolation or statically.
@@ -171,11 +171,18 @@ In combination, these effects highlight that the past may not be an adequate rep
 
 \remove{Permanent or secular change is not, however, a prerequisite for the inadequacy of relying on historical records.}
 \add{Secular change is not the only mechanism which can cause historical records to provide a biased view of future risk.}
+\annote{One well-studied example}{This whole paragraph is added, but the track changes packages doens't allow math or references.} in the hydrological literature is the Hurst phenomenon, $\frac{R_n}{S_n} \sim n^h$, where $h \in [0.5, 1]$, $R_n$ is the range of the first $n$ data points, and $S_n$ is the sample standard deviation \citep{Hurst:1951tc,oconnell:2016}.
+A variety of theories, including infinite memory, nonstationarity of the process, and specific storage mechanisms have been put forth to explain the Hurst phenomenon, none satisfactorily \citep{klemes:1974}.
+Links between local hydrological processes and large-scale climate patterns, often referred to as teleconnections \citep{Angstrom:1935ej}, have also been used to explain \gls{lfv} in hydroclimate systems.
+If these climate modes vary on decadal or longer time scales, such as the Pacific Decadal Oscillation \citep{Mantua:1997kj}, then this \gls{lfv} may appear in local hydrologgical records as well, leading the past to be a poor predictor of future behavior.
 For example, \citet{Jain:2001hz} demonstrated that in a system with substantial \acrfull{lfv}, due, \eg, to \gls{enso}, the past $N$ years can be a poor proxy for the following $N$ years even when no secular change is present.
+When records are short, and whether low-frequency external forcing or local memory dominates, it is easy to mistake the Hurst phenomenon for a secular trend which may not continue from the past into the future \citep{bhattacharya:1983}.
+
 We illustrate this type of \gls{lfv} in \cref{fig:observed-lfv}, which shows a \SI{500}{year} drought reconstruction from the \gls{lbda} \citep{Cook:2010bz}, a \SI{100}{year} record of daily river stage on the American River at Folsom, and the wavelet average spectrum for both \citep{Torrence:1998jp,Roesch:wlBQQoIs}.
 Peaks for the American River time series are apparent at approximately 2 and 15 years and in the \gls{lbda} time series at approximately 8, 20, and 64 years.
 This is illustrated by the blue line in the top left panel of \cref{fig:observed-lfv}, which shows a \SI{20}{year} moving average of the \gls{lbda} time series.
 A detailed analysis of these time series is beyond the scope of this paper, but we note that the high amplitude and long time periods of the quasi-periodic oscillations they exhibit are consistent with analyses of \gls{lfv} in other hydroclimate systems \citep{Kiem:2002kq,Swierczynski:2012km,Woollings:2014kd,Hodgkins:2017hw}.
+
 
 \begin{figure}
   \centering
@@ -191,8 +198,6 @@ A detailed analysis of these time series is beyond the scope of this paper, but 
     (d) wavelet spectrum, like (c), for the American River data.
   }\label{fig:observed-lfv}
 \end{figure}
-
-\add{A WHOLE PARAGRAPH ABOUT HURST EFFECT}
 
 \subsection{The dominant processes depend on the planning period}\label{sec:intro-dominant}
 
@@ -290,12 +295,14 @@ Once a statistical model is fit to these ``observations'', then $K=\num{1000}$ s
 
 \add{In the first case we} \remove{We first consider fitting}\add{fit} a stationary model to the observed flood record, following classical assumptions of \gls{iid} sequences.
 In this model annual-maximum streamflow are taken to follow a log-normal distribution with constant mean and variance.
+\add{We refer to this model as ``LN2 Stationary.''}
 The parameters of the model are fit  in a Bayesian framework to fully represent the posterior uncertainty, using the stan probabilistic computing package \citep{Carpenter:2017ke} with weakly informative priors \citep{gelman:2017,simpson:2017}.
 The full model, including priors, is given in \cref{eq:log-normal-stationary}.
 
 Next, we modify this stationary model to incorporate secular change.
 Many studies have done this by regressing certain parameters of the model on time \citep[see][for a comprehensive review]{Salas:2018ge}.
 We consider an extension of the stationary log-normal model by adding a time trend on the scale parameter and maintaining a constant coefficient of variation, as given in \cref{eq:log-normal-trend}.
+\add{We refer tho this model as ``LN2 Linear Trend''}
 This model gives a lower bound on total informational uncertainty because it correctly represents the trend's known form, whereas in real-world analyses the form of the trend is unknown.
 
 \remove{We finally consider}\add{Finally, we explicitly model} \remove{a HMM which explicitly represents}\gls{lfv} \add{using a} \gls{hmm}.
@@ -349,7 +356,7 @@ First, we consider an idealized scenario where only secular change is present in
 Next, we consider the ``pre-industrial'' case where there is no secular change but \gls{lfv} modulates climate risk in time.
 Finally, we consider a more realistic (though still idealized) case with both \gls{lfv} and secular change.
 These three cases are illustrated in \cref{fig:example-fit}, which shows a single synthetic streamflow sequence generated with $N=50$ and $M=100$.
-Projections with each of the three fitting models are also shown.
+Projections with each of the three fitting models \add{described in} \cref{sec:methods-estimating} are also shown.
 This figure highlights that even where projections of average streamflow are unbiased, if the spread is too large then projection of the threshold exceedance probability may be too large.
 
 In the remainder of this section we present a more systematic analysis of each of these three cases.
@@ -451,18 +458,18 @@ In this paper we took a synthetic data approach to explore the implications of v
   }\label{fig:m-n-sketch}
 \end{figure}
 
-For projects where $M$ is sufficiently short, intrinsic uncertainty is low and cyclical climate variability is dominant over the project planning period \citep{Jain:2001hz,Hodgkins:2017hw}.
+\Cref{fig:lfv-secular-nino3-bias-variance,fig:lfv-secular-nino3-bias-variance,fig:secular-nino3-bias-variance} \add{show that} for projects where $M$ is sufficiently short, intrinsic uncertainty is low and cyclical climate variability is dominant over the project planning period \citep{Jain:2001hz,Hodgkins:2017hw}.
 However, one's \emph{ability} to identify and predict this variability depends on having a model of sufficient complexity to represent the processes that cause \gls{lfv}, and the data to fit the model.
 In this case, the project may be in the ``potential predictability zone'' of \cref{fig:m-n-sketch}.
 If sufficient information is not available, however, then simple models which represent fewer processes may be preferred (the ``rough guess zone'').
 
-For projects with longer $M$, it becomes necessary to consider the role of secular change.
+For projects with longer $M$, \add{our results highlight the importance of identifying and predicting} \remove{it becomes necessary to consider the role of} secular change.
 As illustrated schematically in \cref{fig:conceptual-sketch}, uncertainties as to future population, economic development, renewable energy technology, and greenhouse gas mitigation collectively lead to very high intrinsic uncertainty in projections of future climate risk.
 As the physical mechanisms cascade from global (\eg, global mean surface temperature) to regional  \citep[\eg, storm track position][]{Barnes:2015gl} and local (\eg, annual-maximum streamflows) scales, informational uncertainties also compound and increase \citep{Dittes:2017he}.
 With sufficient information (large $N$), this informational uncertainty may be reduced, but this data cannot address intrinsic uncertainty and this zone is thus named the ``intrinsic uncertainty zone''.
 Finally, if $N$ is limited then there will be strong potential for misleading estimates and over-extrapolation in this ``danger zone''.
 
-These findings were derived using simple models for risk projection, but the principles are applicable to more complex, physically based methods.
+These findings were derived \add{conceptually and through} \remove{using simple models} \add{idealized computational experiments} for \add{simulating and predicting climate} risk\emph{ projection}, but the principles are applicable to more complex, physically based methods.
 For example, flood frequency analysis may join observations across time and space \citep{Lima:2016kd,Merz:2008eh} or apply model chains based on \glspl{gcm} and hydrologic models \citep[see][]{Merz:2014gf} to increase $N$.
 We suggest, then, that the sample size $N$ defined in our experiments may be straightforwardly interpreted as a measure of the total informational uncertainty in the analysis; as $N$ increases, informational uncertainty decreases.
 
