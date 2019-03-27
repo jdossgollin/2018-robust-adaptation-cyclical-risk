@@ -24,12 +24,13 @@
 
 % Other package calls
 \usepackage{
-  amssymb, amsmath, % for math symbols
-  booktabs, % for nice tables
-  graphicx, % for figures
-  physics, % for physics notation
-  siunitx, % for SI notation
-  apacite, % AGU style citations apparently
+  amssymb, amsmath,   % for math symbols
+  apacite,            % AGU style citations apparently
+  booktabs,           % for nice tables
+  graphicx,           % for figures
+  physics,            % for physics notation
+  siunitx,            % for SI notation
+  trackchanges,       % to track any new text
 }
 
 % Fixed-width columns
@@ -81,7 +82,7 @@
 
 % Key Points
 \begin{keypoints}
-  \item Climate risk varies in time over a project's finite planning period
+  \item Climate risk varies over the planned lifespan of a project
   \item Importance of predicting different climate signals depends on extrapolation desired (planning period)
   \item Ability to identify and predict different climate signals depends on information available (\eg, data)
 \end{keypoints}
@@ -89,12 +90,12 @@
 % Abstract
 \begin{abstract}
   The assessment and implementation of structural or financial instruments for climate risk mitigation requires projections of future climate risk over the operational life of each proposed instrument.
-  A point often neglected in the climate adaptation literature is that the physical sources of predictability differ between projects with long and short planning periods: while historical and paleo climate records highlight the role of \acrlong{lfv} in modulating climate extremes at interannual to multidecadal time scales, \acrlong{acc} is expected to alter their occurrence at longer time scales.
+  A point often neglected in the climate adaptation literature is that the physical sources of predictability differ between projects with long and short planning periods: while historical and paleo climate records \add{emphasize} \remove{highlight the role of low-frequency variability (LFV) in modulating climate extremes at} interannual to multidecadal \remove{time scales} \add{modes of variability}, \acrlong{acc} is expected to alter their occurrence at longer time scales.
   In this paper we present a set of stylized experiments to assess the uncertainties and biases involved in estimating future climate risk over a finite future period, given a limited observational record.
   These experiments consider both quasi-periodic and secular change for the underlying risk, as well as statistical models for estimating this risk from an $N$-year historical record.
   The uncertainty of \acrshort{ipcc}-like future scenarios is considered through an equivalent sample size $N$. 
-  The relative importance of estimating the short- or long-term risk extremes depends on the investment life $M$ and the future discount rate for investment.
-  Shorter design lives are preferred where inter-annual to decadal variability can be successfully identified and predicted, suggesting the importance of sequential investment strategies for adaptation. 
+  The relative importance of estimating the short- or long-term risk extremes depends on the investment life $M$\remove{ and the future discount rate for investment}.
+  Shorter design lives are preferred \add{for situations} where inter-annual to decadal variability can be successfully identified and predicted, suggesting the importance of sequential investment strategies for adaptation. 
 \end{abstract}
 
 % -----------------------------------------------------------------------------
@@ -107,11 +108,11 @@ Recent climate extremes such as floods, droughts, hurricanes, tornadoes, hailsto
 Further, rapid and continuing changes to global climate hazard and exposure underscore the need for adaptation strategies.
 For example, population growth and urbanization have driven rapid increases in global exposure to events such as floods \citep{Jongman:2012cr} and tropical cyclones \citep{Peduzzi:2012iq}.
 At the same time, anthropogenic modification of global and local climate processes affects the frequency, intensity, and location of extreme events \citep{IPCC:2012wt, Milly:2008dg, Shaw:2016bo}.
-Even if mitigation efforts are successful, novel adaptation strategies are needed.
+Even if \add{future} mitigation efforts are successful, \add{existing levels of atmospheric $\text{CO}_2$ and ocean heat content mean that} novel adaptation strategies are needed.
 
 This need has motivated a multitude of approaches for estimating the probability distribution of future climate risk, and for choosing between different risk mitigation instruments based on these estimates \citep[see, \eg,][]{Merz:2014gf}.
 Although climate risk has been traditionally managed with centrally planned structural instruments (\eg, a levee), the high price \citep{Papakonstantinou:2016ve}, environmental costs \citep{dugan:2010}, and vulnerability to biased climate projections \citep{lempert:2007} have recently slowed their implementation.
-Instead, actors such as New York City have turned to a combination of structural, operational, and financial instruments for reducing vulnerability and increasing resilience to climate extremes \citep{CityofNewYork:2013uh}.
+\remove{Instead}\add{Rather}, actors such as New York City have turned to a combination of structural\add{ (\eg, a stormwater barrier)}, operational\add{ (\eg, improved evacuation routes)}, and financial\add{ (\eg, index insurance)} instruments for reducing vulnerability and increasing resilience to climate extremes \citep{CityofNewYork:2013uh}.
 These instruments are not typically implemented in isolation or statically.
 Instead, investment decisions made at each point in time affect the viability, costs, and benefits of future decisions, causing the system to trace a ``pathway'' through time \citep{Walker:2013gi,Haasnoot:2013im,Haasnoot:2015dh}.
 
@@ -119,8 +120,8 @@ Despite recent insights, important questions remain.
 How should a portfolio of risk mitigation instruments be optimized?
 How should one choose between permanent and transient instruments?
 Under what conditions is a permanent, large infrastructure investment required, and what information is needed to recognize this threshold?
-In this paper we focus on how the temporal structure of climate risk, and the uncertainties associated with estimating it, influence the answers to this questions.
-We continue this section with three specific observations about climate risk which, while apparently obvious, have important and subtle implications which we examine in \cref{sec:methods,sec:results,sec:discussion-conclusions}.
+In this paper we focus on \add{the more narrow question of} how the temporal structure of climate risk, and the uncertainties associated with \add{its estimation}\remove{estimating it}, influence the answers to these questions.
+We continue this section with three specific observations about climate risk which, while apparently obvious, have important and subtle implications\add{,} which we examine in \cref{sec:methods,sec:results,sec:discussion-conclusions}.
 
 \subsection{Planning decisions are made with finite horizons}\label{sec:intro-finite}
 
@@ -152,6 +153,7 @@ The planning period can also be interpreted as the finite period over which \gls
 Typical climate risk management policies do not use a single risk mitigation instrument, but rather build a portfolio of several instruments.
 Each has its own operational period, which may or may not match the planning horizon of the portfolio as a whole.
 This means that even if the portfolio has a long planning period, \ie if long-term plans are a priority, this goal may be best accomplished through a series of flexible and adaptive instruments with short individual planning periods.
+\add{For example, the action that New York City can take today which best protects against uncertain hurricane risks over the 21st century could potentially be to purchase insurance and defer more permanent allocation of capital until some uncertainties are resolved.}
 The costs and benefits of each individual instrument will be assessed over its individual, finite planning period, but decisions about the portfolio structure are evaluated over the longer planning horizon.
 
 The availability of precise climate information in the near future may significantly alter the choice between a large, long-duration instrument and a sequence of smaller, short duration instruments that can be executed quickly.
@@ -163,11 +165,12 @@ These cases highlight how the precision of short- and long-term climate risk pro
 \subsection{Climate risk varies on many scales}\label{sec:intro-lfv}
 
 Climate risk is governed by a variety of physical processes which occur on scales ranging from local and transient to global and permanent.
-Of these processes, \gls{acc} has received the most attention in the climate adaptation literature and its influence on river floods, droughts, hurricanes, urban flooding, and many other climate hazards are well documented \citep[\eg,][]{Coumou:2012bc,Milly:2008dg,OGorman:2009hj,Trenberth:2003bj}.
+Of these processes, \gls{acc} has received the most attention in the climate adaptation literature and its influence on \add{some} river floods, droughts, hurricanes, urban flooding, and many other climate hazards \remove{are}\add{has been the subject of substantial investigation} \remove{well documented} \citep[\eg,][]{Coumou:2012bc,Milly:2008dg,OGorman:2009hj,Trenberth:2003bj}.
 Human activities can also affect climate risk through modification of local land or river systems \citep[see][]{Merz:2014gf}, and through changes in exposure to extremes \citep{baldassarre:2018,Jongman:2012cr}.
 In combination, these effects highlight that the past may not be an adequate representation of future climate risk \citep[termed ``nonstationarity'' by][]{Milly:2008dg}.
 
-Permanent or secular change is not, however, a prerequisite for the inadequacy of relying on historical records.
+\remove{Permanent or secular change is not, however, a prerequisite for the inadequacy of relying on historical records.}
+\add{Secular change is not the only mechanism which can cause historical records to provide a biased view of future risk.}
 For example, \citet{Jain:2001hz} demonstrated that in a system with substantial \acrfull{lfv}, due, \eg, to \gls{enso}, the past $N$ years can be a poor proxy for the following $N$ years even when no secular change is present.
 We illustrate this type of \gls{lfv} in \cref{fig:observed-lfv}, which shows a \SI{500}{year} drought reconstruction from the \gls{lbda} \citep{Cook:2010bz}, a \SI{100}{year} record of daily river stage on the American River at Folsom, and the wavelet average spectrum for both \citep{Torrence:1998jp,Roesch:wlBQQoIs}.
 Peaks for the American River time series are apparent at approximately 2 and 15 years and in the \gls{lbda} time series at approximately 8, 20, and 64 years.
@@ -189,17 +192,19 @@ A detailed analysis of these time series is beyond the scope of this paper, but 
   }\label{fig:observed-lfv}
 \end{figure}
 
+\add{A WHOLE PARAGRAPH ABOUT HURST EFFECT}
+
 \subsection{The dominant processes depend on the planning period}\label{sec:intro-dominant}
 
 Evaluating a particular risk mitigation instrument involves projecting climate risk over the $M$-year planning period.
 Consequently, the physical mechanisms which impart predictability on the system differ between projects with long and short planning periods.
 As illustrated in \cref{fig:conceptual-sketch} (a), the lifetime risk of a permanent structure with a \SI{100}{year} planning period depends on the magnitude and extent of future human activities, with very large associated uncertainty.
-Even with a perfect climate model, these uncertainties will be large.
+Even \remove{with} \add{in the idealized, and unrealistic, case of} a perfect climate model, these uncertainties will be large.
 By contrast, this perfect climate model may usefully inform estimates of climate hazard over a three-year insurance contract with much less associated uncertainty.
 
 Of course, scientists are not equipped with perfect models.
 Since different physical processes control climate risk at different timescales, successful integration of climate projections into decision frameworks depends on identifying, and subsequently predicting, these processes.
-A key question is whether the limited information in an $N$-year observational record permits the identification and projection of cyclical climate variability and secular change, and what the resulting bias and uncertainty portends for risk mitigation instruments with a planning period ranging from a few years to several decades.
+A key question is whether the limited information in an $N$-year observational record permits the identification and projection of cyclical climate variability and secular change, and what the resulting bias and uncertainty portend\remove{s} for risk mitigation instruments with a planning period ranging from a few years to several decades.
 As shown in \cref{fig:conceptual-sketch} (b), the combination of \gls{lfv}, stochastic variability, and secular change in a limited record can lead to large uncertainty in estimated future risk.
 Although \cref{fig:conceptual-sketch} focuses on physical processes, similar conclusions would also be valid for the socioeconomic processes which drive exposure to floods and other hydroclimate hazards.
 
@@ -226,11 +231,11 @@ We consider different temporal structures for the underlying risk which encompas
 The relative importance of estimating the short- or long-term risk associated with these extremes depends on the design life $M$, but the potential to understand and predict these different types of variability depends on the informational uncertainty in the $N$-year historical record.
 Though we illustrate our findings with a simple flood risk example, the conclusions drawn apply to other hydroclimate hazards, and in particular those typically characterized through a time series of annual maxima or minima.
 
-We consider three scenarios for climate risk, which we define by the structure of the underlying climate signal:
+We consider three scenarios for climate risk, which we define by the structure of the underlying climate \annote{signal}{changed the order}:
 \begin{enumerate*}[label= (\roman*)]
-  \item \gls{lfv} only;
-  \item \gls{lfv} plus secular change; and
-  \item secular change only.
+  \item secular change only;
+  \item \gls{lfv} only; and
+  \item \gls{lfv} plus secular change.
 \end{enumerate*}
 For each scenario, and for its identification from the $N$ year length historical data, the bias and variance of the estimated flood risk over the $M$ year design life relative to the ``true model'' are computed.
 We repeat the simulations $J = 1000$ times for each combination of experiment parameters to obtain estimates of the expected bias and variance for each scenario given $M$ and $N$ (\cref{sec:methods-evaluating}).
@@ -283,7 +288,7 @@ We choose these models for their interpretability and simplicity, rather than be
 For each synthetic flood sequence to be analyzed, the first $N$ years are treated as observations.
 Once a statistical model is fit to these ``observations'', then $K=\num{1000}$ sequences of future annual-maximum streamflow over the future $M$-year record are generated from the fitted model using Monte Carlo simulation.
 
-We first consider fitting a stationary model to the observed flood record, following classical assumptions of \gls{iid} sequences.
+\add{In the first case we} \remove{We first consider fitting}\add{fit} a stationary model to the observed flood record, following classical assumptions of \gls{iid} sequences.
 In this model annual-maximum streamflow are taken to follow a log-normal distribution with constant mean and variance.
 The parameters of the model are fit  in a Bayesian framework to fully represent the posterior uncertainty, using the stan probabilistic computing package \citep{Carpenter:2017ke} with weakly informative priors \citep{gelman:2017,simpson:2017}.
 The full model, including priors, is given in \cref{eq:log-normal-stationary}.
@@ -293,12 +298,12 @@ Many studies have done this by regressing certain parameters of the model on tim
 We consider an extension of the stationary log-normal model by adding a time trend on the scale parameter and maintaining a constant coefficient of variation, as given in \cref{eq:log-normal-trend}.
 This model gives a lower bound on total informational uncertainty because it correctly represents the trend's known form, whereas in real-world analyses the form of the trend is unknown.
 
-We finally consider a model which explicitly represents \acrlong{lfv}.
+\remove{We finally consider}\add{Finally, we explicitly model} \remove{a HMM which explicitly represents}\gls{lfv} \add{using a} \gls{hmm}.
 A \gls{hmm} is a latent variable model in which the system being modeled is assumed to follow a Markov process with unobserved (\ie hidden) states $S(t)$ \citep{Rabiner:1986jk}.
 The (unobserved) states evolve following a first-order Markov process, and the observed variable (\eg streamflow) depends only on the underlying state.
 \Glspl{hmm} have been widely used for modeling streamflow sequences \citep{Bracken:2016ba} and \gls{enso} \citep{rojohernandez:2017}.
 We fit  streamflow sequences using a \gls{hmm} with two states.
-The model is fit using the Baum-Welch algorithm, assuming that the data follow a log-normal distribution conditional only on the state.
+The model is fit using the Baum-Welch algorithm, assuming that the data follow a log-normal distribution \remove{conditional only on the state}\add{that is conditional only on the unobserved state variables}.
 This algorithm simultaneously estimates the transition matrix of the Markov process and the conditional parameters of each distribution.
 For simplicity, we fit only a two-state \gls{hmm} to each sequence.
 Future floods are then estimated by simulating future states from the estimated transition matrix and then drawing $Q(t)$ conditional on the simulated state.
@@ -306,7 +311,7 @@ Future floods are then estimated by simulating future states from the estimated 
 \subsection{Evaluating Fitting Models}\label{sec:methods-evaluating}
 
 Both estimation bias and estimation uncertainty affect the utility of a climate risk projection, as illustrated in \cref{fig:conceptual-bias-variance}.
-An instrument designed based on overestimated variance and positive bias will be over-designed, either causing the risk manager to avoid the investment, given its higher cost, or will lead to unnecessary diversion of funds from other instruments.
+An instrument \add{whose design was based on projections with} \remove{designed based on} overestimated variance \remove{and}\add{or} positive bias will be over-designed, either causing the risk manager to avoid the investment, given its higher cost, or will lead to unnecessary diversion of funds from other instruments.
 Similarly, an instrument designed based on underestimated variance or negative bias may be under-designed, and thus fail to protect the user.
 \begin{figure}
   \centering
@@ -319,7 +324,7 @@ Similarly, an instrument designed based on underestimated variance or negative b
 \end{figure}
 
 We evaluate both the estimation bias and estimation uncertainty.
-For a given choice of $M$, $N$, generating model, we compare the synthetic streamflow sequence's $N$-year ``historical record'', and the $K=1000$ posterior simulations of future flows.
+For a given choice of $M$, \add{and} $N$, generating model, we compare the synthetic streamflow sequence's $N$-year ``historical record'', and the $K=1000$ posterior simulations of future flows.
 The quantity $\hat{p}_T$, the estimated expected number of floods per year, is taken by calculating, for each of the $K$ posterior simulations, the number of exceedances of the flood design threshold, then dividing by $M$ to get exceedances per year.
 We then compute the variance of these $K$ estimates.
 We further calculate the bias of $\hat{p}_T$ by averaging it across the $K$ samples and comparing this to the number of times the $M$-year ``future period'' of the synthetic streamflow sequence exceeds the flood design threshold.
@@ -475,7 +480,7 @@ Projects with long planning periods must therefore overcome future discounting, 
 In this paper we considered how the temporal structure of the climate affects the potential for successful prediction over a finite $M$-year future period.
 We began with three premises, or observations, about the nature of climate risk:
 \begin{enumerate*}[label= (\roman*)]
-  \item that planning decisions are made with finite horizons;
+  \item that \remove{planning decisions are made with finite horizons}\add{different climate risk mitigation instruments have different planned lifespans};
   \item that climate risk varies on many scales; and
   \item that the processes which dominate this risk over the planning period depend on the planning period itself.
 \end{enumerate*}
