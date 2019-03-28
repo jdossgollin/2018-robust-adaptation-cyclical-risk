@@ -1,4 +1,4 @@
-\def\currversion{February 17, 2018}
+\def\currversion{January 14, 2019}
 
   %****************************************************************%
   %*                                                              *%
@@ -28,10 +28,13 @@
 %%%  2018-07-17 / NRV
 %%%  thanks to John Haiducek for help with citep error
 
+%%% 2019-01-14 / NRV
+%%% Removed natbib, changed instructions for cite commands, added Appendix heading
 
 
-\ProvidesClass{agujournal2018}
-              [07/17/2018]
+
+\ProvidesClass{agujournal2019}
+              [01/14/2019]
 
 %% SEARCH BELOW FOR THE NUMBER TO FIND PARTICULAR MACRO GROUP
 
@@ -99,6 +102,7 @@
 
 %% this package makes paragraphs indent after section heads
 \RequirePackage{indentfirst}
+
 
 %% \RaggedRight makes the right margin go in and out; if this is commented out
 %% the default will be a right justified margin.
@@ -1030,17 +1034,17 @@ sys-tem-at-i-cal-ly
 \@addtoreset{table}{section}
 \@addtoreset{figure}{section}
 %%
-\renewcommand{\thesection}{\Alph{section}} %xx Redefined below (by orginal author, not DC).    DC
-\renewcommand{\theequation}{\Alph{section}.\arabic{equation}}
-\renewcommand{\thefigure}{\Alph{section}.\arabic{figure}}
-\renewcommand{\thetable}{\Alph{section}.\arabic{table}}
+\renewcommand{\thesection}{Appendix \Alph{section}} %xx Redefined below (by orginal author, not DC).    DC
+\renewcommand{\theequation}{\Alph{section}\arabic{equation}}
+\renewcommand{\thefigure}{\Alph{section}\arabic{figure}}
+\renewcommand{\thetable}{\Alph{section}\arabic{table}}
 \global\appendontrue\goodbreak
 \global\c@section=0
 \global\c@equation=0
-\def\thesection{\Alph{section}} %xx What puts the : in \ref.   Taken out now.  DC
-\def\thesubsection{\Alph{section}.\@arabic{\c@subsection}}
-\def\thesubsubsection{\thesubsection.\@arabic{\c@subsubsection}}
-\def\thesubsubsubsection{\thesubsubsection.\@arabic{\c@subsubsection}}
+\def\thesection{Appendix \Alph{section}} %xx What puts the : in \ref.   Taken out now.  DC
+\def\thesubsection{\Alph{section}\@arabic{\c@subsection}}
+\def\thesubsubsection{\thesubsection\@arabic{\c@subsubsection}}
+\def\thesubsubsubsection{\thesubsubsection\@arabic{\c@subsubsection}}
 }
 %%%%% end appendix
 
@@ -1136,16 +1140,19 @@ width0pt\relax}\\*\noindent\ignorespaces}
 
 
 % Formats bibliography, this .sty file needs to be entered here
-%\RequirePackage{natbib}
+
  %
 % When using NatBib, this sets brackets for citations:
 %\renewcommand\NAT@open{(} \renewcommand\NAT@close{)}   %xx Parens by default, but not using anyways.  DC
 
-\RequirePackage[natbibapa]{apacite}
-%\let\cite\shortcite %xx So get et al. with three authors the first time.
-%\let\citep\cite %xx A natbib command.
-%\let\citet\citeA %xx Ditto.
-%\requirepackage{URL}
+\RequirePackage{apacite}
+%\RequirePackage{natbib}
+\let\cite\shortcite %xx So get et al. with three authors the first time.
+%\let\citep\shortcite %xx A natbib command.
+%\let\citet\shortcite %xx Ditto.
+\let\citeA\shortciteA %xx Ditto.
+
+
 
 %% end Bibliography, and References
 

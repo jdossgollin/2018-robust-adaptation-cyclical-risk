@@ -1,7 +1,7 @@
-\def\currversion{Dec 16, 2017}
+\def\currversion{January 14, 2019}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% This file is AGUTeX.cls/sty
+%% 
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
@@ -45,6 +45,11 @@
 %%%  2018-01-11
 %%%
 %%%    Commented out \@checkend (for triple columns), because of extra \fi error.
+%%%
+%%%  2019-01-14
+%%%
+%%%    removed natbib, added instructions for citeA and cite
+%%%
 
 
 \typeout{^^J^^J
@@ -123,8 +128,8 @@ This version is dated \currversion^^J^^J}
 \ifll
 %\ProvidesClass{agutex}
 %              [02/09/2008]
-\ProvidesClass{agutexSI}
-              [02/09/2008]
+\ProvidesClass{agutexSI2019}
+              [01/14/2019]
 
 \renewcommand{\normalsize}{%
 \ifjdraft
@@ -402,8 +407,8 @@ This version is dated \currversion^^J^^J}
 
 \newcounter{figure}[chapter]
 \newcounter{table}[chapter]
-\def\thefigure{\@arabic\c@figure\theletter}
-\def\thetable{\@arabic\c@table\theletter}
+\def\thefigure{S\@arabic\c@figure\theletter}
+\def\thetable{S\@arabic\c@table\theletter}
 
 \def\fps@figure{tbp}
 \def\ftype@figure{1}
@@ -5185,11 +5190,13 @@ width 4pc %%<=== change this dimen to change width of footnote rule line
 %\DeclareLanguageMapping{american}{american-apa}
 
 %xx Replace biblatex.
-\RequirePackage[natbibapa]{apacite}
-%\let\cite\shortcite %xx So get et al. with three authors the first time.
+%\RequirePackage[natbibapa]
+\RequirePackage{apacite}
+%\RequirePackage{natbib}
+\let\cite\shortcite %xx So get et al. with three authors the first time.
 %\let\citep\cite %xx A natbib command.
-%\let\citet\citeA %xx Ditto.
-\requirepackage{URL}
+\let\citet\shortciteA %xx Ditto.
+\RequirePackage{url}
 
 \bibliographystyle{apacite}
 
@@ -7853,12 +7860,14 @@ width0pt height 0pt
 %% Reset default values
 
 \def\resetdefaults{%
-\def\theauthors{{\footnotesize !! Please write
-{\tt\string\lefthead\string{\string<AUTHOR NAME(s)\string>\string}}
-in file !!}}
-\def\thetitle{{\footnotesize!! Please write
-{\tt\string\righthead\string{\string<(Shortened) Article Title\string>%
-\string}} in file !!}}
+\def\theauthors{{%\footnotesize !! Please write
+%{\tt\string\lefthead\string{\string<AUTHOR NAME(s)\string>\string}}
+%in file !!
+}}
+\def\thetitle{{%\footnotesize!! Please write
+%{\tt\string\righthead\string{\string<(Shortened) Article Title\string>%
+%\string}} in file !!
+}}
 \yearofpublication{???}
 \monthofpublication{???}
 \volume{???}

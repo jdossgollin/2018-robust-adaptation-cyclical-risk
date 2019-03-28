@@ -55,11 +55,14 @@ rounded corners
   \node [calculated, right=of N] (historical) {First $N$ Years};
   \node [calculated, right=of M] (future) {Next $M$ Years};
 
-  \node [result, right=of historical] (pThat) {Estimated Exceedances per Year};
-  \node [result, right= of future] (pT) {Observed Exceedances per Year};
+  \node [calculated, right=of historical] (pThat) {Estimated Exceedances per Year};
+  \node [calculated, right= of future] (pT) {Observed Exceedances per Year};
 
-  \node [parameter, right=of pThat] (fitting) {Estimating Model};
+  \node [parameter, above=of pThat] (fitting) {Estimating Model};
   \node [parameter, right=of seq] (threshold) {Flood Design Level};
+
+  \node [result, right=of pThat] (bias) {bias of mean};
+  \node [result, right=of pT] (variance) {bias of variance};
   
   % Draw edges
   \path [arrow] (N) -- (seq);
@@ -76,6 +79,10 @@ rounded corners
   \path [arrow] (threshold) -- (pThat);
   \path [arrow] (threshold) -- (pT);
 
+  \path[arrow] (pThat) -- (bias);
+  \path[arrow] (pT) -- (bias);
+  \path[arrow] (pThat) -- (variance);
+  \path[arrow] (pT) -- (variance);
  
 \end{tikzpicture}
 

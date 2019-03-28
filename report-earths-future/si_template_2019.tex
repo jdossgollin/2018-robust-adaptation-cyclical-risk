@@ -1,0 +1,296 @@
+\documentclass[
+      draft,
+      ef,
+]{agutexSI2019}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  SUPPORTING INFORMATION TEMPLATE
+%
+%% ------------------------------------------------------------------------ %%
+%
+%
+%Please use this template when formatting and submitting your Supporting Information.
+
+%This template serves as both a “table of contents” for the supporting information for your article and as a summary of files.
+%
+%
+%OVERVIEW
+%
+%Please note that all supporting information will be peer reviewed with your manuscript. It will not be copyedited if the paper is accepted.
+%In general, the purpose of the supporting information is to enable authors to provide and archive auxiliary information such as data tables, method information, figures, video, or computer software, in digital formats so that other scientists can use it.
+%The key criteria are that the data:
+% 1. supplement the main scientific conclusions of the paper but are not essential to the conclusions (with the exception of
+%    including %data so the experiment can be reproducible);
+% 2. are likely to be usable or used by other scientists working in the field;
+% 3. are described with sufficient precision that other scientists can understand them, and
+% 4. are not exe files.
+%
+%USING THIS TEMPLATE
+%
+%***All references should be included in the reference list of the main paper so that they can be indexed, linked, and counted as citations.  The reference section does not count toward length limits.
+%
+%All Supporting text and figures should be included in this document. Insert supporting information content into each appropriate section of the template. To add additional captions, simply copy and paste each sample as needed.
+
+%Tables may be included, but can also be uploaded separately, especially if they are larger than 1 page, or if necessary for retaining table formatting. Data sets, large tables, movie files, and audio files should be uploaded separately. Include their captions in this document and list the file name with the caption. You will be prompted to upload these files on the Upload Files tab during the submission process, using file type “Supporting Information (SI)”
+
+%IMPORTANT NOTE ON FIGURES AND TABLES
+% Placeholders for figures and tables appear after the \end{article} command, after references.
+% DO NOT USE \psfrag or \subfigure commands.
+%
+ \usepackage{graphicx}
+%
+%  Uncomment the following command to allow illustrations to print
+%   when using Draft:
+ \setkeys{Gin}{draft=false}
+%
+% You may need to use one of these options for graphicx depending on the driver program you are using. 
+%
+% [xdvi], [dvipdf], [dvipsone], [dviwindo], [emtex], [dviwin],
+% [pctexps],  [pctexwin],  [pctexhp],  [pctex32], [truetex], [tcidvi],
+% [oztex], [textures]
+%
+%
+%% ------------------------------------------------------------------------ %%
+%
+%  ENTER PREAMBLE
+%
+%% ------------------------------------------------------------------------ %%
+
+\usepackage{siunitx}
+\usepackage{apacite}
+\graphicspath{{./figs/}{../fig/}} % folders of figures
+
+% Package calls with options
+\usepackage[inline]{enumitem} % in-line lists
+
+% Other package calls
+\usepackage{
+  amssymb, amsmath,   % for math symbols
+  booktabs,           % for nice tables
+  physics,            % for physics notation
+}
+
+% Fixed-width columns
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+% Author names in capital letters:
+\authorrunninghead{DOSS-GOLLIN ET AL.}
+
+% Shorter version of title entered in capital letters:
+\titlerunninghead{ROBUST ADAPTATION TO MULTI-SCALE CLIMATE VARIABILITY}
+
+%Corresponding author mailing address and e-mail address:
+%\authoraddr{Corresponding author: A. B. Smith,
+%Department of Hydrology and Water Resources, University of
+%Arizona, Harshbarger Building 11, Tucson, AZ 85721, USA.
+%(a.b.smith@hwr.arizona.edu)}
+
+\begin{document}
+
+%% ------------------------------------------------------------------------ %%
+%
+%  TITLE
+%
+%% ------------------------------------------------------------------------ %%
+
+%\includegraphics{agu_pubart-white_reduced.eps}
+
+
+\title{Supporting Information for ``Robust Adaptation to Multi-Scale Climate Variability''}
+%
+% e.g., \title{Supporting Information for "Terrestrial ring current:
+% Origin, formation, and decay $\alpha\beta\Gamma\Delta$"}
+%
+%DOI: 10.1002/%insert paper number here%
+
+%% ------------------------------------------------------------------------ %%
+%
+%  AUTHORS AND AFFILIATIONS
+%
+%% ------------------------------------------------------------------------ %%
+
+
+% List authors by first name or initial followed by last name and
+% separated by commas. Use \affil{} to number affiliations, and
+% \thanks{} for author notes.
+% Additional author notes should be indicated with \thanks{} (for
+% example, for current addresses).
+
+% Example: \authors{A. B. Author\affil{1}\thanks{Current address, Antartica}, B. C. Author\affil{2,3}, and D. E.
+% Author\affil{3,4}\thanks{Also funded by Monsanto.}}
+
+\authoraddr{Corresponding author: James Doss-Gollin,
+(james.doss-gollin@columbia.edu)}
+
+\authors{James Doss-Gollin\affil{1,2}, David J. Farnham\affil{1,2}, Scott Steinschneider\affil{3}, Upmanu Lall\affil{1,2}}
+\affiliation{1}{Department of Earth and Environmental Engineering, Columbia University}
+\affiliation{2}{Columbia Water Center, Columbia University}
+\affiliation{3}{Department of Biological and Environmental Engineering, Cornell University}
+
+
+
+
+
+
+%% ------------------------------------------------------------------------ %%
+%
+%  BEGIN ARTICLE
+%
+%% ------------------------------------------------------------------------ %%
+
+% The body of the article must start with a \begin{article} command
+%
+% \end{article} must follow the references section, before the figures
+%  and tables.
+
+\begin{article}
+
+\renewcommand{\thefigure}{S\arabic{figure}}
+\setcounter{figure}{0}
+\renewcommand{\theequation}{S\arabic{equation}}
+\setcounter{equation}{0}
+\renewcommand{\thetable}{S\arabic{table}}
+\setcounter{table}{0}
+
+\section{Supplemental Methods}\label{sec:supp-methods}
+
+In this section we provide further equations and parameter values used to generate and fit synthetic streamflow sequences.
+
+\subsection{Sampling Climate Risk}\label{sec:supp-nino-spectrum}
+
+As described in Section XXX, we use a synthetic ENSO time series, specifically a NINO3 time series, from \cite{Ramesh:2016hf} to represent low-frequency climate variability.
+Figure XXX shows the wavelet spectrum of this time series, calculated using the WaveletComp package \cite{Roesch:wlBQQoIs}.
+The global (average) wavelet power spectrum shows a clear peak around 3-7 years, in line with previous studies of ENSO although interactions with other modes of LFV found in some studies \cite{Jin:1994wq} is dampened in this model.
+There are, however, modes of LFV between \SIrange{16}{128}{year} which are \emph{locally} strong at some points in time, which captures at least some effects of very low-frequency behavior for the purposes of this study.
+
+\subsection{Projecting Climate Risk over the Future $M$ Years}
+
+As described in {sec:methods}, we implement the stationary and trend log-normal models in a Bayesian framework using the stan programming language \cite{Carpenter:2017ke}.
+The full model, including priors, for the stationary log-normal model is given by {eq:log-normal-stationary}:
+\begin{align}\label{eq:log-normal-stationary}
+  \begin{split}
+    \log Q_\text{hist} & \sim \mathcal{N} \qty(\mu, \ \sigma) \\
+    \mu &\sim \mathcal{N} \qty(7, 1.5) \\
+    \sigma &\sim \mathcal{N}^+ \qty(1, 1)
+  \end{split}
+\end{align}
+where $\mathcal{N}$ denotes the normal distribution and $\mathcal{N}^+$ denotes a half-normal distribution.
+The full model, including priors, for the trend log-normal model is given by {eq:log-normal-trend}:
+\begin{align}\label{eq:log-normal-trend}
+  \begin{split}
+    \mu &= \mu_0 + \beta_\mu \qty(t - t_0) \\
+    \log Q_\text{hist} & \sim \mathcal{N} \qty(\mu, \ \xi \mu) \\
+    \mu_0 & \sim \mathcal{N} \qty(7, 1.5) \\
+    \beta_\mu & \sim \mathcal{N} \qty(0, 0.1) \\
+    \log \xi & \sim \mathcal{N} \qty(0.1, 0.1)
+  \end{split}
+\end{align}
+where $\xi$ is an estimated coefficient of variation.
+
+\subsection{Experiment Design}\label{sec:methods-experiments}
+
+In this section we describe the parameters used to generate the specific sets of sequences that are analyzed in the results section.
+To explore the temporal structure of risk, we generate $J=1000$ sequences of streamflow, for each of several combinations of $M$ and $N$.
+Streamflow sequences are generated using the stationary generating functions both with and without superimposing a secular trend.
+
+\section{Sensitivity to climate generating mechanism}\label{sec:markov-generating}
+
+In the main text we sampled climate risk by considering dependence on a single climate index, as shown in {eq:nino3}.
+Here we examine the sensitivity of our results to this assumption by considering a different parameterization for $\mu(t)$, specifically a two-state Markov chain model.
+A Markov chain explicitly models transition between a fixed number of regimes, mimicking similar phenomena observed in nature.
+The transition matrix is given by
+\begin{equation}
+  P = \mqty[\pi_1 & 1-\pi_1 \\ 1-\pi_2 & \pi_2].
+\end{equation}
+The transition matrix is first used to generate a sequence of states $S(t)$.
+The value $\mu(t)$ depends only on $S(t)$ and on time itself:
+\begin{equation}
+  \mu(t) = \begin{cases}
+    \mu_{1} + \gamma_1 \qty(t - t_0) & \qqtext{if} S(t) = 1 \\
+    \mu_{2} + \gamma_2 \qty(t - t_0) & \qqtext{if} S(t) = 2
+  \end{cases}
+\end{equation}
+For simplicity, we assume that the coefficient of variation is the same for both states and that $\pi_1=\pi_2$.
+We further impose $\mu_{1} > \mu_{2}$ so that state 1 can be interpreted as the ``wet'' state and state 2 as the ``dry'' state.
+Parameters for the three experiments are given in {tab:markov-stationary}.
+Results for these experiments are shown in {fig:lfv-markov-bias-variance,fig:lfv-secular-markov-bias-variance,fig:secular-only-markov-bias-variance}.
+
+\bibliography{library}
+
+\end{article}
+\clearpage
+
+\begin{figure}
+      \includegraphics[width=\textwidth]{enso_wavelet.png}
+      \caption{
+        Wavelet analysis of the synthetic annual NINO3 time series described in Section XXX.
+        (L): wavelet power spectrum.
+        (R): global (average) power spectrum.
+        Blue dots indicate frequencies which are significant at $\alpha=0.10$ and red dots frequencies which are significant at $\alpha=0.05$ compared to white noise.
+      }\label{fig:enso-ts}
+    \end{figure}
+
+    \begin{table}[ht]
+      \centering
+      \begin{tabular}{llll}
+        \toprule
+        Parameter & LFV Only & Secular Only & Secular + LFV \\
+        \midrule
+        $\mu_0$             & 6     & 6.5   & 6 \\
+        $\gamma$            & 0     & 0.015 & 0.015\\
+        $\beta$             & 0.5   & 0     & 0.5\\
+        $\xi$               & 0.1   & 0.1   & 0.1\\
+        $\sigma_\text{min}$ & 0.01  & 0.01  & 0.01\\
+        Threshold           & 3000  & 3000  & 3000 \\
+        \bottomrule
+      \end{tabular}
+      \caption{
+        Parameters of {eq:nino3} for the LFV only, secular only, and secular plus LFV scenarios.
+      }\label{tab:nino-stationary}
+    \end{table}
+
+    \begin{table}[ht]
+      \centering
+      \begin{tabular}{llll}
+        \toprule
+        Parameter & LFV Only & Secular Only & Secular + LFV \\
+        \midrule
+        $\mu_1$             & 6.75  & 6.5   & 6.75\\
+        $\mu_2$             & 6     & 6.5   & 6\\
+        $\gamma_1$          & 0     & 0.015 & 0.015\\
+        $\gamma_2$          & 0     & 0.015 & 0\\
+        $\xi$               & 0.1   & 0.1   & 0.1\\
+        $\sigma_\text{min}$ & 0.01  & 0.01  & 0.01\\
+        Threshold           & 3000  & 3000  & 3000 \\
+        \bottomrule
+      \end{tabular}
+      \caption{
+        Parameters of the two-state Markov chain model for the LFV only, secular only, and secular plus LFV experiments.
+      }\label{tab:markov-stationary}
+    \end{table}
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.8\textwidth]{lfv-only-markov-bias-variance.pdf}
+      \caption{
+        LFV only: as {fig:lfv-nino3-bias-variance} for sequences generated with the two-state Markov chain model.
+      }\label{fig:lfv-markov-bias-variance}
+    \end{figure}
+    
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.8\textwidth]{secular-only-markov-bias-variance.pdf}
+      \caption{
+        Secular change: as {fig:secular-nino3-bias-variance} for sequences generated with the two-state Markov chain model.
+      }\label{fig:secular-only-markov-bias-variance}
+    \end{figure}
+    
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.8\textwidth]{lfv-secular-markov-bias-variance.pdf}
+      \caption{
+        LFV plus secular change: as {fig:lfv-secular-nino3-bias-variance} for sequences generated with the two-state Markov chain model.
+      }\label{fig:lfv-secular-markov-bias-variance}
+    \end{figure}
+\end{document}
