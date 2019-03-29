@@ -160,15 +160,15 @@ In this section we provide further equations and parameter values used to genera
 
 \subsection{Sampling Climate Risk}\label{sec:supp-nino-spectrum}
 
-As described in Section XXX, we use a synthetic ENSO time series, specifically a NINO3 time series, from \cite{Ramesh:2016hf} to represent low-frequency climate variability.
-Figure XXX shows the wavelet spectrum of this time series, calculated using the WaveletComp package \cite{Roesch:wlBQQoIs}.
+As described in Section 2.1, we use a synthetic ENSO time series, specifically a NINO3 time series, from \cite{Ramesh:2016hf} to represent low-frequency climate variability.
+Figure S1 shows the wavelet spectrum of this time series, calculated using the WaveletComp package \cite{Roesch:wlBQQoIs}.
 The global (average) wavelet power spectrum shows a clear peak around 3-7 years, in line with previous studies of ENSO although interactions with other modes of LFV found in some studies \cite{Jin:1994wq} is dampened in this model.
-There are, however, modes of LFV between \SIrange{16}{128}{year} which are \emph{locally} strong at some points in time, which captures at least some effects of very low-frequency behavior for the purposes of this study.
+There are, however, modes of LFV between 16 and 128 years which are \emph{locally} strong at some points in time, which captures at least some effects of very low-frequency behavior for the purposes of this study.
 
 \subsection{Projecting Climate Risk over the Future $M$ Years}
 
-As described in {sec:methods}, we implement the stationary and trend log-normal models in a Bayesian framework using the stan programming language \cite{Carpenter:2017ke}.
-The full model, including priors, for the stationary log-normal model is given by {eq:log-normal-stationary}:
+As described in Section 2, we implement the stationary and trend log-normal models in a Bayesian framework using the stan programming language \cite{Carpenter:2017ke}.
+The full model, including priors, for the stationary log-normal model is given by equation \eqref{log-normal-stationary}:
 \begin{align}\label{eq:log-normal-stationary}
   \begin{split}
     \log Q_\text{hist} & \sim \mathcal{N} \qty(\mu, \ \sigma) \\
@@ -177,7 +177,7 @@ The full model, including priors, for the stationary log-normal model is given b
   \end{split}
 \end{align}
 where $\mathcal{N}$ denotes the normal distribution and $\mathcal{N}^+$ denotes a half-normal distribution.
-The full model, including priors, for the trend log-normal model is given by {eq:log-normal-trend}:
+The full model, including priors, for the trend log-normal model is given by equation \eqref{eq:log-normal-trend}:
 \begin{align}\label{eq:log-normal-trend}
   \begin{split}
     \mu &= \mu_0 + \beta_\mu \qty(t - t_0) \\
@@ -197,7 +197,7 @@ Streamflow sequences are generated using the stationary generating functions bot
 
 \section{Sensitivity to climate generating mechanism}\label{sec:markov-generating}
 
-In the main text we sampled climate risk by considering dependence on a single climate index, as shown in {eq:nino3}.
+In the main text we sampled climate risk by considering dependence on a single climate index, as shown in equation 5.
 Here we examine the sensitivity of our results to this assumption by considering a different parameterization for $\mu(t)$, specifically a two-state Markov chain model.
 A Markov chain explicitly models transition between a fixed number of regimes, mimicking similar phenomena observed in nature.
 The transition matrix is given by
@@ -214,8 +214,8 @@ The value $\mu(t)$ depends only on $S(t)$ and on time itself:
 \end{equation}
 For simplicity, we assume that the coefficient of variation is the same for both states and that $\pi_1=\pi_2$.
 We further impose $\mu_{1} > \mu_{2}$ so that state 1 can be interpreted as the ``wet'' state and state 2 as the ``dry'' state.
-Parameters for the three experiments are given in {tab:markov-stationary}.
-Results for these experiments are shown in {fig:lfv-markov-bias-variance,fig:lfv-secular-markov-bias-variance,fig:secular-only-markov-bias-variance}.
+Parameters for the three experiments are given in Table \ref{tab:markov-stationary}.
+Results for these experiments are shown in Figure \ref{fig:lfv-markov-bias-variance}, \ref{fig:lfv-secular-markov-bias-variance}, and \ref{fig:secular-only-markov-bias-variance}.
 
 \bibliography{library}
 
@@ -225,7 +225,7 @@ Results for these experiments are shown in {fig:lfv-markov-bias-variance,fig:lfv
 \begin{figure}
       \includegraphics[width=\textwidth]{enso_wavelet.png}
       \caption{
-        Wavelet analysis of the synthetic annual NINO3 time series described in Section XXX.
+        Wavelet analysis of the synthetic annual NINO3 time series described in Section 2.1.
         (L): wavelet power spectrum.
         (R): global (average) power spectrum.
         Blue dots indicate frequencies which are significant at $\alpha=0.10$ and red dots frequencies which are significant at $\alpha=0.05$ compared to white noise.
@@ -247,7 +247,7 @@ Results for these experiments are shown in {fig:lfv-markov-bias-variance,fig:lfv
         \bottomrule
       \end{tabular}
       \caption{
-        Parameters of {eq:nino3} for the LFV only, secular only, and secular plus LFV scenarios.
+        Parameters of equation (5) for the LFV only, secular only, and secular plus LFV scenarios.
       }\label{tab:nino-stationary}
     \end{table}
 
@@ -270,27 +270,28 @@ Results for these experiments are shown in {fig:lfv-markov-bias-variance,fig:lfv
         Parameters of the two-state Markov chain model for the LFV only, secular only, and secular plus LFV experiments.
       }\label{tab:markov-stationary}
     \end{table}
-    \begin{figure}
-      \centering
-      \includegraphics[width=0.8\textwidth]{lfv-only-markov-bias-variance.pdf}
-      \caption{
-        LFV only: as {fig:lfv-nino3-bias-variance} for sequences generated with the two-state Markov chain model.
-      }\label{fig:lfv-markov-bias-variance}
-    \end{figure}
     
     \begin{figure}
       \centering
       \includegraphics[width=0.8\textwidth]{secular-only-markov-bias-variance.pdf}
       \caption{
-        Secular change: as {fig:secular-nino3-bias-variance} for sequences generated with the two-state Markov chain model.
+        Secular change: as Figure 5 for sequences generated with the two-state Markov chain model.
       }\label{fig:secular-only-markov-bias-variance}
+    \end{figure}
+
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.8\textwidth]{lfv-only-markov-bias-variance.pdf}
+      \caption{
+        LFV only: as Figure 6 for sequences generated with the two-state Markov chain model.
+      }\label{fig:lfv-markov-bias-variance}
     \end{figure}
     
     \begin{figure}
       \centering
       \includegraphics[width=0.8\textwidth]{lfv-secular-markov-bias-variance.pdf}
       \caption{
-        LFV plus secular change: as {fig:lfv-secular-nino3-bias-variance} for sequences generated with the two-state Markov chain model.
+        LFV plus secular change: as Figure 7 for sequences generated with the two-state Markov chain model.
       }\label{fig:lfv-secular-markov-bias-variance}
     \end{figure}
 \end{document}

@@ -1,6 +1,14 @@
 # Response to Reviewers
 
-We thank
+We thank Dr. Montanari and one anonymous reviewer for their helpful critique of our paper "Robust Adaptation to Multi-Scale Climate Variability".
+Major comments focused on the key points, the Hurst phenomenon, and connections between the introduction, results, and discussion.
+We draw the attention of the reviewers to section 1.2, which has been completely re-written (the track changes package was not used because the section was completely re-organized) to include a more thorough theoretical discussion of the Hurst phenomenon, low-frequency variability, and our experimental design.
+
+We also draw the attention of the reviewers to section 2.4, which now includes a diagram and some additional text to contextualize the experiment design.
+THis section has also been completely re-written and we have also neglected to track changes in this section.
+
+We also thank the reviewers for thoughtful specific comments.
+We have incorporated nearly all of the changes as suggested; any discrepancies are discussed below.
 
 ## Reviewer 1
 
@@ -28,6 +36,8 @@ I would like to congratulate the authors for their interesting work.
 
 Best regards,
 Alberto Montanari
+
+> Thank you for your thoughtful and positive response. We share responses to your specific (line) comments below. We would like to point your attention to section 1.2, which has been substantially re-written and now provides a greater theoretical discussion of the Hurst phenomenon and low-frequency climate variability. Though this is a very deep literature and 
 
 ### Line comments
 
@@ -81,11 +91,11 @@ Suggest citing literature on robust adaptation if you keep ‘robust’ in the t
 In Sections 2.1 and 2.2 you describe the three models of climatic change, and three ways of modeling each climate model.
 Is there a way to clarify the structure of your computational experiment in these two sections, including your intent of using multiple methods of generating these types of climate variability?
 
-> **QUESTION**: I think we just need to modify the beginning of the results section. Is there anything we can make clearer?
+> We have re-named section 2.4 experiment design and added a flow chart plus some clarifying text to this section.
 
 Please explicitly link the lognormal model with the LN2 acronym in text before using in figures.
 
-> We have done this in section 2.2
+> Thank you for noticing this omission. We have defined this acronym in section 2.2
 
 It would be interesting to see whether there is a relationship in the results between bias and variance; e.g. can the variance inform or predict the bias in each of the three types of climate variability?
 
@@ -93,7 +103,7 @@ It would be interesting to see whether there is a relationship in the results be
 
 The discussion needs to reference the computational results, at minimum to justify the computational experiment as opposed to solely a conceptual exploration.
 
-> We have added some modifications to the discussion to reference our computational results more directly and clearly.
+> We have added some modifications to the discussion to reference our computational results more directly and clearly. Please see underlined changes in section 4.
 
 ### Key points
 
@@ -101,6 +111,8 @@ To me, planning implies a process rather than the expected lifespan of a project
 Can you clarify which meaning you use?
 If the latter, perhaps the following would be more readable: Climate risk varies over the planned lifespan of a project.
 This can also be clarified in other locations of the paper, e.g. line 364 in the summary.
+
+> Thank you for your comment on the key points. Based on suggestions from both reviewers we have completely re-written the key points.
 
 ### Line comments
 
@@ -172,4 +184,4 @@ variables” (or S(t) instead of state).
 
 219: suggest “M, N, and
 
-> This is helpful
+> This is helpful, we have incorporated this suggestion.
