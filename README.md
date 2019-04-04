@@ -39,3 +39,8 @@ conda activate robust-adaptation-cyclical-risk
 This will take a long time and will generate a lot of data, so be prepared!
 Once the experiments have run, you can use `jupyter` notebooks to visualize results.
 These also live in the `src` directory and are numbered.
+
+## Issues
+
+For any problems running the code, please open an issue in the issues tab.
+For general questions, please contact [James Doss-Gollin](https://jamesdossgollin.me/)
