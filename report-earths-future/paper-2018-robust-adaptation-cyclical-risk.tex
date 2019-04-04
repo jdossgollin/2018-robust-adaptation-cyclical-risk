@@ -69,7 +69,7 @@
 % Key Points
 \begin{keypoints}
   \item \add{Climate risk varies over the planned lifespan of a climate risk mitigation instrument}
-  \item \add{We carry out stylized computational experiments to assess the bias and variance of future risk estimated from limited data sets}
+  \item \add{We carry out stylized computational experiments to assess the bias and variance of projected future risk estimated from limited data sets}
   \item \add{Lack of data limits the identifiability of climate signals, favoring prediction of short-term risks which require less extrapolation}
 \end{keypoints}
 
@@ -157,13 +157,13 @@ Human activities can also affect climate risk through modification of local land
 In combination, these effects highlight that the past may not be an adequate representation of future climate risk \citep[termed ``nonstationarity'' by][]{Milly:2008dg}.
 
 Secular change is not the only mechanism which can cause historical records to provide a biased view of future risk.
-The Hurst phenomenon is very well known and identified with long memory processes in geophysics, physics, biology, medicine, traffic, network dynamics, and finance \citep{oconnell:2016}.
+The Hurst phenomenon is well known and identified with long memory processes in geophysics, physics, biology, medicine, traffic, network dynamics, and finance \citep{oconnell:2016}.
 The extensive observations of such behavior in hydrologic and climatic time series emphasize the need to consider such processes as underlying any discussion of climate change or nonstationarity \citep{koutsoyiannis:2003,markonis:2013,Palmer:1993ef}.
-The Hurst phenomena has also been connected to low frequency quasi-periodic phenomena, especially where fractal scaling is expected.
+The Hurst phenomenon has also been connected to low frequency quasi-periodic phenomenon, especially where fractal scaling is expected.
 For example, wavelet methods have been used to estimate the Hurst exponent \citep{simonsen:1998,chamoli:2007}, and to design simulation algorithms that reproduce self-similarity, long range dependence and quasi-periodic regimes \citep{Kwon:2007fj,bullmore:2001,geweke:1983,feng:2005}.
 The Hurst phenomenon also provides a link between catchment hydrology and global climate dynamics \citep{bloschl:2010,montanari:2003}.
 The Hurst exponent is directly related to the fractal dimension of a process, and there is a rich multi-disciplinary literature as to the process level and statistical justification of long memory and fractal processes in hydrology \citep{mandelbrot:1985,mandelbrot:1969,beran:1994}.
-These processes have also been used to describe multi-scale dynamics of the climate \citep{lovejoy:2012,lovejoy:2013a,lovejoy:2013,selvam:2017}, including \gls{enso} \citep{maruyama:2018,zivkovic:2013}.
+These processes have also been used to describe multi-scale dynamics of the climate \citep{lovejoy:2012,lovejoy:2013a,lovejoy:2013,selvam:2017}, including \gls{enso} \citep{maruyama:2018,zivkovic:2013} and the \gls{pdo} \citep{Mantua:1997kj}.
 
 External forcing from structured climate signals \citep[``teleconnections'';][]{Angstrom:1935ej} and catchment dynamics are both useful in explaining the \gls{lfv} observed in natural hydroclimate time series.
 We illustrate such \gls{lfv} in \cref{fig:observed-lfv}, which shows a \SI{500}{year} drought reconstruction from the \gls{lbda} \citep{Cook:2010bz}, a \SI{100}{year} record of annual maximum streamflowflow on the American River at Folsom, and the global wavelet power spectrum for both \citep{Torrence:1998jp,Roesch:wlBQQoIs}.
@@ -444,9 +444,9 @@ As before, when the informational uncertainty is large (small $N$), the identifi
 \clearpage
 \section{Discussion}\label{sec:discussion-conclusions}
 
-Evaluating and implementing investments for climate risk mitigation involves making projections of climate risk, which exhibits both \gls{lfv} and secular trends, over the $M$-year project life of the instrument.
+Evaluating and implementing investments for climate risk mitigation involves making projections of climate risk, which generally exhibits both \gls{lfv} and secular trends, over the $M$-year project life of the instrument.
 The success of this prediction will depend on the identifiability of different signals from limited information, the time scales of \gls{lfv} relative to the project life of the instrument, and the degree of intrinsic uncertainty in the system.
-In this paper we took a synthetic data approach to explore the implications of varying $M$ and $N$ in stylized scenarios which represent important features of real-world hydroclimate systems.
+In this paper we took a synthetic data approach to explore the implications of varying $M$ and $N$ in stylized scenarios that represent important features of real-world hydroclimate systems.
 
 \begin{figure}
   \centering
@@ -463,23 +463,23 @@ If sufficient information is not available, however, then simple models which re
 
 For projects with longer $M$, \add{our results highlight the importance of identifying and predicting} \remove{it becomes necessary to consider the role of} secular change.
 As illustrated schematically in \cref{fig:conceptual-sketch}, uncertainties as to future population, economic development, renewable energy technology, and greenhouse gas mitigation collectively lead to very high intrinsic uncertainty in projections of future climate risk.
-As the physical mechanisms cascade from global (e.g.\@\xspace, global mean surface temperature) to regional  \citep[e.g.\@\xspace, storm track position][]{Barnes:2015gl} and local (e.g.\@\xspace, annual-maximum streamflows) scales, informational uncertainties also compound and increase \citep{Dittes:2017he}.
+As the physical mechanisms cascade from global (e.g.\@\xspace, global mean surface temperature) to regional  \citep[e.g.\@\xspace, storm track position;][]{Barnes:2015gl} and local (e.g.\@\xspace, annual-maximum streamflows) scales, informational uncertainties also compound and increase \citep{Dittes:2017he}.
 With sufficient information (large $N$), this informational uncertainty may be reduced, but this data cannot address intrinsic uncertainty and this zone is thus named the ``intrinsic uncertainty zone''.
-Finally, if $N$ is limited then there will be strong potential for misleading estimates and over-extrapolation \add{(i.e.\xspace a }``danger zone''\add{ for planning)}.
+Finally, if $N$ is limited then there will be strong potential for misleading estimates and over-extrapolation \add{(i.e.\xspace} a ``danger zone''\add{ for planning)}.
 
 These findings were derived \add{conceptually and through} \remove{using simple models} \add{idealized computational experiments} for \add{simulating and predicting climate} risk\remove{ projection}, but the principles are applicable to more complex, physically based methods.
-For example, flood frequency analysis may join observations across time and space \citep{Lima:2016kd,Merz:2008eh} or apply model chains based on \glspl{gcm} and hydrologic models \citep[see][]{Merz:2014gf} to increase $N$.
-We suggest, then, that the sample size $N$ defined in our experiments may be straightforwardly interpreted as a measure of the total informational uncertainty in the analysis; as $N$ increases, informational uncertainty decreases.
+For example, flood frequency analysis may join observations across time and space \citep{Lima:2016kd,Merz:2008eh} or apply model chains based on general circulation models and hydrologic models \citep[see][]{Merz:2014gf} to increase $N$.
+We suggest that the sample size $N$ defined in our experiments may be straightforwardly interpreted as a measure of the total informational uncertainty in the analysis; as $N$ increases, informational uncertainty decreases.
 
 Similarly, real-world climate adaptation plans will typically include multiple instruments which may be placed in different locations and times in a sequential fashion.
 Even if the planning period of a portfolio is long, the individual instruments within the portfolio may have short planning periods.
 Since \cref{sec:results} shows that the bias and variance of climate risk projections tend to increase with $M$, the total bias and variance associated with sequencing 20 consecutive $M=\SI{5}{year}$ projects will be less than that associated with making a single $M=\SI{100}{year}$ project.
-This effect will be exacerbated by the fact that if the first $M=\SI{5}{year}$ project is based on estimates with informational uncertainty $N$, the second will have $N+5$, the third $N+10$, and so on.
+This effect will be compounded by the fact that if the first $M=\SI{5}{year}$ project is based on estimates with informational uncertainty $N$, the second will have $N+5$, the third $N+10$, and so on.
 
 The climate adaptation decisions which our analysis can inform are typically framed as economic cost-benefit analyses which discount future cash flows at some annual rate \citep{sodastrom:1999,powers:2003}.
 The application of a positive discount rate, mandated for many public sector projects in the United States \citep{powers:2003}, further emphasizes the importance of predicting near-term risk.
 Projects with long planning periods must therefore overcome future discounting, the potential for large bias or variance, and that all estimates are made with informational uncertainty $N$.
-\add{By contrast, the informational uncertainties for a sequence of short-term instruments are $N, N+M, N+2M, \ldots$, which may lead to improved identifiability and predictability of relevant climate signals.}\remove{rather than a sequence of $N$, $N+\Delta N, \ldots$}.
+\add{By contrast, the informational uncertainties for a sequence of short-term instruments are $N, N+M, N+2M, \ldots$, potentially yielding improved identifiability and predictability of relevant climate signals.}\remove{rather than a sequence of $N$, $N+\Delta N, \ldots$}.
 
 \section{Summary}
 
