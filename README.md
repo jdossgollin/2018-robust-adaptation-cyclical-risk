@@ -27,7 +27,7 @@ Simply replace the comments at the top of each file (these are for a slurm sched
 
 ```
 module load anaconda
-source activate STXCluster
+source activate robust-adaptation-cyclical-risk
 ```
 
 with
