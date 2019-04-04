@@ -1,14 +1,15 @@
 # Response to Reviewers
 
 We thank Dr. Montanari and one anonymous reviewer for their helpful critique of our paper "Robust Adaptation to Multi-Scale Climate Variability".
-Major comments focused on the key points, the Hurst phenomenon, and connections between the introduction, results, and discussion.
-We draw the attention of the reviewers to section 1.2, which has been completely re-written (the track changes package was not used because the section was completely re-organized) to include a more thorough theoretical discussion of the Hurst phenomenon, low-frequency variability, and our experimental design.
 
-We also draw the attention of the reviewers to section 2.4, which now includes a diagram and some additional text to contextualize the experiment design.
-THis section has also been completely re-written and we have also neglected to track changes in this section.
+Major comments focused on three areas.
+First, the key points were confusingly worded and uninformative.
+Second, the theoretical discussion of low-frequency climate variability lacked connections to literature on the Hurst phenomenon.
+Finally, more explicit links between the introduction, results, and discussion were needed.
+We draw the attention of the reviewers to sections 1.2 and 2.4, which have been completely re-written to address these points.
+We note that we have not applied track changes to these two sections, as they have been completely re-written.
 
-We also thank the reviewers for thoughtful specific comments.
-We have incorporated nearly all of the changes as suggested; any discrepancies are discussed below.
+We also thank the reviewers for thoughtful specific comments, discussed below.
 
 ## Reviewer 1
 
@@ -37,17 +38,17 @@ I would like to congratulate the authors for their interesting work.
 Best regards,
 Alberto Montanari
 
-> Thank you for your thoughtful and positive response. We share responses to your specific (line) comments below. We would like to point your attention to section 1.2, which has been substantially re-written and now provides a greater theoretical discussion of the Hurst phenomenon and low-frequency climate variability. Though this is a very deep literature and 
+> Thank you for your thoughtful and positive response. We share responses to your specific (line) comments below. We would like to point your attention to section 1.2, which has been substantially re-written and now provides a greater theoretical discussion of the Hurst phenomenon, low-frequency climate variability, fractals, and nonlinear dynamics. 
 
 ### Line comments
 
 7: It is not clear to me what this key point means
 
-> We have updated this key point following suggestions from reviewer 2
+> Please see revised key points
 
 10: I believe these key points are not much informative. I am not sure of my opinion, but my feeling it that they should reformulated to better explain what the paper discovered.
 
-> Working on it!
+> Please see revised key points
 
 34: What do you mean exactly? I don't think mitigation efforts proved to be successful.
 
@@ -59,11 +60,11 @@ Alberto Montanari
 
 87: I fully agree with this sentence.
 
-> Thank you very much
+> Thank you very much for your important work on this topic
 
 103: LFV is strictly related to the Hurst effect. There is an extended literature. I think a mention to the Hurst effect would be appropriate here.
 
-> We have added a short paragraph here which seeks to join some disparate literatures on paleoclimate, Hurst effects, and ocean-atmosphere dynamics. These all explain similar phenomena but use different perspectives.
+> We have re-written this subsection to discuss literature on paleoclimate, Hurst effects, and ocean-atmosphere dynamics.
 
 115: I am not sure it is appropriate to make mention to a hypothetically perfect climate model. It should be made clear that this is a VERY ideal assumption. Perfect environmental models do not exist and, as hydrologists, we should be clear on that. 
 
@@ -71,11 +72,11 @@ Alberto Montanari
 
 118: This is why I believe we should not make reference to perfect models.
 
-> See previous comment
+> Please see previous comment
 
 231: I believe these details on the software should not be given here, in the body of the paper. These may be part of the user guide of the produced software
 
-> We are deferring here to the editor. However, I feel that as a consumer of open source software I have an ethical responsibility to cite the primary packages that I use. Further, as a scientist committed to reproducibility I believe that describing software used is as important as describing the experiment design. However, making code accessible on GitHub partially alleviates this concern.
+> We are deferring here to the editor. However, I feel that as a consumer of open source software I have an ethical responsibility to cite the primary packages that I use. Further, as a scientist committed to reproducibility I believe that describing software used is as important as describing the experiment design. However, it is true that making code accessible on GitHub partially alleviates this concern.
 
 ## Reviewer 2
 
@@ -86,7 +87,7 @@ It is an interesting exploration the interaction of various types of climatic va
 As this paper uses the word robust in the title, the introduction needs to link the concept of robustness to their questions and methods.
 Suggest citing literature on robust adaptation if you keep ‘robust’ in the title.
 
-> See Line 39 (verify)
+> Thank you for this suggestion. Please see sentence beginning L45.
 
 In Sections 2.1 and 2.2 you describe the three models of climatic change, and three ways of modeling each climate model.
 Is there a way to clarify the structure of your computational experiment in these two sections, including your intent of using multiple methods of generating these types of climate variability?
@@ -123,7 +124,7 @@ This can also be clarified in other locations of the paper, e.g. line 364 in the
 
 23: The discount rate is given as a decision factor but this is not modeled in the paper. I suggest relegating mention of a discount rate to the introduction or discussion.
 
-> We have removed the distracting mention of a discount rate
+> We have removed the distracting mention of a discount rate from this section.
 
 24: Suggest because instead of where.
 
@@ -135,7 +136,7 @@ This can also be clarified in other locations of the paper, e.g. line 364 in the
 
 41: perhaps a good place to insert a definition and example of operational and financial instruments? An example is given for a structural instrument and that is what people are most likely to understand already.
 
-> This is a helpful suggestion. The sentence now reads "Rather, actors such as New York city have turned to a combination of structural (e.g., index insurance), operational (e.g., improved evacuation routes), and financial (eg, index insurance) investments for reducing vulnerability and increasing resilience to climate extremes." We note that all of these examples are contained in the City of New York report referenced. We believe that these examples are sufficient since a strict definition of different classes of instruments would substantially disrupt the structure of the paragraph.
+> This is a helpful suggestion. The sentence now reads "Rather, actors such as New York city have turned to a combination of structural (e.g., a stormwater barrier), operational (e.g., improved evacuation routes), and financial (eg, index insurance) investments for reducing vulnerability and increasing resilience to climate extremes." We note that all of these examples are contained in the City of New York report referenced. We believe that these examples are sufficient since a strict definition of different classes of instruments would substantially disrupt the structure of the paragraph.
 
 50-51: Phrasing could be reworked; at minimum change this to these at the end of the sentence.
 
@@ -147,7 +148,7 @@ This can also be clarified in other locations of the paper, e.g. line 364 in the
 
 67: perhaps a good place to define length of long-term short. Is this the interannual to multidecadal described in the abstract or the one-year term of a financial contract (line 59)?
 
-> This is an important question, as we are certainly a bit vague here. The points are clearest in the limits of prediction at time scales less than one year or greater than a century; most real-world centuries are in between. To add some clarity, we have added another sentence with an example. This sentence reads "For example, the action that New York City can take today which best protects against uncertain hurricane risks over the 21st century could potentially be to purchase insurance and defer more permanent allocation of capital until some uncertainties are resolved." We hope that our wording does not imply that we have performed any analysis for New York City.
+> This is an important question, as we are certainly a bit vague here. The points are clearest in the limits of prediction at time scales less than one year or greater than a century; most real-world projects are in between. To add some clarity, we have added another sentence with an example. This sentence reads "For example, the action that New York City can take today which best protects against uncertain hurricane risks over the 21st century could potentially be to purchase insurance and defer more permanent allocation of capital until some uncertainties are resolved." We hope that our wording does not imply that we have performed any analysis for New York City.
 
 90-91: Phrasing is a bit obtuse.
 
@@ -159,11 +160,11 @@ This can also be clarified in other locations of the paper, e.g. line 364 in the
 
 Figure 1: Inconsistent capitalization. Can you add units?
 
-> Working on this, but going to follow up RE units of American River
+> Thank you for this suggestion. Figure 1 now has units defined, uniform capitalization, and lettering (a)...(d).
 
 147: Recommend preserving the order you present the climate scenarios throughout the paper.
 
-> This is reasonable. We order them (i) secular change only; (ii) LFV only; (iii) LFV plus secular change. This also mirrors the results.
+> Thank you for this helpful suggestion. We now order the scenarios (i) secular change only; (ii) LFV only; (iii) LFV plus secular change. This also mirrors the results.
 
 185: Is the word ‘consider’ necessary in these paragraphs?
 

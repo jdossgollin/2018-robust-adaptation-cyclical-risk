@@ -168,7 +168,7 @@ There are, however, modes of LFV between 16 and 128 years which are \emph{locall
 \subsection{Projecting Climate Risk over the Future $M$ Years}
 
 As described in Section 2, we implement the stationary and trend log-normal models in a Bayesian framework using the stan programming language \cite{Carpenter:2017ke}.
-The full model, including priors, for the stationary log-normal model is given by equation \eqref{log-normal-stationary}:
+The full model, including priors, for the stationary log-normal model is given by equation \eqref{eq:log-normal-stationary}:
 \begin{align}\label{eq:log-normal-stationary}
   \begin{split}
     \log Q_\text{hist} & \sim \mathcal{N} \qty(\mu, \ \sigma) \\
@@ -188,16 +188,17 @@ The full model, including priors, for the trend log-normal model is given by equ
   \end{split}
 \end{align}
 where $\xi$ is an estimated coefficient of variation.
+The stan models used are available with other codes at \url{https://github.com/jdossgollin/2018-robust-adaptation-cyclical-risk}.
 
 \subsection{Experiment Design}\label{sec:methods-experiments}
 
 In this section we describe the parameters used to generate the specific sets of sequences that are analyzed in the results section.
 To explore the temporal structure of risk, we generate $J=1000$ sequences of streamflow, for each of several combinations of $M$ and $N$.
-Streamflow sequences are generated using the stationary generating functions both with and without superimposing a secular trend.
+Streamflow sequences are generated using the stationary generating functions, both with and without superimposing a secular trend.
 
 \section{Sensitivity to climate generating mechanism}\label{sec:markov-generating}
 
-In the main text we sampled climate risk by considering dependence on a single climate index, as shown in equation 5.
+In the main text we sampled climate risk by considering dependence on a single climate index, as shown in equation 4.
 Here we examine the sensitivity of our results to this assumption by considering a different parameterization for $\mu(t)$, specifically a two-state Markov chain model.
 A Markov chain explicitly models transition between a fixed number of regimes, mimicking similar phenomena observed in nature.
 The transition matrix is given by
@@ -215,7 +216,7 @@ The value $\mu(t)$ depends only on $S(t)$ and on time itself:
 For simplicity, we assume that the coefficient of variation is the same for both states and that $\pi_1=\pi_2$.
 We further impose $\mu_{1} > \mu_{2}$ so that state 1 can be interpreted as the ``wet'' state and state 2 as the ``dry'' state.
 Parameters for the three experiments are given in Table \ref{tab:markov-stationary}.
-Results for these experiments are shown in Figure \ref{fig:lfv-markov-bias-variance}, \ref{fig:lfv-secular-markov-bias-variance}, and \ref{fig:secular-only-markov-bias-variance}.
+Results for these experiments are shown in figures \ref{fig:secular-only-markov-bias-variance}, \ref{fig:lfv-markov-bias-variance}, and \ref{fig:lfv-secular-markov-bias-variance}.
 
 \bibliography{library}
 

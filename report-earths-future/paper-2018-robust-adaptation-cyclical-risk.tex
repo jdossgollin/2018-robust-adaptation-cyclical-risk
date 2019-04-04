@@ -69,7 +69,8 @@
 % Key Points
 \begin{keypoints}
   \item \add{Climate risk varies over the planned lifespan of a climate risk mitigation instrument}
-  \item 
+  \item \add{We carry out stylized computational experiments to assess the bias and variance of future risk estimated from limited data sets}
+  \item \add{Lack of data limits the identifiability of climate signals, favoring prediction of short-term risks which require less extrapolation}
 \end{keypoints}
 
 % Abstract
@@ -93,11 +94,11 @@ Recent climate extremes such as floods, droughts, hurricanes, tornadoes, hailsto
 Further, rapid and continuing changes to global climate hazard and exposure underscore the need for adaptation strategies.
 For example, population growth and urbanization have driven rapid increases in global exposure to events such as floods \citep{Jongman:2012cr} and tropical cyclones \citep{Peduzzi:2012iq}.
 At the same time, anthropogenic modification of global and local climate processes affects the frequency, intensity, and location of extreme events \citep{IPCC:2012wt, Milly:2008dg, Shaw:2016bo}.
-Even if \add{future} mitigation efforts are successful, \add{existing levels of atmospheric $\text{CO}_2$ and ocean heat content motivate the development of} novel adaptation strategies\remove{ are needed}.
+Even if \add{future} mitigation efforts are successful, \add{existing levels of atmospheric $\text{CO}_2$ and ocean heat content necessitate the development of} novel adaptation strategies\remove{ are needed}.
 
 This need has motivated a multitude of approaches for estimating the probability distribution of future climate risk, and for choosing between different risk mitigation instruments based on these estimates \citep[see, e.g.\@\xspace,][]{Merz:2014gf}.
 \add{A typical goal is to create systems which are robust in the sense that they perform well over a wide range of plausible futures} \citep{lempert:2007,Borgomeo:2018hk} \add{and which fail along non-catastrophic modes} \citep{brown:2010}.
-Although climate risk has been traditionally managed with centrally planned structural instruments (e.g.\@\xspace, a levee), the high price \citep{Papakonstantinou:2016ve}, environmental costs \citep{dugan:2010}, and vulnerability to biased climate projections \citep{lempert:2007} have recently slowed their implementation.
+Although climate risk has traditionally been managed with centrally planned structural instruments (e.g.\@\xspace, a levee), the high price \citep{Papakonstantinou:2016ve}, environmental costs \citep{dugan:2010}, and vulnerability to biased climate projections \citep{lempert:2007} have recently \remove{slowed their implementation}\add{dampened enthusiasm}.
 \remove{Instead}\add{Rather}, actors such as New York City have turned to a combination of structural\add{ (e.g.\@\xspace, stormwater barrier)}, operational\add{ (e.g.\@\xspace, improved evacuation routes)}, and financial\add{ (e.g.\@\xspace, index insurance)} instruments for reducing vulnerability and increasing resilience to climate extremes \citep{CityofNewYork:2013uh}.
 These instruments are not typically implemented in isolation or statically.
 Instead, investment decisions made at each point in time affect the viability, costs, and benefits of future decisions, causing the system to trace a ``pathway'' through time \citep{Walker:2013gi,Haasnoot:2013im,Haasnoot:2015dh}.
@@ -156,29 +157,20 @@ Human activities can also affect climate risk through modification of local land
 In combination, these effects highlight that the past may not be an adequate representation of future climate risk \citep[termed ``nonstationarity'' by][]{Milly:2008dg}.
 
 Secular change is not the only mechanism which can cause historical records to provide a biased view of future risk.
-The Hurst phenomenon associated with stochastic long-memory processes and has been invoked to explain long scale fluctuations in geophysics, physics, biology, medicine, traffic, network dynamics as well as for financial time series.
-This phenomena can be characterized as:
-\begin{equation}\label{eq:hurst}
-  \frac{R_n}{S_n} \sim n^H,
-\end{equation}
-where $H \in [0.5, 1]$ is the Hurst coefficient, $R_n$ is the range of the first $n$ cumulative deviations from the mean, and $S_n$ is the sample standard deviation \citep{Hurst:1951tc,oconnell:2016,klemes:1974}.
-\Cref{eq:hurst} measures the tendency of a time series to either regress to the mean or cluster towards the extremes.
-The Hurst exponent $H$ is directly related to the fractal dimension of a process, and there is a rich multi-disciplinary literature as to the process level and statistical justification of long memory and fractal processes, especially in hydrology \citep{mandelbrot:1985,mandelbrot:1969,beran:1994}.
-\citet{lovejoy:2012,lovejoy:2013a} and \citet{lovejoy:2013} also argue that multifractal and long memory processes are an appropriate description of climate in general and weather extremes in particular. 
-Based on this theory, regimes and quasi-periodic phenomena with amplitude that increases with recurrence interval would be the norm rather than the exception.
-Similar arguments are made by \citet{koutsoyiannis:2003}, \citet{markonis:2013}, and \citet{oconnell:2016}, and detailed discussions and some philosophical perspectives are offered by \citet{bloschl:2010} and \citet{montanari:2003}.
-Wavelet methods have also been used to estimate the Hurst exponent \citep{simonsen:1998,chamoli:2007}, and to design simulation algorithms that reproduce self-similarity, long range dependence and quasi-periodic regimes \citep{Kwon:2007fj,bullmore:2001,geweke:1983,feng:2005}.
+The Hurst phenomenon is very well known and identified with long memory processes in geophysics, physics, biology, medicine, traffic, network dynamics, and finance \citep{oconnell:2016}.
+The extensive observations of such behavior in hydrologic and climatic time series emphasize the need to consider such processes as underlying any discussion of climate change or nonstationarity \citep{koutsoyiannis:2003,markonis:2013,Palmer:1993ef}.
+The Hurst phenomena has also been connected to low frequency quasi-periodic phenomena, especially where fractal scaling is expected.
+For example, wavelet methods have been used to estimate the Hurst exponent \citep{simonsen:1998,chamoli:2007}, and to design simulation algorithms that reproduce self-similarity, long range dependence and quasi-periodic regimes \citep{Kwon:2007fj,bullmore:2001,geweke:1983,feng:2005}.
+The Hurst phenomenon also provides a link between catchment hydrology and global climate dynamics \citep{bloschl:2010,montanari:2003}.
+The Hurst exponent is directly related to the fractal dimension of a process, and there is a rich multi-disciplinary literature as to the process level and statistical justification of long memory and fractal processes in hydrology \citep{mandelbrot:1985,mandelbrot:1969,beran:1994}.
+These processes have also been used to describe multi-scale dynamics of the climate \citep{lovejoy:2012,lovejoy:2013a,lovejoy:2013,selvam:2017}, including \gls{enso} \citep{maruyama:2018,zivkovic:2013}.
 
-Links between local hydrological processes and large-scale climate patterns, often referred to as teleconnections \citep{Angstrom:1935ej}, have also been used to explain \gls{lfv} in hydroclimate systems.
-If these climate modes vary on decadal or longer time scales, such as the \gls{pdo} \citep{Mantua:1997kj}, then this \gls{lfv} may appear in local hydrologgical records as well, leading the past to be a poor predictor of future behavior.
-For example, \citet{Jain:2001hz} demonstrated that in a system with substantial \gls{lfv}, due to \gls{enso}, the past $N$ years can be a poor proxy for the following $N$ years even when no secular change is present.
-When records are short and low-frequency external forcing or local memory dominates, it is easy to mistake the Hurst phenomenon for a secular trend which may not continue from the past into the future \citep{bhattacharya:1983}.
-t is also difficult to identify the dominant scales of variability \citep{newman:2016,Jin:1994wq}.
-
-We illustrate this type of \gls{lfv} in \cref{fig:observed-lfv}, which shows a \SI{500}{year} drought reconstruction from the \gls{lbda} \citep{Cook:2010bz}, a \SI{100}{year} record of annual maximum streamflowflow on the American River at Folsom, and the global wavelet power spectrum for both \citep{Torrence:1998jp,Roesch:wlBQQoIs}.
+External forcing from structured climate signals \citep[``teleconnections'';][]{Angstrom:1935ej} and catchment dynamics are both useful in explaining the \gls{lfv} observed in natural hydroclimate time series.
+We illustrate such \gls{lfv} in \cref{fig:observed-lfv}, which shows a \SI{500}{year} drought reconstruction from the \gls{lbda} \citep{Cook:2010bz}, a \SI{100}{year} record of annual maximum streamflowflow on the American River at Folsom, and the global wavelet power spectrum for both \citep{Torrence:1998jp,Roesch:wlBQQoIs}.
 Peaks for the American River time series are apparent at approximately 2 and 15 years and in the \gls{lbda} time series at approximately 8, 20, and 64 years.
 This is illustrated by the blue line in \remove{the top left panel of} \cref{fig:observed-lfv}\add{(b)}, which shows a \SI{20}{year} moving average of the \gls{lbda} time series.
 A detailed analysis of these time series is beyond the scope of this paper, but we note that the high amplitude and long time periods of the quasi-periodic oscillations they exhibit are consistent with analyses of \gls{lfv} in other hydroclimate systems \citep{Kiem:2002kq,Swierczynski:2012km,Woollings:2014kd,Hodgkins:2017hw}.
+The key implication is that the observations, \citep{Jain:2001hz}, trends \citep{bhattacharya:1983}, and frequencies \citep{newman:2016} observed in the past are often poor predictors of future behavior.
 
 \begin{figure}
   \centering
@@ -335,9 +327,9 @@ These sequences are generated with the same underlying parameters, but the speci
 
 \Cref{fig:flowchart} describes the experimental design.
 We assess estimation bias and variance for three \remove{cases}\add{scenarios of future climate}.
-First, we consider an idealized scenario where only secular change is present in the system and \gls{lfv} is fully damped.
-Next, we consider the ``pre-industrial'' case where there is no secular change but \gls{lfv} modulates climate risk in time.
-Finally, we consider a more realistic (though still idealized) case with both \gls{lfv} and secular change.
+First, we consider an idealized scenario where only secular change is present in the system and \gls{lfv} is fully damped (``secular change only'').
+Next, we consider the ``pre-industrial'' case where there is no secular change but \gls{lfv} modulates climate risk in time (``\acrlong{lfv} only'').
+Finally, we consider a more realistic (though still idealized) case with both \gls{lfv} and secular change (``\acrlong{lfv} plus secular change'').
 Model parameters for each scenario are given in the supplemental methods section of the online supporting materials.
 
 \begin{figure}
@@ -353,7 +345,7 @@ Model parameters for each scenario are given in the supplemental methods section
 Computation was carried out in the python programming language, making particular use of the matplotlib, numpy, pandas, pomegranate, scipy, and xarray libraries for scientific computing \citep{Hunter:2007ih, vanderWalt:2011dp, McKinney:2010un, schreiber:2017, Jones:2001uv, Hoyer:2017hs}.
 Wavelet analysis was conducted using the WaveletComp package \citep{Roesch:wlBQQoIs} in the R programming language.
 Bayesian models were written in the stan probabilistic programming language \citep{Carpenter:2017ke} using the No U-Turn Sampler \citep{Hoffman:2011wm,Betancourt:2017vd}.
-The codes used to generate the figures and text of this paper are available at \url{https://github.com/jdossgollin/robust-adaptation-cyclical-risk} or in the online supplemental material of this paper.\footnote{Dear Reviewers: our codes are not presently available on GitHub, as we have chosen to keep the repository private until the article is accepted for publication, but they are available to you through the online supplemental material for this submission.}
+The codes used to generate the figures and text of this paper are available at \url{https://github.com/jdossgollin/2018-robust-adaptation-cyclical-risk} or in the online supplemental material of this paper.
 
 % -----------------------------------------------------------------------------
 % RESULTS
@@ -465,7 +457,7 @@ In this paper we took a synthetic data approach to explore the implications of v
 \end{figure}
 
 \Cref{fig:lfv-secular-nino3-bias-variance,fig:lfv-secular-nino3-bias-variance,fig:secular-nino3-bias-variance} \add{show that} for projects where $M$ is sufficiently short, intrinsic uncertainty is low and cyclical climate variability is dominant over the project planning period \citep{Jain:2001hz,Hodgkins:2017hw}.
-However, one's \emph{ability} to identify and predict this variability depends on having a model of sufficient complexity to represent the processes that cause \gls{lfv}, and the data to fit the model.
+However, one's ability to identify and predict this variability depends on having a model of sufficient complexity to represent the processes that cause \gls{lfv}, and the data to fit the model.
 In this case, the project may be in the ``potential predictability zone'' of \cref{fig:m-n-sketch}.
 If sufficient information is not available, however, then simple models which represent fewer processes may be preferred (the ``rough guess zone'').
 
