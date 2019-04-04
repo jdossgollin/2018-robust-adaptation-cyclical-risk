@@ -1,8 +1,10 @@
-# STXCluster
+# Robust Adaptation to Multi-Scale Climate Variability
 
-Welcome to the code repository for the paper "Adaptating to Spatiotemporally Clustered Risk in a Changing Environment" by James Doss-Gollin, David Farnham, and Upmanu Lall.
+Welcome to the code repository for the paper "Robust Adaptation to Multi-Scale Climate Variability" by James Doss-Gollin, David Farnham, Scott Steinschneider, and Upmanu Lall published in Earth's Future.
+
 Running the code in the `src` directory will enable you to generate all the figures in our paper, including supplemental figures.
 You can also view original versions of several presentations of (early versions of) this work.
+Please see the published (open-access) version of this paper for final text, figures, and references.
 
 
 ## Code and Installation
