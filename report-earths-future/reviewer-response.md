@@ -1,6 +1,6 @@
 # Response to Reviewers
 
-We thank Dr. Montanari and one anonymous reviewer for their helpful critique of our paper "Robust Adaptation to Multi-Scale Climate Variability".
+We thank Dr. Mari, Dr. Montanari, and one anonymous reviewer for their helpful critique of our paper "Robust Adaptation to Multi-Scale Climate Variability".
 
 Major comments focused on three areas.
 First, the key points were confusingly worded and uninformative.
