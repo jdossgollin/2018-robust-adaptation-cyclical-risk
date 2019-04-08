@@ -158,6 +158,10 @@
 
 In this section we provide further equations and parameter values used to generate and fit synthetic streamflow sequences.
 
+\subsection{Implications of Bias and Variance}
+
+Figure \ref{fig:conceptual-bias-variance} shows a schematic representation of the implications of too-low or too-high bias and variance in climate risk projections.
+
 \subsection{Sampling Climate Risk}\label{sec:supp-nino-spectrum}
 
 As described in Section 2.1, we use a synthetic ENSO time series, specifically a NINO3 time series, from \cite{Ramesh:2016hf} to represent low-frequency climate variability.
@@ -222,6 +226,16 @@ Results for these experiments are shown in figures \ref{fig:secular-only-markov-
 
 \end{article}
 \clearpage
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.5\textwidth]{Bias-Variance-Sketch.pdf}
+  \caption{
+    Consequences of model bias or incorrect model representation of uncertainty.
+    If an estimate has a positive bias and overestimates uncertainty, the instrument may be too expensive.
+    If an estimate has negative bias and underestimates uncertainty, it will be likely to fail.
+  }\label{fig:conceptual-bias-variance}
+\end{figure}
 
 \begin{figure}
       \includegraphics[width=\textwidth]{enso_wavelet.png}

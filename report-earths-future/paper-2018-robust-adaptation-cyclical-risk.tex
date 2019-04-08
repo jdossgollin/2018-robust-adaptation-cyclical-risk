@@ -68,9 +68,9 @@
 
 % Key Points
 \begin{keypoints}
-  \item \add{Climate risk varies over the planned lifespan of a climate risk mitigation instrument}
-  \item \add{We carry out stylized computational experiments to assess the bias and variance of projected future risk estimated from limited data sets}
-  \item \add{Lack of data limits the identifiability of climate signals, favoring prediction of short-term risks which require less extrapolation}
+  \item \add{Quasi-periodic and secular climate signals with different identifiability and predictability control uncertainty and risk into the future}
+  \item \add{Adaptation strategies need to consider how the bias and variance in these risk predictions influences choices and decisions pathways}
+  \item \add{Stylized experiments reveal how bias and variance of climate risk estimates over a finite planning periodinfluence risk mitigation}
 \end{keypoints}
 
 % Abstract
@@ -99,7 +99,7 @@ Even if \add{future} mitigation efforts are successful, \add{existing levels of 
 This need has motivated a multitude of approaches for estimating the probability distribution of future climate risk, and for choosing between different risk mitigation instruments based on these estimates \citep[see, e.g.\@\xspace,][]{Merz:2014gf}.
 \add{A typical goal is to create systems which are robust in the sense that they perform well over a wide range of plausible futures} \citep{lempert:2007,Borgomeo:2018hk} \add{and which fail along non-catastrophic modes} \citep{brown:2010}.
 Although climate risk has traditionally been managed with centrally planned structural instruments (e.g.\@\xspace, a levee), the high price \citep{Papakonstantinou:2016ve}, environmental costs \citep{dugan:2010}, and vulnerability to biased climate projections \citep{lempert:2007} have recently \remove{slowed their implementation}\add{dampened enthusiasm}.
-\remove{Instead}\add{Rather}, actors such as New York City have turned to a combination of structural\add{ (e.g.\@\xspace, stormwater barrier)}, operational\add{ (e.g.\@\xspace, improved evacuation routes)}, and financial\add{ (e.g.\@\xspace, index insurance)} instruments for reducing vulnerability and increasing resilience to climate extremes \citep{CityofNewYork:2013uh}.
+\remove{Instead}\add{Rather}, actors such as New York City have turned to a combination of structural\add{ (e.g.\@\xspace, stormwater barrier)}, operational\add{ (e.g.\@\xspace, improved evacuation routes)}, and financial\add{ (e.g.\@\xspace, a catastrophe bond)} instruments for reducing vulnerability and increasing resilience to climate extremes \citep{CityofNewYork:2013uh}.
 These instruments are not typically implemented in isolation or statically.
 Instead, investment decisions made at each point in time affect the viability, costs, and benefits of future decisions, causing the system to trace a ``pathway'' through time \citep{Walker:2013gi,Haasnoot:2013im,Haasnoot:2015dh}.
 
@@ -140,7 +140,8 @@ The planning period can also be interpreted as the finite period over which \gls
 Typical climate risk management policies do not use a single risk mitigation instrument, but rather build a portfolio of several instruments.
 Each has its own operational period, which may or may not match the planning horizon of the portfolio as a whole.
 This means that even if the portfolio has a long planning period, i.e.\@\xspace if long-term plans are a priority, this goal may be best accomplished through a series of flexible and adaptive instruments with short individual planning periods.
-\add{For example, the action that New York City can take today which best protects against uncertain hurricane risks over the 21st century could potentially be to purchase insurance and defer more permanent allocation of capital until some uncertainties are resolved.}
+\add{For example, the optimal policy for New York City to manage uncertain hurricane risk in the 21st century might potentially be to keep areas devastated by hurricane Sandy zoned for low-impact development for the next 10 years.
+This would reduce future risk over all climate scenarios while postponing major investments until large uncertainties as to the magnitude of future sea level rise are resolved.}
 The costs and benefits of each individual instrument will be assessed over its individual, finite planning period, but decisions about the portfolio structure are evaluated over the longer planning horizon.
 
 The availability of precise climate information in the near future may significantly alter the choice between a large, long-duration instrument and a sequence of smaller, short duration instruments that can be executed quickly.
@@ -167,7 +168,7 @@ These processes have also been used to describe multi-scale dynamics of the clim
 
 External forcing from structured climate signals \citep[``teleconnections'';][]{Angstrom:1935ej} and catchment dynamics are both useful in explaining the \gls{lfv} observed in natural hydroclimate time series.
 We illustrate such \gls{lfv} in \cref{fig:observed-lfv}, which shows a \SI{500}{year} drought reconstruction from the \gls{lbda} \citep{Cook:2010bz}, a \SI{100}{year} record of annual maximum streamflowflow on the American River at Folsom, and the global wavelet power spectrum for both \citep{Torrence:1998jp,Roesch:wlBQQoIs}.
-Peaks for the American River time series are apparent at approximately 2 and 15 years and in the \gls{lbda} time series at approximately 8, 20, and 64 years.
+Peaks for the American River time series are apparent at 2.3 and 15 years and in the \gls{lbda} time series at approximately 8, 20, and 64 years.
 This is illustrated by the blue line in \remove{the top left panel of} \cref{fig:observed-lfv}\add{(b)}, which shows a \SI{20}{year} moving average of the \gls{lbda} time series.
 A detailed analysis of these time series is beyond the scope of this paper, but we note that the high amplitude and long time periods of the quasi-periodic oscillations they exhibit are consistent with analyses of \gls{lfv} in other hydroclimate systems \citep{Kiem:2002kq,Swierczynski:2012km,Woollings:2014kd,Hodgkins:2017hw}.
 The key implication is that the observations, \citep{Jain:2001hz}, trends \citep{bhattacharya:1983}, and frequencies \citep{newman:2016} observed in the past are often poor predictors of future behavior.
@@ -302,18 +303,9 @@ Future floods are then estimated by simulating future states from the estimated 
 
 \subsection{Evaluating Fitting Models}\label{sec:methods-evaluating}
 
-Both estimation bias and estimation uncertainty affect the utility of a climate risk projection, as illustrated in \cref{fig:conceptual-bias-variance}.
+Both estimation bias and estimation uncertainty affect the utility of a climate risk projection.
 An instrument \add{whose design was based on projections with} \remove{designed based on} overestimated variance \remove{and}\add{or} positive bias will be over-designed, either causing the risk manager to avoid the investment, given its higher cost, or will lead to unnecessary diversion of funds from other instruments.
 Similarly, an instrument designed based on underestimated variance or negative bias may be under-designed, and thus fail to protect the \remove{user}\add{public}.
-\begin{figure}
-  \centering
-  \includegraphics[width=0.5\textwidth]{Bias-Variance-Sketch.pdf}
-  \caption{
-    Consequences of model bias or incorrect model representation of uncertainty.
-    If an estimate has a positive bias and overestimates uncertainty, the instrument may be too expensive.
-    If an estimate has negative bias and underestimates uncertainty, it will be likely to fail.
-  }\label{fig:conceptual-bias-variance}
-\end{figure}
 
 We evaluate both the estimation bias and estimation uncertainty.
 For a given choice of $M$, $N$, \add{and} generating model, we compare the synthetic streamflow sequence's $N$-year ``historical record'' and the $K=1000$ posterior simulations of future flows.
@@ -506,6 +498,2627 @@ The authors thank Nandini Ramesh of Columbia University for providing the synthe
 The authors thank John High of the United States Army Corps of Engineers for providing the naturalized daily streamflows at the Folsom Dam.
 JDG thanks the NSF GRFP program (grant DGE 16-44869: ``Understanding \& Predicting Climate Drivers of Extreme, Mid-latitude River Floods'') and SERDP program (grant 2516: ``Climate Informed Estimation of Hydrologic Extremes for Robust Adaptation to Non-Stationary Climate'') for support.
 
-\bibliography{library}
+% -----------------------------------------------------------------------------
+% REFERENCES
+% -----------------------------------------------------------------------------
+
+\begin{thebibliography}{}
+
+  \bibitem [\protect \citeauthoryear {%
+  Barnes%
+  \ \BBA {} Screen%
+  }{%
+  Barnes%
+  \ \BBA {} Screen%
+  }{%
+  {\protect \APACyear {2015}}%
+  }]{%
+  Barnes:2015gl}
+  \APACinsertmetastar {%
+  Barnes:2015gl}%
+  \begin{APACrefauthors}%
+  Barnes, E\BPBI A.%
+  \BCBT {}\ \BBA {} Screen, J\BPBI A.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2015}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {The Impact of {{Arctic}} Warming on the Midlatitude
+    Jet-Stream: {{Can}} It? {{Has}} It? {{Will}} It?} {The impact of {{Arctic}}
+    warming on the midlatitude jet-stream: {{Can}} it? {{Has}} it? {{Will}}
+    it?}{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Wiley Interdisciplinary Reviews-Climate
+    Change}{6}{3}{277-286}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1002/wcc.337} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Beran%
+  }{%
+  Beran%
+  }{%
+  {\protect \APACyear {1994}}%
+  }]{%
+  beran:1994}
+  \APACinsertmetastar {%
+  beran:1994}%
+  \begin{APACrefauthors}%
+  Beran, J.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYear{1994}.
+  \newblock
+  \APACrefbtitle {Statistics for Long-Memory Processes} {Statistics for
+    long-memory processes}.
+  \newblock
+  \APACaddressPublisher{New York}{{Chapman \& Hall}}.
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Betancourt%
+  }{%
+  Betancourt%
+  }{%
+  {\protect \APACyear {2017}}%
+  }]{%
+  Betancourt:2017vd}
+  \APACinsertmetastar {%
+  Betancourt:2017vd}%
+  \begin{APACrefauthors}%
+  Betancourt, M.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2017}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {A {{Conceptual Introduction}} to {{Hamiltonian Monte
+    Carlo}}} {A {{Conceptual Introduction}} to {{Hamiltonian Monte
+    Carlo}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{arXiv.org}{}{}{}.
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Bhattacharya%
+  , Gupta%
+  \BCBL {}\ \BBA {} Waymire%
+  }{%
+  Bhattacharya%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {1983}}%
+  }]{%
+  bhattacharya:1983}
+  \APACinsertmetastar {%
+  bhattacharya:1983}%
+  \begin{APACrefauthors}%
+  Bhattacharya, R\BPBI N.%
+  , Gupta, V\BPBI K.%
+  \BCBL {}\ \BBA {} Waymire, E.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{1983}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {The {{Hurst}} Effect under Trends} {The {{Hurst}} effect
+    under trends}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Journal of Applied Probability}{20}{3}{649-662}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.2307/3213900} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Blöschl%
+  \ \BBA {} Montanari%
+  }{%
+  Blöschl%
+  \ \BBA {} Montanari%
+  }{%
+  {\protect \APACyear {2010}}%
+  }]{%
+  bloschl:2010}
+  \APACinsertmetastar {%
+  bloschl:2010}%
+  \begin{APACrefauthors}%
+  Blöschl, G.%
+  \BCBT {}\ \BBA {} Montanari, A.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2010}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Climate Change Impacts—Throwing the Dice?} {Climate
+    change impacts—throwing the dice?}{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Hydrological Processes}{24}{3}{374-381}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1002/hyp.7574} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Borgomeo%
+  , {Mortazavi-Naeini}%
+  , Hall%
+  \BCBL {}\ \BBA {} Guillod%
+  }{%
+  Borgomeo%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2018}}%
+  }]{%
+  Borgomeo:2018hk}
+  \APACinsertmetastar {%
+  Borgomeo:2018hk}%
+  \begin{APACrefauthors}%
+  Borgomeo, E.%
+  , {Mortazavi-Naeini}, M.%
+  , Hall, J\BPBI W.%
+  \BCBL {}\ \BBA {} Guillod, B\BPBI P.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2018}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Risk, {{Robustness}} and {{Water Resources Planning
+    Under Uncertainty}}} {Risk, {{Robustness}} and {{Water Resources Planning
+    Under Uncertainty}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Earth's Future}{6}{3}{468-487}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1002/2017EF000730} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Bracken%
+  , Rajagopalan%
+  \BCBL {}\ \BBA {} Woodhouse%
+  }{%
+  Bracken%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2016}}%
+  }]{%
+  Bracken:2016ba}
+  \APACinsertmetastar {%
+  Bracken:2016ba}%
+  \begin{APACrefauthors}%
+  Bracken, C.%
+  , Rajagopalan, B.%
+  \BCBL {}\ \BBA {} Woodhouse, C.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2016}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {A {{Bayesian}} Hierarchical Nonhomogeneous Hidden
+    {{Markov}} Model for Multisite Streamflow Reconstructions} {A {{Bayesian}}
+    hierarchical nonhomogeneous hidden {{Markov}} model for multisite streamflow
+    reconstructions}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Water Resources Research}{52}{10}{7837-7850}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1002/2016WR018887} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Brown%
+  }{%
+  Brown%
+  }{%
+  {\protect \APACyear {2010}}%
+  }]{%
+  brown:2010}
+  \APACinsertmetastar {%
+  brown:2010}%
+  \begin{APACrefauthors}%
+  Brown, C\BPBI M.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2010}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {The {{End}} of {{Reliability}}} {The {{End}} of
+    {{Reliability}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Journal of Water Resources Planning and
+    Management}{136}{2}{143-145}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1061/(ASCE)WR.1943-5452.65} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Bullmore%
+  \ \protect \BOthers {.}}{%
+  Bullmore%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2001}}%
+  }]{%
+  bullmore:2001}
+  \APACinsertmetastar {%
+  bullmore:2001}%
+  \begin{APACrefauthors}%
+  Bullmore, E.%
+  , Long, C.%
+  , Suckling, J.%
+  , Fadili, J.%
+  , Calvert, G.%
+  , Zelaya, F.%
+  \BDBL {}Brammer, M.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2001}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Colored Noise and Computational Inference in
+    Neurophysiological ({{fMRI}}) Time Series Analysis: {{Resampling}} Methods in
+    Time and Wavelet Domains} {Colored noise and computational inference in
+    neurophysiological ({{fMRI}}) time series analysis: {{Resampling}} methods in
+    time and wavelet domains}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Human Brain Mapping}{12}{2}{61-78}.
+  \newblock
+  \begin{APACrefDOI}
+    \doi{10.1002/1097-0193(200102)12:2<61::AID-HBM1004>3.0.CO;2-W}
+    \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Carpenter%
+  \ \protect \BOthers {.}}{%
+  Carpenter%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2017}}%
+  }]{%
+  Carpenter:2017ke}
+  \APACinsertmetastar {%
+  Carpenter:2017ke}%
+  \begin{APACrefauthors}%
+  Carpenter, B.%
+  , Gelman, A.%
+  , Hoffman, M\BPBI D.%
+  , Lee, D.%
+  , Goodrich, B.%
+  , Betancourt, M.%
+  \BDBL {}Riddell, A.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2017}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Stan: {{A Probabilistic Programming Language}}} {Stan:
+    {{A Probabilistic Programming Language}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Journal Of Statistical Software}{76}{1}{1-29}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.18637/jss.v076.i01} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Chamoli%
+  , Ram~Bansal%
+  \BCBL {}\ \BBA {} Dimri%
+  }{%
+  Chamoli%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2007}}%
+  }]{%
+  chamoli:2007}
+  \APACinsertmetastar {%
+  chamoli:2007}%
+  \begin{APACrefauthors}%
+  Chamoli, A.%
+  , Ram~Bansal, A.%
+  \BCBL {}\ \BBA {} Dimri, V\BPBI P.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2007}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Wavelet and Rescaled Range Approach for the {{Hurst}}
+    Coefficient for Short and Long Time Series} {Wavelet and rescaled range
+    approach for the {{Hurst}} coefficient for short and long time
+    series}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Computers \& Geosciences}{33}{1}{83-93}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1016/j.cageo.2006.05.008} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  {City of New York}%
+  }{%
+  {City of New York}%
+  }{%
+  {\protect \APACyear {2013}}%
+  }]{%
+  CityofNewYork:2013uh}
+  \APACinsertmetastar {%
+  CityofNewYork:2013uh}%
+  \begin{APACrefauthors}%
+  {City of New York}.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2013}{}{}.
+  \newblock
+  \APACrefbtitle {A {{Stronger}}, {{More Resilient New York}}} {A {{Stronger}},
+    {{More Resilient New York}}}\ \APACbVolEdTR{}{\BTR{}}.
+  \newblock
+  \APACaddressInstitution{New York}{}.
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Cook%
+  \ \protect \BOthers {.}}{%
+  Cook%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2010}}%
+  }]{%
+  Cook:2010bz}
+  \APACinsertmetastar {%
+  Cook:2010bz}%
+  \begin{APACrefauthors}%
+  Cook, E\BPBI R.%
+  , Seager, R.%
+  , Heim~Jr, R\BPBI R.%
+  , Vose, R\BPBI S.%
+  , Herweijer, C.%
+  \BCBL {}\ \BBA {} Woodhouse, C.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2010}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Megadroughts in {{North America}}: Placing {{IPCC}}
+    Projections of Hydroclimatic Change in a Long-Term Palaeoclimate Context}
+    {Megadroughts in {{North America}}: Placing {{IPCC}} projections of
+    hydroclimatic change in a long-term palaeoclimate context}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Journal of Quaternary Science}{25}{1}{48-61}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1002/jqs.1303} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Coumou%
+  \ \BBA {} Rahmstorf%
+  }{%
+  Coumou%
+  \ \BBA {} Rahmstorf%
+  }{%
+  {\protect \APACyear {2012}}%
+  }]{%
+  Coumou:2012bc}
+  \APACinsertmetastar {%
+  Coumou:2012bc}%
+  \begin{APACrefauthors}%
+  Coumou, D.%
+  \BCBT {}\ \BBA {} Rahmstorf, S.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2012}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {A Decade of Weather Extremes} {A decade of weather
+    extremes}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Nature Climate Change}{10}{7}{P100013-496}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1038/nclimate1452} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Delgado%
+  , Merz%
+  \BCBL {}\ \BBA {} Apel%
+  }{%
+  Delgado%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2014}}%
+  }]{%
+  Delgado:2014ey}
+  \APACinsertmetastar {%
+  Delgado:2014ey}%
+  \begin{APACrefauthors}%
+  Delgado, J\BPBI M.%
+  , Merz, B.%
+  \BCBL {}\ \BBA {} Apel, H.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2014}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Projecting Flood Hazard under Climate Change: An
+    Alternative Approach to Model Chains} {Projecting flood hazard under climate
+    change: An alternative approach to model chains}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Natural Hazards and Earth System
+    Science}{14}{6}{1579-1589}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.5194/nhess-14-1579-2014} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Di~Baldassarre%
+  \ \protect \BOthers {.}}{%
+  Di~Baldassarre%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2018}}%
+  }]{%
+  baldassarre:2018}
+  \APACinsertmetastar {%
+  baldassarre:2018}%
+  \begin{APACrefauthors}%
+  Di~Baldassarre, G.%
+  , Kreibich, H.%
+  , Vorogushyn, S.%
+  , Aerts, J.%
+  , {Arnbjerg-Nielsen}, K.%
+  , Barendrecht, M.%
+  \BDBL {}Ward, P\BPBI J.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2018}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Hess {{Opinions}}: {{An}} Interdisciplinary Research
+    Agenda to Explore the Unintended Consequences of Structural Flood Protection}
+    {Hess {{Opinions}}: {{An}} interdisciplinary research agenda to explore the
+    unintended consequences of structural flood protection}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Hydrology and Earth System
+    Sciences}{22}{11}{5629-5637}.
+  \newblock
+  \begin{APACrefDOI} \doi{https://doi.org/10.5194/hess-22-5629-2018}
+    \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Dittes%
+  , Špačková%
+  , Schoppa%
+  \BCBL {}\ \BBA {} Straub%
+  }{%
+  Dittes%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2017}}%
+  }]{%
+  Dittes:2017he}
+  \APACinsertmetastar {%
+  Dittes:2017he}%
+  \begin{APACrefauthors}%
+  Dittes, B.%
+  , Špačková, O.%
+  , Schoppa, L.%
+  \BCBL {}\ \BBA {} Straub, D.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2017}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Climate Uncertainty in Flood Protection Planning}
+    {Climate uncertainty in flood protection planning}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Hydrological and Earth System Science}{}{}{1-28}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.5194/hess-2017-576} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Dugan%
+  \ \protect \BOthers {.}}{%
+  Dugan%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2010}}%
+  }]{%
+  dugan:2010}
+  \APACinsertmetastar {%
+  dugan:2010}%
+  \begin{APACrefauthors}%
+  Dugan, P\BPBI J.%
+  , Barlow, C.%
+  , Agostinho, A\BPBI A.%
+  , Baran, E.%
+  , Cada, G\BPBI F.%
+  , Chen, D.%
+  \BDBL {}Winemiller, K\BPBI O.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2010}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Fish {{Migration}}, {{Dams}}, and {{Loss}} of
+    {{Ecosystem Services}} in the {{Mekong Basin}}} {Fish {{Migration}},
+    {{Dams}}, and {{Loss}} of {{Ecosystem Services}} in the {{Mekong
+    Basin}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{AMBIO}{39}{4}{344-348}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1007/s13280-010-0036-1} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Farnham%
+  , {Doss-Gollin}%
+  \BCBL {}\ \BBA {} Lall%
+  }{%
+  Farnham%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2018}}%
+  }]{%
+  Farnham:2018gs}
+  \APACinsertmetastar {%
+  Farnham:2018gs}%
+  \begin{APACrefauthors}%
+  Farnham, D\BPBI J.%
+  , {Doss-Gollin}, J.%
+  \BCBL {}\ \BBA {} Lall, U.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2018}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Regional {{Extreme Precipitation Events}}: {{Robust
+    Inference From Credibly Simulated GCM Variables}}} {Regional {{Extreme
+    Precipitation Events}}: {{Robust Inference From Credibly Simulated GCM
+    Variables}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Water Resources Research}{}{}{}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1002/2017wr021318} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Feng%
+  , Willemain%
+  \BCBL {}\ \BBA {} Shang%
+  }{%
+  Feng%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2005}}%
+  }]{%
+  feng:2005}
+  \APACinsertmetastar {%
+  feng:2005}%
+  \begin{APACrefauthors}%
+  Feng, H.%
+  , Willemain, T\BPBI R.%
+  \BCBL {}\ \BBA {} Shang, N.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2005}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Wavelet-{{Based Bootstrap}} for {{Time Series
+    Analysis}}} {Wavelet-{{Based Bootstrap}} for {{Time Series
+    Analysis}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Communications in Statistics - Simulation and
+    Computation}{34}{2}{393-413}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1081/SAC-200055722} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  {GEI Consultants, Inc.}%
+  }{%
+  {GEI Consultants, Inc.}%
+  }{%
+  {\protect \APACyear {2017}}%
+  }]{%
+  GEI:gIaEZ-gS}
+  \APACinsertmetastar {%
+  GEI:gIaEZ-gS}%
+  \begin{APACrefauthors}%
+  {GEI Consultants, Inc.}%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2017}{}{}.
+  \newblock
+  \APACrefbtitle {Tulare {{Lake Storage}} and {{Floodwater Protection Feasibility
+    Report}}} {Tulare {{Lake Storage}} and {{Floodwater Protection Feasibility
+    Report}}}\ \APACbVolEdTR{}{\BTR{}}.
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Gelman%
+  , Simpson%
+  \BCBL {}\ \BBA {} Betancourt%
+  }{%
+  Gelman%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2017}}%
+  }]{%
+  gelman:2017}
+  \APACinsertmetastar {%
+  gelman:2017}%
+  \begin{APACrefauthors}%
+  Gelman, A.%
+  , Simpson, D.%
+  \BCBL {}\ \BBA {} Betancourt, M.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2017}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {The {{Prior Can Often Only Be Understood}} in the
+    {{Context}} of the {{Likelihood}}} {The {{Prior Can Often Only Be
+    Understood}} in the {{Context}} of the {{Likelihood}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Entropy}{19}{10}{555}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.3390/e19100555} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Geweke%
+  \ \BBA {} Porter‐Hudak%
+  }{%
+  Geweke%
+  \ \BBA {} Porter‐Hudak%
+  }{%
+  {\protect \APACyear {1983}}%
+  }]{%
+  geweke:1983}
+  \APACinsertmetastar {%
+  geweke:1983}%
+  \begin{APACrefauthors}%
+  Geweke, J.%
+  \BCBT {}\ \BBA {} Porter‐Hudak, S.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{1983}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {The {{Estimation}} and {{Application}} of {{Long Memory
+    Time Series Models}}} {The {{Estimation}} and {{Application}} of {{Long
+    Memory Time Series Models}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Journal of Time Series Analysis}{4}{4}{221-238}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1111/j.1467-9892.1983.tb00371.x} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Haasnoot%
+  , Kwakkel%
+  , Walker%
+  \BCBL {}\ \BBA {} {ter Maat}%
+  }{%
+  Haasnoot%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2013}}%
+  }]{%
+  Haasnoot:2013im}
+  \APACinsertmetastar {%
+  Haasnoot:2013im}%
+  \begin{APACrefauthors}%
+  Haasnoot, M.%
+  , Kwakkel, J\BPBI H.%
+  , Walker, W\BPBI E.%
+  \BCBL {}\ \BBA {} {ter Maat}, J.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2013}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Dynamic Adaptive Policy Pathways: {{A}} Method for
+    Crafting Robust Decisions for a Deeply Uncertain World} {Dynamic adaptive
+    policy pathways: {{A}} method for crafting robust decisions for a deeply
+    uncertain world}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Global Environmental Change}{23}{2}{485-498}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1016/j.gloenvcha.2012.12.006} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Haasnoot%
+  , Schellekens%
+  , Beersma%
+  , Middelkoop%
+  \BCBL {}\ \BBA {} Kwadijk%
+  }{%
+  Haasnoot%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2015}}%
+  }]{%
+  Haasnoot:2015dh}
+  \APACinsertmetastar {%
+  Haasnoot:2015dh}%
+  \begin{APACrefauthors}%
+  Haasnoot, M.%
+  , Schellekens, J.%
+  , Beersma, J\BPBI J.%
+  , Middelkoop, H.%
+  \BCBL {}\ \BBA {} Kwadijk, J\BPBI C\BPBI J.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2015}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Transient Scenarios for Robust Climate Change Adaptation
+    Illustrated for Water Management in {{The Netherlands}}} {Transient scenarios
+    for robust climate change adaptation illustrated for water management in
+    {{The Netherlands}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Environmental Research Letters}{10}{10}{105008}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1088/1748-9326/10/10/105008} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Held%
+  }{%
+  Held%
+  }{%
+  {\protect \APACyear {2005}}%
+  }]{%
+  Held:2005cj}
+  \APACinsertmetastar {%
+  Held:2005cj}%
+  \begin{APACrefauthors}%
+  Held, I\BPBI M.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2005}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {The {{Gap}} between {{Simulation}} and {{Understanding}}
+    in {{Climate Modeling}}} {The {{Gap}} between {{Simulation}} and
+    {{Understanding}} in {{Climate Modeling}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Bulletin of the American Meteorological
+    Society}{86}{11}{1609-1614}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1175/BAMS-86-11-1609} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Hodgkins%
+  \ \protect \BOthers {.}}{%
+  Hodgkins%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2017}}%
+  }]{%
+  Hodgkins:2017hw}
+  \APACinsertmetastar {%
+  Hodgkins:2017hw}%
+  \begin{APACrefauthors}%
+  Hodgkins, G\BPBI A.%
+  , Whitfield, P\BPBI H.%
+  , Burn, D\BPBI H.%
+  , Hannaford, J.%
+  , Renard, B.%
+  , Stahl, K.%
+  \BDBL {}Wilson, D.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2017}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Climate-Driven Variability in the Occurrence of Major
+    Floods across {{North America}} and {{Europe}}} {Climate-driven variability
+    in the occurrence of major floods across {{North America}} and
+    {{Europe}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Journal of Hydrology}{552}{}{704-717}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1016/j.jhydrol.2017.07.027} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Hoffman%
+  \ \BBA {} Gelman%
+  }{%
+  Hoffman%
+  \ \BBA {} Gelman%
+  }{%
+  {\protect \APACyear {2011}}%
+  }]{%
+  Hoffman:2011wm}
+  \APACinsertmetastar {%
+  Hoffman:2011wm}%
+  \begin{APACrefauthors}%
+  Hoffman, M\BPBI D.%
+  \BCBT {}\ \BBA {} Gelman, A.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2011}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {The {{No}}-{{U}}-{{Turn Sampler}}: {{Adaptively Setting
+    Path Lengths}} in {{Hamiltonian Monte Carlo}}} {The {{No}}-{{U}}-{{Turn
+    Sampler}}: {{Adaptively Setting Path Lengths}} in {{Hamiltonian Monte
+    Carlo}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{arXiv.org}{}{}{}.
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Hoyer%
+  \ \BBA {} Hamman%
+  }{%
+  Hoyer%
+  \ \BBA {} Hamman%
+  }{%
+  {\protect \APACyear {2017}}%
+  }]{%
+  Hoyer:2017hs}
+  \APACinsertmetastar {%
+  Hoyer:2017hs}%
+  \begin{APACrefauthors}%
+  Hoyer, S.%
+  \BCBT {}\ \BBA {} Hamman, J.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2017}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Xarray: {{N}}-{{D}} Labeled {{Arrays}} and {{Datasets}}
+    in {{Python}}} {Xarray: {{N}}-{{D}} labeled {{Arrays}} and {{Datasets}} in
+    {{Python}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Journal of Open Research Software}{5}{1}{304}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.5334/jors.148} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Hunter%
+  }{%
+  Hunter%
+  }{%
+  {\protect \APACyear {2007}}%
+  }]{%
+  Hunter:2007ih}
+  \APACinsertmetastar {%
+  Hunter:2007ih}%
+  \begin{APACrefauthors}%
+  Hunter, J\BPBI D.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2007}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Matplotlib: {{A 2D}} Graphics Environment} {Matplotlib:
+    {{A 2D}} graphics environment}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Computing in Science \& Engineering}{9}{3}{90-95}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1109/MCSE.2007.55} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  {IPCC}%
+  }{%
+  {IPCC}%
+  }{%
+  {\protect \APACyear {2012}}%
+  }]{%
+  IPCC:2012wt}
+  \APACinsertmetastar {%
+  IPCC:2012wt}%
+  \begin{APACrefauthors}%
+  {IPCC}.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYear{2012}.
+  \newblock
+  \APACrefbtitle {Managing the {{Risks}} of {{Extreme Events}} and {{Disasters}}
+    to {{Advance Climate Change Adaptation}}} {Managing the {{Risks}} of
+    {{Extreme Events}} and {{Disasters}} to {{Advance Climate Change
+    Adaptation}}}.
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Jain%
+  \ \BBA {} Lall%
+  }{%
+  Jain%
+  \ \BBA {} Lall%
+  }{%
+  {\protect \APACyear {2001}}%
+  }]{%
+  Jain:2001hz}
+  \APACinsertmetastar {%
+  Jain:2001hz}%
+  \begin{APACrefauthors}%
+  Jain, S.%
+  \BCBT {}\ \BBA {} Lall, U.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2001}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Floods in a Changing Climate: {{Does}} the Past
+    Represent the Future?} {Floods in a changing climate: {{Does}} the past
+    represent the future?}{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Water Resources Research}{37}{12}{3193-3205}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1029/2001WR000495} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Jin%
+  , Neelin%
+  \BCBL {}\ \BBA {} Ghil%
+  }{%
+  Jin%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {1994}}%
+  }]{%
+  Jin:1994wq}
+  \APACinsertmetastar {%
+  Jin:1994wq}%
+  \begin{APACrefauthors}%
+  Jin, F\BPBI F.%
+  , Neelin, J\BPBI D.%
+  \BCBL {}\ \BBA {} Ghil, M.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{1994}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {El-{{Nino}} on the {{Devils Staircase}} - {{Annual
+    Subharmonic Steps}} to {{Chaos}}} {El-{{Nino}} on the {{Devils Staircase}} -
+    {{Annual Subharmonic Steps}} to {{Chaos}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Science}{264}{5155}{70-72}.
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Jones%
+  , Oliphant%
+  \BCBL {}\ \BBA {} Peterson%
+  }{%
+  Jones%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2001}}%
+  }]{%
+  Jones:2001uv}
+  \APACinsertmetastar {%
+  Jones:2001uv}%
+  \begin{APACrefauthors}%
+  Jones, E.%
+  , Oliphant, T.%
+  \BCBL {}\ \BBA {} Peterson, P.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2001}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {{{SciPy}}: {{Open Source Scientific Tools}} for
+    {{Python}}} {{{SciPy}}: {{Open Source Scientific Tools}} for
+    {{Python}}}.{\BBCQ}
+  \newblock
+  
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Jongman%
+  , Ward%
+  \BCBL {}\ \BBA {} Aerts%
+  }{%
+  Jongman%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2012}}%
+  }]{%
+  Jongman:2012cr}
+  \APACinsertmetastar {%
+  Jongman:2012cr}%
+  \begin{APACrefauthors}%
+  Jongman, B.%
+  , Ward, P\BPBI J.%
+  \BCBL {}\ \BBA {} Aerts, J\BPBI C\BPBI J\BPBI H.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2012}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Global Exposure to River and Coastal Flooding: {{Long}}
+    Term Trends and Changes} {Global exposure to river and coastal flooding:
+    {{Long}} term trends and changes}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Global Environmental Change}{22}{4}{823-835}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1016/j.gloenvcha.2012.07.004} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Kiem%
+  , Franks%
+  \BCBL {}\ \BBA {} Kuczera%
+  }{%
+  Kiem%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2002}}%
+  }]{%
+  Kiem:2002kq}
+  \APACinsertmetastar {%
+  Kiem:2002kq}%
+  \begin{APACrefauthors}%
+  Kiem, A\BPBI S.%
+  , Franks, S\BPBI W.%
+  \BCBL {}\ \BBA {} Kuczera, G.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2002}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Multi-Decadal Variability of Flood Risk} {Multi-decadal
+    variability of flood risk}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Geophysical Research Letters}{30}{2}{3}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1029/2002GL015992} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Koutsoyiannis%
+  }{%
+  Koutsoyiannis%
+  }{%
+  {\protect \APACyear {2003}}%
+  }]{%
+  koutsoyiannis:2003}
+  \APACinsertmetastar {%
+  koutsoyiannis:2003}%
+  \begin{APACrefauthors}%
+  Koutsoyiannis, D.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2003}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Climate Change, the {{Hurst}} Phenomenon, and
+    Hydrological Statistics} {Climate change, the {{Hurst}} phenomenon, and
+    hydrological statistics}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Hydrological Sciences Journal}{48}{1}{3-24}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1623/hysj.48.1.3.43481} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Kwon%
+  , Lall%
+  \BCBL {}\ \BBA {} Khalil%
+  }{%
+  Kwon%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2007}}%
+  }]{%
+  Kwon:2007fj}
+  \APACinsertmetastar {%
+  Kwon:2007fj}%
+  \begin{APACrefauthors}%
+  Kwon, H\BHBI H.%
+  , Lall, U.%
+  \BCBL {}\ \BBA {} Khalil, A\BPBI F.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2007}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Stochastic Simulation Model for Nonstationary Time
+    Series Using an Autoregressive Wavelet Decomposition: {{Applications}} to
+    Rainfall and Temperature} {Stochastic simulation model for nonstationary time
+    series using an autoregressive wavelet decomposition: {{Applications}} to
+    rainfall and temperature}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Water Resources Research}{43}{5}{287}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1029/2006WR005258} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Lempert%
+  \ \BBA {} Collins%
+  }{%
+  Lempert%
+  \ \BBA {} Collins%
+  }{%
+  {\protect \APACyear {2007}}%
+  }]{%
+  lempert:2007}
+  \APACinsertmetastar {%
+  lempert:2007}%
+  \begin{APACrefauthors}%
+  Lempert, R\BPBI J.%
+  \BCBT {}\ \BBA {} Collins, M\BPBI T.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2007}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Managing the {{Risk}} of {{Uncertain Threshold
+    Responses}}: {{Comparison}} of {{Robust}}, {{Optimum}}, and {{Precautionary
+    Approaches}}} {Managing the {{Risk}} of {{Uncertain Threshold Responses}}:
+    {{Comparison}} of {{Robust}}, {{Optimum}}, and {{Precautionary
+    Approaches}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Risk Analysis}{27}{4}{1009-1026}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1111/j.1539-6924.2007.00940.x} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Lima%
+  , Lall%
+  , Troy%
+  \BCBL {}\ \BBA {} Devineni%
+  }{%
+  Lima%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2016}}%
+  }]{%
+  Lima:2016kd}
+  \APACinsertmetastar {%
+  Lima:2016kd}%
+  \begin{APACrefauthors}%
+  Lima, C\BPBI H\BPBI R.%
+  , Lall, U.%
+  , Troy, T.%
+  \BCBL {}\ \BBA {} Devineni, N.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2016}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {A Hierarchical {{Bayesian GEV}} Model for Improving
+    Local and Regional Flood Quantile Estimates} {A hierarchical {{Bayesian GEV}}
+    model for improving local and regional flood quantile estimates}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Journal of Hydrology}{541}{}{816-823}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1016/j.jhydrol.2016.07.042} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Lovejoy%
+  }{%
+  Lovejoy%
+  }{%
+  {\protect \APACyear {2013}}%
+  }]{%
+  lovejoy:2013}
+  \APACinsertmetastar {%
+  lovejoy:2013}%
+  \begin{APACrefauthors}%
+  Lovejoy, S.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2013}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {What {{Is Climate}}?} {What {{Is Climate}}?}{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{EOS, Transactions American Geophysical
+    Union}{94}{1}{1-2}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1002/2013EO010001} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Lovejoy%
+  \ \BBA {} Schertzer%
+  }{%
+  Lovejoy%
+  \ \BBA {} Schertzer%
+  }{%
+  {\protect \APACyear {2012}}%
+  }]{%
+  lovejoy:2012}
+  \APACinsertmetastar {%
+  lovejoy:2012}%
+  \begin{APACrefauthors}%
+  Lovejoy, S.%
+  \BCBT {}\ \BBA {} Schertzer, D.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2012}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Low-{{Frequency Weather}} and the {{Emergence}} of the
+    {{Climate}}} {Low-{{Frequency Weather}} and the {{Emergence}} of the
+    {{Climate}}}.{\BBCQ}
+  \newblock
+  \BIn{} \APACrefbtitle {Extreme {{Events}} and {{Natural Hazards}}: {{The
+    Complexity Perspective}}} {Extreme {{Events}} and {{Natural Hazards}}: {{The
+    Complexity Perspective}}}\ (\BPG~231-254).
+  \newblock
+  \APACaddressPublisher{}{{American Geophysical Union (AGU)}}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1029/2011GM001087} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Lovejoy%
+  \ \BBA {} Schertzer%
+  }{%
+  Lovejoy%
+  \ \BBA {} Schertzer%
+  }{%
+  {\protect \APACyear {2013}}%
+  }]{%
+  lovejoy:2013a}
+  \APACinsertmetastar {%
+  lovejoy:2013a}%
+  \begin{APACrefauthors}%
+  Lovejoy, S.%
+  \BCBT {}\ \BBA {} Schertzer, D.%
+  \end{APACrefauthors}%
+  \ (\BEDS).
+  \unskip\
+  \newblock
+  \APACrefYear{2013}.
+  \newblock
+  \APACrefbtitle {The {{Weather}} and {{Climate}} {{Emergent Laws}} and
+    {{Multifractal Cascades}} /} {The {{Weather}} and {{Climate}} {{Emergent
+    Laws}} and {{Multifractal Cascades}} /}.
+  \newblock
+  \APACaddressPublisher{Cambridge :}{{Cambridge University Press,}}.
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Mandelbrot%
+  }{%
+  Mandelbrot%
+  }{%
+  {\protect \APACyear {1985}}%
+  }]{%
+  mandelbrot:1985}
+  \APACinsertmetastar {%
+  mandelbrot:1985}%
+  \begin{APACrefauthors}%
+  Mandelbrot, B\BPBI B.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{1985}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Self-{{Affine Fractals}} and {{Fractal Dimension}}}
+    {Self-{{Affine Fractals}} and {{Fractal Dimension}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Physica Scripta}{32}{4}{257--260}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1088/0031-8949/32/4/001} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Mandelbrot%
+  \ \BBA {} Wallis%
+  }{%
+  Mandelbrot%
+  \ \BBA {} Wallis%
+  }{%
+  {\protect \APACyear {1969}}%
+  }]{%
+  mandelbrot:1969}
+  \APACinsertmetastar {%
+  mandelbrot:1969}%
+  \begin{APACrefauthors}%
+  Mandelbrot, B\BPBI B.%
+  \BCBT {}\ \BBA {} Wallis, J\BPBI R.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{1969}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Robustness of the Rescaled Range {{R}}/{{S}} in the
+    Measurement of Noncyclic Long Run Statistical Dependence} {Robustness of the
+    rescaled range {{R}}/{{S}} in the measurement of noncyclic long run
+    statistical dependence}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Water Resources Research}{5}{5}{967-988}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1029/WR005i005p00967} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Mantua%
+  , Hare%
+  , Zhang%
+  , Wallace%
+  \BCBL {}\ \BBA {} Francis%
+  }{%
+  Mantua%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {1997}}%
+  }]{%
+  Mantua:1997kj}
+  \APACinsertmetastar {%
+  Mantua:1997kj}%
+  \begin{APACrefauthors}%
+  Mantua, N\BPBI J.%
+  , Hare, S\BPBI R.%
+  , Zhang, Y.%
+  , Wallace, J\BPBI M.%
+  \BCBL {}\ \BBA {} Francis, R\BPBI C.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{1997}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {A {{Pacific}} Interdecadal Climate Oscillation with
+    Impacts on Salmon Production} {A {{Pacific}} interdecadal climate oscillation
+    with impacts on salmon production}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Bulletin of the American Meteorological
+    Society}{78}{6}{1069-1079}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1175/1520-0477(1997)078<1069:APICOW>2.0.CO;2}
+    \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Markonis%
+  \ \BBA {} Koutsoyiannis%
+  }{%
+  Markonis%
+  \ \BBA {} Koutsoyiannis%
+  }{%
+  {\protect \APACyear {2013}}%
+  }]{%
+  markonis:2013}
+  \APACinsertmetastar {%
+  markonis:2013}%
+  \begin{APACrefauthors}%
+  Markonis, Y.%
+  \BCBT {}\ \BBA {} Koutsoyiannis, D.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2013}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Climatic {{Variability Over Time Scales Spanning Nine
+    Orders}} of {{Magnitude}}: {{Connecting Milankovitch Cycles}} with
+    {{Hurst}}–{{Kolmogorov Dynamics}}} {Climatic {{Variability Over Time Scales
+    Spanning Nine Orders}} of {{Magnitude}}: {{Connecting Milankovitch Cycles}}
+    with {{Hurst}}–{{Kolmogorov Dynamics}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Surveys in Geophysics}{34}{2}{181-207}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1007/s10712-012-9208-9} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Maruyama%
+  }{%
+  Maruyama%
+  }{%
+  {\protect \APACyear {2018}}%
+  }]{%
+  maruyama:2018}
+  \APACinsertmetastar {%
+  maruyama:2018}%
+  \begin{APACrefauthors}%
+  Maruyama, F.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2018}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {The {{Relation}} among the {{Solar Activity}}, the
+    {{Total Ozone}}, {{QBO}}, {{NAO}}, and {{ENSO}} by {{Wavelet}}-{{Based
+    Multifractal Analysis}}} {The {{Relation}} among the {{Solar Activity}}, the
+    {{Total Ozone}}, {{QBO}}, {{NAO}}, and {{ENSO}} by {{Wavelet}}-{{Based
+    Multifractal Analysis}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Journal of Applied Mathematics and
+    Physics}{06}{}{1301}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.4236/jamp.2018.66109} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  McKinney%
+  }{%
+  McKinney%
+  }{%
+  {\protect \APACyear {2010}}%
+  }]{%
+  McKinney:2010un}
+  \APACinsertmetastar {%
+  McKinney:2010un}%
+  \begin{APACrefauthors}%
+  McKinney, W.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2010}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Data {{Structures}} for {{Statistical Computing}} in
+    {{Python}}} {Data {{Structures}} for {{Statistical Computing}} in
+    {{Python}}}.{\BBCQ}
+  \newblock
+  \BIn{} \APACrefbtitle {Proceedings of the 9th {{Python}} in {{Science}} Ldots.}
+    {Proceedings of the 9th {{Python}} in {{Science}} ldots.}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  B.~Merz%
+  \ \protect \BOthers {.}}{%
+  B.~Merz%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2014}}%
+  }]{%
+  Merz:2014gf}
+  \APACinsertmetastar {%
+  Merz:2014gf}%
+  \begin{APACrefauthors}%
+  Merz, B.%
+  , Aerts, J\BPBI C\BPBI J\BPBI H.%
+  , {Arnbjerg-Nielsen}, K.%
+  , Baldi, M.%
+  , Becker, A.%
+  , Bichet, A.%
+  \BDBL {}Nied, M.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2014}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Floods and Climate: Emerging Perspectives for Flood Risk
+    Assessment and Management} {Floods and climate: Emerging perspectives for
+    flood risk assessment and management}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Natural Hazards and Earth System
+    Science}{14}{7}{1921-1942}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.5194/nhess-14-1921-2014} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  R.~Merz%
+  \ \BBA {} Blöschl%
+  }{%
+  R.~Merz%
+  \ \BBA {} Blöschl%
+  }{%
+  {\protect \APACyear {2008}}%
+  }]{%
+  Merz:2008eh}
+  \APACinsertmetastar {%
+  Merz:2008eh}%
+  \begin{APACrefauthors}%
+  Merz, R.%
+  \BCBT {}\ \BBA {} Blöschl, G.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2008}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Flood Frequency Hydrology: 1. {{Temporal}}, Spatial, and
+    Causal Expansion of Information} {Flood frequency hydrology: 1. {{Temporal}},
+    spatial, and causal expansion of information}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Water Resources Research}{44}{8}{3}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1029/2007WR006744} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Milly%
+  \ \protect \BOthers {.}}{%
+  Milly%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2008}}%
+  }]{%
+  Milly:2008dg}
+  \APACinsertmetastar {%
+  Milly:2008dg}%
+  \begin{APACrefauthors}%
+  Milly, P\BPBI C\BPBI D.%
+  , Betancourt, J.%
+  , Falkenmark, M.%
+  , Hirsch, R\BPBI M.%
+  , Kundzewicz, Z\BPBI W.%
+  , Lettenmaier, D\BPBI P.%
+  \BCBL {}\ \BBA {} Stouffer, R\BPBI J.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2008}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Stationarity {{Is Dead}}: {{Whither Water Management}}?}
+    {Stationarity {{Is Dead}}: {{Whither Water Management}}?}{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Science}{319}{5863}{573-574}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1126/science.1151915} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Montanari%
+  }{%
+  Montanari%
+  }{%
+  {\protect \APACyear {2003}}%
+  }]{%
+  montanari:2003}
+  \APACinsertmetastar {%
+  montanari:2003}%
+  \begin{APACrefauthors}%
+  Montanari, A.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2003}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Long-Range Dependence in Hydrology} {Long-range
+    dependence in hydrology}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Theory and applications of long-range
+    dependence}{}{}{461-472}.
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Montanari%
+  \ \BBA {} Koutsoyiannis%
+  }{%
+  Montanari%
+  \ \BBA {} Koutsoyiannis%
+  }{%
+  {\protect \APACyear {2014}}%
+  }]{%
+  Montanari:2014hl}
+  \APACinsertmetastar {%
+  Montanari:2014hl}%
+  \begin{APACrefauthors}%
+  Montanari, A.%
+  \BCBT {}\ \BBA {} Koutsoyiannis, D.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2014}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Modeling and Mitigating Natural Hazards:
+    {{Stationarity}} Is Immortal!} {Modeling and mitigating natural hazards:
+    {{Stationarity}} is immortal!}{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Water Resources Research}{50}{12}{9748-9756}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1002/2014WR016092} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Müller%
+  , Wild%
+  , Driesse%
+  \BCBL {}\ \BBA {} Behrens%
+  }{%
+  Müller%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2014}}%
+  }]{%
+  Muller:2014fc}
+  \APACinsertmetastar {%
+  Muller:2014fc}%
+  \begin{APACrefauthors}%
+  Müller, B.%
+  , Wild, M.%
+  , Driesse, A.%
+  \BCBL {}\ \BBA {} Behrens, K.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2014}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Rethinking Solar Resource Assessments in the Context of
+    Global Dimming and Brightening} {Rethinking solar resource assessments in the
+    context of global dimming and brightening}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Solar Energy}{99}{}{272-282}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1016/j.solener.2013.11.013} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Newman%
+  \ \protect \BOthers {.}}{%
+  Newman%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2016}}%
+  }]{%
+  newman:2016}
+  \APACinsertmetastar {%
+  newman:2016}%
+  \begin{APACrefauthors}%
+  Newman, M.%
+  , Alexander, M\BPBI A.%
+  , Ault, T\BPBI R.%
+  , Cobb, K\BPBI M.%
+  , Deser, C.%
+  , Di~Lorenzo, E.%
+  \BDBL {}Smith, C\BPBI A.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2016}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {The {{Pacific Decadal Oscillation}}, {{Revisited}}} {The
+    {{Pacific Decadal Oscillation}}, {{Revisited}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Journal of Climate}{29}{12}{4399-4427}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1175/JCLI-D-15-0508.1} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  O'Gorman%
+  \ \BBA {} Schneider%
+  }{%
+  O'Gorman%
+  \ \BBA {} Schneider%
+  }{%
+  {\protect \APACyear {2009}}%
+  }]{%
+  OGorman:2009hj}
+  \APACinsertmetastar {%
+  OGorman:2009hj}%
+  \begin{APACrefauthors}%
+  O'Gorman, P\BPBI A.%
+  \BCBT {}\ \BBA {} Schneider, T.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2009}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {The Physical Basis for Increases in Precipitation
+    Extremes in Simulations of 21st-Century Climate Change} {The physical basis
+    for increases in precipitation extremes in simulations of 21st-century
+    climate change}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Proceedings of the National Academy of Sciences of the
+    United States of America}{106}{35}{14773-14777}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1073/pnas.0907610106} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  O’Connell%
+  \ \protect \BOthers {.}}{%
+  O’Connell%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2016}}%
+  }]{%
+  oconnell:2016}
+  \APACinsertmetastar {%
+  oconnell:2016}%
+  \begin{APACrefauthors}%
+  O’Connell, P\BPBI E.%
+  , Koutsoyiannis, D.%
+  , Lins, H\BPBI F.%
+  , Markonis, Y.%
+  , Montanari, A.%
+  \BCBL {}\ \BBA {} Cohn, T.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2016}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {The Scientific Legacy of {{Harold Edwin Hurst}}
+    (1880–1978)} {The scientific legacy of {{Harold Edwin Hurst}}
+    (1880–1978)}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Hydrological Sciences Journal}{61}{9}{1571-1590}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1080/02626667.2015.1125998} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Palmer%
+  }{%
+  Palmer%
+  }{%
+  {\protect \APACyear {1993}}%
+  }]{%
+  Palmer:1993ef}
+  \APACinsertmetastar {%
+  Palmer:1993ef}%
+  \begin{APACrefauthors}%
+  Palmer, T\BPBI N.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{1993}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {A Nonlinear Dynamical Perspective on Climate Change} {A
+    nonlinear dynamical perspective on climate change}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Weather}{48}{10}{314-326}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1002/j.1477-8696.1993.tb05802.x} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Papakonstantinou%
+  , Maier%
+  , Kaldany%
+  , Belelieu%
+  \BCBL {}\ \BBA {} Drexler%
+  }{%
+  Papakonstantinou%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2016}}%
+  }]{%
+  Papakonstantinou:2016ve}
+  \APACinsertmetastar {%
+  Papakonstantinou:2016ve}%
+  \begin{APACrefauthors}%
+  Papakonstantinou, V.%
+  , Maier, T.%
+  , Kaldany, R\BPBI R.%
+  , Belelieu, A.%
+  \BCBL {}\ \BBA {} Drexler, M.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2016}{}{}.
+  \newblock
+  \APACrefbtitle {Risk {{Mitigation Instruments}} in {{Infrastructure}}} {Risk
+    {{Mitigation Instruments}} in {{Infrastructure}}}\ \APACbVolEdTR{}{\BTR{}}.
+  \newblock
+  \APACaddressInstitution{}{{World Economic Forum}}.
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Peduzzi%
+  \ \protect \BOthers {.}}{%
+  Peduzzi%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2012}}%
+  }]{%
+  Peduzzi:2012iq}
+  \APACinsertmetastar {%
+  Peduzzi:2012iq}%
+  \begin{APACrefauthors}%
+  Peduzzi, P.%
+  , Chatenoux, B.%
+  , Dao, H.%
+  , De~Bono, A.%
+  , Herold, C.%
+  , Kossin, J.%
+  \BDBL {}Nordbeck, O.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2012}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Global Trends in Tropical Cyclone Risk} {Global trends
+    in tropical cyclone risk}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Nature Climate Change}{2}{4}{289-294}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1038/nclimate1410} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Powers%
+  }{%
+  Powers%
+  }{%
+  {\protect \APACyear {2003}}%
+  }]{%
+  powers:2003}
+  \APACinsertmetastar {%
+  powers:2003}%
+  \begin{APACrefauthors}%
+  Powers, K.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2003}{}{}.
+  \newblock
+  \APACrefbtitle {Benefit-{{Cost Analysis}} and the {{Discount Rate}} for the
+    {{Corps}} of {{Engineers}}' {{Water Resource Projects}}: {{Theory}} and
+    {{Practice}}} {Benefit-{{Cost Analysis}} and the {{Discount Rate}} for the
+    {{Corps}} of {{Engineers}}' {{Water Resource Projects}}: {{Theory}} and
+    {{Practice}}}\ \APACbVolEdTR{}{\BTR{}\ \BNUM\ RL31976}.
+  \newblock
+  \APACaddressInstitution{Washington, DC}{{Congressional Research Service}}.
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Rabiner%
+  \ \BBA {} Juang%
+  }{%
+  Rabiner%
+  \ \BBA {} Juang%
+  }{%
+  {\protect \APACyear {1986}}%
+  }]{%
+  Rabiner:1986jk}
+  \APACinsertmetastar {%
+  Rabiner:1986jk}%
+  \begin{APACrefauthors}%
+  Rabiner, L.%
+  \BCBT {}\ \BBA {} Juang, B.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{1986}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {An {{Introduction}} to {{Hidden Markov Models}}} {An
+    {{Introduction}} to {{Hidden Markov Models}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{IEEE ASSP Magazine}{3}{1}{4-16}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1109/MASSP.1986.1165342} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Ramesh%
+  , Cane%
+  , Seager%
+  \BCBL {}\ \BBA {} Lee%
+  }{%
+  Ramesh%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2016}}%
+  }]{%
+  Ramesh:2016hf}
+  \APACinsertmetastar {%
+  Ramesh:2016hf}%
+  \begin{APACrefauthors}%
+  Ramesh, N.%
+  , Cane, M\BPBI A.%
+  , Seager, R.%
+  \BCBL {}\ \BBA {} Lee, D\BPBI E.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2016}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Predictability and Prediction of Persistent Cool States
+    of the {{Tropical Pacific Ocean}}} {Predictability and prediction of
+    persistent cool states of the {{Tropical Pacific Ocean}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Climate Dynamics}{49}{7-8}{2291-2307}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1007/s00382-016-3446-3} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Roesch%
+  \ \BBA {} Schmidbauer%
+  }{%
+  Roesch%
+  \ \BBA {} Schmidbauer%
+  }{%
+  {\protect \APACyear {2016}}%
+  }]{%
+  Roesch:wlBQQoIs}
+  \APACinsertmetastar {%
+  Roesch:wlBQQoIs}%
+  \begin{APACrefauthors}%
+  Roesch, A.%
+  \BCBT {}\ \BBA {} Schmidbauer, H.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYear{2016}.
+  \newblock
+  \APACrefbtitle {{{WaveletComp}}: Computational Wavelet Analysis. {{R}} Package
+    Version 1.1} {{{WaveletComp}}: Computational wavelet analysis. {{R}} package
+    version 1.1}.
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Rojo~Hernandez%
+  , Lall%
+  \BCBL {}\ \BBA {} Mesa%
+  }{%
+  Rojo~Hernandez%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2017}}%
+  }]{%
+  rojohernandez:2017}
+  \APACinsertmetastar {%
+  rojohernandez:2017}%
+  \begin{APACrefauthors}%
+  Rojo~Hernandez, J\BPBI D.%
+  , Lall, U.%
+  \BCBL {}\ \BBA {} Mesa, O\BPBI J.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2017}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {{{ENSO Dynamics}} and {{Trends}}, an {{Alternate View}}}
+    {{{ENSO Dynamics}} and {{Trends}}, an {{Alternate View}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{AGU Fall Meeting Abstracts}{41}{}{}.
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Ropelewski%
+  \ \BBA {} Halpert%
+  }{%
+  Ropelewski%
+  \ \BBA {} Halpert%
+  }{%
+  {\protect \APACyear {1987}}%
+  }]{%
+  Ropelewski:1987do}
+  \APACinsertmetastar {%
+  Ropelewski:1987do}%
+  \begin{APACrefauthors}%
+  Ropelewski, C\BPBI F.%
+  \BCBT {}\ \BBA {} Halpert, M\BPBI S.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{1987}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Global and {{Regional Scale Precipitation Patterns
+    Associated}} with the {{El}}-{{Nino Southern Oscillation}}} {Global and
+    {{Regional Scale Precipitation Patterns Associated}} with the {{El}}-{{Nino
+    Southern Oscillation}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Monthly Weather Review}{115}{8}{1606-1626}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1175/1520-0493(1987)115<1606:GARSPP>2.0.CO;2}
+    \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Salas%
+  , Obeysekera%
+  \BCBL {}\ \BBA {} Vogel%
+  }{%
+  Salas%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2018}}%
+  }]{%
+  Salas:2018ge}
+  \APACinsertmetastar {%
+  Salas:2018ge}%
+  \begin{APACrefauthors}%
+  Salas, J\BPBI D.%
+  , Obeysekera, J.%
+  \BCBL {}\ \BBA {} Vogel, R\BPBI M.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2018}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Techniques for Assessing Water Infrastructure for
+    Nonstationary Extreme Events: A Review} {Techniques for assessing water
+    infrastructure for nonstationary extreme events: A review}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Hydrological Sciences Journal}{63}{3}{325-352}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1080/02626667.2018.1426858} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Sarachik%
+  \ \BBA {} Cane%
+  }{%
+  Sarachik%
+  \ \BBA {} Cane%
+  }{%
+  {\protect \APACyear {2009}}%
+  }]{%
+  Sarachik:2009dr}
+  \APACinsertmetastar {%
+  Sarachik:2009dr}%
+  \begin{APACrefauthors}%
+  Sarachik, E\BPBI S.%
+  \BCBT {}\ \BBA {} Cane, M\BPBI A.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYear{2009}.
+  \newblock
+  \APACrefbtitle {The {{El Niño}}–{{Southern Oscillation Phenomenon}}} {The
+    {{El Niño}}–{{Southern Oscillation Phenomenon}}}.
+  \newblock
+  \APACaddressPublisher{Cambridge}{{Cambridge University Press}}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1017/CBO9780511817496} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Schreiber%
+  }{%
+  Schreiber%
+  }{%
+  {\protect \APACyear {2017}}%
+  }]{%
+  schreiber:2017}
+  \APACinsertmetastar {%
+  schreiber:2017}%
+  \begin{APACrefauthors}%
+  Schreiber, J.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2017}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Pomegranate: {{Fast}} and {{Flexible Probabilistic
+    Modeling}} in {{Python}}} {Pomegranate: {{Fast}} and {{Flexible Probabilistic
+    Modeling}} in {{Python}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Journal of Machine Learning
+    Research}{18}{1}{5992--5997}.
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Selvam%
+  }{%
+  Selvam%
+  }{%
+  {\protect \APACyear {2017}}%
+  }]{%
+  selvam:2017}
+  \APACinsertmetastar {%
+  selvam:2017}%
+  \begin{APACrefauthors}%
+  Selvam, A\BPBI M.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2017}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Universal {{Inverse Power}}-{{Law Distribution}} for
+    {{Fractal Fluctuations}} in {{Dynamical Systems}}: {{Applications}} for
+    {{Predictability}} of {{Inter}}-{{Annual Variability}} of {{Indian}} and
+    {{USA Region Rainfall}}} {Universal {{Inverse Power}}-{{Law Distribution}}
+    for {{Fractal Fluctuations}} in {{Dynamical Systems}}: {{Applications}} for
+    {{Predictability}} of {{Inter}}-{{Annual Variability}} of {{Indian}} and
+    {{USA Region Rainfall}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Pure and Applied Geophysics}{174}{1}{413-426}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1007/s00024-016-1394-9} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Serinaldi%
+  \ \BBA {} Kilsby%
+  }{%
+  Serinaldi%
+  \ \BBA {} Kilsby%
+  }{%
+  {\protect \APACyear {2015}}%
+  }]{%
+  Serinaldi:2015bq}
+  \APACinsertmetastar {%
+  Serinaldi:2015bq}%
+  \begin{APACrefauthors}%
+  Serinaldi, F.%
+  \BCBT {}\ \BBA {} Kilsby, C\BPBI G.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2015}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Stationarity {{Is Undead}}: {{Uncertainty Dominates}}
+    the {{Distribution}} of {{Extremes}}} {Stationarity {{Is Undead}}:
+    {{Uncertainty Dominates}} the {{Distribution}} of {{Extremes}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Advances in Water Resources}{77}{}{17-36}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1016/j.advwatres.2014.12.013} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Shaw%
+  \ \protect \BOthers {.}}{%
+  Shaw%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2016}}%
+  }]{%
+  Shaw:2016bo}
+  \APACinsertmetastar {%
+  Shaw:2016bo}%
+  \begin{APACrefauthors}%
+  Shaw, T\BPBI A.%
+  , Baldwin, M.%
+  , Barnes, E\BPBI A.%
+  , Caballero, R.%
+  , Garfinkel, C\BPBI I.%
+  , Hwang, Y\BPBI T.%
+  \BDBL {}Voigt, A.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2016}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Storm {{Track Processes}} and the {{Opposing
+    Influences}} of {{Climate Change}}} {Storm {{Track Processes}} and the
+    {{Opposing Influences}} of {{Climate Change}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Nature Geoscience}{9}{9}{656-664}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1038/ngeo2783} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Simonsen%
+  , Hansen%
+  \BCBL {}\ \BBA {} Nes%
+  }{%
+  Simonsen%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {1998}}%
+  }]{%
+  simonsen:1998}
+  \APACinsertmetastar {%
+  simonsen:1998}%
+  \begin{APACrefauthors}%
+  Simonsen, I.%
+  , Hansen, A.%
+  \BCBL {}\ \BBA {} Nes, O\BPBI M.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{1998}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Determination of the {{Hurst}} Exponent by Use of
+    Wavelet Transforms} {Determination of the {{Hurst}} exponent by use of
+    wavelet transforms}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Physical Review E}{58}{3}{2779-2787}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1103/PhysRevE.58.2779} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Simpson%
+  , Rue%
+  , Riebler%
+  , Martins%
+  \BCBL {}\ \BBA {} Sørbye%
+  }{%
+  Simpson%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2017}}%
+  }]{%
+  simpson:2017}
+  \APACinsertmetastar {%
+  simpson:2017}%
+  \begin{APACrefauthors}%
+  Simpson, D.%
+  , Rue, H.%
+  , Riebler, A.%
+  , Martins, T\BPBI G.%
+  \BCBL {}\ \BBA {} Sørbye, S\BPBI H.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2017}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Penalising {{Model Component Complexity}}: {{A
+    Principled}}, {{Practical Approach}} to {{Constructing Priors}}} {Penalising
+    {{Model Component Complexity}}: {{A Principled}}, {{Practical Approach}} to
+    {{Constructing Priors}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Statistical Science}{32}{1}{1-28}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1214/16-STS576} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Sodastrom%
+  , Sokolove%
+  \BCBL {}\ \BBA {} Fairfax%
+  }{%
+  Sodastrom%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {1999}}%
+  }]{%
+  sodastrom:1999}
+  \APACinsertmetastar {%
+  sodastrom:1999}%
+  \begin{APACrefauthors}%
+  Sodastrom, E.%
+  , Sokolove, J.%
+  \BCBL {}\ \BBA {} Fairfax, S\BPBI K.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{1999}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Federal {{Reserved Water Rights Applied}} to {{School
+    Trust Lands Land}} and {{Water Division}}: {{Article}}} {Federal {{Reserved
+    Water Rights Applied}} to {{School Trust Lands Land}} and {{Water Division}}:
+    {{Article}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Land and Water Law Review}{34}{}{1-38}.
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Spence%
+  \ \BBA {} Brown%
+  }{%
+  Spence%
+  \ \BBA {} Brown%
+  }{%
+  {\protect \APACyear {2016}}%
+  }]{%
+  Spence:2016ca}
+  \APACinsertmetastar {%
+  Spence:2016ca}%
+  \begin{APACrefauthors}%
+  Spence, C\BPBI M.%
+  \BCBT {}\ \BBA {} Brown, C\BPBI M.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2016}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Nonstationary {{Decision Model}} for {{Flood Risk
+    Decision Scaling}}} {Nonstationary {{Decision Model}} for {{Flood Risk
+    Decision Scaling}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Water Resources Research}{52}{11}{8650-8667}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1002/2016WR018981} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Swierczynski%
+  \ \protect \BOthers {.}}{%
+  Swierczynski%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2012}}%
+  }]{%
+  Swierczynski:2012km}
+  \APACinsertmetastar {%
+  Swierczynski:2012km}%
+  \begin{APACrefauthors}%
+  Swierczynski, T.%
+  , Brauer, A.%
+  , Lauterbach, S.%
+  , {Martín-Puertas}, C.%
+  , Dulski, P.%
+  , {von Grafenstein}, U.%
+  \BCBL {}\ \BBA {} Rohr, C.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2012}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {A 1600 {{Yr Seasonally Resolved Record}} of
+    {{Decadal}}-{{Scale Flood Variability}} from the {{Austrian Pre}}-{{Alps}}}
+    {A 1600 {{Yr Seasonally Resolved Record}} of {{Decadal}}-{{Scale Flood
+    Variability}} from the {{Austrian Pre}}-{{Alps}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Geology}{40}{11}{1047-1050}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1130/G33493.1} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Torrence%
+  \ \BBA {} Compo%
+  }{%
+  Torrence%
+  \ \BBA {} Compo%
+  }{%
+  {\protect \APACyear {1998}}%
+  }]{%
+  Torrence:1998jp}
+  \APACinsertmetastar {%
+  Torrence:1998jp}%
+  \begin{APACrefauthors}%
+  Torrence, C.%
+  \BCBT {}\ \BBA {} Compo, G\BPBI P.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{1998}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {A {{Practical Guide}} to {{Wavelet Analysis}}} {A
+    {{Practical Guide}} to {{Wavelet Analysis}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Bulletin of the American Meteorological
+    Society}{79}{1}{61-78}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1175/1520-0477(1998)079<0061:APGTWA>2.0.CO;2}
+    \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Trenberth%
+  , Dai%
+  , Rasmussen%
+  \BCBL {}\ \BBA {} Parsons%
+  }{%
+  Trenberth%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2003}}%
+  }]{%
+  Trenberth:2003bj}
+  \APACinsertmetastar {%
+  Trenberth:2003bj}%
+  \begin{APACrefauthors}%
+  Trenberth, K\BPBI E.%
+  , Dai, A.%
+  , Rasmussen, R\BPBI M.%
+  \BCBL {}\ \BBA {} Parsons, D\BPBI B.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2003}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {The {{Changing Character}} of {{Precipitation}}} {The
+    {{Changing Character}} of {{Precipitation}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Bulletin of the American Meteorological
+    Society}{84}{9}{1205-1217}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1175/BAMS-84-9-1205} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  {USACE}%
+  }{%
+  {USACE}%
+  }{%
+  {\protect \APACyear {2007}}%
+  }]{%
+  USACE:2007ta}
+  \APACinsertmetastar {%
+  USACE:2007ta}%
+  \begin{APACrefauthors}%
+  {USACE}.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2007}{}{}.
+  \newblock
+  \APACrefbtitle {Flood {{Damage Analysis Santa Maria Levee Project}}} {Flood
+    {{Damage Analysis Santa Maria Levee Project}}}\ \APACbVolEdTR{}{\BTR{}}.
+  \newblock
+  \APACaddressInstitution{Los Angeles, CA}{{United States Army Corps of Engineers
+    Los Angeles District}}.
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  {USACE}%
+  }{%
+  {USACE}%
+  }{%
+  {\protect \APACyear {2014}}%
+  }]{%
+  USACE:2014vn}
+  \APACinsertmetastar {%
+  USACE:2014vn}%
+  \begin{APACrefauthors}%
+  {USACE}.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2014}{}{}.
+  \newblock
+  \APACrefbtitle {Dallas {{Floodway}}, {{Dallas TX}}} {Dallas {{Floodway}},
+    {{Dallas TX}}}\ \APACbVolEdTR{}{\BTR{}}.
+  \newblock
+  \APACaddressInstitution{Fort Worth, TX}{{United States Army Corps of Engineers,
+    Fort Worth District}}.
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  van~der Walt%
+  , Colbert%
+  \BCBL {}\ \BBA {} Varoquaux%
+  }{%
+  van~der Walt%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2011}}%
+  }]{%
+  vanderWalt:2011dp}
+  \APACinsertmetastar {%
+  vanderWalt:2011dp}%
+  \begin{APACrefauthors}%
+  van~der Walt, S.%
+  , Colbert, S\BPBI C.%
+  \BCBL {}\ \BBA {} Varoquaux, G.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2011}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {The {{NumPy Array}}: {{A Structure}} for {{Efficient
+    Numerical Computation}}} {The {{NumPy Array}}: {{A Structure}} for
+    {{Efficient Numerical Computation}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Computing in Science \& Engineering}{13}{2}{22-30}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1109/MCSE.2011.37} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Walker%
+  , Haasnoot%
+  \BCBL {}\ \BBA {} Kwakkel%
+  }{%
+  Walker%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2013}}%
+  }]{%
+  Walker:2013gi}
+  \APACinsertmetastar {%
+  Walker:2013gi}%
+  \begin{APACrefauthors}%
+  Walker, W.%
+  , Haasnoot, M.%
+  \BCBL {}\ \BBA {} Kwakkel, J.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2013}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Adapt or {{Perish}}: {{A Review}} of {{Planning
+    Approaches}} for {{Adaptation}} under {{Deep Uncertainty}}} {Adapt or
+    {{Perish}}: {{A Review}} of {{Planning Approaches}} for {{Adaptation}} under
+    {{Deep Uncertainty}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Sustainability}{5}{3}{955-979}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.3390/su5030955} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Ward%
+  \ \protect \BOthers {.}}{%
+  Ward%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2014}}%
+  }]{%
+  Ward:2014gg}
+  \APACinsertmetastar {%
+  Ward:2014gg}%
+  \begin{APACrefauthors}%
+  Ward, P\BPBI J.%
+  , Jongman, B.%
+  , Kummu, M.%
+  , Dettinger, M\BPBI D.%
+  , Sperna~Weiland, F\BPBI C.%
+  \BCBL {}\ \BBA {} Winsemius, H\BPBI C.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2014}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Strong {{Influence}} of {{El Nino Southern Oscillation}}
+    on {{Flood Risk}} around the {{World}}} {Strong {{Influence}} of {{El Nino
+    Southern Oscillation}} on {{Flood Risk}} around the {{World}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Proceedings of the National Academy of Sciences of the
+    United States of America}{111}{44}{15659-15664}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1073/pnas.1409822111} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Woollings%
+  \ \protect \BOthers {.}}{%
+  Woollings%
+  \ \protect \BOthers {.}}{%
+  {\protect \APACyear {2014}}%
+  }]{%
+  Woollings:2014kd}
+  \APACinsertmetastar {%
+  Woollings:2014kd}%
+  \begin{APACrefauthors}%
+  Woollings, T.%
+  , Franzke, C.%
+  , Hodson, D\BPBI L\BPBI R.%
+  , Dong, B.%
+  , Barnes, E\BPBI A.%
+  , Raible, C\BPBI C.%
+  \BCBL {}\ \BBA {} Pinto, J\BPBI G.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2014}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Contrasting {{Interannual}} and {{Multidecadal NAO
+    Variability}}} {Contrasting {{Interannual}} and {{Multidecadal NAO
+    Variability}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Climate Dynamics}{45}{1-2}{539-556}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1007/s00382-014-2237-y} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Zebiak%
+  \ \BBA {} Cane%
+  }{%
+  Zebiak%
+  \ \BBA {} Cane%
+  }{%
+  {\protect \APACyear {1987}}%
+  }]{%
+  Zebiak:1987cl}
+  \APACinsertmetastar {%
+  Zebiak:1987cl}%
+  \begin{APACrefauthors}%
+  Zebiak, S\BPBI E.%
+  \BCBT {}\ \BBA {} Cane, M\BPBI A.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{1987}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {A {{Model El Niño}}-{{Southern Oscillation}}} {A
+    {{Model El Niño}}-{{Southern Oscillation}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Monthly Weather Review}{115}{10}{2262-2278}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1175/1520-0493(1987)115<2262:AMENO>2.0.CO;2}
+    \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Ångström%
+  }{%
+  Ångström%
+  }{%
+  {\protect \APACyear {1935}}%
+  }]{%
+  Angstrom:1935ej}
+  \APACinsertmetastar {%
+  Angstrom:1935ej}%
+  \begin{APACrefauthors}%
+  Ångström, A.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{1935}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {Teleconnections of {{Climatic Changes}} in {{Present
+    Time}}} {Teleconnections of {{Climatic Changes}} in {{Present Time}}}.{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Geografiska Annaler}{17}{3-4}{242-258}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1080/20014422.1935.11880600} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \bibitem [\protect \citeauthoryear {%
+  Živković%
+  \ \BBA {} Rypdal%
+  }{%
+  Živković%
+  \ \BBA {} Rypdal%
+  }{%
+  {\protect \APACyear {2013}}%
+  }]{%
+  zivkovic:2013}
+  \APACinsertmetastar {%
+  zivkovic:2013}%
+  \begin{APACrefauthors}%
+  Živković, T.%
+  \BCBT {}\ \BBA {} Rypdal, K.%
+  \end{APACrefauthors}%
+  \unskip\
+  \newblock
+  \APACrefYearMonthDay{2013}{}{}.
+  \newblock
+  {\BBOQ}\APACrefatitle {{{ENSO}} Dynamics: {{Low}}-Dimensional-Chaotic or
+    Stochastic?} {{{ENSO}} dynamics: {{Low}}-dimensional-chaotic or
+    stochastic?}{\BBCQ}
+  \newblock
+  \APACjournalVolNumPages{Journal of Geophysical Research:
+    Atmospheres}{118}{5}{2161-2168}.
+  \newblock
+  \begin{APACrefDOI} \doi{10.1002/jgrd.50190} \end{APACrefDOI}
+  \PrintBackRefs{\CurrentBib}
+  
+  \end{thebibliography}
+  
 
 \end{document}
