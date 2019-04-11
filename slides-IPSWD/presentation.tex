@@ -43,7 +43,6 @@
   array,                              % for custom table widths
   appendixnumberbeamer,               % don't count appendix slides in progress bar
   booktabs,                           % for better (alternative?) tables
-  natbib,                             % references!
 	physics,                            % for better notation
   siunitx,                            % for SI notation
 }
@@ -80,6 +79,22 @@
 
 % Biblatex Setup using a file called library.bib
 \setbeamertemplate{bibliography item}[text] % don't print the symbols
+
+\usepackage[
+  backend=biber,
+  doi=true,
+  url=false,
+  isbn=false,
+  style=authoryear-comp, natbib=true,
+  backref=false,
+  maxbibnames=3,
+  maxcitenames=2,
+  uniquename=false,
+  uniquelist=false
+]{biblatex}
+\renewbibmacro{in:}{}
+\AtEveryBibitem{\clearfield{month}\clearfield{pages}}
+\addbibresource{library.bib}
 
 % Use the glossaries package
 \usepackage[acronym]{glossaries}
@@ -125,7 +140,7 @@
     \includegraphics[height=0.325\textheight]{jongman-fig-2.jpg}~
     \includegraphics[height=0.325\textheight]{wapo-usa-temp.png}
   \end{figure}
-  \nocite{economist-nigeria:2016,Ho:2017gy,Jongman:2012cr}
+  \citep{economist-nigeria:2016,Ho:2017gy,Jongman:2012cr}
 \end{frame}
 
 \begin{frame}{Motivating case study}
@@ -282,12 +297,9 @@
 % QUESTIONS, BIBLIOGRAPHY
 % -----------------------------------------------------------------------------
 
+\renewcommand*{\bibfont}{\small}
 \begin{frame}[allowframebreaks]{References}
-  \renewcommand*{\bibfont}{\scriptsize}
-  \renewcommand{\bibsection}{}
-  \nocite{DossGollin:TjTkb07T}
-	\bibliographystyle{agu}
-  \bibliography{library}
+  \printbibliography[heading=none]
 \end{frame}
 
 \begin{frame}[standout]
@@ -390,7 +402,7 @@
 \end{frame}
 
 \begin{frame}{Hidden Markov Model}
-  Two-state \gls{hmm} \citep[see][]{Rabiner:1986jk} implemented using pomegranate python package \citep{Schreiber:2017tg}.
+  Two-state \gls{hmm} \citep[see][]{Rabiner:1986jk} implemented using pomegranate python package \citep{schreiber:2017}.
   See package documentation for reference.
 \end{frame}
 
