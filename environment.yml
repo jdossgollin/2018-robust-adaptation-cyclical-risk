@@ -16,6 +16,7 @@ dependencies:
     - netcdf4       # xarray file i/o
     - numpy         # N-d array and numerics
     - pandas        # Labeled array library
+    - pip
     - pomegranate   # Hidden Markov Model implementation
     - pylint        # catch other issues
     - pystan        # python interface to stan modeling language
@@ -28,3 +29,5 @@ dependencies:
     - scipy         # Common math/stats/science functions
     - seaborn       # statistical plots including heatmap
     - xarray        # N-d labeled array library
+    - pip:
+        - black     # code formatter

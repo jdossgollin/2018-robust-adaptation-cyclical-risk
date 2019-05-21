@@ -10,6 +10,7 @@ from datetime import datetime
 from .synthetic import SyntheticFloodSequence
 from ..path import data_path
 
+
 class NINO3Linear(SyntheticFloodSequence):
     """Draw streamflow sequences based on a linear relationship with a NINO3 index/
     NINO3 data from Ramesh et al (2017)
@@ -17,29 +18,35 @@ class NINO3Linear(SyntheticFloodSequence):
 
     def __init__(self, **kwargs) -> None:
         model_param = {
-            'mu0': kwargs.pop('mu0'),
-            'gamma': kwargs.pop('gamma', 0),
-            'beta': kwargs.pop('beta', 0.5),
-            'coeff_var': kwargs.pop('coeff_var', 0.1),
-            'sigma_min': kwargs.pop('sigma_min', 0.01),
+            "mu0": kwargs.pop("mu0"),
+            "gamma": kwargs.pop("gamma", 0),
+            "beta": kwargs.pop("beta", 0.5),
+            "coeff_var": kwargs.pop("coeff_var", 0.1),
+            "sigma_min": kwargs.pop("sigma_min", 0.01),
         }
         super().__init__(**kwargs)
         self.param.update(model_param)
-        self.model_name = 'NINO3'
+        self.model_name = "NINO3"
 
     def _calculate_one(self) -> np.ndarray:
         """Run the calculation
         """
         np.random.seed(datetime.now().microsecond)
-        filename = os.path.join(data_path, 'ramesh2017.csv')
-        nino3 = pd.read_csv(filename, index_col='year')
+        filename = os.path.join(data_path, "ramesh2017.csv")
+        nino3 = pd.read_csv(filename, index_col="year")
         valid_start_years = np.arange(nino3.index.max() - (self.M + self.N))
         syear = np.random.choice(valid_start_years)
         eyear = syear + self.N + self.M - 1
-        nino3_sub = nino3.loc[syear:eyear]['nino3'].values
-        
-        mu = self.param.get('mu0') + self.param.get('gamma') * self._get_time(period='all') + self.param.get('beta') * nino3_sub
-        sigma = self.param.get('coeff_var') * mu
-        sigma[np.where(sigma < self.param.get('sigma_min'))] = self.param.get('sigma_min')
+        nino3_sub = nino3.loc[syear:eyear]["nino3"].values
+
+        mu = (
+            self.param.get("mu0")
+            + self.param.get("gamma") * self._get_time(period="all")
+            + self.param.get("beta") * nino3_sub
+        )
+        sigma = self.param.get("coeff_var") * mu
+        sigma[np.where(sigma < self.param.get("sigma_min"))] = self.param.get(
+            "sigma_min"
+        )
         sflow = np.exp(np.random.normal(loc=mu, scale=sigma))
         return sflow

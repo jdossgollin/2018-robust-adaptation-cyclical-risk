@@ -8,8 +8,8 @@ import numpy as np
 import xarray as xr
 import pandas as pd
 
-class BaseSequence:
 
+class BaseSequence:
     def __init__(self, M: int, N: int, category: str, **kwargs) -> None:
         """A base class for synthetic streamflow data or statistical fits
 
@@ -19,7 +19,7 @@ class BaseSequence:
         N : the length of the historical record, in years
         category : what kind of sequence is this?
         """
-        self.param: dict = {} # initialize
+        self.param: dict = {}  # initialize
         self.M = np.int(M)
         self.N = np.int(N)
         self.category = category
@@ -32,18 +32,20 @@ class BaseSequence:
         ----------
         period : either 'all', 'historical', or 'future'
         """
-        if period == 'all':
-            syear = - self.N + 1
+        if period == "all":
+            syear = -self.N + 1
             eyear = self.M
-        elif period == 'historical':
-            syear = - self.N + 1
+        elif period == "historical":
+            syear = -self.N + 1
             eyear = 0
-        elif period == 'future':
+        elif period == "future":
             syear = 1
             eyear = self.M
         else:
-            raise ValueError('Invalid parameter of period: {} not recognized'.format(period))    
-        return np.arange(start=syear, stop=eyear+1)
+            raise ValueError(
+                "Invalid parameter of period: {} not recognized".format(period)
+            )
+        return np.arange(start=syear, stop=eyear + 1)
 
     def _get_attributes(self) -> OrderedDict:
         """Get the key parameters of the data as an ordered dictionary.
@@ -53,13 +55,10 @@ class BaseSequence:
         specified by the user.
         """
         attributes = self.param
-        attributes.update({
-            'M': self.M,
-            'N': self.N,
-        })
+        attributes.update({"M": self.M, "N": self.N})
         attributes = OrderedDict(attributes)
         return attributes
-    
+
     def _get_filename(self) -> str:
         """Get a file name
 
@@ -68,26 +67,26 @@ class BaseSequence:
         and hashes the output to a (shorter!) filename. Finally adds the path
         to the data directory and the appropriate file suffix.
         """
-        raise NotImplementedError # implemented slightly differently for each sub class
+        raise NotImplementedError  # implemented slightly differently for each sub class
 
     def _to_file(self, data: xr.DataArray) -> None:
         """Save the model sequences to file
 
         Create the desired parent directory and delete existing file with same name, if necessary, and then dump to file.
         """
-        assert isinstance(data, xr.DataArray), 'data must be data array'
+        assert isinstance(data, xr.DataArray), "data must be data array"
 
-        data.attrs = self._get_attributes() # save all the model parameters
+        data.attrs = self._get_attributes()  # save all the model parameters
         if os.path.isfile(self._get_filename()):
             os.remove(self._get_filename())
-        data.to_netcdf(self._get_filename(), format='netCDF4', engine='netcdf4')
+        data.to_netcdf(self._get_filename(), format="netCDF4", engine="netcdf4")
 
     def _from_file(self) -> Tuple[xr.DataArray, bool]:
         """Get data from file
 
         NEEDS TO BE IMPLEMENTED BY CHILD PROCESS
         """
-        raise NotImplementedError # needs to be implemented slightly differently
+        raise NotImplementedError  # needs to be implemented slightly differently
 
     def _calculate_all(self) -> xr.DataArray:
         """Need to implement in child class

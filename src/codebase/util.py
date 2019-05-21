@@ -13,7 +13,8 @@ import pandas as pd
 
 from .path import data_path, cache_path
 
-def compile_model(filename: str, model_name: str='') -> StanModel:
+
+def compile_model(filename: str, model_name: str = "") -> StanModel:
     """Compile a stan model only if it hasn't already been compiled
 
     This will automatically cache models - great if you're just running a
@@ -27,16 +28,17 @@ def compile_model(filename: str, model_name: str='') -> StanModel:
 
     with open(filename) as file:
         model_code = file.read()
-        code_hash = md5(model_code.encode('ascii')).hexdigest()
-        cache_fn = 'cached-{}-{}.pkl'.format(model_name, code_hash)
-        cache_fn = os.path.join(cache_path, 'stan', cache_fn)
+        code_hash = md5(model_code.encode("ascii")).hexdigest()
+        cache_fn = "cached-{}-{}.pkl".format(model_name, code_hash)
+        cache_fn = os.path.join(cache_path, "stan", cache_fn)
         try:
-            smodel = pickle.load(open(cache_fn, 'rb'))
+            smodel = pickle.load(open(cache_fn, "rb"))
         except BaseException:
             smodel = StanModel(model_code=model_code)
             safe_pkl_dump(obj=smodel, fname=cache_fn)
 
     return smodel
+
 
 def clear_cache() -> None:
     """Delete cached files and stan models.
@@ -52,6 +54,7 @@ def clear_cache() -> None:
         for name in dirs:
             os.rmdir(os.path.join(root, name))
     os.rmdir(cache_path)
+
 
 def safe_pkl_dump(obj: Any, fname: str) -> None:
     """Dump a file to `pickle`.
@@ -70,8 +73,9 @@ def safe_pkl_dump(obj: Any, fname: str) -> None:
         os.makedirs(par_dir)
 
     # dump the object to file
-    with open(fname, 'wb') as file:
+    with open(fname, "wb") as file:
         pickle.dump(obj, file)
+
 
 def expand_grid(data_dict):
     """Create a dataframe from every combination of given values.
@@ -79,6 +83,7 @@ def expand_grid(data_dict):
     """
     rows = itertools.product(*data_dict.values())
     return pd.DataFrame.from_records(rows, columns=data_dict.keys())
+
 
 def get_bias_variance(generator, fitter, threshold):
     """Helpful for running experiments
@@ -88,24 +93,26 @@ def get_bias_variance(generator, fitter, threshold):
     generator.get_data()
     fitter.get_data()
     df = fitter.evaluate(threshold=threshold)
-    df['Generating_Function'] = generator.model_name
-    df.drop(columns='Generating Function', inplace=True)
-    df.rename(columns={'Fitting Function': 'Fitting_Function'}, inplace=True)
+    df["Generating_Function"] = generator.model_name
+    df.drop(columns="Generating Function", inplace=True)
+    df.rename(columns={"Fitting Function": "Fitting_Function"}, inplace=True)
     return df
+
 
 def run_experiment(param_df, n_seq, n_mcsim, threshold):
     # Run through the parameters
     result_list = [
         get_bias_variance(
-            generator = row['generator'],
-            fitter = row['fitter'],
-            threshold=threshold
-        ) for i,row in param_df.iterrows()
+            generator=row["generator"], fitter=row["fitter"], threshold=threshold
+        )
+        for i, row in param_df.iterrows()
     ]
-    
+
     results_df = pd.concat(result_list, axis=0)
     results_df.reset_index(inplace=True)
-    results_df.set_index(['M', 'N', 'Generating_Function', 'Fitting_Function'], inplace=True)
+    results_df.set_index(
+        ["M", "N", "Generating_Function", "Fitting_Function"], inplace=True
+    )
     results_ds = results_df.to_xarray()
-    
+
     return results_ds
