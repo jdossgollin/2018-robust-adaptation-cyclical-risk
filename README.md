@@ -1,6 +1,7 @@
 # Robust Adaptation to Multi-Scale Climate Variability
 
 [![DOI](https://zenodo.org/badge/121041561.svg)](https://zenodo.org/badge/latestdoi/121041561) *download the exact version of this code used to create our manuscript*
+
 <a href="https://github.com/python/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
 
 
