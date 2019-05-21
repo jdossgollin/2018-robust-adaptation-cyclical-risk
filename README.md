@@ -1,13 +1,11 @@
 # Robust Adaptation to Multi-Scale Climate Variability
 
 [![DOI](https://zenodo.org/badge/121041561.svg)](https://zenodo.org/badge/latestdoi/121041561) *download the exact version of this code used to create our manuscript*
-
 <a href="https://github.com/python/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
 
 
 
-Welcome to the code repository for the paper "Robust Adaptation to Multi-Scale Climate Variability" by James Doss-Gollin, David Farnham, Scott Steinschneider, and Upmanu Lall published in Earth's Future.
-
+Welcome to the code repository for the paper "Robust Adaptation to Multi-Scale Climate Variability" by James Doss-Gollin, David Farnham, Scott Steinschneider, and Upmanu Lall, under review in Earth's Future.
 Running the code in the `src` directory will enable you to generate all the figures in our paper, including supplemental figures.
 You can also view original versions of several presentations of (early versions of) this work.
 Please see the published (open-access) version of this paper for final text, figures, and references.
