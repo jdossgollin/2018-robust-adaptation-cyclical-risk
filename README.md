@@ -25,6 +25,7 @@ conda activate robust-adaptation-cyclical-risk
 ## Running
 
 There are two steps to running the codes.
+
 The first step is to run the computational experiments.
 The relevant files are called `slurm-LFV-Only.sh`, `slurm-LFV-Secular.sh`, and `slurm-Secular-Only.sh`.
 These files are currently written to be run on Columbia's Habanero cluster, but you can easily run them elsewhere.
@@ -41,9 +42,10 @@ with
 conda activate robust-adaptation-cyclical-risk
 ```
 
-This will take a long time and will generate a lot of data, so be prepared!
+or whatever your system requires.
+Running this code will take a long time and will generate a lot of data (order 10-100GB), so be prepared!
 Once the experiments have run, you can use `jupyter` notebooks to visualize results.
-These also live in the `src` directory and are numbered.
+These also live in the `src` directory and are numbered -- just run them in order.
 
 ## Issues
 
